@@ -11,5 +11,4 @@ public abstract class RogueHostileMob extends RogueEntity{
     @Override
     public abstract void render();
     public abstract void attack();
-    public abstract void taunt();
 }
