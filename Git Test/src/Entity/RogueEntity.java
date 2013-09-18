@@ -6,7 +6,7 @@ import Core.Game;
  * @author Torri
  */
 public abstract class RogueEntity extends Game{
-    public int x,y,dir;
+    public int x,y,health,dir;
     @Override
     public abstract void tick();
     public abstract void getX();
