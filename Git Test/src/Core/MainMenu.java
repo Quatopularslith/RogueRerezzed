@@ -1,20 +1,18 @@
 package Core;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class MainMenu extends JFrame implements ActionListener {
-  public MainMenu() {
-  	
     boolean mainMenuVis = true;
     boolean optMenuVis = false;
+  public MainMenu() {
     
     JPanel mainMenu = new JPanel();
-    JLabel title = new JLabel();
-    JButton newGame = new JButton();
-    JButton loadGame = new JButton();
-    JButton options = new JButton();
+    JLabel title = new JLabel("Rogue Rerezzed");
+    JButton newGame = new JButton("New Game");
+    JButton loadGame = new JButton("Load Game");
+    JButton options = new JButton("Options");
     mainMenu.setVisible(mainMenuVis);
     
     JPanel optionsMenu = new JPanel();
@@ -29,4 +27,12 @@ public class MainMenu extends JFrame implements ActionListener {
     
     
   }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        String command = ae.getActionCommand();
+        if(command.equals("Options")){
+            optMenuVis=true;
+        }
+    }
 }
