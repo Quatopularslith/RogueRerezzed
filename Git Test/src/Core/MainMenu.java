@@ -1,7 +1,6 @@
 package Core;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class MainMenu extends JFrame {
   public MainMenu() {
@@ -9,20 +8,20 @@ public class MainMenu extends JFrame {
     boolean mainMenuVis = true;
     boolean optMenuVis = false;
     
-    public JPanel mainMenu = new JPanel("Rogue Rerezzed");
-    private JLabel title = new JLabel("Rogue Rerezzed");
-    private JButton newGame = new JButton("New Game");
-    private JButton loadGame = new JButton("Load Game");
-    private JButton options = new JButton("Options");
+    JPanel mainMenu = new JPanel();
+    JLabel title = new JLabel("Rogue Rerezzed");
+    JButton newGame = new JButton("New Game");
+    JButton loadGame = new JButton("Load Game");
+    JButton options = new JButton("Options");
     mainMenu.setVisible(mainMenuVis);
     
-    public JPanel optionsMenu = new JPanel("Controls");
-    private JTextField fwdKB = new JTextField("Forward KeyBind");
-    private JTextField backKB = new JTextField("Backwards KeyBind");
-    private JTextField rightKB = new JTextField("Right KeyBind");
-    private JTextField leftKB = new JTextField("Left KeyBind");
-    private JTextField spellKB = new JTextField("Spell KeyBind");
-    private JTextField eatKB = new JTextField("Eating KeyBind");
+    JPanel optionsMenu = new JPanel();
+    JTextField fwdKB = new JTextField("Forward KeyBind");
+    JTextField backKB = new JTextField("Backwards KeyBind");
+    JTextField rightKB = new JTextField("Right KeyBind");
+    JTextField leftKB = new JTextField("Left KeyBind");
+    JTextField spellKB = new JTextField("Spell KeyBind");
+    JTextField eatKB = new JTextField("Eating KeyBind");
     mainMenu.setVisible(optMenuVis);
     
     
