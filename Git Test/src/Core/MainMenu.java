@@ -24,6 +24,5 @@ public class MainMenu extends JFrame {
     JTextField eatKB = new JTextField("Eating KeyBind");
     mainMenu.setVisible(optMenuVis);
     
-    
   }
 }
