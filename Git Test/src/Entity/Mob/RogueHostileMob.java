@@ -8,7 +8,5 @@ import Entity.RogueEntity;
 public abstract class RogueHostileMob extends RogueEntity{
     @Override
     public abstract void tick();
-    @Override
-    public abstract void render();
     public abstract int attack();
 }
