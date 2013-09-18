@@ -2,7 +2,7 @@ package Level;
 /**
  * @author Torri
  */
-public class Room {
+public class Room extends Game{
     private int[] size;
     private int[] pos;
     private int[][] entrancepos;
