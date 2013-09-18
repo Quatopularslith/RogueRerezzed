@@ -4,6 +4,6 @@ package AI;
  */
 public class AI {
     public int pointTowards(RogueEntity e){
-        e
+        e.getDir();
     }
 }
