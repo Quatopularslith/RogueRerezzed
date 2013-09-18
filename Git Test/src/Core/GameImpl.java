@@ -10,9 +10,4 @@ public class GameImpl extends Game{
   public void turn(){
     turnnum++;
   }
-
-    @Override
-    public void render() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

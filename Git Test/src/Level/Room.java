@@ -19,11 +19,6 @@ public class Room extends Game{
     }
 
     @Override
-    public void render() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public void turn() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
