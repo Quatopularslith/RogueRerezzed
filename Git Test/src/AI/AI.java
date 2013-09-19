@@ -12,5 +12,6 @@ public class AI {
         return direction;
     }
     public boolean doAttack(boolean ranged){
+        return doatt;
     }
 }
