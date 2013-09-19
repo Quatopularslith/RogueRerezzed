@@ -3,24 +3,26 @@ package Entity.Mob;
  * @author Torri
  */
 public class Snake extends RogueHostileMob{
-    public Snake(){
+    public Snake(int spawnX, int spawnY){
         health=10;
         armour=2;
+        x = spawnX;
+        y = spawnY;
     }
     @Override
     public int attack() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     @Override
-    public void getX() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int getX() {
+        return x;
     }
     @Override
-    public void getY() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int getY() {
+        return y;
     }
     @Override
-    public void getDir() {
+    public int getDir() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     @Override
@@ -28,8 +30,8 @@ public class Snake extends RogueHostileMob{
         throw new UnsupportedOperationException("Not supported yet.");
     }
     @Override
-    public void getHealth() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int getHealth() {
+        return health;
     }
     @Override
     public void tick() {
