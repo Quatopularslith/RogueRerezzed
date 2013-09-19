@@ -7,6 +7,6 @@ import Entity.RogueEntity;
  */
 public abstract class RogueHostileMob extends RogueEntity{
     @Override
-    public abstract void tick();
+    public abstract void turn();
     public abstract int attack();
 }
