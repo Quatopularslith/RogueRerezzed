@@ -2,51 +2,51 @@ package Core;
 
 import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class MainMenu extends JFrame implements ActionListener {
     
-    boolean mainMenuVis = true;
-    boolean optMenuVis = false;
- 
+    JPanel mainMenu = new JPanel();
+    JPanel optionsMenu = new JPanel();
+    
   public MainMenu() {
-      MainMenu.setSize(750,500);
-      MainMenu.add(mainMenu);
-      MainMenu.add(optionsMenu);
-      MainMenu.setLookAndFeel();
-      MainMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      super("Rogue Rerezzed");
+      this.add(mainMenu);
+      this.add(optionsMenu);
+      this.setSize(750,500);
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setVisible(true);
     //Initialize JPanels, Button, and Stuff
     
-    JPanel mainMenu = new JPanel();
-    JLabel title = new JLabel();
-    JButton newGame = new JButton();
-    JButton loadGame = new JButton();
-    JButton options = new JButton();
-    mainMenu.setVisible(mainMenuVis);
+    JLabel title = new JLabel("Rogue Rerezzed");
+    JButton newGame = new JButton("New Game");
+    JButton loadGame = new JButton("Load Game");
+    JButton options = new JButton("Options");
+    mainMenu.setLayout(new FlowLayout(FlowLayout.CENTER));
+    mainMenu.setVisible(true);
     mainMenu.setSize(750,500);
-    mainMenu.
     
     mainMenu.add(title);
     mainMenu.add(newGame);
     mainMenu.add(loadGame);
     mainMenu.add(options);
     
-    
-    JPanel optionsMenu = new JPanel();
-    JTextField fwdKB = new JTextField();
-    JTextField backKB = new JTextField();
-    JTextField rightKB = new JTextField();
-    JTextField leftKB = new JTextField();
-    JTextField spellKB = new JTextField();
-    JTextField eatKB = new JTextField();
-    optionsMenu.setVisible(optMenuVis);
+    JTextField fwdKB = new JTextField(4);
+    JTextField backKB = new JTextField(4);
+    JTextField rightKB = new JTextField(4);
+    JTextField leftKB = new JTextField(4);
+    JTextField spellKB = new JTextField(4);
+    JTextField eatKB = new JTextField(4);
+    optionsMenu.setVisible(false);
     optionsMenu.setSize(750,500);
     
-    options.add(fwdKB);
-    options.add(backKB);
-    options.add(rightKB);
-    options.add(leftKB);
-    options.add(spellKB);
-    options.add(eatKB);
+    optionsMenu.add(fwdKB);
+    optionsMenu.add(backKB);
+    optionsMenu.add(rightKB);
+    optionsMenu.add(leftKB);
+    optionsMenu.add(spellKB);
+    optionsMenu.add(eatKB);
+    options.addActionListener(this);
     
   }
     
@@ -56,8 +56,8 @@ public class MainMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
         if(command.equals("Options")){
-            optMenuVis=true;
-            mainMenuVis=false;
+            mainMenu.setVisible(false);
+            optionsMenu.setVisible(true);
         }
     }
 }
