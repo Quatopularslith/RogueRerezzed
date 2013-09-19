@@ -15,8 +15,5 @@ public abstract class RogueEntity extends Game{
     public abstract void getY();
     public abstract void getDir();
     public abstract void getHealth();
-    public void damage(int att){
-        att = armour-att;
-        health = health-att;
-    }
+    public abstract void damage(int att);
 }
