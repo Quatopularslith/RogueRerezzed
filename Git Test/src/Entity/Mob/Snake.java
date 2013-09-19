@@ -11,6 +11,7 @@ public class Snake extends RogueHostileMob{
         armour=2;
         x = spawnX;
         y = spawnY;
+        dir = 0;
     }
     @Override
     public int attack() {
@@ -26,11 +27,10 @@ public class Snake extends RogueHostileMob{
     }
     @Override
     public int getDir() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return dir;
     }
     @Override
     public void turn() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     @Override
     public int getHealth() {
@@ -38,7 +38,6 @@ public class Snake extends RogueHostileMob{
     }
     @Override
     public void tick() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     @Override
     public void damage(int att) {
