@@ -25,7 +25,10 @@ public class MainMenu extends JFrame implements ActionListener {
     mainMenu.setSize(750,500);
     mainMenu.
     
-    mainMenu.add()
+    mainMenu.add(title);
+    mainMenu.add(newGame);
+    mainMenu.add(loadGame);
+    mainMenu.add(options);
     
     
     JPanel optionsMenu = new JPanel();
@@ -37,6 +40,13 @@ public class MainMenu extends JFrame implements ActionListener {
     JTextField eatKB = new JTextField();
     optionsMenu.setVisible(optMenuVis);
     optionsMenu.setSize(750,500);
+    
+    options.add(fwdKB);
+    options.add(backKB);
+    options.add(rightKB);
+    options.add(leftKB);
+    options.add(spellKB);
+    options.add(eatKB);
     
   }
     
