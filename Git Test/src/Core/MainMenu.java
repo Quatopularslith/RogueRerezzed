@@ -41,7 +41,6 @@ public class MainMenu extends JFrame implements ActionListener {
     JTextField leftKB = new JTextField(4);
     JTextField spellKB = new JTextField(4);
     JTextField eatKB = new JTextField(4);
-    JTextField invKB = new JTextField(4);
     JButton back = new JButton("Back");
     optionsMenu.setVisible(false);
     optionsMenu.setSize(x,y);
@@ -52,7 +51,6 @@ public class MainMenu extends JFrame implements ActionListener {
     optionsMenu.add(leftKB);
     optionsMenu.add(spellKB);
     optionsMenu.add(eatKB);
-    optionsMenu.add(invKB);
     optionsMenu.add(back);
 
     newGame.addActionListener(this);

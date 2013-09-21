@@ -14,11 +14,7 @@ public class Player extends RogueEntity{
         y=spawnY;
     }
     @Override
-    public void tick() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    @Override
-    public void turn() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void turn(){
+        
     }
 }

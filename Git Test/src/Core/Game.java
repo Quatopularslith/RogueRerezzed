@@ -3,6 +3,11 @@ package Core;
  * @author Torri
  */
 public abstract class Game {
-    public abstract void tick();
-    public abstract void turn();
+    static int turnnum = 0;
+    public void tick(){
+    }
+    public void turn(){
+        turnnum++;
+        System.out.println(turnnum);
+    }
 }

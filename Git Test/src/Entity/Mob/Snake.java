@@ -11,7 +11,4 @@ public class Snake extends RogueHostileMob{
         y = spawnY;
         dir = 0;
     }
-    @Override
-    public void tick() {
-    }
 }
