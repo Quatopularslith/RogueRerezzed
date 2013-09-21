@@ -6,7 +6,7 @@ import Core.Game;
  * @author Torri
  */
 public abstract class RogueEntity extends Game{
-    public int x,y,health,dir,armour;
+    public int x,y,health,dir,armour,potion;
     public int getX(){
         return x;
     }

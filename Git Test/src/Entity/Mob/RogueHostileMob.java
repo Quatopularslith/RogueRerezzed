@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public abstract class RogueHostileMob extends RogueEntity{
     AI a = new AI(this);
-    public int maxAtt;
+    public int maxAtt, drops;
     Random r = new Random();
     public int attack(){
         return r.nextInt(maxAtt);

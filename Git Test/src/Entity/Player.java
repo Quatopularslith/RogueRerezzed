@@ -4,6 +4,7 @@ package Entity;
  */
 public class Player extends RogueEntity{
     public int taunt;
+    public int[] inventory = new int[10];// may need bigger inv size in the futrure
     public Player(int spawnX, int spawnY){
         health = 100;
         taunt = 3;
