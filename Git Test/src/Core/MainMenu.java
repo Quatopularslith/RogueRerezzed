@@ -1,5 +1,6 @@
 package Core;
 
+import Render.TextRender;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
@@ -8,16 +9,19 @@ public class MainMenu extends JFrame implements ActionListener {
     
     JPanel mainMenu = new JPanel();
     JPanel optionsMenu = new JPanel();
+    JPanel textRender = new TextRender();
     
   public MainMenu(int x,int y) {
       super("Rogue Rerezzed");
       this.add(mainMenu);
       this.add(optionsMenu);
+      this.add(textRender);
       this.setSize(x,y);
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       this.setVisible(true);
     //Initialize JPanels, Button, and Stuff
-    
+      textRender.setVisible(false);
+
     JLabel title = new JLabel("Rogue Rerezzed");
     JButton newGame = new JButton("New Game");
     JButton loadGame = new JButton("Load Game");
@@ -25,12 +29,12 @@ public class MainMenu extends JFrame implements ActionListener {
     mainMenu.setLayout(new FlowLayout(FlowLayout.CENTER));
     mainMenu.setVisible(true);
     mainMenu.setSize(x,y);
-    
+
     mainMenu.add(title);
     mainMenu.add(newGame);
     mainMenu.add(loadGame);
     mainMenu.add(options);
-    
+
     JTextField fwdKB = new JTextField(4);
     JTextField backKB = new JTextField(4);
     JTextField rightKB = new JTextField(4);
@@ -41,7 +45,7 @@ public class MainMenu extends JFrame implements ActionListener {
     JButton back = new JButton("Back");
     optionsMenu.setVisible(false);
     optionsMenu.setSize(x,y);
-    
+
     optionsMenu.add(fwdKB);
     optionsMenu.add(backKB);
     optionsMenu.add(rightKB);
@@ -50,7 +54,8 @@ public class MainMenu extends JFrame implements ActionListener {
     optionsMenu.add(eatKB);
     optionsMenu.add(invKB);
     optionsMenu.add(back);
-    
+
+    newGame.addActionListener(this);
     options.addActionListener(this);
     back.addActionListener(this);
   }
@@ -65,6 +70,11 @@ public class MainMenu extends JFrame implements ActionListener {
         if(command.equalsIgnoreCase("Back")){
             mainMenu.setVisible(true);
             optionsMenu.setVisible(false);
+        }
+        if(command.equalsIgnoreCase("New Game")){
+            mainMenu.setVisible(false);
+            optionsMenu.setVisible(false);
+            textRender.setVisible(true);
         }
     }
 }
