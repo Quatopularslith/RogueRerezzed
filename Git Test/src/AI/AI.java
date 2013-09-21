@@ -1,6 +1,5 @@
 package AI;
 
-import Core.Game;
 import Entity.RogueEntity;
 
 /**
@@ -34,10 +33,10 @@ public class AI {
         return direction;
     }
     public boolean doAttack(boolean ranged, RogueEntity e){
-        if(ranged==false){
-            e.distTo(here);
+        if(ranged==false && here.distTo(e)<2){
+            doatt=true;
         }else{
-            
+            doatt=false;
         }
         return doatt;
     }
