@@ -9,11 +9,11 @@ public class MainMenu extends JFrame implements ActionListener {
     JPanel mainMenu = new JPanel();
     JPanel optionsMenu = new JPanel();
     
-  public MainMenu() {
+  public MainMenu(int x,int y) {
       super("Rogue Rerezzed");
       this.add(mainMenu);
       this.add(optionsMenu);
-      this.setSize(750,500);
+      this.setSize(x,y);
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       this.setVisible(true);
     //Initialize JPanels, Button, and Stuff
@@ -24,7 +24,7 @@ public class MainMenu extends JFrame implements ActionListener {
     JButton options = new JButton("Options");
     mainMenu.setLayout(new FlowLayout(FlowLayout.CENTER));
     mainMenu.setVisible(true);
-    mainMenu.setSize(750,500);
+    mainMenu.setSize(x,y);
     
     mainMenu.add(title);
     mainMenu.add(newGame);
@@ -37,8 +37,10 @@ public class MainMenu extends JFrame implements ActionListener {
     JTextField leftKB = new JTextField(4);
     JTextField spellKB = new JTextField(4);
     JTextField eatKB = new JTextField(4);
+    JTextField invKB = new JTextField(4);
+    JButton back = new JButton("Back");
     optionsMenu.setVisible(false);
-    optionsMenu.setSize(750,500);
+    optionsMenu.setSize(x,y);
     
     optionsMenu.add(fwdKB);
     optionsMenu.add(backKB);
@@ -46,18 +48,23 @@ public class MainMenu extends JFrame implements ActionListener {
     optionsMenu.add(leftKB);
     optionsMenu.add(spellKB);
     optionsMenu.add(eatKB);
+    optionsMenu.add(invKB);
+    optionsMenu.add(back);
+    
     options.addActionListener(this);
-    
+    back.addActionListener(this);
   }
-    
     //Set what happens when JButton "options" is clicked
-    
     @Override
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
-        if(command.equals("Options")){
+        if(command.equalsIgnoreCase("Options")){
             mainMenu.setVisible(false);
             optionsMenu.setVisible(true);
+        }
+        if(command.equalsIgnoreCase("Back")){
+            mainMenu.setVisible(true);
+            optionsMenu.setVisible(false);
         }
     }
 }
