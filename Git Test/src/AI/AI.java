@@ -1,5 +1,6 @@
 package AI;
 
+import Core.Game;
 import Entity.RogueEntity;
 
 /**
@@ -12,8 +13,6 @@ public class AI {
     RogueEntity here;
     public AI(RogueEntity e){
         here=e;
-        x=e.x;
-        y=e.y;
     }
     public int pointTowards(RogueEntity e){
         x=here.x;

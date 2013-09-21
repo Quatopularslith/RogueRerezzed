@@ -7,11 +7,23 @@ import Core.Game;
  */
 public abstract class RogueEntity extends Game{
     public int x,y,health,dir,armour;
-    public abstract int getX();
-    public abstract int getY();
-    public abstract int getDir();
-    public abstract int getHealth();
-    public abstract void damage(int att);
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
+    public int getDir(){
+        return dir;
+    }
+    public int getHealth(){
+        return health;
+    }
+    public void damage(int att){
+        att -= armour;
+        armour -= att;
+        health -= att;
+    }
     public int distTo(RogueEntity e){
         return (int) Math.sqrt((e.x-x)^2+(e.y-y)^2);
     }
