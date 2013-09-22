@@ -5,8 +5,8 @@ package Core;
  */
 public class Main {
     public static void main(String[] args){
-        GameLoop gl = new GameLoop();
-        gl.start();
-        MainMenu m = new MainMenu(750,500);
+        Game g = new Game();
+        g.start();
+        MainMenu m = new MainMenu(1000,800);
     }
 }

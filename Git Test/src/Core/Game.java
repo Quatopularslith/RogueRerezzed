@@ -1,13 +1,50 @@
 package Core;
+
+import Input.Keyboard;
+
 /**
  * @author Torri
  */
-public abstract class Game {
-    static int turnnum = 0;
+public class Game implements Runnable{
+    private Keyboard k = new Keyboard();
+    private static int turnnum = 0;
+    private Thread gt;
+    private boolean running=false;
     public void tick(){
+        if(k.next()==true){
+            turn();
+        }
     }
     public void turn(){
         turnnum++;
         System.out.println(turnnum);
+    }
+    public synchronized void start(){
+        running = true;
+        gt = new Thread(this,"Game");
+        gt.start();
+    }
+    public synchronized void stop(){
+        running = false;
+        try {
+            gt.join();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
+    @Override
+    public void run() {
+        long lt = System.nanoTime(),now;
+        final double ns = 1000000000.0/60.0;
+        double delta = 0;
+        while(running==true){
+            now = System.nanoTime();
+            delta += (now-lt)/ns;
+            while(delta >= 1){
+                tick();
+                delta--;
+            }
+        }
+        stop();
     }
 }

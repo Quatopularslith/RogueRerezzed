@@ -17,6 +17,7 @@ public class MainMenu extends JFrame implements ActionListener {
       this.add(optionsMenu);
       this.add(textRender);
       this.setSize(x,y);
+      this.setLocationRelativeTo(null);
       this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       this.setVisible(true);
     //Initialize JPanels, Button, and Stuff

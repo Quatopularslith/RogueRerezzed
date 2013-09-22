@@ -1,41 +1,37 @@
 package Input;
 
-import Core.Game;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
  * @author Torri
  */
-public class Keyboard extends Game implements KeyListener{
-    Game g = new Game() {};
-    public int[] control = {38,37,39,40};// 38 = up, 37 = left, 39 = right, 40 = down
-    public boolean[] controls = new boolean[6];
-    @Override
-    public void tick() {
-        for(int i=0;i<6;i++){
-            if(controls[i]=true){
-                g.turn();
-            }
+public class Keyboard implements KeyListener{
+    public int upn=38,downn=40,leftn=37,rightn=39,spelln=81,eatn=69;// 38 = up, 37 = left, 39 = right, 40 = down
+    public boolean up=false,down=false,left=false,right=false,spell=false,eat=false;
+    public boolean[] keys = new boolean[120];
+    private boolean g=false;
+    public boolean next() {
+        up = keys[upn];
+        down = keys[downn];
+        left = keys[leftn];
+        right = keys[rightn];
+        spell = keys[spelln];
+        eat = keys[eatn];
+        if(up==true || down==true || left==true || right==true || spell==true || eat==true){
+            g=true;
         }
+        return g;
     }
     @Override
     public void keyTyped(KeyEvent e) {
     }
     @Override
     public void keyPressed(KeyEvent e) {
-        for(int i=0;i<6;i++){
-            if(control[i]==e.getKeyCode()){
-                controls[i]=true;
-            }
-        }
+        keys[e.getKeyCode()] = true;
     }
     @Override
     public void keyReleased(KeyEvent e) {
-        for(int i=0;i<6;i++){
-            if(control[i]==e.getKeyCode()){
-                controls[i]=false;
-            }
-        }
+        keys[e.getKeyCode()] = false;
     }
 }
