@@ -5,15 +5,20 @@ import Input.Keyboard;
 /**
  * @author Torri
  */
-public class Game implements Runnable{
-    private Keyboard k = new Keyboard();
+public class Game extends MainMenu implements Runnable{
+    private Keyboard k;
     private static int turnnum = 0;
     private Thread gt;
     private boolean running=false;
+    public Game(){
+        k = new Keyboard();
+        addKeyListener(k);
+    }
     public void tick(){
-        if(k.next()==true){
+        if(k.nextTurn()==true){
             turn();
         }
+        System.out.println(k.nextTurn());
     }
     public void turn(){
         turnnum++;
