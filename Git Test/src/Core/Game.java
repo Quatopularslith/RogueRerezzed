@@ -10,10 +10,6 @@ public class Game extends MainMenu implements Runnable{
     private static int turnnum = 0;
     private Thread gt;
     private boolean running=false;
-    public Game(){
-        k = new Keyboard();
-        addKeyListener(k);
-    }
     public void tick(){
         if(k.nextTurn()==true){
             turn();
@@ -28,6 +24,8 @@ public class Game extends MainMenu implements Runnable{
         running = true;
         gt = new Thread(this,"Game");
         gt.start();
+        k = new Keyboard();
+        addKeyListener(k);
     }
     public synchronized void stop(){
         running = false;
