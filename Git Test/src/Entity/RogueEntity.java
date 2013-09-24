@@ -1,6 +1,5 @@
 package Entity;
 
-
 /**
  * @author Torri
  */
