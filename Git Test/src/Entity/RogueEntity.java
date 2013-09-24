@@ -8,9 +8,11 @@ import Core.Game;
 public abstract class RogueEntity extends Game{
     public int x,y,health,dir,armour,potion;
     public int[] inv;
+    @Override
     public int getX(){
         return x;
     }
+    @Override
     public int getY(){
         return y;
     }

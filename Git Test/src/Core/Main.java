@@ -5,7 +5,6 @@ package Core;
  */
 public class Main {
     public static void main(String[] args){
-        Game g = new Game();
-        g.start(750,500);
+        Game g = new Game(750,500);
     }
 }
