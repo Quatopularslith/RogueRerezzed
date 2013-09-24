@@ -6,26 +6,28 @@ import Input.Keyboard;
  * @author Torri
  */
 public class Game extends MainMenu implements Runnable{
+    private MainMenu m;
     private Keyboard k;
     private static int turnnum = 0;
     private Thread gt;
-    private boolean running=false;
+    private boolean running=false,turn=false;
     public void tick(){
-        if(k.nextTurn()==true){
-            turn();
+        turn=k.nextTurn();
+        if(turn==true){
+            System.out.println(k.nextTurn());
         }
-        System.out.println(k.nextTurn());
     }
     public void turn(){
         turnnum++;
         System.out.println(turnnum);
     }
     public synchronized void start(){
+        m = new MainMenu(750,500);
         running = true;
+        k = new Keyboard();
+        m.addKeyListener(k);
         gt = new Thread(this,"Game");
         gt.start();
-        k = new Keyboard();
-        addKeyListener(k);
     }
     public synchronized void stop(){
         running = false;
