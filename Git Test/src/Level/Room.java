@@ -7,7 +7,7 @@ public class Room{
     private int[] size;
     private int[] pos;
     private int[][] entrancepos;
-    public Room(int[] posin,int[] sizein,int[][] entrancepos, int maxlvl){
+    public Room(int[] posin,int[] sizein,int[][] entrancepos, int minlvl, int maxlvl){
         
     }
 }
