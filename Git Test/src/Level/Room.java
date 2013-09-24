@@ -1,7 +1,5 @@
 package Level;
 
-import Core.Game;
-
 /**
  * @author Torri
  */
