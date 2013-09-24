@@ -1,11 +1,10 @@
 package Entity;
 
-import Core.Game;
 
 /**
  * @author Torri
  */
-public abstract class RogueEntity extends Game{
+public abstract class RogueEntity{
     public int x,y,health,dir,armour,potion;
     public int[] inv;
     @Override
