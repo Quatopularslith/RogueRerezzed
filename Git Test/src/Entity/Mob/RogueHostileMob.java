@@ -18,7 +18,6 @@ public abstract class RogueHostileMob extends RogueEntity{
     public int attack(){
         return r.nextInt(maxAtt);
     }
-    @Override
     public void turn(){
         this.move(a.pointTowards(p));
     }
