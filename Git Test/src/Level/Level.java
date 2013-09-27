@@ -7,8 +7,7 @@ import Entity.RogueEntity;
  * @author Torri
  */
 public class Level {
-    private int maxEntities=100,maxPlayers=4;
-    private int sizeX,sizeY,index;
+    private int maxEntities=100,maxPlayers=4, index;
     private RogueEntity[] re = new RogueEntity[maxEntities];
     private Player[] p = new Player[maxPlayers];
     private Player hp;
