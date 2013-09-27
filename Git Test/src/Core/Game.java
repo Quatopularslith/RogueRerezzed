@@ -41,23 +41,38 @@ public class Game extends JFrame implements ActionListener,KeyListener,Runnable 
         mainMenu.add(loadGame);
         mainMenu.add(options);
 
-        JTextField fwdKB = new JTextField(4);
-        JTextField backKB = new JTextField(4);
-        JTextField rightKB = new JTextField(4);
-        JTextField leftKB = new JTextField(4);
-        JTextField spellKB = new JTextField(4);
-        JTextField eatKB = new JTextField(4);
+        JTextField fwdKB = new JTextField("w", 4);
+        JTextField backKB = new JTextField("s", 4);
+        JTextField rightKB = new JTextField("d", 4);
+        JTextField leftKB = new JTextField("a", 4);
+        JTextField spellKB = new JTextField("k", 4);
+        JTextField eatKB = new JTextField("l", 4);
+        JLabel fwdKBL = new JLabel("Forward Directional Key Bind");
+        JLabel backKBL = new JLabel("Backwards Directional Key Bind");
+        JLabel rightKBL = new JLabel("Right Directioanl Key Bind");
+        JLabel leftKBL = new JLabel("Left Directional Key Bind");
+        JLabel spellKBL = new JLabel("Use Spell Key Bind");
+        JLabel eatKBL = new JLabel("Eat Food Key Bind");
+        JButton apply = new JButton("Apply");
         JButton back = new JButton("Back");
         optionsMenu.setVisible(false);
         optionsMenu.setSize(x,y);
 
+        optionsMenu.add(fwdKBL);
         optionsMenu.add(fwdKB);
+        optionsMenu.add(backKBL);
         optionsMenu.add(backKB);
+        optionsMenu.add(rightKBL);
         optionsMenu.add(rightKB);
+        optionsMenu.add(leftKBL);
         optionsMenu.add(leftKB);
+        optionsMenu.add(spellKBL);
         optionsMenu.add(spellKB);
+        optionsMenu.add(eatKBL);
         optionsMenu.add(eatKB);
+        optionsMenu.add(apply);
         optionsMenu.add(back);
+        
 
         this.addKeyListener(this);
         newGame.addActionListener(this);
