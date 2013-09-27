@@ -18,20 +18,6 @@ public class AI {
         ex = e.x;
         ey = e.y;
         m=(ey-y)/(ex-x);
-//        if((ey-y)==0){
-//            ey+=.01;
-//            System.out.println("oopsx");
-//        }
-//        if((ex-x)==0){
-//            ex+=.01;
-//            System.out.println("oopsy");
-//        }
-//        System.out.println((ey-y)/(ex-x));
-//        pdir = Math.atan((ey-y)/(ex-x));
-//        pdir = Math.toDegrees(pdir);
-//        System.out.println(pdir);
-//        direction = (int) (-1*(Math.round(pdir)+1));
-//        return direction;
         if(ex==x){
             if(ey>=y){
                 pdir=90;
