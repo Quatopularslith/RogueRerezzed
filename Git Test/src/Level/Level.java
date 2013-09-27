@@ -13,7 +13,7 @@ public class Level {
     private Player[] p = new Player[maxPlayers];
     private Player hp;
     private int currentity = 0;
-    public Level(){
+    public Level(int lvl){
         
     }
     public RogueEntity[] getEntities(){

@@ -1,5 +1,6 @@
 package Core;
 
+import Level.Level;
 import Render.TextRender;
 import java.awt.event.*;
 import javax.swing.*;
@@ -7,6 +8,7 @@ import java.awt.*;
 
 public class Game extends JFrame implements ActionListener,KeyListener,Runnable {
     
+    Level l;
     JPanel mainMenu = new JPanel();
     JPanel optionsMenu = new JPanel();
     JPanel textRender = new TextRender();
@@ -75,10 +77,14 @@ public class Game extends JFrame implements ActionListener,KeyListener,Runnable 
             optionsMenu.setVisible(false);
         }
         if(command.equalsIgnoreCase("New Game")){
+            l=new Level(1);
             mainMenu.setVisible(false);
             optionsMenu.setVisible(false);
             textRender.setVisible(true);
         }
+    }
+    public Level getCurrentLevel(){
+        return l;
     }
     private static int turnnum = 0;
     private int tick = 0;

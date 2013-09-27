@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public abstract class RogueHostileMob extends RogueEntity{
     AI a = new AI(this);
-    Level l = new Level();
+    Level l = new Level(5);
     Player p = l.getHostilePlayer();
     public int maxAtt, drops;
     Random r = new Random();
