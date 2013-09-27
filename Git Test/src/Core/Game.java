@@ -161,7 +161,7 @@ public class Game extends JFrame implements ActionListener,KeyListener,Runnable 
                 g=false;
             }
         }catch(Exception e){
-            System.out.println("YOU GOT AN ERROR! HAHAHAHHAHAHHAHA!"+e.getMessage());
+            System.err.println("YOU GOT AN ERROR! HAHAHAHHAHAHHAHA! \n"+e.getMessage());
         }
         return g;
     }
