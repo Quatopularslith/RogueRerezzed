@@ -72,6 +72,7 @@ public class Game extends JFrame implements ActionListener,KeyListener,Runnable 
         optionsMenu.add(eatKB);
         optionsMenu.add(apply);
         optionsMenu.add(back);
+        
 
         this.addKeyListener(this);
         newGame.addActionListener(this);
