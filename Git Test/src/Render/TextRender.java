@@ -38,6 +38,7 @@ public class TextRender extends javax.swing.JPanel {
 
         dungeon.setColumns(20);
         dungeon.setRows(5);
+        dungeon.setEnabled(false);
         jScrollPane1.setViewportView(dungeon);
 
         mapTab.addTab("Dungeon", jScrollPane1);
