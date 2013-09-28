@@ -8,11 +8,11 @@ import Entity.RogueEntity;
  */
 public class Level {
     // Level size is 500 by 500
-    private int maxEntities=100,maxPlayers=4, index;
+    private int maxEntities=100,maxPlayers=4, currentity = 0, index;
     private RogueEntity[] re = new RogueEntity[maxEntities];
     private Player[] p = new Player[maxPlayers];
     private Player hp;
-    private int currentity = 0;
+    public int size = 500;
     public Level(int lvl){
         
     }

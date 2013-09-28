@@ -4,6 +4,8 @@
  */
 package Render;
 
+import Entity.Mob.Bandit;
+import Entity.Mob.Snake;
 import Level.Level;
 
 /**
@@ -12,7 +14,9 @@ import Level.Level;
  */
 public class TextRender extends javax.swing.JPanel {
     Level l;
-
+    int[][] pos;
+    char[] type;
+    int in;
     /**
      * Creates new form TextRender
      */
@@ -21,7 +25,22 @@ public class TextRender extends javax.swing.JPanel {
         initComponents();
     }
     public void turn(){
-        
+        pos = new int[l.getEntities().length][2];
+        for(int i=0;i<l.getEntities().length;i++){
+            pos[i][0] = l.getEntities()[i].x;
+            pos[i][1] = l.getEntities()[i].y;
+            if(l.getEntities()[i] instanceof Snake){
+                type[i] = 'S';
+            }else if(l.getEntities()[i] instanceof Bandit){
+                type[i] = 'B';
+            }else{
+                type[i] = ' ';
+            }
+        }
+        for(int i=0;i<l.size;i++){
+            for(int j=0;j<pos.length;j++){
+            }
+        }
     }
 
     /**
