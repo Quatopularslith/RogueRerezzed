@@ -9,11 +9,8 @@ public class Room{
     private Random r = new Random();
     private int[] size;
     private int[] pos;
-    private int[][] entpos;
-    public Room(int[] posin,int[] sizein,int[][] entrancepos, int minlvl, int maxlvl){
+    public Room(int[] posin,int[] sizein, int minlvl, int maxlvl){
         size=sizein;
         pos=posin;
-        entpos=entrancepos;
-        
     }
 }

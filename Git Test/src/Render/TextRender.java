@@ -4,17 +4,24 @@
  */
 package Render;
 
+import Level.Level;
+
 /**
  *
  * @author Torri
  */
 public class TextRender extends javax.swing.JPanel {
+    Level l;
 
     /**
      * Creates new form TextRender
      */
     public TextRender() {
+        l=Core.Main.g.getCurrentLevel();
         initComponents();
+    }
+    public void turn(){
+        
     }
 
     /**
