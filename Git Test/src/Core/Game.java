@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class Game extends JFrame implements ActionListener,KeyListener,Runnable {
+public class Game extends JFrame implements ActionListener,Runnable {
     
     Level l;
     JPanel mainMenu = new JPanel();
@@ -73,8 +73,6 @@ public class Game extends JFrame implements ActionListener,KeyListener,Runnable 
         optionsMenu.add(apply);
         optionsMenu.add(back);
         
-
-        this.addKeyListener(this);
         newGame.addActionListener(this);
         options.addActionListener(this);
         back.addActionListener(this);
@@ -106,7 +104,7 @@ public class Game extends JFrame implements ActionListener,KeyListener,Runnable 
     private Thread gt;
     private boolean running=false,turn=false;
     public void tick(){
-        turn=nextTurn();
+        turn=TextRender.next();
         if(turn==true){
             System.out.println(tick);
         }
@@ -143,39 +141,39 @@ public class Game extends JFrame implements ActionListener,KeyListener,Runnable 
         }
         stop();
     }
-    public int upn=KeyEvent.VK_UP,downn=KeyEvent.VK_DOWN,leftn=KeyEvent.VK_LEFT,rightn=KeyEvent.VK_RIGHT,spelln=KeyEvent.VK_Q,eatn=KeyEvent.VK_E,out=0;// 38 = up, 37 = left, 39 = right, 40 = down
-    public boolean up=false,down=false,left=false,right=false,spell=false,eat=false;
-    public boolean[] keys = new boolean[150];
-    private boolean g=true;
-    public boolean nextTurn() {
-        try{
-            up = keys[upn];
-            down = keys[downn];
-            left = keys[leftn];
-            right = keys[rightn];
-            spell = keys[spelln];
-            eat = keys[eatn];
-            if(up==true || down==true || left==true || right==true || spell==true || eat==true){
-                g=true;
-            }else{
-                g=false;
-            }
-        }catch(Exception e){
-            System.err.println("YOU GOT AN ERROR! HAHAHAHHAHAHHAHA! \n"+e.getMessage());
-        }
-        return g;
-    }
-    @Override
-    public void keyTyped(KeyEvent e) {
-        System.err.println(e.getKeyCode());
-    }
-    @Override
-    public void keyPressed(KeyEvent e) {
-        keys[e.getKeyCode()] = true;
-        System.out.println(e.getKeyCode());
-    }
-    @Override
-    public void keyReleased(KeyEvent e) {
-        keys[e.getKeyCode()] = false;
-    }
+//    public int upn=KeyEvent.VK_UP,downn=KeyEvent.VK_DOWN,leftn=KeyEvent.VK_LEFT,rightn=KeyEvent.VK_RIGHT,spelln=KeyEvent.VK_Q,eatn=KeyEvent.VK_E,out=0;// 38 = up, 37 = left, 39 = right, 40 = down
+//    public boolean up=false,down=false,left=false,right=false,spell=false,eat=false;
+//    public boolean[] keys = new boolean[150];
+//    private boolean g=true;
+//    public boolean nextTurn() {
+//        try{
+//            up = keys[upn];
+//            down = keys[downn];
+//            left = keys[leftn];
+//            right = keys[rightn];
+//            spell = keys[spelln];
+//            eat = keys[eatn];
+//            if(up==true || down==true || left==true || right==true || spell==true || eat==true){
+//                g=true;
+//            }else{
+//                g=false;
+//            }
+//        }catch(Exception e){
+//            System.err.println("YOU GOT AN ERROR! HAHAHAHHAHAHHAHA! \n"+e.getMessage());
+//        }
+//        return g;
+//    }
+//    @Override
+//    public void keyTyped(KeyEvent e) {
+//        System.err.println(e.getKeyCode());
+//    }
+//    @Override
+//    public void keyPressed(KeyEvent e) {
+//        keys[e.getKeyCode()] = true;
+//        System.out.println(e.getKeyCode());
+//    }
+//    @Override
+//    public void keyReleased(KeyEvent e) {
+//        keys[e.getKeyCode()] = false;
+//    }
 }

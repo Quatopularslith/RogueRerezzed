@@ -4,9 +4,11 @@
  */
 package Render;
 
+import Core.Main;
 import Entity.Mob.Bandit;
 import Entity.Mob.Snake;
 import Level.Level;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -17,14 +19,18 @@ public class TextRender extends javax.swing.JPanel {
     int[][] pos;
     char[] type;
     int in;
+    private static boolean g=true;
+    public static boolean[] keys = new boolean[150];
+    public static boolean up=false,down=false,left=false,right=false,spell=false,eat=false;
+    public static int upn=KeyEvent.VK_UP,downn=KeyEvent.VK_DOWN,leftn=KeyEvent.VK_LEFT,rightn=KeyEvent.VK_RIGHT,spelln=KeyEvent.VK_Q,eatn=KeyEvent.VK_E,out=0;// 38 = up, 37 = left, 39 = right, 40 = down
     /**
      * Creates new form TextRender
      */
     public TextRender() {
-        l=Core.Main.g.getCurrentLevel();
         initComponents();
     }
     public void turn(){
+        l=Main.getGame().getCurrentLevel();
         pos = new int[l.getEntities().length][2];
         for(int i=0;i<l.getEntities().length;i++){
             pos[i][0] = l.getEntities()[i].x;
@@ -34,13 +40,31 @@ public class TextRender extends javax.swing.JPanel {
             }else if(l.getEntities()[i] instanceof Bandit){
                 type[i] = 'B';
             }else{
-                type[i] = ' ';
+                type[i] = '.';
             }
         }
         for(int i=0;i<l.size;i++){
             for(int j=0;j<pos.length;j++){
             }
         }
+    }
+    public static boolean next(){
+        try{
+            up = keys[upn];
+            down = keys[downn];
+            left = keys[leftn];
+            right = keys[rightn];
+            spell = keys[spelln];
+            eat = keys[eatn];
+            if(up==true || down==true || left==true || right==true || spell==true || eat==true){
+                g=true;
+            }else{
+                g=false;
+            }
+        }catch(Exception e){
+            System.err.println("YOU GOT AN ERROR! HAHAHAHHAHAHHAHA! \n"+e.getMessage());
+        }
+        return g;
     }
 
     /**
@@ -61,6 +85,14 @@ public class TextRender extends javax.swing.JPanel {
         inventory = new javax.swing.JTextArea();
 
         setPreferredSize(new java.awt.Dimension(750, 500));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formKeyReleased(evt);
+            }
+        });
 
         dungeon.setColumns(20);
         dungeon.setRows(5);
@@ -98,6 +130,15 @@ public class TextRender extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        keys[evt.getKeyCode()]=true;
+    }//GEN-LAST:event_formKeyPressed
+
+    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+        keys[evt.getKeyCode()]=false;
+    }//GEN-LAST:event_formKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea dungeon;
     private javax.swing.JTextArea inventory;
