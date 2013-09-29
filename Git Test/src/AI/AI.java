@@ -1,7 +1,5 @@
 package AI;
-
 import Entity.RogueEntity;
-
 /**
  * @author Torri
  */
