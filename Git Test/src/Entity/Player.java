@@ -13,7 +13,6 @@ public class Player extends RogueEntity{
         x=spawnX;
         y=spawnY;
     }
-    @Override
     public void turn(){
         
     }
