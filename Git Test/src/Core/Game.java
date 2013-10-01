@@ -22,6 +22,13 @@ public class Game extends JFrame implements ActionListener,Runnable {
     FileInputStream inStream;
     Properties config = new Properties();
     
+     JTextField fwdKB = new JTextField("W", 4);
+     JTextField backKB = new JTextField("S", 4);
+     JTextField rightKB = new JTextField("D", 4);
+     JTextField leftKB = new JTextField("A", 4);
+     JTextField spellKB = new JTextField("K", 4);
+     JTextField eatKB = new JTextField("lL", 4);
+    
     public Game(){
         this(750,500);
     }
@@ -30,8 +37,12 @@ public class Game extends JFrame implements ActionListener,Runnable {
         try {
             inStream = new FileInputStream(configFile);
             config.load(inStream);
-            config.setProperty("fwdKB", "w");
-            config.setProperty("backKB", "s");
+            config.setProperty("fwdKB", "W");
+            config.setProperty("backKB", "S");
+            config.setProperty("rightKB", "D");
+            config.setProperty("leftKB", "A");
+            config.setProperty("spellKB", "K");
+            config.setProperty("eatKB", "L");
         } catch (Exception ex) {
             Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
@@ -59,12 +70,6 @@ public class Game extends JFrame implements ActionListener,Runnable {
         mainMenu.add(loadGame);
         mainMenu.add(options);
 
-        JTextField fwdKB = new JTextField("w", 4);
-        JTextField backKB = new JTextField("s", 4);
-        JTextField rightKB = new JTextField("d", 4);
-        JTextField leftKB = new JTextField("a", 4);
-        JTextField spellKB = new JTextField("k", 4);
-        JTextField eatKB = new JTextField("l", 4);
         JLabel fwdKBL = new JLabel("Forward Directional Key Bind");
         JLabel backKBL = new JLabel("Backwards Directional Key Bind");
         JLabel rightKBL = new JLabel("Right Directioanl Key Bind");
@@ -113,6 +118,14 @@ public class Game extends JFrame implements ActionListener,Runnable {
             mainMenu.setVisible(false);
             optionsMenu.setVisible(false);
             textRender.setVisible(true);
+        }
+        if(command.equalsIgnoreCase("Apply")){
+            config.setProperty("fwdKB", fwdKB.getText());
+            config.setProperty("backKB", backKB.getText());
+            config.setProperty("rightKB", rightKB.getText());
+            config.setProperty("leftKB", leftKB.getText());
+            config.setProperty("spellKB", spellKB.getText());
+            config.setProperty("eatKB", eatKB.getText());
         }
     }
     public Level getCurrentLevel(){
