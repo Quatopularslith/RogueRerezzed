@@ -5,6 +5,9 @@ import Render.TextRender;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.util.Properties;
+import java.util.logging.Logger;
 
 public class Game extends JFrame implements ActionListener,Runnable {
     
@@ -14,11 +17,24 @@ public class Game extends JFrame implements ActionListener,Runnable {
     JPanel optionsMenu = new JPanel();
     JPanel textRender = new TextRender();
     int[] keys = new int[6];
+    
+    File configFile = new File("config.dat");
+    FileInputStream inStream;
+    Properties config = new Properties();
+    
     public Game(){
         this(750,500);
     }
     public Game(int x, int y){
         super("Rogue Rerezzed");
+        try {
+            inStream = new FileInputStream(configFile);
+            config.load(inStream);
+            config.setProperty("fwdKB", "w");
+            config.setProperty("backKB", "s");
+        } catch (Exception ex) {
+            Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         this.add(mainMenu);
         this.add(optionsMenu);
         this.add(textRender);
