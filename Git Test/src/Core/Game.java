@@ -27,7 +27,7 @@ public class Game extends JFrame implements ActionListener,Runnable {
      JTextField rightKB = new JTextField("D", 4);
      JTextField leftKB = new JTextField("A", 4);
      JTextField spellKB = new JTextField("K", 4);
-     JTextField eatKB = new JTextField("lL", 4);
+     JTextField eatKB = new JTextField("L", 4);
     
     public Game(){
         this(750,500);
