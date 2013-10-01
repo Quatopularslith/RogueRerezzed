@@ -8,7 +8,6 @@ import Core.Main;
 import Entity.Mob.Bandit;
 import Entity.Mob.Snake;
 import Level.Level;
-import java.awt.event.KeyEvent;
 
 /**
  *
@@ -19,10 +18,6 @@ public class TextRender extends javax.swing.JPanel {
     int[][] pos;
     char[] type;
     int in;
-    private static boolean g=true;
-    public static boolean[] keys = new boolean[150];
-    public static boolean up=false,down=false,left=false,right=false,spell=false,eat=false;
-    public static int upn=KeyEvent.VK_UP,downn=KeyEvent.VK_DOWN,leftn=KeyEvent.VK_LEFT,rightn=KeyEvent.VK_RIGHT,spelln=KeyEvent.VK_Q,eatn=KeyEvent.VK_E,out=0;// 38 = up, 37 = left, 39 = right, 40 = down
     /**
      * Creates new form TextRender
      */
@@ -47,24 +42,6 @@ public class TextRender extends javax.swing.JPanel {
             for(int j=0;j<pos.length;j++){
             }
         }
-    }
-    public static boolean next(){
-        try{
-            up = keys[upn];
-            down = keys[downn];
-            left = keys[leftn];
-            right = keys[rightn];
-            spell = keys[spelln];
-            eat = keys[eatn];
-            if(up==true || down==true || left==true || right==true || spell==true || eat==true){
-                g=true;
-            }else{
-                g=false;
-            }
-        }catch(Exception e){
-            System.err.println("YOU GOT AN ERROR! HAHAHAHHAHAHHAHA! \n"+e.getMessage());
-        }
-        return g;
     }
 
     /**
@@ -132,11 +109,11 @@ public class TextRender extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        keys[evt.getKeyCode()]=true;
+
     }//GEN-LAST:event_formKeyPressed
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-        keys[evt.getKeyCode()]=false;
+
     }//GEN-LAST:event_formKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
