@@ -9,7 +9,7 @@ import java.io.*;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class Game extends JFrame implements ActionListener,Runnable {
+public class Game extends JFrame implements ActionListener {
     
     Keyboard key = new Keyboard();
     Level l;
@@ -53,7 +53,6 @@ public class Game extends JFrame implements ActionListener,Runnable {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        start();
         //Initialize JPanels, Button, and Stuff
         textRender.setVisible(false);
 
@@ -148,33 +147,5 @@ public class Game extends JFrame implements ActionListener,Runnable {
     public void turn(){
         turnnum++;
         System.out.println(turnnum);
-    }
-    public synchronized void start(){
-        running = true;
-        gt = new Thread(this,"Game");
-        gt.start();
-    }
-    public synchronized void stop(){
-        running = false;
-        try {
-            gt.join();
-        } catch (InterruptedException ex) {
-            System.err.println("LOLFISHES");
-        }
-    }
-    @Override
-    public void run() {
-        long lt = System.nanoTime(),now;
-        final double ns = 1000000000.0/60.0;
-        double delta = 0;
-        while(running==true){
-            now = System.nanoTime();
-            delta += (now-lt)/ns;
-            while(delta >= 1){
-                tick();
-                delta--;
-            }
-        }
-        stop();
     }
 }
