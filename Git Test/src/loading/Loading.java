@@ -29,10 +29,6 @@ public class Loading extends JFrame{
             x[i]+=cX;
             y[i]+=cY;
         }
-        while(go=false){
-            Core.Game g = new Core.Game(750,500);
-            this.dispose();
-        }
     }
     @Override
     public void paint(Graphics g) {
@@ -41,8 +37,8 @@ public class Loading extends JFrame{
         long starttick= Game.getTickNum();
         long currtick = (Game.getTickNum()-starttick);
         double nr = r/n;
-        int scx = (int) (cX+(width/20));
-        int scy = (int) (cY+(width/(6+(2/3)));
+        int scx = (int) (cX+(width/11));
+        int scy = (int) (cY+(width/(6.666666666666666666666666666666666666666666666666666666666666666667)));
         g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,((17*width)/1000)));
         // TODO insert graphic logo
         while(currtick<(arrs-1)){
@@ -53,6 +49,9 @@ public class Loading extends JFrame{
             currtick = (Game.getTickNum()-starttick);
         }
         go=true;
+        Core.Game gam = new Core.Game(750,500);
+        this.dispose();
+        System.out.println(go);
         System.out.println("Done");
         GameLoop.pause();
     }

@@ -25,7 +25,7 @@ public class TextRender extends javax.swing.JPanel {
         initComponents();
     }
     public void turn(){
-        l=Main.getGame().getCurrentLevel();
+        //l=Main.getGame().getCurrentLevel();
         pos = new int[l.getEntities().length][2];
         for(int i=0;i<l.getEntities().length;i++){
             pos[i][0] = l.getEntities()[i].x;
