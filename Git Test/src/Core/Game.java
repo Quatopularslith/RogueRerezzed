@@ -38,7 +38,7 @@ public class Game extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        //Initialize JPanels, Button, and Stuff
+        Properties impl = new Properties();
         textRender.setVisible(false);
 
         JLabel title = new JLabel("Rogue Rerezzed");
