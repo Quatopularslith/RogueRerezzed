@@ -29,9 +29,6 @@ public class Game extends JFrame implements ActionListener {
      JTextField spellKB = new JTextField("K", 4);
      JTextField eatKB = new JTextField("L", 4);
     
-    public Game(){
-        this(750,500);
-    }
     public Game(int x, int y){
         super("Rogue Rerezzed");
         this.add(mainMenu);
@@ -119,18 +116,7 @@ public class Game extends JFrame implements ActionListener {
         return l;
     }
     public Keyboard getKey(){
-        return getKey();
-    }
-    private static int turnnum = 0;
-    private int tick = 0;
-    private Thread gt;
-    private boolean running=false;
-    public void tick(){
-        key.update();
-        if(key.turn()==true){
-            System.out.println(tick);
-            turn();
-        }
+        return key;
     }
     public void turn(){
         turnnum++;
