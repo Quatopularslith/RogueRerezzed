@@ -14,7 +14,9 @@ public class Level {
     private Player hp;
     public int size = 500;
     public Level(int lvl){
-        
+        for(int i=0;i<4;i++){
+             
+        }
     }
     public RogueEntity[] getEntities(){
         return re;
