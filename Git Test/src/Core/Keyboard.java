@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 public class Keyboard implements KeyListener{
     public boolean[] keys = new boolean[100];
     public int[] keyn = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
-    public boolean up=false,down=false,left=false,right=false,spell=false,eat=false;
+    public boolean up=false,down=false,left=false,right=false,spell=false,eat=false,go=false;
     public void checkSettings(int[] keys){
         keyn=keys;
     }
@@ -49,6 +49,7 @@ public class Keyboard implements KeyListener{
         spell=keys[keyn[4]];
         eat=keys[keyn[5]];
         System.out.println("key pressed "+e.getKeyChar());
+        go=true;
     }
 
     @Override
@@ -60,5 +61,6 @@ public class Keyboard implements KeyListener{
         right=keys[keyn[3]];
         spell=keys[keyn[4]];
         eat=keys[keyn[5]];
+        go=false;
     }
 }
