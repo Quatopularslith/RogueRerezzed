@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Loading extends JFrame{
     double n = .875;
     int r, width, arrs = 201;
-    boolean test=false;
+    boolean go=false;
     double newTheta, theta = 2*Math.asin(1/(2*n));
     double[] x=new double[arrs], y=new double[arrs];
     double cX, cY;
@@ -29,16 +29,9 @@ public class Loading extends JFrame{
             x[i]+=cX;
             y[i]+=cY;
         }
-        now=System.currentTimeMillis();
-        for(int j=0;j==-1;j++){
-            test=false;
-            timeTaken=System.currentTimeMillis()-now;
-            if(timeTaken==10000){
-                System.out.println("STOP");
-                test=true;
-                this.dispose();
-                break;
-            }
+        while(go=false){
+            Core.Game g = new Core.Game();
+            this.dispose();
         }
     }
     @Override
@@ -53,12 +46,13 @@ public class Loading extends JFrame{
         g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,((17*width)/1000)));
         // TODO insert graphic logo
         while(currtick<(arrs-1)){
-                g2.setColor(Color.RED);
-                g2.drawString("Eyeris Studios", scx, scy);
-                g2.setColor(Color.BLUE);
-                g2.draw(new Ellipse2D.Double(x[(int) currtick], y[(int) currtick], nr, nr));
-                currtick = (Game.getTickNum()-starttick);
-            }
+            g2.setColor(Color.RED);
+            g2.drawString("Eyeris Studios", scx, scy);
+            g2.setColor(Color.BLUE);
+            g2.draw(new Ellipse2D.Double(x[(int) currtick], y[(int) currtick], nr, nr));
+            currtick = (Game.getTickNum()-starttick);
+        }
+        go=true;
         System.out.println("Done");
         GameLoop.pause();
     }
