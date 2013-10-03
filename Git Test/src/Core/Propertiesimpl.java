@@ -6,7 +6,7 @@ public class Propertiesimpl{
   File configFile = new File("Properties.properties");
   FileInputStream inStream;
   Properties config = new Properties(configFile.);
-  public Properites(){
+  public Properitesimpl(){
       try {
         inStream = new FileInputStream(configFile);
         config.load(inStream);
