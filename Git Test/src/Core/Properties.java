@@ -1,5 +1,7 @@
 package Core;
 
+import java.io.*;
+
 public class Properties{
   File configFile = new File("Properties.properties");
   FileInputStream inStream;
