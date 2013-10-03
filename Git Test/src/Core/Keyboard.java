@@ -20,7 +20,6 @@ public class Keyboard implements KeyListener{
         right=keys[keyn[3]];
         spell=keys[keyn[4]];
         eat=keys[keyn[5]];
-        System.out.println(up);
     }
     public boolean turn(){
         boolean out = true;
@@ -38,17 +37,28 @@ public class Keyboard implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()]=true;
-        System.out.println("hi");
+        up=keys[keyn[0]];
+        down=keys[keyn[1]];
+        left=keys[keyn[2]];
+        right=keys[keyn[3]];
+        spell=keys[keyn[4]];
+        eat=keys[keyn[5]];
+        System.out.println("key pressed "+e.getKeyChar());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()]=false;
+        up=keys[keyn[0]];
+        down=keys[keyn[1]];
+        left=keys[keyn[2]];
+        right=keys[keyn[3]];
+        spell=keys[keyn[4]];
+        eat=keys[keyn[5]];
     }
 }
