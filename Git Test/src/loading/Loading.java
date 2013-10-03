@@ -42,7 +42,7 @@ public class Loading extends JFrame{
         long currtick = (Game.getTickNum()-starttick);
         double nr = r/n;
         int scx = (int) (cX+(width/20));
-        int scy = (int) (cY+(width/6.666666666666666666666666666666666666666666666666666666666666666666666667));
+        int scy = (int) (cY+(width/(6+(2/3)));
         g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,((17*width)/1000)));
         // TODO insert graphic logo
         while(currtick<(arrs-1)){
