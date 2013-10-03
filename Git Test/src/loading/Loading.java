@@ -30,7 +30,7 @@ public class Loading extends JFrame{
             y[i]+=cY;
         }
         while(go=false){
-            Core.Game g = new Core.Game();
+            Core.Game g = new Core.Game(750,500);
             this.dispose();
         }
     }
