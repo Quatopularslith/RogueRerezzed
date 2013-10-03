@@ -34,18 +34,6 @@ public class Game extends JFrame implements ActionListener {
     }
     public Game(int x, int y){
         super("Rogue Rerezzed");
-        try {
-            inStream = new FileInputStream(configFile);
-            config.load(inStream);
-            config.setProperty("fwdKB", "W");
-            config.setProperty("backKB", "S");
-            config.setProperty("rightKB", "D");
-            config.setProperty("leftKB", "A");
-            config.setProperty("spellKB", "K");
-            config.setProperty("eatKB", "L");
-        } catch (Exception ex) {
-            Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
         this.add(mainMenu);
         this.add(optionsMenu);
         this.add(textRender);
