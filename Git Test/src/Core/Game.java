@@ -44,7 +44,7 @@ public class Game extends JFrame implements ActionListener {
             config.setProperty("spellKB", "K");
             config.setProperty("eatKB", "L");
         } catch (Exception ex) {
-            Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            System.err.println("LAKJDNFDKLANLKBDKLABF ERROR ERROR ERROR ERROR; STAIRS!!!!!! "+ex.toString());
         }
         this.add(mainMenu);
         this.add(optionsMenu);
