@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class Room{
     private Random r = new Random();
-    public Room(int quuad,int[] sizein, int minlvl, int maxlvl){
+    public Room(int quuad,int[] sizein, int minlvl, int maxlvl, Level l){
         Spawner s = new Spawner();
     }
 }
