@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
  * @author Torri
  */
 public class Keyboard implements KeyListener{
+    //This is ***** broken so yeah.
     public boolean[] keys = new boolean[100];
     public int[] keyn = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
     public boolean up=false,down=false,left=false,right=false,spell=false,eat=false,go=false;
@@ -34,12 +35,8 @@ public class Keyboard implements KeyListener{
         }
         return out;
     }
-
-    @Override
     public void keyTyped(KeyEvent e) {
     }
-
-    @Override
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()]=true;
         up=keys[keyn[0]];
@@ -51,8 +48,6 @@ public class Keyboard implements KeyListener{
         System.out.println("key pressed "+e.getKeyChar());
         go=true;
     }
-
-    @Override
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()]=false;
         up=keys[keyn[0]];
