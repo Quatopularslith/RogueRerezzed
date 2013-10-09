@@ -12,10 +12,12 @@ public class Room{
     private int rs;
     public Room(int quad,int[] size, int minlvl, Level l){
         if(quad==0){
-            walls[0][0] = r.nextInt(l.maxRoom-size[0]);
-            walls[0][1] = r.nextInt(l.maxRoom-size[1]);
+            area[0][0] = r.nextInt(l.maxRoom-size[0]);
+            area[0][1] = r.nextInt(l.maxRoom-size[1]);
             for(int i=0;i<size[0];i++){
-                
+                for(int j=0;j<size[1];j++){
+                    
+                }
             }
         }
         rs = r.nextInt(99);
