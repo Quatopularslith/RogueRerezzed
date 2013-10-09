@@ -14,7 +14,7 @@ public class Level {
     private RogueEntity[] re = new RogueEntity[maxEntities];
     private Player[] p = new Player[maxPlayers];
     private Room[] r = new Room[4];
-    private Player hp;
+    private Player hp;//hostile player
     public int size = 500;
     public Level(int lvl){
         for(int i=0;i<4;i++){
