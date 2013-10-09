@@ -12,7 +12,11 @@ public class Room{
     private int rs;
     public Room(int quad,int[] size, int minlvl, Level l){
         if(quad==0){
-            
+            walls[0][0] = r.nextInt(l.maxRoom-size[0]);
+            walls[0][1] = r.nextInt(l.maxRoom-size[1]);
+            for(int i=0;i<size[0];i++){
+                
+            }
         }
         rs = r.nextInt(99);
         Spawner s = new Spawner(area[rs][0],area[rs][1],r.nextInt(20),minlvl,10,l,r.nextInt(2));
