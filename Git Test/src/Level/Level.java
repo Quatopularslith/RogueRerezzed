@@ -9,16 +9,19 @@ import java.util.Random;
  */
 public class Level {
     // Level size is 500 by 500
+    public int numRooms = 8;
+    public int maxRoom = 10;
+    public int cols = 2;
     private Random rand = new Random();
     private int maxEntities=100,maxPlayers=4, currentity = 0, index;
     private RogueEntity[] re = new RogueEntity[maxEntities];
     private Player[] p = new Player[maxPlayers];
-    private Room[] r = new Room[4];
+    private Room[] r = new Room[numRooms];
     private Player hp;//hostile player
-    public int size = 500;
+    public int[] size = {(numRooms/cols)*maxRoom,cols*maxRoom};
     public Level(int lvl){
-        for(int i=0;i<4;i++){
-             r[i] = new Room(i,{rand.nextInt(10),rand.nextInt(10)},rand.nextInt(10), this);
+        for(int i=0;i<numRooms;i++){
+             r[i] = new Room(i,{rand.nextInt(maxRoom),rand.nextInt(maxRoom)},rand.nextInt(10), this);
         }
     }
     public RogueEntity[] getEntities(){
