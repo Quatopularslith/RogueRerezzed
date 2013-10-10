@@ -19,9 +19,11 @@ public class Level {
     private Room[] r = new Room[numRooms];
     private Player hp;//hostile player
     public int[] size = {(numRooms/cols)*maxRoom,cols*maxRoom};
+    private int[] what;
     public Level(int lvl){
         for(int i=0;i<numRooms;i++){
-             r[i] = new Room(i,{rand.nextInt(maxRoom),rand.nextInt(maxRoom)},rand.nextInt(10), this);
+            //what = {rand.nextInt(maxRoom),rand.nextInt(maxRoom)};
+             r[i] = new Room(i,what,rand.nextInt(10), this);
         }
     }
     public RogueEntity[] getEntities(){

@@ -38,7 +38,7 @@ public class TextRender extends javax.swing.JPanel {
                 type[i] = '.';
             }
         }
-        for(int i=0;i<l.size;i++){
+        for(int i=0;i<l.size.length;i++){
             for(int j=0;j<pos.length;j++){
             }
         }

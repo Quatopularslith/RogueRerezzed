@@ -119,7 +119,7 @@ public class Game extends JFrame implements ActionListener {
         return key;
     }
     public void turn(){
-        turnnum++;
-        System.out.println(turnnum);
+        //turnnum++;
+        //System.out.println(turnnum);
     }
 }

@@ -16,7 +16,6 @@ public class Room{
             area[0][1] = r.nextInt(l.maxRoom-size[1]);
             for(int i=0;i<size[0];i++){
                 for(int j=0;j<size[1];j++){
-                    area
                 }
             }
         }

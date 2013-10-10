@@ -28,8 +28,8 @@ public class Spawner{
         }else if(t==1){
             s="Bandit";
         }else{
-            System.err.prinln("WRONG TYPE AKLHNLKFHADKLSHFKLNASDKLFHNSLAKNF");
+            System.err.println("WRONG TYPE AKLHNLKFHADKLSHFKLNASDKLFHNSLAKNF");
         }
-        this(x,y,am,min,max,l,s);
+        //this(x,y,am,min,max,l,s);
     }
 }
