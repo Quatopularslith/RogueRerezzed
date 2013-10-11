@@ -23,7 +23,7 @@ public class Level {
     public Level(int lvl){
         for(int i=0;i<numRooms;i++){
             //what = {rand.nextInt(maxRoom),rand.nextInt(maxRoom)};
-             r[i] = new Room(i,what,rand.nextInt(10), this);
+             //r[i] = new Room(i,what,rand.nextInt(10), this);
         }
     }
     public RogueEntity[] getEntities(){
