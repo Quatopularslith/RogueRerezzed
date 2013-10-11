@@ -9,6 +9,7 @@ public class Propertiesimpl{
   public static Properties config;
   public static void init(){
     try {
+        configFile.createNewFile();
         inStream = new FileInputStream(configFile);
         config.load(inStream);
     } catch (Exception ex) {
