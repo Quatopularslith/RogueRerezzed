@@ -13,7 +13,11 @@ public class Weapon extends Item{
     public Weapon(){
         mod=rand.nextInt(10)-5;
         if(mod<0){
-            modName = "Weak";
+            if(rand.nextBoolean()){
+                modName = "Weak";
+            }else{
+                modName = "Broken";
+            }
         }else if(mod==0){
             modName = null;
         }else if(mod>0){
