@@ -14,9 +14,10 @@ public class Loading extends JFrame{
     double cX, cY;
     long now, timeTaken;
     public Loading(int w){
-        super("Eyeris Studios");
+        super("Quotopulularslith Studios");
         this.setSize(w,w);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         width=w;
         r=w/4;
@@ -43,16 +44,14 @@ public class Loading extends JFrame{
         // TODO insert graphic logo
         while(currtick<(arrs-1)){
             g2.setColor(Color.RED);
-            g2.drawString("Eyeris Studios", scx, scy);
+            g2.drawString("Quotopulularslith", scx-10, scy);
+            g2.drawString("Studios",scx+15,scy+15);
             g2.setColor(Color.BLUE);
             g2.draw(new Ellipse2D.Double(x[(int) currtick], y[(int) currtick], nr, nr));
             currtick = (Game.getTickNum()-starttick);
         }
-        go=true;
         Core.Game gam = new Core.Game(750,500);
         this.dispose();
-        System.out.println(go);
-        System.out.println("Done");
         GameLoop.pause();
     }
 }

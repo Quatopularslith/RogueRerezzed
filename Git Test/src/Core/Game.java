@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 public class Game extends JFrame implements ActionListener {
     
