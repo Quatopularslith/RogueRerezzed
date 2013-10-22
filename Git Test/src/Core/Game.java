@@ -19,6 +19,7 @@ public class Game extends JFrame implements ActionListener {
     
     int[] keys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
     String[] keyprop = new String[6];
+    String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
     
     JTextField fwdKB;
     JTextField backKB;
@@ -27,7 +28,7 @@ public class Game extends JFrame implements ActionListener {
     JTextField spellKB;
     JTextField eatKB;
     
-    File configFile = new File("config.dat");
+    File configFile = new File("RougueConfig.dat");
     FileInputStream inStream;
     Properties config = new Properties();
     
@@ -37,13 +38,13 @@ public class Game extends JFrame implements ActionListener {
             configFile.createNewFile();
             inStream = new FileInputStream(configFile);
             config.load(inStream);
-            keyprop[0]=config.getProperty("fwdKB");
-            keyprop[1]=config.getProperty("backKB");
-            keyprop[2]=config.getProperty("rightKB");
-            keyprop[3]=config.getProperty("leftKB");
-            keyprop[4]=config.getProperty("spellKB");
-            keyprop[5]=config.getProperty("eatKB");
-        } catch (Exception ex) {
+            for(int i=0;i<props.length;i++){
+                if(config.getProperty(props[i])==null){
+                    config.setProperty(props[i], Cast.inttoChararr(keys[i]).toString());
+                }
+                keyprop[i]=config.getProperty(props[i]);
+            }
+        } catch (IOException ex) {
             System.err.println("LAKJDNFDKLANLKBDKLABF ERROR ERROR ERROR ERROR; STAIRS!!!!!! "+ex.toString());
         }
         for(int i=0;i<keyprop.length;i++){

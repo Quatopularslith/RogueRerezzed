@@ -5,12 +5,12 @@ package Core;
  */
 public class Cast {
     static int outi;
-    static char[] string;
+    static char[] outca;
     public static int stringtoInt(String s){
         outi=0;
-        string = s.toCharArray();
-        for(int i=0;i<string.length;i++){
-            switch(string[i]){
+        outca = s.toCharArray();
+        for(int i=0;i<outca.length;i++){
+            switch(outca[i]){
                 case '0':
                     outi+=0*10^i;
                     break;
@@ -46,5 +46,10 @@ public class Cast {
             }
         }
         return outi;
+    }
+    public static char[] inttoChararr(int num){
+        outca=new char[1];
+        outca[0]=(char) num;
+        return outca;
     }
 }
