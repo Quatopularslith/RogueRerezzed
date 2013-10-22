@@ -11,9 +11,12 @@ public class KeyboardInput implements KeyListener{
     public boolean[] keys = new boolean[10000];
     public int[] keyn = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
     public boolean up=false,down=false,left=false,right=false,spell=false,eat=false,go=false;
-    public void checkSettings(int[] keys){
+    public KeyboardInput(int[] keys){
         keyn=keys;
         System.out.println("Init Complete. Awaiting Orders.");
+    }
+    public void checkSettings(int[] keys){
+        keyn=keys;
     }
     public void update(){
         up=keys[keyn[0]];

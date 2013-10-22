@@ -1,5 +1,6 @@
 package Core;
 
+import Assets.LoadArt;
 import Level.Level;
 import Render.TextRender;
 import java.awt.event.*;
@@ -15,35 +16,48 @@ public class Game extends JFrame implements ActionListener {
     JPanel mainMenu = new JPanel();
     JPanel optionsMenu = new JPanel();
     JPanel textRender = new TextRender();
-    int[] keys = new int[6];
+    
+    int[] keys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
+    String[] keyprop = new String[6];
+    
+    JTextField fwdKB;
+    JTextField backKB;
+    JTextField rightKB;
+    JTextField leftKB;
+    JTextField spellKB;
+    JTextField eatKB;
     
     File configFile = new File("config.dat");
     FileInputStream inStream;
     Properties config = new Properties();
     
-     JTextField fwdKB = new JTextField("W", 4);
-     JTextField backKB = new JTextField("S", 4);
-     JTextField rightKB = new JTextField("D", 4);
-     JTextField leftKB = new JTextField("A", 4);
-     JTextField spellKB = new JTextField("K", 4);
-     JTextField eatKB = new JTextField("L", 4);
-    
     public Game(int x, int y){
         super("Rogue Rerezzed");
-        key=new KeyboardInput();
         try {
             configFile.createNewFile();
             inStream = new FileInputStream(configFile);
             config.load(inStream);
-            config.setProperty("fwdKB", "W");
-            config.setProperty("backKB", "S");
-            config.setProperty("rightKB", "D");
-            config.setProperty("leftKB", "A");
-            config.setProperty("spellKB", "K");
-            config.setProperty("eatKB", "L");
+            keyprop[0]=config.getProperty("fwdKB");
+            keyprop[1]=config.getProperty("backKB");
+            keyprop[2]=config.getProperty("rightKB");
+            keyprop[3]=config.getProperty("leftKB");
+            keyprop[4]=config.getProperty("spellKB");
+            keyprop[5]=config.getProperty("eatKB");
         } catch (Exception ex) {
             System.err.println("LAKJDNFDKLANLKBDKLABF ERROR ERROR ERROR ERROR; STAIRS!!!!!! "+ex.toString());
         }
+        for(int i=0;i<keyprop.length;i++){
+            if(keyprop[i]!=null){
+                keys[i]=Cast.stringtoInt(keyprop[i]);
+            }
+        }
+        fwdKB = new JTextField(keyprop[0], 4);
+        backKB = new JTextField(keyprop[1], 4);
+        rightKB = new JTextField(keyprop[2], 4);
+        leftKB = new JTextField(keyprop[3], 4);
+        spellKB = new JTextField(keyprop[4], 4);
+        eatKB = new JTextField(keyprop[5], 4);
+        key=new KeyboardInput(keys);
         this.add(mainMenu);
         this.add(optionsMenu);
         this.add(textRender);
@@ -52,8 +66,12 @@ public class Game extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         textRender.setVisible(false);
-
-        JLabel title = new JLabel("Rogue Rerezzed");
+        
+        LoadArt l = new LoadArt();
+        ImageIcon icon = l.createImageIcon("RogueLogo.png","LOGO YOLO");
+        
+        JLabel title = new JLabel("");
+        title.setIcon(icon);
         JButton newGame = new JButton("New Game");
         JButton loadGame = new JButton("Load Game");
         JButton options = new JButton("Options");
@@ -129,9 +147,5 @@ public class Game extends JFrame implements ActionListener {
     }
     public KeyboardInput getKey(){
         return key;
-    }
-    public void turn(){
-        //turnnum++;
-        //System.out.println(turnnum);
     }
 }
