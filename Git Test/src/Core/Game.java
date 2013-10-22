@@ -37,8 +37,11 @@ public class Game extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        Properties impl = new Properties();
         textRender.setVisible(false);
+        try {
+            config.load(inStream);
+        } catch (IOException ex) {
+        }
 
         JLabel title = new JLabel("Rogue Rerezzed");
         JButton newGame = new JButton("New Game");
