@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class Game extends JFrame implements ActionListener {
     
-    Keyboard key = new Keyboard();
+    KeyboardInput key;
     Level l;
     JPanel mainMenu = new JPanel();
     JPanel optionsMenu = new JPanel();
@@ -30,7 +30,9 @@ public class Game extends JFrame implements ActionListener {
     
     public Game(int x, int y){
         super("Rogue Rerezzed");
+        key=new KeyboardInput();
         try {
+            configFile.createNewFile();
             inStream = new FileInputStream(configFile);
             config.load(inStream);
             config.setProperty("fwdKB", "W");
@@ -50,10 +52,6 @@ public class Game extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         textRender.setVisible(false);
-        try {
-            config.load(inStream);
-        } catch (IOException ex) {
-        }
 
         JLabel title = new JLabel("Rogue Rerezzed");
         JButton newGame = new JButton("New Game");
@@ -129,7 +127,7 @@ public class Game extends JFrame implements ActionListener {
     public Level getCurrentLevel(){
         return l;
     }
-    public Keyboard getKey(){
+    public KeyboardInput getKey(){
         return key;
     }
     public void turn(){
