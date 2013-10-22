@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 public class Game extends JFrame implements ActionListener {
     
@@ -29,9 +28,6 @@ public class Game extends JFrame implements ActionListener {
      JTextField spellKB = new JTextField("K", 4);
      JTextField eatKB = new JTextField("L", 4);
     
-    public Game(){
-        this(750,500);
-    }
     public Game(int x, int y){
         super("Rogue Rerezzed");
         try {
@@ -53,8 +49,11 @@ public class Game extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        //Initialize JPanels, Button, and Stuff
         textRender.setVisible(false);
+        try {
+            config.load(inStream);
+        } catch (IOException ex) {
+        }
 
         JLabel title = new JLabel("Rogue Rerezzed");
         JButton newGame = new JButton("New Game");
@@ -131,21 +130,10 @@ public class Game extends JFrame implements ActionListener {
         return l;
     }
     public Keyboard getKey(){
-        return getKey();
-    }
-    private static int turnnum = 0;
-    private int tick = 0;
-    private Thread gt;
-    private boolean running=false;
-    public void tick(){
-        key.update();
-        if(key.turn()==true){
-            System.out.println(tick);
-            turn();
-        }
+        return key;
     }
     public void turn(){
-        turnnum++;
-        System.out.println(turnnum);
+        //turnnum++;
+        //System.out.println(turnnum);
     }
 }

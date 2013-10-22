@@ -8,15 +8,16 @@ import javax.swing.*;
 public class Loading extends JFrame{
     double n = .875;
     int r, width, arrs = 201;
-    boolean test=false;
+    boolean go=false;
     double newTheta, theta = 2*Math.asin(1/(2*n));
     double[] x=new double[arrs], y=new double[arrs];
     double cX, cY;
     long now, timeTaken;
     public Loading(int w){
-        super("Eyeris Studios");
+        super("Quotopulularslith Studios");
         this.setSize(w,w);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         width=w;
         r=w/4;
@@ -29,17 +30,6 @@ public class Loading extends JFrame{
             x[i]+=cX;
             y[i]+=cY;
         }
-        now=System.currentTimeMillis();
-        for(int j=0;j==-1;j++){
-            test=false;
-            timeTaken=System.currentTimeMillis()-now;
-            if(timeTaken==10000){
-                System.out.println("STOP");
-                test=true;
-                this.dispose();
-                break;
-            }
-        }
     }
     @Override
     public void paint(Graphics g) {
@@ -48,18 +38,20 @@ public class Loading extends JFrame{
         long starttick= Game.getTickNum();
         long currtick = (Game.getTickNum()-starttick);
         double nr = r/n;
-        int scx = (int) (cX+(width/20));
-        int scy = (int) (cY+(width/6.666666666666666666666666666666666666666666666666666666666666666666666667));
+        int scx = (int) (cX+(width/11));
+        int scy = (int) (cY+(width/(6.666666666666666666666666666666666666666666666666666666666666666667)));
         g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,((17*width)/1000)));
         // TODO insert graphic logo
         while(currtick<(arrs-1)){
-                g2.setColor(Color.RED);
-                g2.drawString("Eyeris Studios", scx, scy);
-                g2.setColor(Color.BLUE);
-                g2.draw(new Ellipse2D.Double(x[(int) currtick], y[(int) currtick], nr, nr));
-                currtick = (Game.getTickNum()-starttick);
-            }
-        System.out.println("Done");
+            g2.setColor(Color.RED);
+            g2.drawString("Quotopulularslith", scx-10, scy);
+            g2.drawString("Studios",scx+15,scy+15);
+            g2.setColor(Color.BLUE);
+            g2.draw(new Ellipse2D.Double(x[(int) currtick], y[(int) currtick], nr, nr));
+            currtick = (Game.getTickNum()-starttick);
+        }
+        Core.Game gam = new Core.Game(750,500);
+        this.dispose();
         GameLoop.pause();
     }
 }
