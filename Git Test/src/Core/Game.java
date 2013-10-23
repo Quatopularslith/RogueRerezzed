@@ -77,6 +77,7 @@ public class Game extends JFrame implements ActionListener {
         
         LoadArt l = new LoadArt();
         ImageIcon icon = l.createImageIcon("RogueLogo.png","LOGO YOLO");
+        this.setIconImage(l.createImageIcon("Quotopularslith.png", "Favicon").getImage());
         
         JLabel title = new JLabel("");
         title.setIcon(icon);
