@@ -32,8 +32,8 @@ public class Game extends JFrame implements ActionListener {
     FileInputStream inStream;
     Properties config = new Properties();
     
-    OptionMenuPanel optionMenu = new OptionMenuPanel();
-    MainMenuPanel mainMenuPanel = new MainMenuPanel();
+    OptionMenuPanel optionMenu;
+    MainMenuPanel mainMenuPanel;
     
     public Game(int x, int y){
         super("Rogue Rerezzed");
@@ -58,6 +58,10 @@ public class Game extends JFrame implements ActionListener {
         
         optionMenu = new OptionMenuPanel();
         mainMenuPanel = new MainMenuPanel();
+        optionMenu.setVisible(false);
+        mainMenuPanel.setVisible(true);
+        this.add(optionMenu);
+        this.add(mainMenuPanel);
         
         fwdKB = new JTextField(keyprop[0], 4);
         backKB = new JTextField(keyprop[1], 4);
@@ -75,19 +79,18 @@ public class Game extends JFrame implements ActionListener {
         this.setVisible(true);
         textRender.setVisible(false);
         
-        LoadArt l = new LoadArt();
-        ImageIcon icon = l.createImageIcon("RogueLogo.png","LOGO YOLO");
-        this.setIconImage(l.createImageIcon("Quotopularslith.png", "Favicon").getImage());
+        LoadArt load = new LoadArt();
+        ImageIcon icon = load.createImageIcon("RogueLogo.png","LOGO YOLO");
+        this.setIconImage(load.createImageIcon("Quotopularslith.png", "Favicon").getImage());
         
         JLabel title = new JLabel("");
         title.setIcon(icon);
-        JButton newGame = new JButton("New Game");
-        JButton loadGame = new JButton("Load Game");
-        JButton options = new JButton("Options");
-        mainMenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        mainMenuPanel.setVisible(true);
-        mainMenuPanel.setSize(x,y);
-        mainMenuPanel.setVisible(true);
+        
+        //JButton newGame = new JButton("New Game");
+        //JButton loadGame = new JButton("Load Game");
+        //JButton options = new JButton("Options");
+        //mainMenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        //mainMenuPanel.setSize(x,y);
         /*
         mainMenu.add(title);
         mainMenu.add(newGame);
@@ -123,8 +126,8 @@ public class Game extends JFrame implements ActionListener {
         optionsMenu.add(back);
         */
         addKeyListener(key);
-        newGame.addActionListener(this);
-        options.addActionListener(this);
+        mainMenuPanel.newGame.addActionListener(this);
+        mainMenuPanel.options.addActionListener(this);
         optionMenu.back.addActionListener(this);
               
     }

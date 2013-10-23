@@ -52,89 +52,52 @@ public class OptionMenuPanel extends javax.swing.JPanel {
         jButton1.setText("jButton1");
 
         setPreferredSize(new java.awt.Dimension(750, 500));
-        setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         jLabel1.setText("Forward Directional Keybind");
-        add(jLabel1);
-        jLabel1.setBounds(10, 11, 227, 19);
 
         jLabel2.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         jLabel2.setText("Backwards Directional Keybind");
-        add(jLabel2);
-        jLabel2.setBounds(10, 51, 249, 19);
 
         jLabel3.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         jLabel3.setText("Left Directional Keybind");
-        add(jLabel3);
-        jLabel3.setBounds(10, 91, 194, 19);
 
         jLabel4.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         jLabel4.setText("Right Directional Keybind");
-        add(jLabel4);
-        jLabel4.setBounds(10, 131, 205, 19);
 
         jLabel5.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         jLabel5.setText("Use Spell Keybind");
-        add(jLabel5);
-        jLabel5.setBounds(10, 171, 145, 19);
 
         jLabel6.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         jLabel6.setText("Eat Food Keybind");
-        add(jLabel6);
-        jLabel6.setBounds(10, 211, 139, 19);
 
         jLabel7.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         jLabel7.setText("Drink Potion Keybind");
-        add(jLabel7);
-        jLabel7.setBounds(10, 251, 169, 19);
 
         jLabel8.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         jLabel8.setText("Inventory Keybind");
-        add(jLabel8);
-        jLabel8.setBounds(10, 291, 147, 19);
 
         fwdKBL.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-        add(fwdKBL);
-        fwdKBL.setBounds(282, 12, 100, 21);
 
         leftKBL.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-        add(leftKBL);
-        leftKBL.setBounds(282, 92, 100, 21);
 
         rightKBL.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-        add(rightKBL);
-        rightKBL.setBounds(282, 132, 100, 21);
 
         spellKBL.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-        add(spellKBL);
-        spellKBL.setBounds(282, 172, 100, 21);
 
         eatKBL.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-        add(eatKBL);
-        eatKBL.setBounds(282, 212, 100, 21);
 
         potionKBL.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-        add(potionKBL);
-        potionKBL.setBounds(282, 252, 100, 21);
 
         invKBL.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-        add(invKBL);
-        invKBL.setBounds(282, 292, 100, 21);
 
         backBKL.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-        add(backBKL);
-        backBKL.setBounds(282, 52, 100, 21);
 
         apply.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         apply.setText("Apply");
-        add(apply);
-        apply.setBounds(510, 30, 120, 27);
 
         defaultKB.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         defaultKB.setText("Default Keybinds");
-        add(defaultKB);
-        defaultKB.setBounds(490, 90, 170, 27);
 
         back.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         back.setText("Back");
@@ -143,8 +106,114 @@ public class OptionMenuPanel extends javax.swing.JPanel {
                 backActionPerformed(evt);
             }
         });
-        add(back);
-        back.setBounds(520, 150, 110, 27);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fwdKBL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(backBKL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(128, 128, 128)
+                        .addComponent(apply, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(78, 78, 78)
+                        .addComponent(leftKBL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108)
+                        .addComponent(defaultKB, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rightKBL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spellKBL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(138, 138, 138)
+                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(133, 133, 133)
+                        .addComponent(eatKBL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(103, 103, 103)
+                        .addComponent(potionKBL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(125, 125, 125)
+                        .addComponent(invKBL, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(90, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(fwdKBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(backBKL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(apply)))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(leftKBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(defaultKB))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(rightKBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(spellKBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(back)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(eatKBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(potionKBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(invKBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(187, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
