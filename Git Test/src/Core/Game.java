@@ -32,6 +32,8 @@ public class Game extends JFrame implements ActionListener {
     FileInputStream inStream;
     Properties config = new Properties();
     
+    OptionMenuPanel optionMenu = new OptionMenuPanel();
+    
     public Game(int x, int y){
         super("Rogue Rerezzed");
         try {
@@ -52,6 +54,9 @@ public class Game extends JFrame implements ActionListener {
                 keys[i]=Cast.stringtoInt(keyprop[i]);
             }
         }
+        
+        optionMenu = new OptionMenuPanel();
+        
         fwdKB = new JTextField(keyprop[0], 4);
         backKB = new JTextField(keyprop[1], 4);
         rightKB = new JTextField(keyprop[2], 4);
@@ -84,8 +89,9 @@ public class Game extends JFrame implements ActionListener {
         mainMenu.add(newGame);
         mainMenu.add(loadGame);
         mainMenu.add(options);
+        
 
-        JLabel fwdKBL = new JLabel("Forward Directional Key Bind");
+      /*  JLabel fwdKBL = new JLabel("Forward Directional Key Bind");
         JLabel backKBL = new JLabel("Backwards Directional Key Bind");
         JLabel rightKBL = new JLabel("Right Directioanl Key Bind");
         JLabel leftKBL = new JLabel("Left Directional Key Bind");
@@ -110,11 +116,12 @@ public class Game extends JFrame implements ActionListener {
         optionsMenu.add(eatKB);
         optionsMenu.add(apply);
         optionsMenu.add(back);
-        
+        */
         addKeyListener(key);
         newGame.addActionListener(this);
         options.addActionListener(this);
-        back.addActionListener(this);
+        optionMenu.back.addActionListener(this);
+              
     }
     //Set what happens when JButton "options" is clicked
     @Override
