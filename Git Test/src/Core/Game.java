@@ -83,17 +83,19 @@ public class Game extends JFrame implements ActionListener {
         JButton newGame = new JButton("New Game");
         JButton loadGame = new JButton("Load Game");
         JButton options = new JButton("Options");
-        mainMenu.setLayout(new FlowLayout(FlowLayout.CENTER));
-        mainMenu.setVisible(true);
-        mainMenu.setSize(x,y);
-
+        mainMenuPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        mainMenuPanel.setVisible(true);
+        mainMenuPanel.setSize(x,y);
+        mainMenuPanel.setVisible(true);
+        /*
         mainMenu.add(title);
         mainMenu.add(newGame);
         mainMenu.add(loadGame);
         mainMenu.add(options);
         
+        
 
-      /*  JLabel fwdKBL = new JLabel("Forward Directional Key Bind");
+        JLabel fwdKBL = new JLabel("Forward Directional Key Bind");
         JLabel backKBL = new JLabel("Backwards Directional Key Bind");
         JLabel rightKBL = new JLabel("Right Directioanl Key Bind");
         JLabel leftKBL = new JLabel("Left Directional Key Bind");
