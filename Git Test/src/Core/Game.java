@@ -33,6 +33,7 @@ public class Game extends JFrame implements ActionListener {
     Properties config = new Properties();
     
     OptionMenuPanel optionMenu = new OptionMenuPanel();
+    MainMenuPanel mainMenuPanel = new MainMenuPanel();
     
     public Game(int x, int y){
         super("Rogue Rerezzed");
@@ -56,6 +57,7 @@ public class Game extends JFrame implements ActionListener {
         }
         
         optionMenu = new OptionMenuPanel();
+        mainMenuPanel = new MainMenuPanel();
         
         fwdKB = new JTextField(keyprop[0], 4);
         backKB = new JTextField(keyprop[1], 4);
