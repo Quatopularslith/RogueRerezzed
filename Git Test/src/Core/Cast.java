@@ -55,45 +55,34 @@ public class Cast {
         outca = new char[2];
         for(int i=1;i>0;i--){
             outia[i] = num-10^i;
-            if(outb==true){
-                break;
-            }
-            System.out.println(outca[i-1]+" "+outia[i-1]+" is supposed to be:"+num);
             switch(outia[i]){
                 case 0:
                     outca[i]='0';
-                    break;
                 case 1:
                     outca[i]='1';
-                    break;
                 case 2:
                     outca[i]='2';
-                    break;
                 case 3:
                     outca[i]='3';
-                    break;
                 case 4:
                     outca[i]='4';
-                    break;
                 case 5:
                     outca[i]='5';
-                    break;
                 case 6:
                     outca[i]='6';
-                    break;
                 case 7:
                     outca[i]='7';
-                    break;
                 case 8:
                     outca[i]='8';
-                    break;
                 case 9:
                     outca[i]='9';
-                    break;
                 default:
                     outb=true;
-                    break;
             }
+            if(outb==true){
+                break;
+            }
+            System.out.println(outca[i]+" "+outia[i]+" is supposed to be:"+num);
         }
         outca=new char[1];
         outca[0]=(char) num;
