@@ -11,7 +11,7 @@ import java.util.Properties;
 
 public class Game extends JFrame implements ActionListener {
     
-    KeyboardInput key;
+//    KeyboardInput key;
     Level l;
     JPanel mainMenu = new JPanel();
     JPanel optionsMenu = new JPanel();
@@ -41,7 +41,7 @@ public class Game extends JFrame implements ActionListener {
             config.load(inStream);
             for(int i=0;i<props.length;i++){
                 if(config.getProperty(props[i])==null){
-                    config.setProperty(props[i], Cast.inttoChararr(keys[i]).toString());
+//                    config.setProperty(props[i], Cast.inttoChararr(keys[i]).toString());
                 }
                 keyprop[i]=config.getProperty(props[i]);
             }
@@ -50,7 +50,7 @@ public class Game extends JFrame implements ActionListener {
         }
         for(int i=0;i<keyprop.length;i++){
             if(keyprop[i]!=null){
-                keys[i]=Cast.stringtoInt(keyprop[i]);
+//                keys[i]=Cast.stringtoInt(keyprop[i]);
             }
         }
         
@@ -61,7 +61,7 @@ public class Game extends JFrame implements ActionListener {
         leftKB = new JTextField(keyprop[3], 4);
         spellKB = new JTextField(keyprop[4], 4);
         eatKB = new JTextField(keyprop[5], 4);
-        key=new KeyboardInput(keys);
+//        key=new KeyboardInput(keys);
         this.add(mainMenu);
         this.add(optionsMenu);
         this.add(textRender);
@@ -117,10 +117,10 @@ public class Game extends JFrame implements ActionListener {
         optionsMenu.add(back);
         
         
-        addKeyListener(key);
-        mainMenu.newGame.addActionListener(this);
-        mainMenu.options.addActionListener(this);
-        optionsMenu.back.addActionListener(this);    
+//        addKeyListener(key);
+        newGame.addActionListener(this);
+        options.addActionListener(this);
+        back.addActionListener(this);    
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -151,7 +151,7 @@ public class Game extends JFrame implements ActionListener {
     public Level getCurrentLevel(){
         return l;
     }
-    public KeyboardInput getKey(){
-        return key;
-    }
+//    public KeyboardInput getKey(){
+//        return key;
+//    }
 }
