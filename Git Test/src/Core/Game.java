@@ -7,6 +7,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class Game extends JFrame implements ActionListener {
     
@@ -18,16 +19,8 @@ public class Game extends JFrame implements ActionListener {
     String[] keyprop = new String[6];
     String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
     
-//    JTextField fwdKB;
-//    JTextField backKB;
-//    JTextField rightKB;
-//    JTextField leftKB;
-//    JTextField spellKB;
-//    JTextField eatKB;
-     
     File configFile = new File("RogueConfig.dat");
-    FileInputStream inStream;
-    Properties config = new Properties();
+    Properties config;
     
     OptionMenuPanel optionMenu;
     MainMenuPanel mainMenuPanel;
@@ -36,14 +29,17 @@ public class Game extends JFrame implements ActionListener {
         super("Rogue Rerezzed");
         try {
             configFile.createNewFile();
-            inStream = new FileInputStream(configFile);
+            FileInputStream inStream = new FileInputStream(configFile);
+            config = new Properties();
             config.load(inStream);
             for(int i=0;i<props.length;i++){
                 if(config.getProperty(props[i])==null){
-                    config.setProperty(props[i], Cast.inttoChararr(keys[i]).toString());
+                    config.setProperty(props[i], Cast.inttoString(keys[i]));
                 }
                 keyprop[i]=config.getProperty(props[i]);
             }
+            inStream.close();
+            this.save();
         } catch (IOException ex) {
             System.err.println("LAKJDNFDKLANLKBDKLABF ERROR ERROR ERROR ERROR; STAIRS!!!!!! "+ex.toString());
         }
@@ -59,12 +55,6 @@ public class Game extends JFrame implements ActionListener {
         this.add(optionMenu);
         this.add(mainMenuPanel);
         
-//        fwdKB = new JTextField(keyprop[0], 4);
-//        backKB = new JTextField(keyprop[1], 4);
-//        rightKB = new JTextField(keyprop[2], 4);
-//        leftKB = new JTextField(keyprop[3], 4);
-//        spellKB = new JTextField(keyprop[4], 4);
-//        eatKB = new JTextField(keyprop[5], 4);
         key=new KeyboardInput(keys);
         
         this.add(textRender);
@@ -85,7 +75,7 @@ public class Game extends JFrame implements ActionListener {
         optionMenu.setVisible(false);
         optionMenu.setSize(x,y);
         
-        addKeyListener(key);
+        this.addKeyListener(key);
         mainMenuPanel.newGame.addActionListener(this);
         mainMenuPanel.options.addActionListener(this);
         optionMenu.back.addActionListener(this); 
@@ -115,6 +105,7 @@ public class Game extends JFrame implements ActionListener {
             config.setProperty("leftKB", optionMenu.leftKB.getText());
             config.setProperty("spellKB", optionMenu.spellKB.getText());
             config.setProperty("eatKB", optionMenu.eatKB.getText());
+            save();
         }
     }
     public Level getCurrentLevel(){
@@ -122,5 +113,15 @@ public class Game extends JFrame implements ActionListener {
     }
     public KeyboardInput getKey(){
         return key;
+    }
+    public void save(){
+        try {
+            FileOutputStream out = new FileOutputStream(configFile);
+            config.store(out,"Properties settings");
+            out.close();
+            config.list(System.out);
+        } catch (Exception ex) {
+            System.err.println(ex.toString());
+        }
     }
 }
