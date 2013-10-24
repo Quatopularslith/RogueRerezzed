@@ -18,14 +18,14 @@ public class Game extends JFrame implements ActionListener {
     String[] keyprop = new String[6];
     String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
     
-    JTextField fwdKB;
-    JTextField backKB;
-    JTextField rightKB;
-    JTextField leftKB;
-    JTextField spellKB;
-    JTextField eatKB;
-    
-    File configFile = new File("RougueConfig.dat");
+//    JTextField fwdKB;
+//    JTextField backKB;
+//    JTextField rightKB;
+//    JTextField leftKB;
+//    JTextField spellKB;
+//    JTextField eatKB;
+     
+    File configFile = new File("RogueConfig.dat");
     FileInputStream inStream;
     Properties config = new Properties();
     
@@ -52,7 +52,6 @@ public class Game extends JFrame implements ActionListener {
                 keys[i]=Cast.stringtoInt(keyprop[i]);
             }
         }
-        
         optionMenu = new OptionMenuPanel();
         mainMenuPanel = new MainMenuPanel();
         optionMenu.setVisible(false);
@@ -60,12 +59,12 @@ public class Game extends JFrame implements ActionListener {
         this.add(optionMenu);
         this.add(mainMenuPanel);
         
-        fwdKB = new JTextField(keyprop[0], 4);
-        backKB = new JTextField(keyprop[1], 4);
-        rightKB = new JTextField(keyprop[2], 4);
-        leftKB = new JTextField(keyprop[3], 4);
-        spellKB = new JTextField(keyprop[4], 4);
-        eatKB = new JTextField(keyprop[5], 4);
+//        fwdKB = new JTextField(keyprop[0], 4);
+//        backKB = new JTextField(keyprop[1], 4);
+//        rightKB = new JTextField(keyprop[2], 4);
+//        leftKB = new JTextField(keyprop[3], 4);
+//        spellKB = new JTextField(keyprop[4], 4);
+//        eatKB = new JTextField(keyprop[5], 4);
         key=new KeyboardInput(keys);
         
         this.add(textRender);
@@ -89,7 +88,8 @@ public class Game extends JFrame implements ActionListener {
         addKeyListener(key);
         mainMenuPanel.newGame.addActionListener(this);
         mainMenuPanel.options.addActionListener(this);
-        optionMenu.back.addActionListener(this);    
+        optionMenu.back.addActionListener(this); 
+        optionMenu.apply.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -109,12 +109,12 @@ public class Game extends JFrame implements ActionListener {
             textRender.setVisible(true);
         }
         if(command.equalsIgnoreCase("Apply")){
-            config.setProperty("fwdKB", fwdKB.getText());
-            config.setProperty("backKB", backKB.getText());
-            config.setProperty("rightKB", rightKB.getText());
-            config.setProperty("leftKB", leftKB.getText());
-            config.setProperty("spellKB", spellKB.getText());
-            config.setProperty("eatKB", eatKB.getText());
+            config.setProperty("fwdKB", optionMenu.fwdKB.getText());
+            config.setProperty("backKB", optionMenu.backKB.getText());
+            config.setProperty("rightKB", optionMenu.rightKB.getText());
+            config.setProperty("leftKB", optionMenu.leftKB.getText());
+            config.setProperty("spellKB", optionMenu.spellKB.getText());
+            config.setProperty("eatKB", optionMenu.eatKB.getText());
         }
     }
     public Level getCurrentLevel(){
