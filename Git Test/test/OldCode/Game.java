@@ -1,8 +1,9 @@
-package Core;
+package OldCode;
 
 import Assets.LoadArt;
 import Level.Level;
 import Render.TextRender;
+import java.awt.FlowLayout;
 import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
@@ -12,6 +13,8 @@ public class Game extends JFrame implements ActionListener {
     
     KeyboardInput key;
     Level l;
+    JPanel mainMenu = new JPanel();
+    JPanel optionsMenu = new JPanel();
     JPanel textRender = new TextRender();
     
     int[] keys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
@@ -29,8 +32,6 @@ public class Game extends JFrame implements ActionListener {
     FileInputStream inStream;
     Properties config = new Properties();
     
-    OptionMenuPanel optionMenu;
-    MainMenuPanel mainMenuPanel;
     
     public Game(int x, int y){
         super("Rogue Rerezzed");
@@ -53,12 +54,6 @@ public class Game extends JFrame implements ActionListener {
             }
         }
         
-        optionMenu = new OptionMenuPanel();
-        mainMenuPanel = new MainMenuPanel();
-        optionMenu.setVisible(false);
-        mainMenuPanel.setVisible(true);
-        this.add(optionMenu);
-        this.add(mainMenuPanel);
         
         fwdKB = new JTextField(keyprop[0], 4);
         backKB = new JTextField(keyprop[1], 4);
@@ -67,7 +62,8 @@ public class Game extends JFrame implements ActionListener {
         spellKB = new JTextField(keyprop[4], 4);
         eatKB = new JTextField(keyprop[5], 4);
         key=new KeyboardInput(keys);
-        
+        this.add(mainMenu);
+        this.add(optionsMenu);
         this.add(textRender);
         this.setSize(x,y);
         this.setLocationRelativeTo(null);
@@ -82,30 +78,65 @@ public class Game extends JFrame implements ActionListener {
         JLabel title = new JLabel("");
         title.setIcon(icon);
         
-        mainMenuPanel.setSize(x,y);
-        optionMenu.setVisible(false);
-        optionMenu.setSize(x,y);
+        JButton newGame = new JButton("New Game");
+        JButton loadGame = new JButton("Load Game");
+        JButton options = new JButton("Options");
+        mainMenu.setLayout(new FlowLayout(FlowLayout.CENTER));
+        
+        mainMenu.add(title);
+        mainMenu.add(newGame);
+        mainMenu.add(loadGame);
+        mainMenu.add(options);
+        
+        
+
+        JLabel fwdKBL = new JLabel("Forward Directional Key Bind");
+        JLabel backKBL = new JLabel("Backwards Directional Key Bind");
+        JLabel rightKBL = new JLabel("Right Directioanl Key Bind");
+        JLabel leftKBL = new JLabel("Left Directional Key Bind");
+        JLabel spellKBL = new JLabel("Use Spell Key Bind");
+        JLabel eatKBL = new JLabel("Eat Food Key Bind");
+        JButton apply = new JButton("Apply");
+        JButton back = new JButton("Back");
+        optionsMenu.setVisible(false);
+        optionsMenu.setSize(x,y);
+
+        optionsMenu.add(fwdKBL);
+        optionsMenu.add(fwdKB);
+        optionsMenu.add(backKBL);
+        optionsMenu.add(backKB);
+        optionsMenu.add(rightKBL);
+        optionsMenu.add(rightKB);
+        optionsMenu.add(leftKBL);
+        optionsMenu.add(leftKB);
+        optionsMenu.add(spellKBL);
+        optionsMenu.add(spellKB);
+        optionsMenu.add(eatKBL);
+        optionsMenu.add(eatKB);
+        optionsMenu.add(apply);
+        optionsMenu.add(back);
+        
         
         addKeyListener(key);
-        mainMenuPanel.newGame.addActionListener(this);
-        mainMenuPanel.options.addActionListener(this);
-        optionMenu.back.addActionListener(this);    
+        mainMenu.newGame.addActionListener(this);
+        mainMenu.options.addActionListener(this);
+        optionsMenu.back.addActionListener(this);    
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
         if(command.equalsIgnoreCase("Options")){
-            mainMenuPanel.setVisible(false);
-            optionMenu.setVisible(true);
+            mainMenu.setVisible(false);
+            optionsMenu.setVisible(true);
         }
         if(command.equalsIgnoreCase("Back")){
-            mainMenuPanel.setVisible(true);
-            optionMenu.setVisible(false);
+            mainMenu.setVisible(true);
+            optionsMenu.setVisible(false);
         }
         if(command.equalsIgnoreCase("New Game")){
             l=new Level(1);
-            mainMenuPanel.setVisible(false);
-            optionMenu.setVisible(false);
+            mainMenu.setVisible(false);
+            optionsMenu.setVisible(false);
             textRender.setVisible(true);
         }
         if(command.equalsIgnoreCase("Apply")){
