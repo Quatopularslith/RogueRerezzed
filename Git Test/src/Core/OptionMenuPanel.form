@@ -40,14 +40,14 @@
                               </Group>
                               <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="fwdKBL" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="backBKL" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="fwdKB" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="backKB" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="78" pref="78" max="-2" attributes="0"/>
-                              <Component id="leftKBL" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="leftKB" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -56,8 +56,8 @@
                               </Group>
                               <EmptySpace min="67" pref="67" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rightKBL" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="spellKBL" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="rightKB" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="spellKB" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -71,17 +71,17 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="133" pref="133" max="-2" attributes="0"/>
-                      <Component id="eatKBL" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="eatKB" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="103" pref="103" max="-2" attributes="0"/>
-                      <Component id="potionKBL" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="potionKB" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="125" pref="125" max="-2" attributes="0"/>
-                      <Component id="invKBL" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="invKB" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="43" max="32767" attributes="0"/>
@@ -100,9 +100,9 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="fwdKBL" min="-2" max="-2" attributes="0"/>
+                      <Component id="fwdKB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
-                      <Component id="backBKL" min="-2" max="-2" attributes="0"/>
+                      <Component id="backKB" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                      <Component id="leftKBL" min="-2" max="-2" attributes="0"/>
+                      <Component id="leftKB" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="defaultKB" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -130,9 +130,9 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="rightKBL" min="-2" max="-2" attributes="0"/>
+                      <Component id="rightKB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
-                      <Component id="spellKBL" min="-2" max="-2" attributes="0"/>
+                      <Component id="spellKB" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
@@ -144,7 +144,7 @@
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="eatKBL" min="-2" max="-2" attributes="0"/>
+                      <Component id="eatKB" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
@@ -152,7 +152,7 @@
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="potionKBL" min="-2" max="-2" attributes="0"/>
+                      <Component id="potionKB" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
@@ -160,7 +160,7 @@
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="invKBL" min="-2" max="-2" attributes="0"/>
+                      <Component id="invKB" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="187" max="32767" attributes="0"/>
@@ -233,7 +233,7 @@
         <Property name="text" type="java.lang.String" value="Inventory Keybind"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="fwdKBL">
+    <Component class="javax.swing.JFormattedTextField" name="fwdKB">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="14" style="0"/>
@@ -243,7 +243,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="leftKBL">
+    <Component class="javax.swing.JFormattedTextField" name="leftKB">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="14" style="0"/>
@@ -253,7 +253,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="rightKBL">
+    <Component class="javax.swing.JFormattedTextField" name="rightKB">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="14" style="0"/>
@@ -263,7 +263,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="spellKBL">
+    <Component class="javax.swing.JFormattedTextField" name="spellKB">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="14" style="0"/>
@@ -273,7 +273,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="eatKBL">
+    <Component class="javax.swing.JFormattedTextField" name="eatKB">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="14" style="0"/>
@@ -283,7 +283,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="potionKBL">
+    <Component class="javax.swing.JFormattedTextField" name="potionKB">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="14" style="0"/>
@@ -293,7 +293,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="invKBL">
+    <Component class="javax.swing.JFormattedTextField" name="invKB">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="14" style="0"/>
@@ -303,7 +303,7 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="backBKL">
+    <Component class="javax.swing.JFormattedTextField" name="backKB">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="14" style="0"/>
