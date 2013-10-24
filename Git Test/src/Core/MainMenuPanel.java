@@ -6,6 +6,10 @@
 
 package Core;
 
+import Assets.LoadArt;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author 1003749
@@ -78,6 +82,13 @@ public class MainMenuPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    @Override
+    public void paint(Graphics g){
+        super.paint(g);
+        LoadArt load = new LoadArt();
+        ImageIcon icon = load.createImageIcon("RogueLogo.png","LOGO YOLO");
+        g.drawImage(icon.getImage(), WIDTH, WIDTH, null);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton loadGame;
