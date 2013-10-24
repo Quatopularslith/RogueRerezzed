@@ -39,7 +39,7 @@ public class Game extends JFrame implements ActionListener {
                 keyprop[i]=config.getProperty(props[i]);
             }
             inStream.close();
-            this.save();
+            this.saveConfig();
         } catch (IOException ex) {
             System.err.println("LAKJDNFDKLANLKBDKLABF ERROR ERROR ERROR ERROR; STAIRS!!!!!! "+ex.toString());
         }
@@ -105,7 +105,7 @@ public class Game extends JFrame implements ActionListener {
             config.setProperty("leftKB", optionMenu.leftKB.getText());
             config.setProperty("spellKB", optionMenu.spellKB.getText());
             config.setProperty("eatKB", optionMenu.eatKB.getText());
-            save();
+            saveConfig();
         }
     }
     public Level getCurrentLevel(){
@@ -114,7 +114,7 @@ public class Game extends JFrame implements ActionListener {
     public KeyboardInput getKey(){
         return key;
     }
-    public void save(){
+    public void saveConfig(){
         try {
             FileOutputStream out = new FileOutputStream(configFile);
             config.store(out,"Properties settings");
