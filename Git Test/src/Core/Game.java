@@ -25,7 +25,7 @@ public class Game extends JFrame implements ActionListener {
 //    JTextField spellKB;
 //    JTextField eatKB;
      
-    File configFile = new File("RougueConfig.dat");
+    File configFile = new File("RogueConfig.dat");
     FileInputStream inStream;
     Properties config = new Properties();
     
@@ -52,7 +52,6 @@ public class Game extends JFrame implements ActionListener {
                 keys[i]=Cast.stringtoInt(keyprop[i]);
             }
         }
-        
         optionMenu = new OptionMenuPanel();
         mainMenuPanel = new MainMenuPanel();
         optionMenu.setVisible(false);
@@ -89,7 +88,8 @@ public class Game extends JFrame implements ActionListener {
         addKeyListener(key);
         mainMenuPanel.newGame.addActionListener(this);
         mainMenuPanel.options.addActionListener(this);
-        optionMenu.back.addActionListener(this);    
+        optionMenu.back.addActionListener(this); 
+        optionMenu.apply.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
