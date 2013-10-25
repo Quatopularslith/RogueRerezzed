@@ -1,5 +1,7 @@
 package Entity.Mob;
 
+import Render.Sprite;
+
 public class Quotopulularslith extends RogueHostileMob{
     public Quotopulularslith(int spawnX, int spawnY, int lvl){
         health=20+(lvl);
@@ -8,5 +10,6 @@ public class Quotopulularslith extends RogueHostileMob{
         x = spawnX;
         y = spawnY;
         dir = 0;
+        sp = new Sprite("Quotopularslith.png");
     }
 }

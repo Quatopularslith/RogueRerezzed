@@ -1,4 +1,7 @@
 package Entity.Mob;
+
+import Render.Sprite;
+
 /**
  * @author Torri
  */
@@ -10,5 +13,6 @@ public class Bandit extends RogueHostileMob{
         x = spawnX;
         y = spawnY;
         dir = 0;
+        sp = new Sprite("Bandit.png");
     }
 }
