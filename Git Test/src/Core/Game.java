@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -22,7 +23,8 @@ public class Game extends JFrame implements ActionListener {
     Level l;
     JPanel textRender = new Display();
     
-    int[] keys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
+    int[] defkeys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
+    int[] keys = new int[6];
     String[] keyprop = new String[6];
     String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
     
@@ -41,7 +43,7 @@ public class Game extends JFrame implements ActionListener {
                 config.load(inStream);
                 for(int i=0;i<props.length;i++){
                     if(config.getProperty(props[i])==null){
-                        config.setProperty(props[i], Cast.inttoString(keys[i]));
+                        config.setProperty(props[i], Cast.inttoString(defkeys[i]));
                     }
                     keyprop[i]=config.getProperty(props[i]);
                 }
@@ -107,24 +109,30 @@ public class Game extends JFrame implements ActionListener {
             textRender.setVisible(true);
         }
         if(command.equalsIgnoreCase("Apply")){
-            config.setProperty("fwdKB", optionMenu.fwdKB.getText());
-            config.setProperty("backKB", optionMenu.backKB.getText());
-            config.setProperty("rightKB", optionMenu.rightKB.getText());
-            config.setProperty("leftKB", optionMenu.leftKB.getText());
-            config.setProperty("spellKB", optionMenu.spellKB.getText());
-            config.setProperty("eatKB", optionMenu.eatKB.getText());
-            config.setProperty("invKB", optionMenu.invKB.getText());
-            config.setProperty("potionKB", optionMenu.potionKB.getText());
+            config.setProperty("fwdKB", Cast.inttoString((int) optionMenu.fwdKB.getText().toCharArray()[0]));
+            config.setProperty("backKB", Cast.inttoString((int) optionMenu.backKB.getText().toCharArray()[0]));
+            config.setProperty("rightKB", Cast.inttoString((int) optionMenu.rightKB.getText().toCharArray()[0]));
+            config.setProperty("leftKB", Cast.inttoString((int) optionMenu.leftKB.getText().toCharArray()[0]));
+            config.setProperty("spellKB", Cast.inttoString((int) optionMenu.spellKB.getText().toCharArray()[0]));
+            config.setProperty("eatKB", Cast.inttoString((int) optionMenu.eatKB.getText().toCharArray()[0]));
+            config.setProperty("invKB", Cast.inttoString((int) optionMenu.invKB.getText().toCharArray()[0]));
             saveConfig();
         }
         if(command.equalsIgnoreCase("Default Keybinds")){
-            config.setProperty("fwdKB", "w");
-            config.setProperty("backKB", "s");
-            config.setProperty("rightKB", "d");
-            config.setProperty("leftKB", "a");
-            config.setProperty("spellKB", "k");
-            config.setProperty("eatKB", "l");
-            config.setProperty("invKB", "i");
+            try (FileInputStream inStream = new FileInputStream(configFile)) {
+                config = new Properties();
+                config.load(inStream);
+                for(int i=0;i<props.length;i++){
+                    if(config.getProperty(props[i])==null){
+                        config.setProperty(props[i], Cast.inttoString(defkeys[i]));
+                    }
+                    keyprop[i]=config.getProperty(props[i]);
+                }
+            } catch (FileNotFoundException ex) {
+                System.err.println("NOOOOOJAFL DHFKL AJKLHDFLKJASLDHAJKLSHDLKFJ EWORLAKDFNLSKHJ NO. "+ex.toString());
+            } catch (IOException ex) {
+                System.err.println("NOOOOOJAFL DHFKL AJKLHDFLKJASLDHAJKLSHDLKFJ EWORLAKDFNLSKHJ NO. "+ex.toString());
+            }
             optionMenu.fwdKB.setText("W");
             optionMenu.backKB.setText("S");
             optionMenu.rightKB.setText("D");
