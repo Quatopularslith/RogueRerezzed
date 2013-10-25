@@ -1,6 +1,7 @@
 package Render;
 
 import Assets.LoadArt;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,7 +13,7 @@ public class Sprite {
         LoadArt load = new LoadArt();
         ii=load.createImageIcon(imdir, "Sprite");
     }
-    public void draw(int x, int y){
-        
+    public Image getImg(){
+        return ii.getImage();
     }
 }

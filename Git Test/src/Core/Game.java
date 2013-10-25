@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class Game extends JFrame implements ActionListener {
     
     KeyboardInput key;
-    Level l;
+    static Level l;
     JPanel textRender = new Display();
     
     int[] defkeys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
@@ -144,7 +144,7 @@ public class Game extends JFrame implements ActionListener {
             saveConfig();
         }
     }
-    public Level getCurrentLevel(){
+    public static Level getCurrentLevel(){
         return l;
     }
     public KeyboardInput getKeys(){
