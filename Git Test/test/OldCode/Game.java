@@ -2,7 +2,7 @@ package OldCode;
 
 import Assets.LoadArt;
 import Level.Level;
-import Render.TextRender;
+//import Render.TextRender;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 import javax.swing.*;
@@ -15,7 +15,7 @@ public class Game extends JFrame implements ActionListener {
     Level l;
     JPanel mainMenu = new JPanel();
     JPanel optionsMenu = new JPanel();
-    JPanel textRender = new TextRender();
+//    JPanel textRender = new TextRender();
     
     int[] keys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
     String[] keyprop = new String[6];
@@ -64,12 +64,12 @@ public class Game extends JFrame implements ActionListener {
 //        key=new KeyboardInput(keys);
         this.add(mainMenu);
         this.add(optionsMenu);
-        this.add(textRender);
+//        this.add(textRender);
         this.setSize(x,y);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        textRender.setVisible(false);
+//        textRender.setVisible(false);
         
         LoadArt load = new LoadArt();
         ImageIcon icon = load.createImageIcon("RogueLogo.png","LOGO YOLO");
@@ -137,7 +137,7 @@ public class Game extends JFrame implements ActionListener {
             l=new Level(1);
             mainMenu.setVisible(false);
             optionsMenu.setVisible(false);
-            textRender.setVisible(true);
+//            textRender.setVisible(true);
         }
         if(command.equalsIgnoreCase("Apply")){
             config.setProperty("fwdKB", fwdKB.getText());

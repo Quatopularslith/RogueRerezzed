@@ -2,7 +2,7 @@ package Core;
 
 import Assets.LoadArt;
 import Level.Level;
-import Render.TextRender;
+import Render.Display;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,7 +20,7 @@ public class Game extends JFrame implements ActionListener {
     
     KeyboardInput key;
     Level l;
-    JPanel textRender = new TextRender();
+    JPanel textRender = new Display();
     
     int[] keys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
     String[] keyprop = new String[6];
