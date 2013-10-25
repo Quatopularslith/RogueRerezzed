@@ -87,6 +87,7 @@ public class Game extends JFrame implements ActionListener {
         mainMenuPanel.options.addActionListener(this);
         optionMenu.back.addActionListener(this); 
         optionMenu.apply.addActionListener(this);
+        optionMenu.defaultKB.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -112,6 +113,26 @@ public class Game extends JFrame implements ActionListener {
             config.setProperty("leftKB", optionMenu.leftKB.getText());
             config.setProperty("spellKB", optionMenu.spellKB.getText());
             config.setProperty("eatKB", optionMenu.eatKB.getText());
+            config.setProperty("invKB", optionMenu.invKB.getText());
+            config.setProperty("potionKB", optionMenu.potionKB.getText());
+            saveConfig();
+        }
+        if(command.equalsIgnoreCase("Default Keybinds")){
+            config.setProperty("fwdKB", "w");
+            config.setProperty("backKB", "s");
+            config.setProperty("rightKB", "d");
+            config.setProperty("leftKB", "a");
+            config.setProperty("spellKB", "k");
+            config.setProperty("eatKB", "l");
+            config.setProperty("invKB", "i");
+            optionMenu.fwdKB.setText("W");
+            optionMenu.backKB.setText("S");
+            optionMenu.rightKB.setText("D");
+            optionMenu.leftKB.setText("A");
+            optionMenu.spellKB.setText("K");
+            optionMenu.eatKB.setText("L");
+            optionMenu.invKB.setText("I");
+            optionMenu.potionKB.setText("J");
             saveConfig();
         }
     }

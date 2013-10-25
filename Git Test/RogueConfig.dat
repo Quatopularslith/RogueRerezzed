@@ -1,8 +1,9 @@
 #Properties settings
-#Thu Oct 24 17:49:49 EDT 2013
-leftKB=37
-eatKB=65
-rightKB=39
-fwdKB=38
-spellKB=83
-backKB=40
+#Fri Oct 25 10:20:40 EDT 2013
+leftKB=a
+eatKB=l
+rightKB=d
+fwdKB=w
+spellKB=k
+backKB=s
+invKB=i
