@@ -3,11 +3,18 @@ package Core;
 import Assets.LoadArt;
 import Level.Level;
 import Render.TextRender;
-import java.awt.event.*;
-import javax.swing.*;
-import java.io.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Game extends JFrame implements ActionListener {
     
@@ -29,16 +36,16 @@ public class Game extends JFrame implements ActionListener {
         super("Rogue Rerezzed");
         try {
             configFile.createNewFile();
-            FileInputStream inStream = new FileInputStream(configFile);
-            config = new Properties();
-            config.load(inStream);
-            for(int i=0;i<props.length;i++){
-                if(config.getProperty(props[i])==null){
-                    config.setProperty(props[i], Cast.inttoString(keys[i]));
+            try (FileInputStream inStream = new FileInputStream(configFile)) {
+                config = new Properties();
+                config.load(inStream);
+                for(int i=0;i<props.length;i++){
+                    if(config.getProperty(props[i])==null){
+                        config.setProperty(props[i], Cast.inttoString(keys[i]));
+                    }
+                    keyprop[i]=config.getProperty(props[i]);
                 }
-                keyprop[i]=config.getProperty(props[i]);
             }
-            inStream.close();
             this.saveConfig();
         } catch (IOException ex) {
             System.err.println("LAKJDNFDKLANLKBDKLABF ERROR ERROR ERROR ERROR; STAIRS!!!!!! "+ex.toString());
@@ -111,16 +118,16 @@ public class Game extends JFrame implements ActionListener {
     public Level getCurrentLevel(){
         return l;
     }
-    public KeyboardInput getKey(){
+    public KeyboardInput getKeys(){
         return key;
     }
-    public void saveConfig(){
+    private void saveConfig(){
         try {
-            FileOutputStream out = new FileOutputStream(configFile);
-            config.store(out,"Properties settings");
-            out.close();
+            try (FileOutputStream out = new FileOutputStream(configFile)) {
+                config.store(out,"Properties settings");
+            }
             config.list(System.out);
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             System.err.println(ex.toString());
         }
     }

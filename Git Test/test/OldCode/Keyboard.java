@@ -1,4 +1,4 @@
-package Core;
+package OldCode;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,14 +13,9 @@ public class Keyboard implements KeyListener{
     public boolean up=false,down=false,left=false,right=false,spell=false,eat=false,go=false;
     public void checkSettings(int[] keys){
         keyn=keys;
-    }
-    public void update(){
-        up=keys[keyn[0]];
-        down=keys[keyn[1]];
-        left=keys[keyn[2]];
-        right=keys[keyn[3]];
-        spell=keys[keyn[4]];
-        eat=keys[keyn[5]];
+        for(int i=0;i<keys.length;i++){
+            System.out.println(keyn[i]+" = "+keys[i]);
+        }
     }
     public boolean turn(){
         boolean out = true;
@@ -35,8 +30,10 @@ public class Keyboard implements KeyListener{
         }
         return out;
     }
+    @Override
     public void keyTyped(KeyEvent e) {
     }
+    @Override
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()]=true;
         up=keys[keyn[0]];
@@ -48,6 +45,7 @@ public class Keyboard implements KeyListener{
         System.out.println("key pressed "+e.getKeyChar());
         go=true;
     }
+    @Override
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()]=false;
         up=keys[keyn[0]];

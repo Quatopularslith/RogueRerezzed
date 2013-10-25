@@ -7,28 +7,22 @@ import java.awt.event.KeyListener;
  * @author Torri
  */
 public class KeyboardInput implements KeyListener{
-    //This is ***** broken. so yeah.
     public boolean[] keys = new boolean[10000];
-    public int[] keyn = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
+    public int[] keyn;
     public boolean up=false,down=false,left=false,right=false,spell=false,eat=false,go=false;
     public KeyboardInput(int[] keys){
         keyn=keys;
         System.out.println("Init Complete. Awaiting Orders.");
+        for(int i=0;i<keys.length;i++){
+            System.out.println(keyn[i]+" = "+keys[i]);
+        }
     }
     public void checkSettings(int[] keys){
         keyn=keys;
     }
-    public void update(){
-        up=keys[keyn[0]];
-        down=keys[keyn[1]];
-        left=keys[keyn[2]];
-        right=keys[keyn[3]];
-        spell=keys[keyn[4]];
-        eat=keys[keyn[5]];
-    }
     public boolean turn(){
         boolean out = true;
-        for(int i=0;i<6;i++){
+        for(int i=0;i<keyn.length;i++){
             if(keys[keyn[i]]==true){
                 out=true;
                 System.out.println("Uhhhhhhh");
@@ -52,6 +46,7 @@ public class KeyboardInput implements KeyListener{
         right=keys[keyn[3]];
         spell=keys[keyn[4]];
         eat=keys[keyn[5]];
+        turn();
         System.out.println("key pressed "+e.getKeyChar());
         go=true;
     }
