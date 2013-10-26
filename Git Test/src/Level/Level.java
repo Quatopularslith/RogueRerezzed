@@ -28,7 +28,9 @@ public class Level {
         for(int i=0;i<numRooms;i++){
             what[0] = rand.nextInt(maxRoom)+2;
             what[1] = rand.nextInt(maxRoom)+2;
-            r[i] = new Room(i,what,rand.nextInt(10), this);
+            System.out.println(i+":"+what[0]);
+            System.out.println(i+":"+what[1]);
+//            r[i] = new Room(i,what,rand.nextInt(10), this);
         }
         System.out.println("Level Generated.");
     }

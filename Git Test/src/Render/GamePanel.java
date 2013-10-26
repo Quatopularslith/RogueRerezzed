@@ -18,14 +18,14 @@ public class GamePanel extends JPanel{
     }
     @Override
     public void paint(Graphics g){
-        System.out.println("RENDERING");
-        Graphics2D g2 = (Graphics2D) g;
-        while(Game.go==true){
-            if(Game.key.turn()==true){
-                for (RogueEntity entitie : curr.getEntities()) {
-                    g2.drawImage(entitie.sp.getImg(), entitie.x, entitie.x, this);
-                }
-            }
-        }
+//        System.out.println("RENDERING");
+//        Graphics2D g2 = (Graphics2D) g;
+//        while(Game.go==true){
+//            if(Game.key.turn()==true){
+//                for (RogueEntity entitie : curr.getEntities()) {
+//                    g2.drawImage(entitie.sp.getImg(), entitie.x, entitie.x, this);
+//                }
+//            }
+//        }
     }
 }
