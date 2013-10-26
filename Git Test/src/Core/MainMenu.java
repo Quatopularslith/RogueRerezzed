@@ -17,12 +17,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Game extends JFrame implements ActionListener {
+public class MainMenu extends JFrame implements ActionListener {
+    
+    public static Thread render=new Thread("Render");
     
     public static boolean go;
     public static KeyboardInput key;
     public static Level l;
-    JPanel textRender = new Display();
+    JPanel display = new Display();
     
     int[] defkeys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
     int[] keys = new int[6];
@@ -35,7 +37,7 @@ public class Game extends JFrame implements ActionListener {
     OptionMenuPanel optionMenu;
     MainMenuPanel mainMenuPanel;
     
-    public Game(int x, int y){
+    public MainMenu(int x, int y){
         super("Rogue Rerezzed");
         try {
             configFile.createNewFile();
@@ -67,12 +69,12 @@ public class Game extends JFrame implements ActionListener {
         
         key=new KeyboardInput(keys);
         
-        this.add(textRender);
+        this.add(display);
         this.setSize(x,y);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        textRender.setVisible(false);
+        display.setVisible(false);
         
         LoadArt load = new LoadArt();
         ImageIcon icon = load.createImageIcon("RogueLogo.png","LOGO YOLO");
@@ -107,7 +109,7 @@ public class Game extends JFrame implements ActionListener {
             l=new Level(1);
             mainMenuPanel.setVisible(false);
             optionMenu.setVisible(false);
-            textRender.setVisible(true);
+            display.setVisible(true);
             go=true;
         }
         if(command.equalsIgnoreCase("Apply")){

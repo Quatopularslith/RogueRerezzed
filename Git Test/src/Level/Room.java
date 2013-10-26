@@ -20,8 +20,8 @@ public class Room{
             }
         }
         rs = r.nextInt(99);
-        Spawner s = new Spawner(area[rs][0],area[rs][1],r.nextInt(20),minlvl,10,l,r.nextInt(2));
+        Spawner s = new Spawner(area[rs][0],area[rs][1],2,minlvl,10,l,"Snake");
         rs = r.nextInt(99);
-        Spawner s1 = new Spawner(area[rs][0],area[rs][1],r.nextInt(20),minlvl,10,l,r.nextInt(2));
+        Spawner s1 = new Spawner(area[rs][0],area[rs][1],2,minlvl,10,l,"Bandit");
     }
 }

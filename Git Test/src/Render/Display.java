@@ -56,8 +56,8 @@ public class Display extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         map = new javax.swing.JPanel();
         inventory = new javax.swing.JPanel();
-        back = new javax.swing.JButton();
-        options = new javax.swing.JButton();
+        save = new javax.swing.JButton();
+        optionsD = new javax.swing.JButton();
 
         setFont(new java.awt.Font("Hobo Std", 0, 11)); // NOI18N
         setPreferredSize(new java.awt.Dimension(750, 500));
@@ -109,14 +109,14 @@ public class Display extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Inventory", inventory);
 
-        back.setFont(new java.awt.Font("Hobo Std", 0, 12)); // NOI18N
-        back.setText("Save And Quit");
+        save.setFont(new java.awt.Font("Hobo Std", 0, 12)); // NOI18N
+        save.setText("Save And Quit");
 
-        options.setFont(new java.awt.Font("Hobo Std", 0, 12)); // NOI18N
-        options.setText("Options");
-        options.addActionListener(new java.awt.event.ActionListener() {
+        optionsD.setFont(new java.awt.Font("Hobo Std", 0, 12)); // NOI18N
+        optionsD.setText("Options");
+        optionsD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optionsActionPerformed(evt);
+                optionsDActionPerformed(evt);
             }
         });
 
@@ -130,9 +130,9 @@ public class Display extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(back)
+                        .addComponent(save)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(options, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(optionsD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -146,8 +146,8 @@ public class Display extends javax.swing.JPanel {
                         .addComponent(gameplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(options, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(optionsD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(save, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -161,16 +161,16 @@ public class Display extends javax.swing.JPanel {
 
     }//GEN-LAST:event_formKeyReleased
 
-    private void optionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsActionPerformed
+    private void optionsDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_optionsActionPerformed
+    }//GEN-LAST:event_optionsDActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton back;
     private javax.swing.JPanel gameplay;
     private javax.swing.JPanel inventory;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel map;
-    private javax.swing.JButton options;
+    public javax.swing.JButton optionsD;
+    public javax.swing.JButton save;
     // End of variables declaration//GEN-END:variables
 }

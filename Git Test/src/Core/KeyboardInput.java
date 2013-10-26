@@ -13,9 +13,6 @@ public class KeyboardInput implements KeyListener{
     public KeyboardInput(int[] keys){
         keyn=keys;
         System.out.println("Init Complete. Awaiting Orders.");
-        for(int i=0;i<keys.length;i++){
-            System.out.println(keyn[i]+" = "+keys[i]);
-        }
     }
     public void checkSettings(int[] keys){
         keyn=keys;

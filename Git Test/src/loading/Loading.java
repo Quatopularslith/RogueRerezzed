@@ -50,7 +50,7 @@ public class Loading extends JFrame{
             g2.draw(new Ellipse2D.Double(x[(int) currtick], y[(int) currtick], nr, nr));
             currtick = (Game.getTickNum()-starttick);
         }
-        Core.Game gam = new Core.Game(750,500);
+        Core.MainMenu gam = new Core.MainMenu(750,500);
         this.dispose();
         GameLoop.pause();
     }

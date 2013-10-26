@@ -13,24 +13,22 @@ public class Level {
     public final int maxRoom = 10;
     public final int cols = 2;
     private final Random rand;
-    private final int maxEntities=100,maxPlayers=4;
+    private final int maxEntities=104,maxPlayers=4;
     private int currentity = 0;
     private int index;
     private final RogueEntity[] re = new RogueEntity[maxEntities];
     private final Player[] p = new Player[maxPlayers];
     public Room[] r = new Room[numRooms];
-    private Player hp;//hostile player
+    private Player hp = new Player(10,10);//hostile player
     public int[] size = {(numRooms/cols)*maxRoom,cols*maxRoom};
-    private int[] what;
+    private static int[] what;
     public Level(int lvl){
         this.rand = new Random();
         what = new int[2];
         for(int i=0;i<numRooms;i++){
-            what[0] = rand.nextInt(maxRoom)+2;
-            what[1] = rand.nextInt(maxRoom)+2;
-            System.out.println(i+":"+what[0]);
-            System.out.println(i+":"+what[1]);
-//            r[i] = new Room(i,what,rand.nextInt(10), this);
+            what[0] = rand.nextInt(maxRoom-2)+2;
+            what[1] = rand.nextInt(maxRoom-2)+2;
+            r[i] = new Room(i,what,rand.nextInt(10), this);
         }
         System.out.println("Level Generated.");
     }
@@ -41,6 +39,7 @@ public class Level {
         return p;
     }
     public void addEntity(RogueEntity e){
+        System.out.println(currentity);
         re[currentity]=e;
         currentity++;
     }

@@ -25,11 +25,18 @@ public class Spawner{
     public Spawner(int x, int y, int am, int min, int max, Level l, int t){
         if(t==0){
             s="Snake";
+            for(int i=0;i<am;i++){
+                lvl=(int) (min+(r.nextGaussian()*(max-min)));
+                l.addEntity(new Snake(x,y,lvl));
+            }
         }else if(t==1){
             s="Bandit";
+            for(int i=0;i<am;i++){
+                lvl=(int) (min+(r.nextGaussian()*(max-min)));
+                l.addEntity(new Bandit(x,y,lvl));
+            }
         }else{
             System.err.println("WRONG TYPE AKLHNLKFHADKLSHFKLNASDKLFHNSLAKNF");
         }
-        //this(x,y,am,min,max,l,s);
     }
 }

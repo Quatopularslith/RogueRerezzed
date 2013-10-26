@@ -1,6 +1,6 @@
 package Render;
 
-import Core.Game;
+import Core.MainMenu;
 import Entity.RogueEntity;
 import Level.Level;
 import java.awt.Graphics;
@@ -11,21 +11,20 @@ import javax.swing.JPanel;
  * @author 1003749
  */
 public class GamePanel extends JPanel{
-    Level curr;
-    public GamePanel(){
-        curr=Game.l;
-        System.out.println("BEGINNING Render");
+    public void update(){
+        repaint();
     }
     @Override
     public void paint(Graphics g){
-//        System.out.println("RENDERING");
-//        Graphics2D g2 = (Graphics2D) g;
-//        while(Game.go==true){
-//            if(Game.key.turn()==true){
-//                for (RogueEntity entitie : curr.getEntities()) {
-//                    g2.drawImage(entitie.sp.getImg(), entitie.x, entitie.x, this);
-//                }
-//            }
-//        }
+        Level curr=MainMenu.l;
+        System.out.println("RENDERING");
+        Graphics2D g2 = (Graphics2D) g;
+        RogueEntity[] current = curr.getEntities();
+        for (RogueEntity entitie : current) {
+            if(entitie==null){
+                continue;
+            }
+            g2.drawImage(entitie.sp.getImg(), entitie.x, entitie.x, this);
+        }
     }
 }
