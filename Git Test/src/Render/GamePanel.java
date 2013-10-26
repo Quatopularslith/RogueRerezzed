@@ -13,13 +13,19 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel{
     Level curr;
     public GamePanel(){
-        curr=Game.getCurrentLevel();
+        curr=Game.l;
+        System.out.println("BEGINNING Render");
     }
     @Override
     public void paint(Graphics g){
+        System.out.println("RENDERING");
         Graphics2D g2 = (Graphics2D) g;
-        for (RogueEntity ent : curr.getEntities()) {
-            g2.drawImage(ent.sp.getImg(), ent.x, ent.y, null);
+        while(Game.go==true){
+            if(Game.key.turn()==true){
+                for (RogueEntity entitie : curr.getEntities()) {
+                    g2.drawImage(entitie.sp.getImg(), entitie.x, entitie.x, this);
+                }
+            }
         }
     }
 }

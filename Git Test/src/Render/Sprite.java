@@ -11,7 +11,7 @@ public class Sprite {
     ImageIcon ii;
     public Sprite(String imdir){
         LoadArt load = new LoadArt();
-        ii=load.createImageIcon(imdir, "Sprite");
+        ii=load.createImageIcon(imdir, "Sprite of "+this.toString());
     }
     public Image getImg(){
         return ii.getImage();

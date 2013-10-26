@@ -19,8 +19,9 @@ import javax.swing.JPanel;
 
 public class Game extends JFrame implements ActionListener {
     
-    KeyboardInput key;
-    static Level l;
+    public static boolean go;
+    public static KeyboardInput key;
+    public static Level l;
     JPanel textRender = new Display();
     
     int[] defkeys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
@@ -107,6 +108,7 @@ public class Game extends JFrame implements ActionListener {
             mainMenuPanel.setVisible(false);
             optionMenu.setVisible(false);
             textRender.setVisible(true);
+            go=true;
         }
         if(command.equalsIgnoreCase("Apply")){
             config.setProperty("fwdKB", Cast.inttoString((int) optionMenu.fwdKB.getText().toCharArray()[0]));
@@ -143,12 +145,6 @@ public class Game extends JFrame implements ActionListener {
             optionMenu.potionKB.setText("J");
             saveConfig();
         }
-    }
-    public static Level getCurrentLevel(){
-        return l;
-    }
-    public KeyboardInput getKeys(){
-        return key;
     }
     private void saveConfig(){
         try {
