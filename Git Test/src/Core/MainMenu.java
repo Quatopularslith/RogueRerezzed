@@ -15,16 +15,16 @@ import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class MainMenu extends JFrame implements ActionListener {
     
     public static Thread render=new Thread("Render");
+    boolean backtogame = false;
     
     public static boolean go;
     public static KeyboardInput key;
     public static Level l;
-    JPanel display = new Display();
+    Display display = new Display();
     
     int[] defkeys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
     int[] keys = new int[6];
@@ -32,6 +32,8 @@ public class MainMenu extends JFrame implements ActionListener {
     String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
     
     File configFile = new File("RogueConfig.dat");
+    File worldSave;
+    String worlddir;
     Properties config;
     
     OptionMenuPanel optionMenu;
@@ -39,6 +41,7 @@ public class MainMenu extends JFrame implements ActionListener {
     
     public MainMenu(int x, int y){
         super("Rogue Rerezzed");
+        this.setFocusable(true);
         try {
             configFile.createNewFile();
             try (FileInputStream inStream = new FileInputStream(configFile)) {
@@ -67,8 +70,6 @@ public class MainMenu extends JFrame implements ActionListener {
         this.add(optionMenu);
         this.add(mainMenuPanel);
         
-        key=new KeyboardInput(keys);
-        
         this.add(display);
         this.setSize(x,y);
         this.setLocationRelativeTo(null);
@@ -87,7 +88,10 @@ public class MainMenu extends JFrame implements ActionListener {
         optionMenu.setVisible(false);
         optionMenu.setSize(x,y);
         
-        this.addKeyListener(key);
+        key=new KeyboardInput(keys);
+        display.gameplay.addKeyListener(key);
+        display.optionsD.addActionListener(this);
+        display.save.addActionListener(this);
         mainMenuPanel.newGame.addActionListener(this);
         mainMenuPanel.options.addActionListener(this);
         optionMenu.back.addActionListener(this); 
@@ -97,13 +101,23 @@ public class MainMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
+        System.out.println(command);
         if(command.equalsIgnoreCase("Options")){
             mainMenuPanel.setVisible(false);
             optionMenu.setVisible(true);
+            display.setVisible(false);
+            backtogame=false;
         }
         if(command.equalsIgnoreCase("Back")){
-            mainMenuPanel.setVisible(true);
-            optionMenu.setVisible(false);
+            if(backtogame==false){
+                mainMenuPanel.setVisible(true);
+                optionMenu.setVisible(false);
+                display.setVisible(false);
+            }else{
+                mainMenuPanel.setVisible(false);
+                optionMenu.setVisible(false);
+                display.setVisible(true);
+            }
         }
         if(command.equalsIgnoreCase("New Game")){
             l=new Level(1);
@@ -120,6 +134,13 @@ public class MainMenu extends JFrame implements ActionListener {
             config.setProperty("spellKB", Cast.inttoString((int) optionMenu.spellKB.getText().toCharArray()[0]));
             config.setProperty("eatKB", Cast.inttoString((int) optionMenu.eatKB.getText().toCharArray()[0]));
             config.setProperty("invKB", Cast.inttoString((int) optionMenu.invKB.getText().toCharArray()[0]));
+            for(int i=0;i<keyprop.length;i++){
+                keyprop[i]=config.getProperty(props[i]);
+                if(keyprop[i]!=null){
+                    keys[i]=Cast.stringtoInt(keyprop[i]);
+                }
+            }
+            key.checkSettings(keys);
             saveConfig();
         }
         if(command.equalsIgnoreCase("Default Keybinds")){
@@ -146,6 +167,20 @@ public class MainMenu extends JFrame implements ActionListener {
             optionMenu.invKB.setText("I");
             optionMenu.potionKB.setText("J");
             saveConfig();
+        }
+        if(command.equalsIgnoreCase("save and quit")){
+            worlddir = "world.world";
+            worldSave = new File(worlddir);
+            //TODO some save code
+            mainMenuPanel.setVisible(true);
+            optionMenu.setVisible(false);
+            display.setVisible(false);
+        }
+        if(command.equalsIgnoreCase("settings")){
+            backtogame=true;
+            mainMenuPanel.setVisible(false);
+            optionMenu.setVisible(true);
+            display.setVisible(false);
         }
     }
     private void saveConfig(){

@@ -23,25 +23,6 @@ public class Display extends javax.swing.JPanel {
     public Display() {
         initComponents();
     }
-    public void turn(){
-        //l=Main.getGame().getCurrentLevel();
-        pos = new int[l.getEntities().length][2];
-        for(int i=0;i<l.getEntities().length;i++){
-            pos[i][0] = l.getEntities()[i].x;
-            pos[i][1] = l.getEntities()[i].y;
-            if(l.getEntities()[i] instanceof Snake){
-                type[i] = 'S';
-            }else if(l.getEntities()[i] instanceof Bandit){
-                type[i] = 'B';
-            }else{
-                type[i] = '.';
-            }
-        }
-        for(int i=0;i<l.size.length;i++){
-            for(int j=0;j<pos.length;j++){
-            }
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,7 +94,7 @@ public class Display extends javax.swing.JPanel {
         save.setText("Save And Quit");
 
         optionsD.setFont(new java.awt.Font("Hobo Std", 0, 12)); // NOI18N
-        optionsD.setText("Options");
+        optionsD.setText("Settings");
         optionsD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optionsDActionPerformed(evt);
@@ -166,7 +147,7 @@ public class Display extends javax.swing.JPanel {
     }//GEN-LAST:event_optionsDActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel gameplay;
+    public javax.swing.JPanel gameplay;
     private javax.swing.JPanel inventory;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel map;

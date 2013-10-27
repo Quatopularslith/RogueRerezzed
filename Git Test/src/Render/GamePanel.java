@@ -5,6 +5,7 @@ import Entity.RogueEntity;
 import Level.Level;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.List;
 import javax.swing.JPanel;
 
 /**
@@ -19,7 +20,7 @@ public class GamePanel extends JPanel{
         Level curr=MainMenu.l;
         System.out.println("RENDERING");
         Graphics2D g2 = (Graphics2D) g;
-        RogueEntity[] current = curr.getEntities();
+        List<RogueEntity> current = curr.getEntities();
         for (RogueEntity entitie : current) {
             if(entitie==null){
                 continue;

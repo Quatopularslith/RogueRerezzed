@@ -12,7 +12,6 @@ public class KeyboardInput implements KeyListener{
     public boolean up=false,down=false,left=false,right=false,spell=false,eat=false,go=false;
     public KeyboardInput(int[] keys){
         keyn=keys;
-        System.out.println("Init Complete. Awaiting Orders.");
     }
     public void checkSettings(int[] keys){
         keyn=keys;
@@ -22,7 +21,7 @@ public class KeyboardInput implements KeyListener{
         for(int i=0;i<keyn.length;i++){
             if(keys[keyn[i]]==true){
                 out=true;
-                System.out.println("Uhhhhhhh");
+                System.out.println("ITS WORKING");
                 break;
             }else{
                 out=false;
@@ -43,7 +42,7 @@ public class KeyboardInput implements KeyListener{
         right=keys[keyn[3]];
         spell=keys[keyn[4]];
         eat=keys[keyn[5]];
-        turn();
+        System.out.println(turn());
         System.out.println("key pressed "+e.getKeyChar());
         go=true;
     }
