@@ -3,7 +3,6 @@ package Entity.Mob;
 import AI.AI;
 import Core.MainMenu;
 import Level.Level;
-import Entity.Player;
 import Entity.RogueEntity;
 import java.util.Random;
 
@@ -18,8 +17,8 @@ public abstract class RogueHostileMob extends RogueEntity{
     public int attack(){
         return r.nextInt(maxAtt);
     }
+    @Override
     public void turn(){
-        Player p = l.getHostilePlayer();
-        this.move(a.pointTowards(p));
+        this.move(a.pointTowards(l.getHostilePlayer()));
     }
 }

@@ -40,4 +40,7 @@ public abstract class RogueEntity{
             x+=1;
         }
     }
+    public void turn(){
+        System.out.println("Turning around");
+    }
 }

@@ -21,7 +21,7 @@ public class Level {
     private final List<RogueEntity> re = new ArrayList<>();
     private final Player[] p = new Player[maxPlayers];
     public Room[] r = new Room[numRooms];
-    private Player hp = new Player(10,10);//hostile player
+    private Player hp;//hostile player
     public int[] size = {(numRooms/cols)*maxRoom,cols*maxRoom};
     private static int[] what;
     public Level(int lvl){
