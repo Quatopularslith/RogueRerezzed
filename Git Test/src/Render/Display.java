@@ -15,6 +15,7 @@ public class Display extends javax.swing.JPanel {
     int[][] pos;
     char[] type;
     int in;
+    public GamePanel gp = new GamePanel();
     /**
      * Creates new form TextRender
      */
@@ -31,7 +32,7 @@ public class Display extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gameplay = new GamePanel();
+        gameplay = gp;
         jTabbedPane1 = new javax.swing.JTabbedPane();
         map = new javax.swing.JPanel();
         inventory = new javax.swing.JPanel();
@@ -156,7 +157,7 @@ public class Display extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel gameplay;
     private javax.swing.JPanel inventory;
-    private javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel map;
     public javax.swing.JButton optionsD;

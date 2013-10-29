@@ -3,7 +3,7 @@ package Entity;
  * @author Torri
  */
 public class Player extends RogueEntity{
-    public int taunt;
+    public int taunt=1;
     public Player(int spawnX, int spawnY){
         health = 100;
         taunt = 3;
@@ -12,8 +12,5 @@ public class Player extends RogueEntity{
         inv = new int[10];
         x=spawnX;
         y=spawnY;
-    }
-    public void turn(){
-        
     }
 }

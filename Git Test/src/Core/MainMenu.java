@@ -3,6 +3,7 @@ package Core;
 import Assets.LoadArt;
 import Level.Level;
 import Render.Display;
+import Render.GamePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -23,7 +24,7 @@ public class MainMenu extends JFrame implements ActionListener {
     
     public static boolean go;
     public static KeyboardInput key;
-    public static Level l;
+    public static Level l = new Level(0);
     Display display = new Display();
     
     int[] defkeys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
@@ -90,6 +91,7 @@ public class MainMenu extends JFrame implements ActionListener {
         
         key=new KeyboardInput(keys);
         display.gameplay.addKeyListener(key);
+        display.jButton1.addActionListener(this);
         display.optionsD.addActionListener(this);
         display.save.addActionListener(this);
         mainMenuPanel.newGame.addActionListener(this);
@@ -181,6 +183,9 @@ public class MainMenu extends JFrame implements ActionListener {
             mainMenuPanel.setVisible(false);
             optionMenu.setVisible(true);
             display.setVisible(false);
+        }
+        if(command.equalsIgnoreCase("jbutton1")){
+            display.gp.update();
         }
     }
     private void saveConfig(){

@@ -12,15 +12,19 @@ import javax.swing.JPanel;
  * @author 1003749
  */
 public class GamePanel extends JPanel{
+    List<RogueEntity> current;
     public void update(){
         repaint();
+        for(int i=0;i<current.size();i++){
+            current.get(i).turn();
+        }
     }
     @Override
     public void paint(Graphics g){
         Level curr=MainMenu.l;
         System.out.println("RENDERING");
         Graphics2D g2 = (Graphics2D) g;
-        List<RogueEntity> current = curr.getEntities();
+        current = curr.getEntities();
         for (RogueEntity entitie : current) {
             if(entitie==null){
                 continue;

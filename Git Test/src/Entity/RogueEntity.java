@@ -6,7 +6,7 @@ import Render.Sprite;
  * @author Torri
  */
 public abstract class RogueEntity{
-    public int x,y,health,dir,armour,potion;
+    public int x=0,y=0,health,dir,armour,potion;
     public int[] inv;
     public Sprite sp;
     public int getX(){

@@ -17,9 +17,9 @@ public class Level {
     private final Random rand;
     private final int maxEntities=104,maxPlayers=4;
     private int currentity = 0;
-    private int index;
+    private int index=0;
     private final List<RogueEntity> re = new ArrayList<>();
-    private final Player[] p = new Player[maxPlayers];
+    private Player[] p = new Player[maxPlayers];
     public Room[] r = new Room[numRooms];
     private Player hp;//hostile player
     public int[] size = {(numRooms/cols)*maxRoom,cols*maxRoom};
@@ -50,15 +50,16 @@ public class Level {
         }
     }
     public Player getHostilePlayer(){
-        for (Player p1 : p) {
+        for(int i=0;i<p.length;i++){
+//        for (Player p1 : p) {
+            Player p1 = p[i];
             for (index=0; index<p.length; index++) {
-                if (p1.taunt < p[index].taunt) {
+                if (p1.taunt > p[index].taunt) {
                     break;
                 }
             }
             if (index==p.length-1) {
                 hp = p1;
-                break;
             }
         }
         return hp;
