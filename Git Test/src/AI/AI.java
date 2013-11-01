@@ -36,11 +36,7 @@ public class AI {
         return (int) pdir;
     }
     public boolean doAttack(boolean ranged, RogueEntity e){
-        if(ranged==false && here.distTo(e)<2){
-            doatt=true;
-        }else{
-            doatt=false;
-        }
+        doatt = ranged==false && here.distTo(e)<2;
         return doatt;
     }
 }

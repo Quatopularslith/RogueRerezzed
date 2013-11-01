@@ -36,6 +36,7 @@ public class Display extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         map = new javax.swing.JPanel();
         inventory = new javax.swing.JPanel();
+        inventory = new Inventory();
         save = new javax.swing.JButton();
         optionsD = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -134,10 +135,11 @@ public class Display extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(gameplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(save)
-                    .addComponent(jButton1)
-                    .addComponent(optionsD))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(optionsD)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(save)
+                        .addComponent(jButton1)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents

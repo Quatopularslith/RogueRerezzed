@@ -22,7 +22,7 @@ public class Level {
     private final List<RogueEntity> re = new ArrayList<>();
     private Player[] p = new Player[maxPlayers];
     public Room[] r = new Room[numRooms];
-//    private Player hp = new Player(10,10);//hostile player
+    private Player hp = new Player(10,10);//hostile player
     public int[] size = {(numRooms/cols)*maxRoom,cols*maxRoom};
     private static int[] what;
     public Level(int lvl){
@@ -57,27 +57,21 @@ public class Level {
         }
     }
     public Player getHostilePlayer(){
-        Player p1 = new Player(20,20);
-//        for(int i=0;i<p.length;i++){
-//            if(p[i]!=null){
-//                p1 = p[i];
-//            }else{
-//                continue;
-//            }
-//            for (index=0; index<p.length; index++) {
-//                if (p1.taunt > p[index].taunt) {
-//                    break;
-//                }
-//            }
-//            if (index==p.length-1) {
-//                hp.taunt = p1.taunt;
-//            }
-//        }
-//        if(hp==null){
-//            hp= new Player(50,50);
-//            System.err.println("nullnull nullnull");
-//            hp= new Player(50,50);
-//        }
-        return p[0];
+        Player p1;
+        List<Player> p2 = new ArrayList<>();
+        for (Player p3 : p) {
+            if (p3 != null) {
+                p2.add(p3);
+            }
+        }
+        for (int i=0;i<p2.size();i++){
+            p1=p2.get(i);
+            for(int j=0;j<p2.size();i++){
+                if(p1.taunt > p2.get(j).taunt){
+                    hp=p1;
+                }
+            }
+        }
+        return hp;
     }
 }
