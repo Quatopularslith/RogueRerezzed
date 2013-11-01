@@ -27,7 +27,7 @@ public class MainMenu extends JFrame implements ActionListener {
     public static Level l = new Level(0);
     Display display = new Display();
     
-    int[] defkeys = {KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
+    int[] defkeys = {KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_A,KeyEvent.VK_D,KeyEvent.VK_S,KeyEvent.VK_A};
     int[] keys = new int[6];
     String[] keyprop = new String[6];
     String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
