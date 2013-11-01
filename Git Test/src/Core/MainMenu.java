@@ -1,9 +1,9 @@
 package Core;
 
 import Assets.LoadArt;
+import Entity.Player;
 import Level.Level;
 import Render.Display;
-import Render.GamePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -123,6 +123,7 @@ public class MainMenu extends JFrame implements ActionListener {
         }
         if(command.equalsIgnoreCase("New Game")){
             l=new Level(1);
+            l.addPlayer(new Player(5,8));
             mainMenuPanel.setVisible(false);
             optionMenu.setVisible(false);
             display.setVisible(true);

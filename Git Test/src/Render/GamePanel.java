@@ -29,7 +29,7 @@ public class GamePanel extends JPanel{
             if(entitie==null){
                 continue;
             }
-            g2.drawImage(entitie.sp.getImg(), entitie.x, entitie.x, this);
+            g2.drawImage(entitie.sp.getImg(), entitie.tx, entitie.ty, this);
         }
     }
 }

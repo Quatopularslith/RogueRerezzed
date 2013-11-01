@@ -10,8 +10,8 @@ public class Bandit extends RogueHostileMob{
         health=40*(lvl/4);
         maxAtt=5*(lvl/2);
         armour=2*(lvl);
-        x = spawnX;
-        y = spawnY;
+        tx = spawnX;
+        ty = spawnY;
         dir = 0;
         sp = new Sprite("Bandit.png");
     }

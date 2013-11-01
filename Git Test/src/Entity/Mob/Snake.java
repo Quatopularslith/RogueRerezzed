@@ -10,8 +10,8 @@ public class Snake extends RogueHostileMob{
         health=10*(lvl/4);
         maxAtt=2*(lvl/2);
         armour=0;
-        x = spawnX;
-        y = spawnY;
+        tx = spawnX;
+        ty = spawnY;
         dir = 0;
         sp = new Sprite("Snake.png");
     }

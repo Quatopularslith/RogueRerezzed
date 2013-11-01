@@ -5,8 +5,8 @@ public class MortuusTrabajos extends RogueHostileMob{
         health=1;
         maxAtt=1;
         armour=0;
-        x = spawnX;
-        y = spawnY;
+        tx = spawnX;
+        ty = spawnY;
         dir = 0;
     }
 }

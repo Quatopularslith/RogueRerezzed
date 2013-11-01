@@ -7,8 +7,8 @@ public class Quotopulularslith extends RogueHostileMob{
         health=20+(lvl);
         maxAtt=(lvl+10);
         armour=10+lvl;
-        x = spawnX;
-        y = spawnY;
+        tx = spawnX;
+        ty = spawnY;
         dir = 0;
         sp = new Sprite("Quotopularslith.png");
     }

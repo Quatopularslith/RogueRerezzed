@@ -15,9 +15,10 @@ public class Level {
     public final int maxRoom = 10;
     public final int cols = 2;
     private final Random rand;
-    private final int maxEntities=104,maxPlayers=4;
+    private final int maxPlayers=4;
     private int currentity = 0;
     private int index=0;
+    private int currplayer = 0;
     private final List<RogueEntity> re = new ArrayList<>();
     private Player[] p = new Player[maxPlayers];
     public Room[] r = new Room[numRooms];
@@ -40,6 +41,10 @@ public class Level {
     public Player[] getPlayers(){
         return p;
     }
+    public void addPlayer(Player p1){
+        p[currplayer]=p1;
+        currplayer++;
+    }
     public void addEntity(RogueEntity e){
         re.add(currentity, e);
         currentity++;
@@ -50,17 +55,29 @@ public class Level {
         }
     }
     public Player getHostilePlayer(){
+        Player p1 = new Player(1,1);
         for(int i=0;i<p.length;i++){
-//        for (Player p1 : p) {
-            Player p1 = p[i];
+            if(p[i]!=null){
+                p1 = p[i];
+            }else{
+                continue;
+            }
             for (index=0; index<p.length; index++) {
+                System.out.println(p1.taunt);
+                System.out.println(p[index].taunt);
                 if (p1.taunt > p[index].taunt) {
                     break;
                 }
             }
             if (index==p.length-1) {
-                hp = p1;
+                System.out.println(p1.taunt);
+                hp.taunt = p1.taunt;
             }
+        }
+        if(hp==null){
+            System.out.println(hp.taunt);
+            System.err.println("nullnull nullnull");
+            hp= new Player(50,50);
         }
         return hp;
     }

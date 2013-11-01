@@ -5,8 +5,8 @@ public class Slug extends RogueHostileMob{
         health=5*(lvl/4);
         maxAtt=(lvl/2);
         armour=0;
-        x = spawnX;
-        y = spawnY;
+        tx = spawnX;
+        ty = spawnY;
         dir = 0;
     }
 }

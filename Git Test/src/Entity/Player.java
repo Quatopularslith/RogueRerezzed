@@ -10,7 +10,7 @@ public class Player extends RogueEntity{
         armour = 0;
         dir = 0;
         inv = new int[10];
-        x=spawnX;
-        y=spawnY;
+        tx=spawnX;
+        ty=spawnY;
     }
 }
