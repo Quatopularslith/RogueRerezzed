@@ -3,6 +3,7 @@ package Render;
 import Core.MainMenu;
 import Entity.RogueEntity;
 import Level.Level;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.List;
@@ -25,6 +26,7 @@ public class GamePanel extends JPanel{
         System.out.println("RENDERING");
         Graphics2D g2 = (Graphics2D) g;
         current = curr.getEntities();
+        System.out.println(current.size());
         for (RogueEntity entitie : current) {
             if(entitie==null){
                 continue;
