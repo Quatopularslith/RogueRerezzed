@@ -27,7 +27,7 @@ public class MainMenu extends JFrame implements ActionListener {
     public static Level l = new Level(0);
     Display display = new Display();
     
-    int[] defkeys = {KeyEvent.VK_UP,KeyEvent.VK_DOWN,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
+    int[] defkeys = {KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_RIGHT,KeyEvent.VK_LEFT,KeyEvent.VK_S,KeyEvent.VK_A};
     int[] keys = new int[6];
     String[] keyprop = new String[6];
     String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
@@ -103,7 +103,6 @@ public class MainMenu extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
-        System.out.println(command);
         if(command.equalsIgnoreCase("Options")){
             mainMenuPanel.setVisible(false);
             optionMenu.setVisible(true);
@@ -169,6 +168,7 @@ public class MainMenu extends JFrame implements ActionListener {
             optionMenu.eatKB.setText("L");
             optionMenu.invKB.setText("I");
             optionMenu.potionKB.setText("J");
+            key.checkSettings(defkeys);
             saveConfig();
         }
         if(command.equalsIgnoreCase("save and quit")){
@@ -194,7 +194,6 @@ public class MainMenu extends JFrame implements ActionListener {
             try (FileOutputStream out = new FileOutputStream(configFile)) {
                 config.store(out,"Properties settings");
             }
-            config.list(System.out);
         } catch (IOException ex) {
             System.err.println(ex.toString());
         }

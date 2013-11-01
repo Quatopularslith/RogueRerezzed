@@ -22,7 +22,7 @@ public class Level {
     private final List<RogueEntity> re = new ArrayList<>();
     private Player[] p = new Player[maxPlayers];
     public Room[] r = new Room[numRooms];
-    private Player hp;//hostile player
+    private Player hp = new Player(10,10);//hostile player
     public int[] size = {(numRooms/cols)*maxRoom,cols*maxRoom};
     private static int[] what;
     public Level(int lvl){
@@ -44,6 +44,8 @@ public class Level {
     public void addPlayer(Player p1){
         p[currplayer]=p1;
         currplayer++;
+        re.add(currentity, p1);
+        currentity++;
     }
     public void addEntity(RogueEntity e){
         re.add(currentity, e);
@@ -55,30 +57,27 @@ public class Level {
         }
     }
     public Player getHostilePlayer(){
-        Player p1 = new Player(1,1);
-        for(int i=0;i<p.length;i++){
-            if(p[i]!=null){
-                p1 = p[i];
-            }else{
-                continue;
-            }
-            for (index=0; index<p.length; index++) {
-                System.out.println(p1.taunt);
-                System.out.println(p[index].taunt);
-                if (p1.taunt > p[index].taunt) {
-                    break;
-                }
-            }
-            if (index==p.length-1) {
-                System.out.println(p1.taunt);
-                hp.taunt = p1.taunt;
-            }
-        }
-        if(hp==null){
-            System.out.println(hp.taunt);
-            System.err.println("nullnull nullnull");
-            hp= new Player(50,50);
-        }
-        return hp;
+        Player p1 = new Player(20,20);
+//        for(int i=0;i<p.length;i++){
+//            if(p[i]!=null){
+//                p1 = p[i];
+//            }else{
+//                continue;
+//            }
+//            for (index=0; index<p.length; index++) {
+//                if (p1.taunt > p[index].taunt) {
+//                    break;
+//                }
+//            }
+//            if (index==p.length-1) {
+//                hp.taunt = p1.taunt;
+//            }
+//        }
+//        if(hp==null){
+//            hp= new Player(50,50);
+//            System.err.println("nullnull nullnull");
+//            hp= new Player(50,50);
+//        }
+        return p[0];
     }
 }

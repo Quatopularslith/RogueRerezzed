@@ -11,8 +11,6 @@ public class AI {
         here=e;
     }
     public int pointTowards(RogueEntity e){
-        System.out.println(e.tx);
-        System.out.println(e.ty);
         ux=here.tx;
         uy=here.ty;
         ex = e.tx;
