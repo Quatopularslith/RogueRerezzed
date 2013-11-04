@@ -6,9 +6,9 @@ import java.util.Random;
  * @author Torri
  */
 public class Room{
-    private Random r = new Random();
-    private int[][] walls = new int[40][2];
-    private int[][] area = new int[100][2];
+    private final Random r = new Random();
+    private final int[][] walls = new int[40][2];
+    public final int[][] area = new int[100][2];
     private int rs;
     public Room(int num,int[] size, int minlvl, Level l){
         if(num==0){

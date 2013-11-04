@@ -17,10 +17,10 @@ public class Level {
     private final Random rand;
     private final int maxPlayers=4;
     private int currentity = 0;
-    private int index=0;
+    private final int index=0;
     private int currplayer = 0;
     private final List<RogueEntity> re = new ArrayList<>();
-    private Player[] p = new Player[maxPlayers];
+    private final Player[] p = new Player[maxPlayers];
     public Room[] r = new Room[numRooms];
     private Player hp = new Player(10,10);//hostile player
     public int[] size = {(numRooms/cols)*maxRoom,cols*maxRoom};
@@ -73,5 +73,8 @@ public class Level {
             }
         }
         return hp;
+    }
+    public Room[] getRooms(){
+        return r;
     }
 }
