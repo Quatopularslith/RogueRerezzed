@@ -11,27 +11,26 @@ import java.util.Random;
  */
 public class Level {
     // Level size is 500 by 500
-    public final int numRooms = 8;
-    public final int maxRoomS = 10;
-    public final int cols = 2;
+    public final int sizex=50,sizey=50;
+    public final int numRooms = 25,maxRoomS = 10,cols = 2;
     private final Random rand;
     private final int maxPlayers=4;
     private int currentity = 0;
-    private final int index=0;
     private int currplayer = 0;
     private final List<RogueEntity> re = new ArrayList<>();
     private final Player[] p = new Player[maxPlayers];
     public Room[] r = new Room[numRooms];
     private Player hp = new Player(10,10);//hostile player
     public int[] size = {(numRooms/cols)*maxRoomS,cols*maxRoomS};
-    private static int[] what;
+    private static int[] roomSize,roomPos;
     public Level(int lvl){
         this.rand = new Random();
-        what = new int[2];
+        roomSize = new int[2];
+        roomPos = new int[2];
         for(int i=0;i<numRooms;i++){
-            what[0] = rand.nextInt(maxRoomS-2)+2;
-            what[1] = rand.nextInt(maxRoomS-2)+2;
-            r[i] = new Room(i,what,rand.nextInt(10), this);
+            roomSize[0] = rand.nextInt(maxRoomS-2)+2;
+            roomSize[1] = rand.nextInt(maxRoomS-2)+2;
+            r[i] = new Room(roomPos,roomSize,rand.nextInt(10), this);
         }
         System.out.println("Level Generated.");
     }
