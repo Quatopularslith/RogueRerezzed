@@ -29,13 +29,11 @@ public class GamePanel extends JPanel{
         Graphics2D g2 = (Graphics2D) g;
         current = curr.getEntities();
         System.out.println(current.size());
-        Room[] r = curr.getRooms();
-        for (Room r1 : r) {
-            if (r1 == null) {
-                continue;
-            }
-            for (int[] area : r1.area) {
-                g2.drawImage(la.createImageIcon("DungeonFloor1.png", "floor").getImage(),area[0],area[1], this);
+        Room[] room = curr.getRooms();
+        for (Room r1 : room) {
+            for(int i=0;i<r1.rl;i++){
+                System.out.println(r1.render[i][i][0]);
+                g2.drawImage(la.createImageIcon("DungeonFloor1", "What is this?").getImage(), r1.render[i][i][0],r1.render[i][i][1], this);
             }
         }
         for (RogueEntity entitie : current) {

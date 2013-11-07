@@ -7,21 +7,27 @@ import java.util.Random;
  */
 public class Room{
     private final Random r = new Random();
-    private final int[][] walls = new int[40][2];
-    public final int[][] area = new int[100][2];
-    private int rs;
-    public Room(int num,int[] size, int minlvl, Level l){
-        if(num==0){
-            area[0][0] = r.nextInt(l.maxRoomS-size[0]);
-            area[0][1] = r.nextInt(l.maxRoomS-size[1]);
-            for(int i=0;i<size[0];i++){
-                for(int j=0;j<size[1];j++){
+    public final int[][][] render = new int[Level.maxRoomS][Level.maxRoomS][2];
+    public int rl=0;
+    private final int[][][] area = new int[Level.maxRoomS][Level.maxRoomS][2];
+    private int rs,ra;
+    public Room(int[] pos,int[] size, int minlvl, Level l){
+        for(int x=pos[0];x<size[0];x++){
+            for(int y=pos[1];y<size[1];y++){
+                area[x][y][0]=x+pos[0];
+                area[x][y][1]=x+pos[1];
+                if(x%16==0 && y%16==0){
+                    render[x][y][0]=x+pos[0];
+                    render[x][y][1]=x+pos[1];
+                    rl++;
                 }
             }
         }
-        rs = r.nextInt(99);
-        Spawner s = new Spawner(area[rs][0],area[rs][1],2,minlvl,10,l,"Snake");
-        rs = r.nextInt(99);
-        Spawner s1 = new Spawner(area[rs][0],area[rs][1],2,minlvl,10,l,"Bandit");
+        rs = r.nextInt(Level.maxRoomS);
+        ra = r.nextInt(Level.maxRoomS);
+        Spawner s = new Spawner(area[rs][ra][0],area[rs][ra][1],2,minlvl,10,l,"Snake");
+        rs = r.nextInt(Level.maxRoomS);
+        ra = r.nextInt(Level.maxRoomS);
+        Spawner s1 = new Spawner(area[rs][ra][0],area[rs][ra][1],2,minlvl,10,l,"Bandit");
     }
 }

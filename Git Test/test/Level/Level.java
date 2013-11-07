@@ -11,8 +11,8 @@ import java.util.Random;
  */
 public class Level {
     // Level size is 500 by 500
-    public final int sizex=50,sizey=50;
-    public final int numRooms = 25,maxRoomS = 10,cols = 2;
+    public final int sizex=100,sizey=100;
+    public final int numRooms = 25,maxRoomS = 10,cols = 2,kx=(int) (sizex/Math.sqrt(numRooms)),ky=(int) (sizey/Math.sqrt(numRooms));
     private final Random rand;
     private final int maxPlayers=4;
     private int currentity = 0;
@@ -30,6 +30,8 @@ public class Level {
         for(int i=0;i<numRooms;i++){
             roomSize[0] = rand.nextInt(maxRoomS-2)+2;
             roomSize[1] = rand.nextInt(maxRoomS-2)+2;
+            roomPos[0] = rand.nextInt(kx-maxRoomS)+kx*i;
+            roomPos[1] = rand.nextInt(ky-maxRoomS)+ky*i;
             r[i] = new Room(roomPos,roomSize,rand.nextInt(10), this);
         }
         System.out.println("Level Generated.");
