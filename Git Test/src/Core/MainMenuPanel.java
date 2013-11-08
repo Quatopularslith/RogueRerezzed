@@ -6,10 +6,6 @@
 
 package Core;
 
-import Assets.LoadArt;
-import java.awt.Graphics;
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author 1003749
@@ -36,6 +32,7 @@ public class MainMenuPanel extends javax.swing.JPanel {
         newGame = new javax.swing.JButton();
         loadGame = new javax.swing.JButton();
         options = new javax.swing.JButton();
+        quit = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(750, 500));
 
@@ -51,22 +48,28 @@ public class MainMenuPanel extends javax.swing.JPanel {
         options.setFont(new java.awt.Font("Hobo Std", 0, 36)); // NOI18N
         options.setText("Options");
 
+        quit.setFont(new java.awt.Font("Hobo Std", 0, 36)); // NOI18N
+        quit.setText("Quit");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(218, 218, 218)
-                .addComponent(title))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(275, 275, 275)
-                .addComponent(newGame))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(275, 275, 275)
-                .addComponent(loadGame))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(275, 275, 275)
-                .addComponent(options, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(title))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addComponent(newGame))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(options, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loadGame)
+                            .addComponent(quit, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,10 +78,13 @@ public class MainMenuPanel extends javax.swing.JPanel {
                 .addComponent(title)
                 .addGap(75, 75, 75)
                 .addComponent(newGame)
-                .addGap(77, 77, 77)
+                .addGap(39, 39, 39)
                 .addComponent(loadGame)
-                .addGap(68, 68, 68)
-                .addComponent(options))
+                .addGap(42, 42, 42)
+                .addComponent(options)
+                .addGap(44, 44, 44)
+                .addComponent(quit)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -87,6 +93,7 @@ public class MainMenuPanel extends javax.swing.JPanel {
     public javax.swing.JButton loadGame;
     public javax.swing.JButton newGame;
     public javax.swing.JButton options;
+    public javax.swing.JButton quit;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

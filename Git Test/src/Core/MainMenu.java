@@ -99,6 +99,7 @@ public class MainMenu extends JFrame implements ActionListener {
         optionMenu.back.addActionListener(this); 
         optionMenu.apply.addActionListener(this);
         optionMenu.defaultKB.addActionListener(this);
+        mainMenuPanel.quit.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -178,6 +179,7 @@ public class MainMenu extends JFrame implements ActionListener {
             mainMenuPanel.setVisible(true);
             optionMenu.setVisible(false);
             display.setVisible(false);
+            this.dispose();
         }
         if(command.equalsIgnoreCase("settings")){
             backtogame=true;
@@ -187,6 +189,9 @@ public class MainMenu extends JFrame implements ActionListener {
         }
         if(command.equalsIgnoreCase("jbutton1")){
             display.gp.update();
+        }
+        if(command.equalsIgnoreCase("quit")){
+            this.dispose();
         }
     }
     private void saveConfig(){
