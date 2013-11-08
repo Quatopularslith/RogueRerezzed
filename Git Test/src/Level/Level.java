@@ -10,8 +10,7 @@ import java.util.Random;
  * @author Torri
  */
 public class Level {
-    // Level size is 500 by 500
-    public static final int sizex=100,sizey=100, numRooms = 25,maxRoomS = 10,cols = 2,kx=(int) (sizex/Math.sqrt(numRooms)),ky=(int) (sizey/Math.sqrt(numRooms));
+    public static final int sizex=100,sizey=100, numRooms = 25,maxRoomS = 16,cols = 2,kx=(int) (sizex/Math.sqrt(numRooms)),ky=(int) (sizey/Math.sqrt(numRooms));
     private final Random rand;
     private final int maxPlayers=4;
     private int currentity = 0;
