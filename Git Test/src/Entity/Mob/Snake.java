@@ -1,5 +1,6 @@
 package Entity.Mob;
 
+import AI.AI;
 import Render.Sprite;
 
 /**
@@ -14,5 +15,12 @@ public class Snake extends RogueHostileMob{
         ty = spawnY;
         dir = 0;
         sp = new Sprite("Snake.png");
+    }
+    @Override
+    public void turn(){
+        p = l.getHostilePlayer();
+        a = new AI(this);
+        int d = a.pointTowards(p);
+        this.move(d);
     }
 }

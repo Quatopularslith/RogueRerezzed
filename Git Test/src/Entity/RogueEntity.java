@@ -31,14 +31,15 @@ public abstract class RogueEntity{
     }
     public void move(int d){
         if(d==90){//up
-            ty+=1;
+            ty=ty+1;
         }else if(d==180){//left
-            tx-=1;
+            tx=tx-1;
         }else if(d==270){//down
-            ty-=1;
+            ty=ty-1;
         }else if(d==0){//right
-            tx+=1;
+            tx=tx+1;
         }
+        System.out.println(d+" : "+tx+" : "+ty);
     }
     public void turn(){
         System.out.println("Turning around");
