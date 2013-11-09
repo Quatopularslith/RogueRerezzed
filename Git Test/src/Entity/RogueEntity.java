@@ -1,5 +1,6 @@
 package Entity;
 
+import Item.Item;
 import Render.Sprite;
 
 /**
@@ -7,7 +8,7 @@ import Render.Sprite;
  */
 public abstract class RogueEntity{
     public int tx=10,ty=10,health,dir,armour,potion;
-    public int[] inv;
+    public Item[] inv;
     public Sprite sp;
     public int getTx(){
         return tx;
@@ -43,5 +44,8 @@ public abstract class RogueEntity{
     }
     public void turn(){
         System.out.println("Turning around");
+    }
+    public void dropItem(Item i){
+        
     }
 }

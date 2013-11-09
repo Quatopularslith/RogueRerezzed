@@ -27,7 +27,7 @@ public class MainMenu extends JFrame implements ActionListener {
     public static Level l = new Level(0);
     public static Display display = new Display();
     
-    int[] defkeys = {KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_A,KeyEvent.VK_D,KeyEvent.VK_I,KeyEvent.VK_J};
+    int[] defkeys = {KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_A,KeyEvent.VK_D,KeyEvent.VK_Q,KeyEvent.VK_E};
     int[] keys = new int[6];
     String[] keyprop = new String[6];
     String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
@@ -90,7 +90,7 @@ public class MainMenu extends JFrame implements ActionListener {
         optionMenu.setSize(x,y);
         
         key=new KeyboardInput(keys);
-        display.gameplay.addKeyListener(key);
+        addKeyListener(key);
         display.jButton1.addActionListener(this);
         display.optionsD.addActionListener(this);
         display.save.addActionListener(this);

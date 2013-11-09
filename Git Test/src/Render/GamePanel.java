@@ -20,6 +20,7 @@ public class GamePanel extends JPanel{
         for(int i=0;i<current.size();i++){
             current.get(i).turn();
         }
+        System.out.println("GO");
         repaint();
     }
     @Override

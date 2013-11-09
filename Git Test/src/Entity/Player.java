@@ -1,6 +1,7 @@
 package Entity;
 
 import Core.MainMenu;
+import Item.Item;
 import Render.Sprite;
 
 /**
@@ -14,7 +15,7 @@ public class Player extends RogueEntity{
         taunt = 3;
         armour = 0;
         dir = 0;
-        inv = new int[10];
+        inv = new Item[10];
         tx=spawnX;
         ty=spawnY;
     }

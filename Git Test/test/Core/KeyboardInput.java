@@ -1,5 +1,6 @@
 package Core;
 
+import Core.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -9,10 +10,9 @@ import java.awt.event.KeyListener;
 public class KeyboardInput implements KeyListener{
     public boolean[] keys = new boolean[10000];
     public int[] keyn;
-    public boolean up=false,down=false,left=false,right=false,spell=false,eat=false;
+    public boolean up=false,down=false,left=false,right=false,spell=false,eat=false,go=false;
     public KeyboardInput(int[] keys){
         keyn=keys;
-        System.out.println("init");
     }
     public void checkSettings(int[] keys){
         keyn=keys;
@@ -33,7 +33,6 @@ public class KeyboardInput implements KeyListener{
     }
     @Override
     public void keyTyped(KeyEvent e) {
-        turn();
         System.out.println("key typed "+e.getKeyChar());
     }
     @Override
@@ -45,6 +44,9 @@ public class KeyboardInput implements KeyListener{
         right=keys[keyn[3]];
         spell=keys[keyn[4]];
         eat=keys[keyn[5]];
+        System.out.println(turn());
+        System.out.println("key pressed "+e.getKeyChar());
+        go=true;
     }
     @Override
     public void keyReleased(KeyEvent e) {
@@ -55,5 +57,7 @@ public class KeyboardInput implements KeyListener{
         right=keys[keyn[3]];
         spell=keys[keyn[4]];
         eat=keys[keyn[5]];
+        System.out.println("key released "+e.getKeyChar());
+        go=false;
     }
 }
