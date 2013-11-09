@@ -25,7 +25,7 @@ public class MainMenu extends JFrame implements ActionListener {
     public static boolean go;
     public static KeyboardInput key;
     public static Level l = new Level(0);
-    Display display = new Display();
+    public static Display display = new Display();
     
     int[] defkeys = {KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_A,KeyEvent.VK_D,KeyEvent.VK_I,KeyEvent.VK_J};
     int[] keys = new int[6];

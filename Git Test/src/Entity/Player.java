@@ -1,5 +1,6 @@
 package Entity;
 
+import Core.MainMenu;
 import Render.Sprite;
 
 /**
@@ -19,6 +20,17 @@ public class Player extends RogueEntity{
     }
     @Override
     public void turn(){
-        tx++;
+        if(MainMenu.key.up){
+            ty++;
+        }
+        if(MainMenu.key.down){
+            ty--;
+        }
+        if(MainMenu.key.left){
+            tx--;
+        }
+        if(MainMenu.key.right){
+            tx++;
+        }
     }
 }

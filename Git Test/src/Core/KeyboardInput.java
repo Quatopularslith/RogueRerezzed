@@ -22,6 +22,7 @@ public class KeyboardInput implements KeyListener{
             if(keys[keyn[i]]==true){
                 out=true;
                 System.out.println("ITS WORKING");
+                MainMenu.display.gp.update();
                 break;
             }else{
                 out=false;
