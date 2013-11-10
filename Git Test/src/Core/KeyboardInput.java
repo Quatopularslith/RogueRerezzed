@@ -45,6 +45,7 @@ public class KeyboardInput implements KeyListener{
         right=keys[keyn[3]];
         spell=keys[keyn[4]];
         eat=keys[keyn[5]];
+        System.out.println(up);
     }
     @Override
     public void keyReleased(KeyEvent e) {

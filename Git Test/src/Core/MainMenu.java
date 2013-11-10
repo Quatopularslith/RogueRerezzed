@@ -30,12 +30,13 @@ public class MainMenu extends JFrame implements ActionListener {
     int[] defkeys = {KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_A,KeyEvent.VK_D,KeyEvent.VK_Q,KeyEvent.VK_E};
     int[] keys = new int[6];
     String[] keyprop = new String[6];
-    String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
+    String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB","invKB"};
     
     File configFile = new File("RogueConfig.dat");
     File worldSave;
     String worlddir;
     Properties config;
+    RogueConfig rc = new RogueConfig(props);
     
     OptionMenuPanel optionMenu;
     MainMenuPanel mainMenuPanel;
@@ -43,27 +44,7 @@ public class MainMenu extends JFrame implements ActionListener {
     public MainMenu(int x, int y){
         super("Rogue Rerezzed");
         this.setFocusable(true);
-        try {
-            configFile.createNewFile();
-            try (FileInputStream inStream = new FileInputStream(configFile)) {
-                config = new Properties();
-                config.load(inStream);
-                for(int i=0;i<props.length;i++){
-                    if(config.getProperty(props[i])==null){
-                        config.setProperty(props[i], Cast.inttoString(defkeys[i]));
-                    }
-                    keyprop[i]=config.getProperty(props[i]);
-                }
-            }
-            this.saveConfig();
-        } catch (IOException ex) {
-            System.err.println("LAKJDNFDKLANLKBDKLABF ERROR ERROR ERROR ERROR; STAIRS!!!!!! "+ex.toString());
-        }
-        for(int i=0;i<keyprop.length;i++){
-            if(keyprop[i]!=null){
-                keys[i]=Cast.stringtoInt(keyprop[i]);
-            }
-        }
+        
         optionMenu = new OptionMenuPanel();
         mainMenuPanel = new MainMenuPanel();
         optionMenu.setVisible(false);
@@ -130,15 +111,17 @@ public class MainMenu extends JFrame implements ActionListener {
             go=true;
         }
         if(command.equalsIgnoreCase("Apply")){
-            config.setProperty("fwdKB", Cast.inttoString((int) optionMenu.fwdKB.getText().toCharArray()[0]));
-            config.setProperty("backKB", Cast.inttoString((int) optionMenu.backKB.getText().toCharArray()[0]));
-            config.setProperty("rightKB", Cast.inttoString((int) optionMenu.rightKB.getText().toCharArray()[0]));
-            config.setProperty("leftKB", Cast.inttoString((int) optionMenu.leftKB.getText().toCharArray()[0]));
-            config.setProperty("spellKB", Cast.inttoString((int) optionMenu.spellKB.getText().toCharArray()[0]));
-            config.setProperty("eatKB", Cast.inttoString((int) optionMenu.eatKB.getText().toCharArray()[0]));
-            config.setProperty("invKB", Cast.inttoString((int) optionMenu.invKB.getText().toCharArray()[0]));
+            String[] s = {Cast.inttoString((int) optionMenu.fwdKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.backKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.rightKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.leftKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.spellKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.eatKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.invKB.getText().toCharArray()[0])};
+            rc.addData(s);
+//            config.setProperty("fwdKB", Cast.inttoString((int) optionMenu.fwdKB.getText().toCharArray()[0]));
+//            config.setProperty("backKB", Cast.inttoString((int) optionMenu.backKB.getText().toCharArray()[0]));
+//            config.setProperty("rightKB", Cast.inttoString((int) optionMenu.rightKB.getText().toCharArray()[0]));
+//            config.setProperty("leftKB", Cast.inttoString((int) optionMenu.leftKB.getText().toCharArray()[0]));
+//            config.setProperty("spellKB", Cast.inttoString((int) optionMenu.spellKB.getText().toCharArray()[0]));
+//            config.setProperty("eatKB", Cast.inttoString((int) optionMenu.eatKB.getText().toCharArray()[0]));
+//            config.setProperty("invKB", Cast.inttoString((int) optionMenu.invKB.getText().toCharArray()[0]));
             for(int i=0;i<keyprop.length;i++){
-                keyprop[i]=config.getProperty(props[i]);
+                keyprop[i]=rc.getSettings()[i];
                 if(keyprop[i]!=null){
                     keys[i]=Cast.stringtoInt(keyprop[i]);
                 }
@@ -147,20 +130,20 @@ public class MainMenu extends JFrame implements ActionListener {
             saveConfig();
         }
         if(command.equalsIgnoreCase("Default Keybinds")){
-            try (FileInputStream inStream = new FileInputStream(configFile)) {
-                config = new Properties();
-                config.load(inStream);
-                for(int i=0;i<props.length;i++){
-                    if(config.getProperty(props[i])==null){
-                        config.setProperty(props[i], Cast.inttoString(defkeys[i]));
-                    }
-                    keyprop[i]=config.getProperty(props[i]);
-                }
-            } catch (FileNotFoundException ex) {
-                System.err.println("NOOOOOJAFL DHFKL AJKLHDFLKJASLDHAJKLSHDLKFJ EWORLAKDFNLSKHJ NO. "+ex.toString());
-            } catch (IOException ex) {
-                System.err.println("NOOOOOJAFL DHFKL AJKLHDFLKJASLDHAJKLSHDLKFJ EWORLAKDFNLSKHJ NO. "+ex.toString());
-            }
+//            try (FileInputStream inStream = new FileInputStream(configFile)) {
+//                config = new Properties();
+//                config.load(inStream);
+//                for(int i=0;i<props.length;i++){
+//                    if(config.getProperty(props[i])==null){
+//                        config.setProperty(props[i], Cast.inttoString(defkeys[i]));
+//                    }
+//                    keyprop[i]=config.getProperty(props[i]);
+//                }
+//            } catch (FileNotFoundException ex) {
+//                System.err.println("NOOOOOJAFL DHFKL AJKLHDFLKJASLDHAJKLSHDLKFJ EWORLAKDFNLSKHJ NO. "+ex.toString());
+//            } catch (IOException ex) {
+//                System.err.println("NOOOOOJAFL DHFKL AJKLHDFLKJASLDHAJKLSHDLKFJ EWORLAKDFNLSKHJ NO. "+ex.toString());
+//            }
             optionMenu.fwdKB.setText("W");
             optionMenu.backKB.setText("S");
             optionMenu.rightKB.setText("D");
