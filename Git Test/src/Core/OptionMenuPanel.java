@@ -35,15 +35,11 @@ public class OptionMenuPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         fwdKB = new javax.swing.JFormattedTextField();
         leftKB = new javax.swing.JFormattedTextField();
         rightKB = new javax.swing.JFormattedTextField();
         spellKB = new javax.swing.JFormattedTextField();
         eatKB = new javax.swing.JFormattedTextField();
-        potionKB = new javax.swing.JFormattedTextField();
-        invKB = new javax.swing.JFormattedTextField();
         backKB = new javax.swing.JFormattedTextField();
         apply = new javax.swing.JButton();
         defaultKB = new javax.swing.JButton();
@@ -71,12 +67,6 @@ public class OptionMenuPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
         jLabel6.setText("Eat Food Keybind");
 
-        jLabel7.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
-        jLabel7.setText("Drink Potion Keybind");
-
-        jLabel8.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
-        jLabel8.setText("Inventory Keybind");
-
         fwdKB.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
 
         leftKB.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
@@ -86,10 +76,6 @@ public class OptionMenuPanel extends javax.swing.JPanel {
         spellKB.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
 
         eatKB.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-
-        potionKB.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
-
-        invKB.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
 
         backKB.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
 
@@ -144,15 +130,7 @@ public class OptionMenuPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(133, 133, 133)
-                        .addComponent(eatKB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(103, 103, 103)
-                        .addComponent(potionKB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(125, 125, 125)
-                        .addComponent(invKB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(eatKB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -201,19 +179,7 @@ public class OptionMenuPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(eatKB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(potionKB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(invKB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -229,7 +195,6 @@ public class OptionMenuPanel extends javax.swing.JPanel {
     public javax.swing.JButton defaultKB;
     public javax.swing.JFormattedTextField eatKB;
     public javax.swing.JFormattedTextField fwdKB;
-    public javax.swing.JFormattedTextField invKB;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -237,10 +202,7 @@ public class OptionMenuPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     public javax.swing.JFormattedTextField leftKB;
-    public javax.swing.JFormattedTextField potionKB;
     public javax.swing.JFormattedTextField rightKB;
     public javax.swing.JFormattedTextField spellKB;
     // End of variables declaration//GEN-END:variables

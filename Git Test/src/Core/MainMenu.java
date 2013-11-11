@@ -8,8 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -30,12 +28,10 @@ public class MainMenu extends JFrame implements ActionListener {
     int[] defkeys = {KeyEvent.VK_W,KeyEvent.VK_S,KeyEvent.VK_A,KeyEvent.VK_D,KeyEvent.VK_Q,KeyEvent.VK_E};
     int[] keys = new int[6];
     String[] keyprop = new String[6];
-    String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB","invKB"};
+    String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
     
-    File configFile = new File("RogueConfig.dat");
     File worldSave;
     String worlddir;
-    Properties config;
     RogueConfig rc = new RogueConfig(props);
     
     OptionMenuPanel optionMenu;
@@ -44,6 +40,8 @@ public class MainMenu extends JFrame implements ActionListener {
     public MainMenu(int x, int y){
         super("Rogue Rerezzed");
         this.setFocusable(true);
+        
+        keys = Cast.stringstoInts(rc.getSettings());
         
         optionMenu = new OptionMenuPanel();
         mainMenuPanel = new MainMenuPanel();
@@ -111,49 +109,20 @@ public class MainMenu extends JFrame implements ActionListener {
             go=true;
         }
         if(command.equalsIgnoreCase("Apply")){
-            String[] s = {Cast.inttoString((int) optionMenu.fwdKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.backKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.rightKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.leftKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.spellKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.eatKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.invKB.getText().toCharArray()[0])};
+            String[] s = {Cast.inttoString((int) optionMenu.fwdKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.backKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.rightKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.leftKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.spellKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.eatKB.getText().toCharArray()[0])};
             rc.addData(s);
-//            config.setProperty("fwdKB", Cast.inttoString((int) optionMenu.fwdKB.getText().toCharArray()[0]));
-//            config.setProperty("backKB", Cast.inttoString((int) optionMenu.backKB.getText().toCharArray()[0]));
-//            config.setProperty("rightKB", Cast.inttoString((int) optionMenu.rightKB.getText().toCharArray()[0]));
-//            config.setProperty("leftKB", Cast.inttoString((int) optionMenu.leftKB.getText().toCharArray()[0]));
-//            config.setProperty("spellKB", Cast.inttoString((int) optionMenu.spellKB.getText().toCharArray()[0]));
-//            config.setProperty("eatKB", Cast.inttoString((int) optionMenu.eatKB.getText().toCharArray()[0]));
-//            config.setProperty("invKB", Cast.inttoString((int) optionMenu.invKB.getText().toCharArray()[0]));
-            for(int i=0;i<keyprop.length;i++){
-                keyprop[i]=rc.getSettings()[i];
-                if(keyprop[i]!=null){
-                    keys[i]=Cast.stringtoInt(keyprop[i]);
-                }
-            }
-            key.checkSettings(keys);
-            saveConfig();
+            key.checkSettings(Cast.stringstoInts(rc.getSettings()));
         }
         if(command.equalsIgnoreCase("Default Keybinds")){
-//            try (FileInputStream inStream = new FileInputStream(configFile)) {
-//                config = new Properties();
-//                config.load(inStream);
-//                for(int i=0;i<props.length;i++){
-//                    if(config.getProperty(props[i])==null){
-//                        config.setProperty(props[i], Cast.inttoString(defkeys[i]));
-//                    }
-//                    keyprop[i]=config.getProperty(props[i]);
-//                }
-//            } catch (FileNotFoundException ex) {
-//                System.err.println("NOOOOOJAFL DHFKL AJKLHDFLKJASLDHAJKLSHDLKFJ EWORLAKDFNLSKHJ NO. "+ex.toString());
-//            } catch (IOException ex) {
-//                System.err.println("NOOOOOJAFL DHFKL AJKLHDFLKJASLDHAJKLSHDLKFJ EWORLAKDFNLSKHJ NO. "+ex.toString());
-//            }
-            optionMenu.fwdKB.setText("W");
-            optionMenu.backKB.setText("S");
-            optionMenu.rightKB.setText("D");
-            optionMenu.leftKB.setText("A");
-            optionMenu.spellKB.setText("K");
-            optionMenu.eatKB.setText("L");
-            optionMenu.invKB.setText("I");
-            optionMenu.potionKB.setText("J");
+            rc.addData(Cast.intstoStrings(defkeys));
+            keyprop = Cast.intstoStrings(defkeys);
+            optionMenu.fwdKB.setText("w");
+            optionMenu.backKB.setText("s");
+            optionMenu.rightKB.setText("d");
+            optionMenu.leftKB.setText("a");
+            optionMenu.spellKB.setText("q");
+            optionMenu.eatKB.setText("e");
             key.checkSettings(defkeys);
-            saveConfig();
         }
         if(command.equalsIgnoreCase("save and quit")){
             worlddir = "world.world";
@@ -175,15 +144,6 @@ public class MainMenu extends JFrame implements ActionListener {
         }
         if(command.equalsIgnoreCase("quit")){
             this.dispose();
-        }
-    }
-    private void saveConfig(){
-        try {
-            try (FileOutputStream out = new FileOutputStream(configFile)) {
-                config.store(out,"Properties settings");
-            }
-        } catch (IOException ex) {
-            System.err.println(ex.toString());
         }
     }
 }
