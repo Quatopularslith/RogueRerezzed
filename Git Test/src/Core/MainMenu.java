@@ -104,7 +104,7 @@ public class MainMenu extends JFrame implements ActionListener {
             go=true;
         }
         if(command.equalsIgnoreCase("Apply")){
-            String[] s = {Cast.inttoString((int) optionMenu.fwdKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.backKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.rightKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.leftKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.spellKB.getText().toCharArray()[0]),Cast.inttoString((int) optionMenu.eatKB.getText().toCharArray()[0])};
+            String[] s = {optionMenu.fwdKB.getText(),optionMenu.backKB.getText(),optionMenu.rightKB.getText(),optionMenu.leftKB.getText(),optionMenu.spellKB.getText(),optionMenu.eatKB.getText()};
             rc.addData(s);
             key.checkSettings(Cast.stringstoInts(rc.getSettings()));
         }

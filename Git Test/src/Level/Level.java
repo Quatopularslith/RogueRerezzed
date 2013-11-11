@@ -14,11 +14,13 @@ public class Level {
     private final Random rand;
     private int currentity = 0;
     private final List<RogueEntity> re = new ArrayList<>();
-    private final Player p = new Player(5,5);
+    private Player p;
     public Room[] r = new Room[numRooms];
     public int[] size = {(numRooms/cols)*maxRoomS,cols*maxRoomS};
     private static int[] roomSize,roomPos;
     public Level(int lvl){
+        p = new Player(10,10);
+        this.addEntity(p);
         this.rand = new Random();
         roomSize = new int[2];
         roomPos = new int[2];
@@ -36,6 +38,7 @@ public class Level {
     }
     public void addEntity(RogueEntity e){
         re.add(currentity, e);
+        e.uuid=currentity;
         currentity++;
     }
     public void addEntities(RogueEntity[] e){

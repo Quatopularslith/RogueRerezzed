@@ -10,6 +10,7 @@ public abstract class RogueEntity{
     public int tx=10,ty=10,health,dir,armour,potion;
     public Item[] inv;
     public Sprite sp;
+    public int uuid;
     public boolean death = false;
     public int getTx(){
         return tx;
@@ -32,15 +33,26 @@ public abstract class RogueEntity{
         return (int) Math.sqrt((e.tx-tx)^2+(e.ty-ty)^2);
     }
     public void move(int d){
+        int dx=0,dy=0;
         if(d==90){//up
-            ty=ty-1;
+            dy=-1;
         }else if(d==180){//left
-            tx=tx+1;
+            dx=-1;
         }else if(d==270){//down
-            ty=ty-1;
+            dy=1;
         }else if(d==0){//right
-            tx=tx+1;
+            dx=1;
+        }else{
+            dx=-1;
+            dy=-1;
         }
+        for(RogueEntity e: Core.MainMenu.l.getEntities()){
+            if(e.uuid!=this.uuid && ((tx+dx)==e.tx && (ty+dy)==e.ty)){
+                dx=0;
+            }
+        }
+        tx+=dx;
+        ty+=dy;
     }
     public void turn(){
         if(health==0){

@@ -16,8 +16,8 @@ public class Inventory extends javax.swing.JPanel {
      * Creates new form Inventory
      */
     public Inventory() {
-        System.out.println("inv");
         initComponents();
+        this.setVisible(true);
     }
 
     /**

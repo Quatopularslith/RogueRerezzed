@@ -5,6 +5,6 @@ package Core;
  */
 public class Main {
     public static void main(String[] args){
-        loading.Loading l = new loading.Loading(750);
+        MainMenu mm = new MainMenu(750,500);
     }
 }

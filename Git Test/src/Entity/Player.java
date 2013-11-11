@@ -22,16 +22,16 @@ public class Player extends RogueEntity{
     @Override
     public void turn(){
         if(MainMenu.key.up){
-            ty--;
+            this.move(90);
         }
         if(MainMenu.key.down){
-            ty++;
+            this.move(270);
         }
         if(MainMenu.key.left){
-            tx--;
+            this.move(180);
         }
         if(MainMenu.key.right){
-            tx++;
+            this.move(0);
         }
     }
 }
