@@ -10,6 +10,7 @@ public abstract class RogueEntity{
     public int tx=10,ty=10,health,dir,armour,potion;
     public Item[] inv;
     public Sprite sp;
+    public boolean death = false;
     public int getTx(){
         return tx;
     }
@@ -42,6 +43,17 @@ public abstract class RogueEntity{
         }
     }
     public void turn(){
+        if(health==0){
+            death();
+        }else{
+            health++;
+        }
+    }
+    public void death(){
+        for(Item i1 : inv){
+            dropItem(i1);
+        }
+        death=true;
     }
     public void dropItem(Item i){
         

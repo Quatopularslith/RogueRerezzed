@@ -12,7 +12,6 @@ public class KeyboardInput implements KeyListener{
     public boolean up=false,down=false,left=false,right=false,spell=false,eat=false;
     public KeyboardInput(int[] keys){
         keyn=keys;
-        System.out.println("init");
     }
     public void checkSettings(int[] keys){
         keyn=keys;

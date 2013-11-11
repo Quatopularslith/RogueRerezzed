@@ -8,9 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -70,7 +67,6 @@ public class MainMenu extends JFrame implements ActionListener {
         
         key=new KeyboardInput(keys);
         addKeyListener(key);
-        display.jButton1.addActionListener(this);
         display.optionsD.addActionListener(this);
         display.save.addActionListener(this);
         mainMenuPanel.newGame.addActionListener(this);
@@ -102,7 +98,6 @@ public class MainMenu extends JFrame implements ActionListener {
         }
         if(command.equalsIgnoreCase("New Game")){
             l=new Level(1);
-            l.addPlayer(new Player(50,50));
             mainMenuPanel.setVisible(false);
             optionMenu.setVisible(false);
             display.setVisible(true);
@@ -138,9 +133,6 @@ public class MainMenu extends JFrame implements ActionListener {
             mainMenuPanel.setVisible(false);
             optionMenu.setVisible(true);
             display.setVisible(false);
-        }
-        if(command.equalsIgnoreCase("jbutton1")){
-            display.gp.update();
         }
         if(command.equalsIgnoreCase("quit")){
             this.dispose();
