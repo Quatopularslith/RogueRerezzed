@@ -50,8 +50,8 @@ public class GamePanel extends JPanel{
             }
         }
         for (RogueEntity entitie : current) {
-//            bi=entitie.sp;
-            g2.drawImage(entitie.sp.getImg(), entitie.tx*32-offx, entitie.ty*32-offy, this);
+            bi=entitie.sp.getBufferedImage();
+            g2.drawImage(bi, entitie.tx*32-offx, entitie.ty*32-offy, this);
         }
     }
 }
