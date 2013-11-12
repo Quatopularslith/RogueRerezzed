@@ -8,7 +8,6 @@ import Level.Room;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -28,12 +27,11 @@ public class GamePanel extends JPanel{
         repaint();
     }
     public void setReletiveTo(RogueEntity e){
-        offx=(getWidth()/2+e.tx);
-        offy=(getHeight()/2+e.ty);
+        offx=(getWidth()/2)-e.tx*16;
+        offy=(getHeight()/2)-e.ty*16;
     }
     @Override
     public void paint(Graphics g){
-        BufferedImage bi;
         setReletiveTo(MainMenu.l.getHostilePlayer());
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
@@ -45,13 +43,12 @@ public class GamePanel extends JPanel{
         for (Room r1 : room) {
             for (int[][] area : r1.area) {
                 for (int[] area1 : area) {
-                    g2.drawImage(la.createImageIcon("DungeonFloor1.png", "What is this?").getImage(), area1[0]*32-offx,area1[1]*32-offy, this);
+                    g2.drawImage(la.createImageIcon("DungeonFloor1.png", "What is this?").getImage(), area1[0]*16+offx,area1[1]*16+offy, this);
                 }
             }
         }
         for (RogueEntity entitie : current) {
-            bi=entitie.sp.getBufferedImage();
-            g2.drawImage(bi, entitie.tx*32-offx, entitie.ty*32-offy, this);
+            g2.drawImage(entitie.sp.getImg(), entitie.tx*16+offx, entitie.ty*16+offy, this);
         }
     }
 }
