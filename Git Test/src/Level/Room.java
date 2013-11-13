@@ -18,16 +18,16 @@ public class Room{
             for(int y=0;y<size[1];y++){
                 area[x][y][0]=x+pos[0];
                 area[x][y][1]=y+pos[1];
-                if(x==0 || x==size[0]-1){
-                    walls[wallx][wally][0]=wallx+pos[0];
-                    walls[wallx][wally][1]=wally+pos[1];
-                    wallx++;
-                }
-                if(y==0 || y==size[1]-1){
-                    walls[wallx][wally][0]=wallx+pos[0];
-                    walls[wallx][wally][1]=wally+pos[1];
-                    wally++;
-                }
+//                if(x==0 || x==size[0]-1){
+//                    walls[wallx][wally][0]=wallx+pos[0];
+//                    walls[wallx][wally][1]=wally+pos[1];
+//                    wallx++;
+//                }
+//                if(y==0 || y==size[1]-1){
+//                    walls[wallx][wally][0]=wallx+pos[0];
+//                    walls[wallx][wally][1]=wally+pos[1];
+//                    wally++;
+//                }
             }
         }
         rs = r.nextInt(Level.maxRoomS);
