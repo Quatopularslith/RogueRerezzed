@@ -12,7 +12,6 @@ public class Room{
     private int wallx=0,wally=0;
     private int rs,ra;
     public Room(int[] pos,int[] size, int minlvl, Level l){
-        System.out.println(size[1]+" "+size[1]);
         walls=new int[size[0]][size[1]][2];
         for(int x=0;x<size[0];x++){
             for(int y=0;y<size[1];y++){
