@@ -47,7 +47,7 @@ public abstract class RogueEntity{
             dy=-1;
         }
         for(RogueEntity e: Core.MainMenu.l.getEntities()){
-            if(e.uuid!=this.uuid && ((tx+dx)==e.tx && (ty+dy)==e.ty)){
+            if(e.uuid!=this.uuid && ((tx+dx)==e.tx+dx && (ty+dy)==e.ty+dy)){
                 dx=0;
             }
         }
