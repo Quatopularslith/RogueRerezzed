@@ -16,6 +16,7 @@ public class Player extends RogueEntity{
         armour = 0;
         dir = 0;
         inv = new Item[10];
+        this.maxAtt=50;
         tx=spawnX;
         ty=spawnY;
     }
@@ -32,6 +33,12 @@ public class Player extends RogueEntity{
         }
         if(MainMenu.key.right){
             this.move(0);
+        }
+        for(int i=0;i<MainMenu.l.getEntities().size();i++){
+            if(MainMenu.l.getEntities().get(i).uuid!=this.uuid && this.distTo(MainMenu.l.getEntities().get(i))<=1){
+                this.attack(MainMenu.l.getEntities().get(i));
+                System.out.println("BOOM");
+            }
         }
     }
 }

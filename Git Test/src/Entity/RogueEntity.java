@@ -1,25 +1,20 @@
 package Entity;
 
 import Item.Item;
-import Level.Room;
 import Render.Sprite;
+import java.util.Random;
 
 /**
  * @author Torri
  */
 public abstract class RogueEntity{
-    public int tx=10,ty=10,health,dir,armour,potion;
+    public int tx=10,ty=10,health,dir,armour,potion,maxAtt;
     public Item[] inv;
     public Sprite sp;
     public int uuid;
     public boolean move;
     public boolean death = false;
-    public int getTx(){
-        return tx;
-    }
-    public int getTy(){
-        return ty;
-    }
+    public Random r = new Random();
     public int getDir(){
         return dir;
     }
@@ -28,8 +23,11 @@ public abstract class RogueEntity{
     }
     public void damage(int att){
         att -= armour;
-        armour -= att;
+        armour -= att/4;
         health -= att;
+    }
+    public void attack(RogueEntity e){
+        e.damage(r.nextInt(maxAtt));
     }
     public int distTo(RogueEntity e){
         return (int) Math.sqrt((e.tx-tx)^2+(e.ty-ty)^2);
@@ -45,31 +43,9 @@ public abstract class RogueEntity{
         }else if(d==0){//right
             dx=1;
         }else{
-            dx=-1;
-            dy=-1;
+            dx=1;
+            dy=1;
         }
-//        for(RogueEntity e: Core.MainMenu.l.getEntities()){
-//            if(e.uuid!=this.uuid && ((tx+dx)==e.tx+dx && (ty+dy)==e.ty+dy)){
-//                dx=0;
-//                dy=0;
-//            }
-//        }
-//        for (Room room : Core.MainMenu.l.getRooms()) {
-//            for (int[][] area : room.area) {
-//                for (int[] area1 : area) {
-//                    if (tx+dx == area1[0] && ty+dy == area1[1]) {
-//                        move=true;
-//                        break;
-//                    }else{
-//                        move=false;
-//                    }
-//                }
-//            }
-//        }
-//        if(move=false){
-//            dx=0;
-//            dy=0;
-//        }
         tx+=dx;
         ty+=dy;
     }

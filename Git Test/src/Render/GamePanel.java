@@ -20,9 +20,6 @@ public class GamePanel extends JPanel{
     public void update(){
         for(int i=0;i<current.size();i++){
             current.get(i).turn();
-            if(current.get(i).death){
-                current.remove(i);
-            }
         }
         repaint();
     }
