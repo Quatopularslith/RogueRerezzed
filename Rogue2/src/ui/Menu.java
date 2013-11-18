@@ -75,5 +75,13 @@ public class Menu extends JFrame{
         this.invalidate();
         this.validate();
         this.repaint();
+        
+        omp.eatKB.setText(rp.getSettings()[0]);
+        omp.leftKB.setText(rp.getSettings()[1]);
+        omp.rightKB.setText(rp.getSettings()[2]);
+        omp.fwdKB.setText(rp.getSettings()[3]);
+        omp.spellKB.setText(rp.getSettings()[4]);
+        omp.backKB.setText(rp.getSettings()[5]);
+        // eat, left, right, fwd, spell, back
     }
 }
