@@ -22,7 +22,6 @@ public class ButtonInput implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        System.out.println(command);
         if(command.equalsIgnoreCase("Options")){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);
