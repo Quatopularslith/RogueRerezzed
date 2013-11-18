@@ -38,11 +38,12 @@ public class KeyboardInput implements KeyListener{
         }
     }
     private void turn(){
-//        for(boolean kb:keyBind){
-//            if(kb=true){
-//                Rogue.mm.d.gp.update();
-//            }
-//        }
+        for(boolean kb:keyBind){
+            if(kb){
+                System.out.println(kb);
+                Rogue.mm.d.gp.update();
+            }
+        }
     }
     @Override
     public void keyTyped(KeyEvent e) {

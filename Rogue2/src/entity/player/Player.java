@@ -6,6 +6,7 @@
 
 package entity.player;
 
+import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
@@ -24,6 +25,10 @@ public class Player extends RogueEntity{
     }
     @Override
     public void turn(){
-        
+        for(int i=0;i<Rogue.mm.ki.keyBind.length;i++){
+            if(Rogue.mm.ki.keyBind[i]){
+                this.move(i*90);
+            }
+        }
     }
 }

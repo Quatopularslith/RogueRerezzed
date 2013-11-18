@@ -38,6 +38,7 @@ public class RogueEntity {
         }else if(d<=225 && d>=315){
             x--;
         }
+        System.out.println(x);
     }
     /**
      * Take damage
