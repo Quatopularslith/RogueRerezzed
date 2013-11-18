@@ -15,8 +15,10 @@ public class Sprite {
      * @param imdir is the name of the image (- the extention)
      */
     public Sprite(String imdir){
-        imdir+=Level.renderlevel+".png";
+//        imdir+=Level.renderlevel+".png";
+        imdir+=16+".png";
         LoadArt load = new LoadArt();
         i=load.createImage(imdir, "Sprite");
+        i=i.getScaledInstance(32, 32, 0);
     }
 }
