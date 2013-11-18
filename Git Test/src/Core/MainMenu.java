@@ -52,6 +52,7 @@ public class MainMenu extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        this.setResizable(false);
         display.setVisible(false);
         
         LoadArt load = new LoadArt();

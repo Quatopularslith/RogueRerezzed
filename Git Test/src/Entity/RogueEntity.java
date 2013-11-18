@@ -28,6 +28,7 @@ public abstract class RogueEntity{
     }
     public void attack(RogueEntity e){
         e.damage(r.nextInt(maxAtt));
+        System.out.println(e.health);
     }
     public int distTo(RogueEntity e){
         return (int) Math.sqrt((e.tx-tx)^2+(e.ty-ty)^2);

@@ -4,7 +4,8 @@ package Core;
  * @author Torri
  */
 public class Main {
+    public static MainMenu mm;
     public static void main(String[] args){
-        MainMenu mm = new MainMenu(750,500);
+        mm = new MainMenu(750,500);
     }
 }

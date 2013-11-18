@@ -52,6 +52,7 @@ public class Display extends javax.swing.JPanel {
         });
 
         gameplay.setBackground(null);
+        gameplay.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
 
         javax.swing.GroupLayout gameplayLayout = new javax.swing.GroupLayout(gameplay);
         gameplay.setLayout(gameplayLayout);

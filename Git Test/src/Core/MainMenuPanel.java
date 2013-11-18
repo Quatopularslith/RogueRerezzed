@@ -34,6 +34,7 @@ public class MainMenuPanel extends javax.swing.JPanel {
         options = new javax.swing.JButton();
         quit = new javax.swing.JButton();
 
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(750, 500));
 
         title.setFont(new java.awt.Font("Hobo Std", 0, 48)); // NOI18N
@@ -69,7 +70,7 @@ public class MainMenuPanel extends javax.swing.JPanel {
                             .addComponent(options, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(loadGame)
                             .addComponent(quit, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addGap(178, 178, 178))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

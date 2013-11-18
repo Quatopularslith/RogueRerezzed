@@ -37,7 +37,6 @@ public class Player extends RogueEntity{
         for(int i=0;i<MainMenu.l.getEntities().size();i++){
             if(MainMenu.l.getEntities().get(i).uuid!=this.uuid && this.distTo(MainMenu.l.getEntities().get(i))<=1){
                 this.attack(MainMenu.l.getEntities().get(i));
-                System.out.println("BOOM");
             }
         }
     }
