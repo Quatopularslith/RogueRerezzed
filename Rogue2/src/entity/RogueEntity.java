@@ -12,9 +12,10 @@ import render.Sprite;
 public class RogueEntity {
     public int x,y,uuid,rx,ry;
     public float health;
+    public int maxhealth;
     public Item[] inv;
     public Sprite sp;
-    public Random rand = new Random();
+    private Random rand = new Random();
     private Level l;
     public RogueEntity(Level l1){
         l=l1;
@@ -38,7 +39,6 @@ public class RogueEntity {
         }else if(d<=225 && d>=315){
             x--;
         }
-        System.out.println(x);
     }
     /**
      * Take damage
@@ -53,7 +53,7 @@ public class RogueEntity {
     public void turn(){
         if(health<=0){
             death();
-        }else{
+        }else if(health<maxhealth){
             health++;
         }
         rx=x*Level.renderlevel;

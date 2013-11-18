@@ -57,6 +57,8 @@ public class Level {
         System.out.println(numRooms);
         re=new ArrayList<>();
         rooms=new Room[numRooms];
+        renderlevel=Math.round(numLevels/16)*16;
+        renderlevel=16;
         for(int x=0;x<sx-1;x++){
             for(int y=0;y<sy-1;y++){
                 if(((int) x*(1/maxRoomSX)==0 || (int) y*(1/maxRoomSY)==0) && roomnum<numRooms){
@@ -67,10 +69,6 @@ public class Level {
         }
         p=new Player(this);
         this.addEntity(p);
-        renderlevel=Math.round(numLevels/16)*16;
-        if(renderlevel==0){
-            renderlevel+=16;
-        }
         System.out.println(re.size());
         numLevels++;
     }

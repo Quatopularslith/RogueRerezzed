@@ -6,6 +6,7 @@ import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
+import entity.player.Player;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,11 +19,11 @@ import javax.swing.JPanel;
  * @author Torri
  */
 public class RenderPanel extends JPanel{
-    private Level l;
-    private int offx,offy;
-    public RenderPanel(){
-        l=Rogue.getLevel();
-    }
+    private Level l = Rogue.getLevel();
+    private int offx=0,offy=0;
+//    public RenderPanel(){
+//        l=Rogue.getLevel();
+//    }
     /**
      * The core updater
      */
@@ -50,7 +51,6 @@ public class RenderPanel extends JPanel{
         Graphics2D g2 = (Graphics2D) g;
         List<RogueEntity> current = l.getEntities();
         Room[] room = l.getRooms();
-        int err=0;
         Image im = la.createImage("DungeonFloor116.png", "hi").getScaledInstance(32, 32, 0);
         for (Room r1 : room) {
             for (int[][] area : r1.area) {
@@ -61,6 +61,12 @@ public class RenderPanel extends JPanel{
         }
         for (int i=0;i<current.size()-1;i++) {
             g2.drawImage(current.get(i).sp.i, current.get(i).x*32+offx, current.get(i).y*32+offy, this);
+        }
+        for(RogueEntity re:current){
+            if(re instanceof Player){
+                g2.drawImage(re.sp.i, re.x*32+offx, re.y*32+offy, this);
+                setReletiveTo(re);
+            }
         }
     }
 }

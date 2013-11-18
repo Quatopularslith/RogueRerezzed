@@ -19,16 +19,25 @@ import render.Sprite;
 public class Player extends RogueEntity{
     public Player(Level l1){
         super(l1);
+        health=100;
+        maxhealth=150;
         this.sp = new Sprite("Player");
         Room r = l1.getRoom(0);
         spawn(r);
     }
     @Override
     public void turn(){
-        for(int i=0;i<Rogue.mm.ki.keyBind.length;i++){
-            if(Rogue.mm.ki.keyBind[i]){
-                this.move(i*90);
-            }
+        if(Rogue.mm.ki.keyBind[0]){
+            this.move(0);
+        }
+        if(Rogue.mm.ki.keyBind[1]){
+            this.move(180);
+        }
+        if(Rogue.mm.ki.keyBind[2]){
+            this.move(90);
+        }
+        if(Rogue.mm.ki.keyBind[3]){
+            this.move(270);
         }
     }
 }
