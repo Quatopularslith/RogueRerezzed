@@ -125,6 +125,7 @@
             </Property>
           </Properties>
           <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="invp;"/>
             <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="inventory = new Inventory();"/>
           </AuxValues>
           <Constraints>
