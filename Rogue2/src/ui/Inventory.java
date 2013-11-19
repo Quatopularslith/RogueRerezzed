@@ -6,12 +6,17 @@
 
 package ui;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
  * @author Torri
  */
 public class Inventory extends JPanel{
-    
+    public Inventory() {
+        this.setVisible(true);
+        JButton button = new JButton();
+        this.add(button);
+        this.setSize(200, 390);
+    }
 }

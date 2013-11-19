@@ -16,6 +16,7 @@ public class Display extends javax.swing.JPanel {
     int[][] pos;
     char[] type;
     int in;
+    Inventory invp = new Inventory();
     public RenderPanel gp = new RenderPanel();
     /**
      * Creates new form TextRender
@@ -36,7 +37,7 @@ public class Display extends javax.swing.JPanel {
         gameplay = gp;
         jTabbedPane1 = new javax.swing.JTabbedPane();
         map = new javax.swing.JPanel();
-        inventory = new javax.swing.JPanel();
+        inventory = invp;
         inventory = new Inventory();
         save = new javax.swing.JButton();
         optionsD = new javax.swing.JButton();
