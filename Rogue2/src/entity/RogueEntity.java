@@ -72,6 +72,6 @@ public class RogueEntity {
      */
     public void spawn(Room r){
         x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][0];
-        x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1];
+        x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1]++;
     }
 }
