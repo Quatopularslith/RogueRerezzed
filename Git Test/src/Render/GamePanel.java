@@ -29,6 +29,7 @@ public class GamePanel extends JPanel{
     }
     @Override
     public void paint(Graphics g){
+        System.out.println(this);
         setReletiveTo(MainMenu.l.getHostilePlayer());
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());

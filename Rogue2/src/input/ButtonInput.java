@@ -18,11 +18,10 @@ import ui.Menu;
  */
 public class ButtonInput implements ActionListener{
     private boolean backtogame;
-    private final String[] defkeys = {};
+    private final String[] defkeys = {"87","83","68","65","81","69"};//wsdaqe
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        System.out.println(command);
         if(command.equalsIgnoreCase("Options")){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);

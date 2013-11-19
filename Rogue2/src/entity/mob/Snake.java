@@ -22,4 +22,8 @@ public class Snake extends RogueHostileEntity{
         sp = new Sprite("Snake");
         spawn(r);
     }
+    @Override
+    public void turn(){
+        this.move(270);
+    }
 }
