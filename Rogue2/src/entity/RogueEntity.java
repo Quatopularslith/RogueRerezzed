@@ -30,13 +30,16 @@ public class RogueEntity {
      *       180
      */
     public void move(int d){
-        if(d<=45 && d>315){
-            y++;
-        }else if(d<=135 && d>45){
-            x++;
-        }else if(d<=225 && d>135){
+        if(d<=45 && d>315){//up
             y--;
-        }else if(d<=225 && d>=315){
+        }
+        if(d<=135 && d>45){//right
+            x++;
+        }
+        if(d<=225 && d>135){//down
+            y++;
+        }
+        if(d<=225 && d>=315){//left
             x--;
         }
     }

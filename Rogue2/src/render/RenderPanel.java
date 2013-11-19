@@ -11,19 +11,22 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.util.List;
 import javax.swing.JPanel;
 
 /**
  *
- * @author Torri
+ * @author Torrj
  */
 public class RenderPanel extends JPanel{
     private Level l = Rogue.getLevel();
     private int offx=0,offy=0;
-//    public RenderPanel(){
-//        l=Rogue.getLevel();
-//    }
+    LoadArt la = new LoadArt();
+    Room[] room = l.getRooms();
+    public RenderPanel(){
+        l=Rogue.getLevel();
+    }
     /**
      * The core updater
      */
@@ -35,38 +38,34 @@ public class RenderPanel extends JPanel{
         repaint();
     }
     void setReletiveTo(RogueEntity e){
-        offx=(getWidth()/2)+e.rx;
-        offy=(getHeight()/2)+e.ry;
+        offx=(getWidth()/2)-e.x*32;
+        offy=(getHeight()/2)-e.y*32;
     }
+    int j=0;
     /**
      * Paints the world
      * @param g 
      */
     @Override
     public void paint(Graphics g){
-        setReletiveTo(l.getPlayer());
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, getWidth(), getHeight());
-        LoadArt la = new LoadArt();
         Graphics2D g2 = (Graphics2D) g;
+        g2.addRenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
+        System.out.println(j++);
+        setReletiveTo(l.getPlayer());
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0, 0, getWidth(), getHeight());
+        room = l.getRooms();
         List<RogueEntity> current = l.getEntities();
-        Room[] room = l.getRooms();
         Image im = la.createImage("DungeonFloor116.png", "hi").getScaledInstance(32, 32, 0);
         for (Room r1 : room) {
-            for (int[][] area : r1.area) {
-                for (int[] area1 : area) {
+            for (int[][] area0 : r1.area) {
+                for (int[] area1 : area0) {
                     g2.drawImage(im, area1[0]*32+offx,area1[1]*32+offy, this);
                 }
             }
         }
-        for (int i=0;i<current.size()-1;i++) {
+        for (int i=0;i<current.size();i++) {
             g2.drawImage(current.get(i).sp.i, current.get(i).x*32+offx, current.get(i).y*32+offy, this);
-        }
-        for(RogueEntity re:current){
-            if(re instanceof Player){
-                g2.drawImage(re.sp.i, re.x*32+offx, re.y*32+offy, this);
-                setReletiveTo(re);
-            }
         }
     }
 }
