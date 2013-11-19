@@ -88,6 +88,6 @@ public class Menu extends JFrame{
         
         this.invalidate();
         this.validate();
-//        this.repaint();
+        this.repaint();
     }
 }

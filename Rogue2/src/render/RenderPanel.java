@@ -54,7 +54,7 @@ public class RenderPanel extends JPanel{
         g2.fillRect(0, 0, getWidth(), getHeight());
         room = l.getRooms();
         List<RogueEntity> current = l.getEntities();
-        Image im = la.createImage("DungeonFloor116.png", "hi").getScaledInstance(32, 32, 0);
+        Image im = la.createImage("DungeonFloor216.png", "hi").getScaledInstance(32, 32, 0);
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {

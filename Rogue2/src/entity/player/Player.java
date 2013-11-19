@@ -35,8 +35,7 @@ public class Player extends RogueEntity{
         }
         if(Rogue.mm.ki.keyBind[2]){//right
             this.move(90);
-        }
-        if(Rogue.mm.ki.keyBind[3]){//left
+        }else if(Rogue.mm.ki.keyBind[3]){//left
             this.move(270);
         }
     }
