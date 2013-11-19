@@ -41,7 +41,6 @@ public class RenderPanel extends JPanel{
         offy=(getHeight()/2)-e.y*32;
     }
     int j=0;
-    int k=0;
     /**
      * Paints the world
      * @param g 
@@ -50,6 +49,7 @@ public class RenderPanel extends JPanel{
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
         setReletiveTo(l.getPlayer());
+        System.out.println(j++);
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, getWidth(), getHeight());
         room = l.getRooms();
@@ -58,11 +58,7 @@ public class RenderPanel extends JPanel{
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
-                    k++;
-                    if(k==j){
-                        System.out.println("yup thats right");
-                    }
-                    g2.drawImage(im, area1[0]*32+offx,area1[1]*32+offy, this);
+                    g2.drawImage(im, area1[0]+offx,area1[1]+offy, this);
                 }
             }
         }

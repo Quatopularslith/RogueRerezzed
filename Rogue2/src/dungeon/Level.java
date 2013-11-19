@@ -59,12 +59,10 @@ public class Level {
         rooms=new Room[numRooms];
         renderlevel=Math.round(numLevels/16)*16;
         renderlevel=16;
-        for(int x=0;x<sx-1;x++){
-            for(int y=0;y<sy-1;y++){
-                if(((int) x*(1/maxRoomSX)==0 || (int) y*(1/maxRoomSY)==0) && roomnum<numRooms){
-                    rooms[roomnum]=new Room(x*(1/maxRoomSX),y*(1/maxRoomSY),maxRoomSX,maxRoomSY,lvl,this);
-                    roomnum++;
-                }
+        for(int x=0;x<sx-1;x+=maxRoomSX){
+            for(int y=0;y<sy-1;y+=maxRoomSY){
+                rooms[roomnum]=new Room(x,y,maxRoomSX,maxRoomSY,lvl,this);
+                roomnum++;
             }
         }
         p=new Player(this);
