@@ -72,15 +72,22 @@ public class Menu extends JFrame{
         omp.back.addActionListener(bi);
         omp.defaultKB.addActionListener(bi);
         
+        int[] j = new int[rp.getSettings().length];
+        char[] c = new char[j.length];
+        for(int i=0;i<j.length;i++){
+            System.out.println(Integer.valueOf(rp.getSettings()[i]));
+            j[i]=Integer.valueOf(rp.getSettings()[i]);
+            c[i]=(char) j[i];
+        }
+        omp.fwdKB.setText(String.valueOf(c[0]));
+        omp.backKB.setText(String.valueOf(c[1]));
+        omp.rightKB.setText(String.valueOf(c[2]));
+        omp.leftKB.setText(String.valueOf(c[3]));
+        omp.spellKB.setText(String.valueOf(c[4]));
+        omp.eatKB.setText(String.valueOf(c[5]));
+        
         this.invalidate();
         this.validate();
         this.repaint();
-        
-        omp.fwdKB.setText(rp.getSettings()[0]);
-        omp.backKB.setText(rp.getSettings()[1]);
-        omp.rightKB.setText(rp.getSettings()[2]);
-        omp.leftKB.setText(rp.getSettings()[3]);
-        omp.spellKB.setText(rp.getSettings()[4]);
-        omp.eatKB.setText(rp.getSettings()[5]);
     }
 }
