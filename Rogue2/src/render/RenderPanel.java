@@ -6,7 +6,6 @@ import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
-import entity.player.Player;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -49,7 +48,6 @@ public class RenderPanel extends JPanel{
     @Override
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-        g2.addRenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
         System.out.println(j++);
         setReletiveTo(l.getPlayer());
         g2.setColor(Color.BLACK);
