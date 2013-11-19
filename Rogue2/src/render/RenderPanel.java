@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -23,6 +22,8 @@ public class RenderPanel extends JPanel{
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
     Room[] room = l.getRooms();
+    private final Image img = la.createImage("DungeonFloor216.png","What",32,32);
+    private List<RogueEntity> current = l.getEntities();
     public RenderPanel(){
         l=Rogue.getLevel();
     }
@@ -47,23 +48,25 @@ public class RenderPanel extends JPanel{
      */
     @Override
     public void paint(Graphics g){
+        long timer = System.currentTimeMillis();
         Graphics2D g2 = (Graphics2D) g;
         setReletiveTo(l.getPlayer());
         System.out.println(j++);
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, getWidth(), getHeight());
         room = l.getRooms();
-        List<RogueEntity> current = l.getEntities();
-        Image im = la.createImage("DungeonFloor216.png", "hi").getScaledInstance(32, 32, 0);
+        current = l.getEntities();
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
-                    g2.drawImage(im, area1[0]+offx,area1[1]+offy, this);
+                    g2.drawImage(img, area1[0]*32+offx,area1[1]*32+offy, this);
                 }
             }
         }
         for (int i=0;i<current.size();i++) {
             g2.drawImage(current.get(i).sp.i, current.get(i).x*32+offx, current.get(i).y*32+offy, this);
         }
+        timer=System.currentTimeMillis()-timer;
+        System.out.println((timer/1000)+" Seconds");
     }
 }

@@ -17,7 +17,6 @@ public class Sprite {
     public Sprite(String imdir){
         imdir+=Level.renderlevel+".png";
         LoadArt load = new LoadArt();
-        i=load.createImage(imdir, "Sprite");
-        i=i.getScaledInstance(32, 32, 0);
+        i=load.createImage(imdir, "Sprite",32,32);
     }
 }
