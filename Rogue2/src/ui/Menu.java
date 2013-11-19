@@ -25,7 +25,7 @@ public class Menu extends JFrame{
     
     public static RogueProperties rp;
     
-    private final String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB","invKB"};
+    private final String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
     private int[] propn;
     /**
      * Creates and handles the menus of the game
@@ -76,12 +76,11 @@ public class Menu extends JFrame{
         this.validate();
         this.repaint();
         
-        omp.eatKB.setText(rp.getSettings()[0]);
-        omp.leftKB.setText(rp.getSettings()[1]);
+        omp.fwdKB.setText(rp.getSettings()[0]);
+        omp.backKB.setText(rp.getSettings()[1]);
         omp.rightKB.setText(rp.getSettings()[2]);
-        omp.fwdKB.setText(rp.getSettings()[3]);
+        omp.leftKB.setText(rp.getSettings()[3]);
         omp.spellKB.setText(rp.getSettings()[4]);
-        omp.backKB.setText(rp.getSettings()[5]);
-        // eat, left, right, fwd, spell, back
+        omp.eatKB.setText(rp.getSettings()[5]);
     }
 }
