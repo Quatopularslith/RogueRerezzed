@@ -48,17 +48,17 @@ public class RenderPanel extends JPanel{
     @Override
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-        System.out.println(j++);
         setReletiveTo(l.getPlayer());
+        System.out.println(j++);
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, getWidth(), getHeight());
         room = l.getRooms();
         List<RogueEntity> current = l.getEntities();
-        Image im = la.createImage("DungeonFloor116.png", "hi").getScaledInstance(32, 32, 0);
+        Image im = la.createImage("DungeonFloor216.png", "hi").getScaledInstance(32, 32, 0);
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
-                    g2.drawImage(im, area1[0]*32+offx,area1[1]*32+offy, this);
+                    g2.drawImage(im, area1[0]+offx,area1[1]+offy, this);
                 }
             }
         }

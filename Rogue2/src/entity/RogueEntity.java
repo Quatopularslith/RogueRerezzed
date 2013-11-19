@@ -10,7 +10,7 @@ import render.Sprite;
  * @author Torri
  */
 public class RogueEntity {
-    public int x,y,uuid,rx,ry;
+    public int x,y,uuid;
     public float health;
     public int maxhealth;
     public Item[] inv;
@@ -30,16 +30,13 @@ public class RogueEntity {
      *       180
      */
     public void move(int d){
-        if(d<=45 && d>315){//up
+        if(d<=45 || d>315){//up
             y--;
-        }
-        if(d<=135 && d>45){//right
+        }else if(d<=135 && d>45){//right
             x++;
-        }
-        if(d<=225 && d>135){//down
+        }else if(d<=225 && d>135){//down
             y++;
-        }
-        if(d<=225 && d>=315){//left
+        }else if(d>=225 && d<=315){//left
             x--;
         }
     }
@@ -59,8 +56,6 @@ public class RogueEntity {
         }else if(health<maxhealth){
             health++;
         }
-        rx=x*Level.renderlevel;
-        ry=y*Level.renderlevel;
     }
     /**
      * What to do when this entity dies

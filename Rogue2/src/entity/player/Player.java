@@ -29,14 +29,11 @@ public class Player extends RogueEntity{
     public void turn(){
         if(Rogue.mm.ki.keyBind[0]){//up
             this.move(0);
-        }
-        if(Rogue.mm.ki.keyBind[1]){//down
+        }else if(Rogue.mm.ki.keyBind[1]){//down
             this.move(180);
-        }
-        if(Rogue.mm.ki.keyBind[2]){//right
+        }else if(Rogue.mm.ki.keyBind[2]){//right
             this.move(90);
-        }
-        if(Rogue.mm.ki.keyBind[3]){//left
+        }else if(Rogue.mm.ki.keyBind[3]){//left
             this.move(270);
         }
     }
