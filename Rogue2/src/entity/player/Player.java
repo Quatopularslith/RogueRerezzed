@@ -17,6 +17,8 @@ import render.Sprite;
  * @author Torri
  */
 public class Player extends RogueEntity{
+    boolean attack = false;
+    int att = 100;
     public Player(Level l1){
         super(l1);
         health=100;
@@ -27,14 +29,52 @@ public class Player extends RogueEntity{
     }
     @Override
     public void turn(){
+        if(health>=1 && health<maxhealth){
+            health++;
+        }else{
+            
+        }
+        attack=false;
         if(Rogue.mm.ki.keyBind[0]){//up
-            this.move(0);
+            for(RogueEntity re:l.getEntities()){
+                if(re.x==this.x && re.y==this.y-1){
+                    re.damage(rand.nextInt(att-1)+1);
+                    attack=true;
+                }
+            }
+            if(!attack){
+                this.move(0);
+            }
         }else if(Rogue.mm.ki.keyBind[1]){//down
-            this.move(180);
+            for(RogueEntity re:l.getEntities()){
+                if(re.x==this.x && re.y==this.y+1){
+                    re.damage(rand.nextInt(att));
+                    attack=true;
+                }
+            }
+            if(!attack){
+                this.move(180);
+            }
         }else if(Rogue.mm.ki.keyBind[2]){//right
-            this.move(90);
+            for(RogueEntity re:l.getEntities()){
+                if(re.x==this.x+1 && re.y==this.y){
+                    re.damage(rand.nextInt(att-1)+1);
+                    attack=true;
+                }
+            }
+            if(!attack){
+                this.move(90);
+            }
         }else if(Rogue.mm.ki.keyBind[3]){//left
-            this.move(270);
+            for(RogueEntity re:l.getEntities()){
+                if(re.x==this.x-1 && re.y==this.y){
+                    re.damage(rand.nextInt(att-1)+1);
+                    attack=true;
+                }
+            }
+            if(!attack){
+                this.move(270);
+            }
         }
     }
 }

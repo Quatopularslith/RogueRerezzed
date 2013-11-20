@@ -15,8 +15,8 @@ public class RogueEntity {
     public int maxhealth;
     public Item[] inv;
     public Sprite sp;
-    private Random rand = new Random();
-    private Level l;
+    public Random rand = new Random();
+    public Level l;
     public RogueEntity(Level l1){
         l=l1;
     }
@@ -67,9 +67,9 @@ public class RogueEntity {
      * What to do when this entity dies
      */
     public void death(){
-        for(Item i:inv){
-            i.drop();
-        }
+//        for(Item i:inv){
+//            i.drop();
+//        }
         l.removeEntity(this);
     }
     /**

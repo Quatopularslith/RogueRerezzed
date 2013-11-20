@@ -38,7 +38,7 @@ public class ButtonInput implements ActionListener{
             }
         }
         if(command.equalsIgnoreCase("New Game")){
-            Rogue.setLevel(new Level(20));
+            Rogue.setLevel(new Level(1));
             Rogue.mm.d=new ui.Display();
             Rogue.mm.add(Rogue.mm.d);
             Rogue.mm.d.setSize(750, 500);

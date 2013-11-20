@@ -18,14 +18,23 @@ import render.Sprite;
 public class Snake extends RogueHostileEntity{
     public Snake(int lvl,Room r,Level l1){
         super(l1);
-        health=10*(lvl/4);
-        maxAtt=(lvl);
+        l=l1;
+        health=10*(lvl);
+        maxAtt=lvl+1;
         sp = new Sprite("Snake");
         spawn(r);
     }
     @Override
     public void turn(){
-        this.move(pointTowards(l.getPlayer()));
+        this.move(pointTowards(this.l.getPlayer()));
+        if(health<=0){
+            death();
+        }else if(health<maxhealth){
+            health++;
+        }
+        if((l.getPlayer().x-this.x<=1 && l.getPlayer().y-this.y<=1)&&(-l.getPlayer().x+this.x<=1 && -l.getPlayer().y+this.y<=1)){
+            l.getPlayer().damage(rand.nextInt(maxAtt));
+        }
     }
     public int pointTowards(RogueEntity e){
         double pdir=0;
@@ -33,13 +42,21 @@ public class Snake extends RogueHostileEntity{
         int uy=this.y;
         int ex = e.x;
         int ey = e.y;
-        int m=(ey-uy)/(ex-ux);
+        int m;
+        if(ex!=ux){
+            m =(ey-uy)/(ex-ux);
+        }else{
+            ex++;
+            m =(ey-uy)/(ex-ux);
+        }
         if(ex==ux){
             if(ey>=uy){
                 pdir=90;
             }else{
                 pdir=270;
             }
+        }else if(ey==uy){
+            pdir=180;
         }else{
             if(ex>ux && ey>=uy){//Quad 1
                 pdir=Math.toDegrees(Math.atan(ux));
