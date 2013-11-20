@@ -16,6 +16,7 @@ public class Level {
     private Player p;
     public static int renderlevel;
     private static int rows=10,cols=10;
+    public boolean[][] board;
     /**
      * Number of levels
      */
@@ -51,6 +52,7 @@ public class Level {
      */
     public Level(int sx,int sy,int lvl){
         int roomnum=0;
+        board=new boolean[1000][1000];
         maxRoomSX=(sx/rows);
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
@@ -59,8 +61,8 @@ public class Level {
         rooms=new Room[numRooms];
         renderlevel=Math.round(numLevels/16)*16;
         renderlevel=16;
-        for(int x=0;x<sx-1;x+=maxRoomSX){
-            for(int y=0;y<sy-1;y+=maxRoomSY){
+        for(int x=0;x<sx;x+=maxRoomSX){
+            for(int y=0;y<sy;y+=maxRoomSY){
                 rooms[roomnum]=new Room(x,y,maxRoomSX,maxRoomSY,lvl,this);
                 roomnum++;
             }
@@ -68,6 +70,14 @@ public class Level {
         p=new Player(this);
         this.addEntity(p);
         System.out.println(re.size());
+        for(Room r:rooms){
+            for(int[][] a:r.area){
+                for(int[] a1:a){
+                    System.out.println(a1[0]+","+a1[1]);
+                    board[a1[0]][a1[1]]=true;
+                }
+            }
+        }
         numLevels++;
     }
     /**

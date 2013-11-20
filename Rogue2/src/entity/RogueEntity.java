@@ -30,14 +30,20 @@ public class RogueEntity {
      *       180
      */
     public void move(int d){
+        int dx=0;
+        int dy=0;
         if(d<=45 || d>315){//up
-            y--;
+            dy--;
         }else if(d<=135 && d>45){//right
-            x++;
+            dx++;
         }else if(d<=225 && d>135){//down
-            y++;
+            dy++;
         }else if(d>=225 && d<=315){//left
-            x--;
+            dx--;
+        }
+        if(l.board[dx+x][dy+y]==true){
+            x+=dx;
+            y+=dy;
         }
     }
     /**
@@ -72,6 +78,6 @@ public class RogueEntity {
      */
     public void spawn(Room r){
         x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][0];
-        x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1]++;
+        y=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1];
     }
 }

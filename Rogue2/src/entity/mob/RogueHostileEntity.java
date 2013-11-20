@@ -17,7 +17,6 @@ import java.util.Random;
 public class RogueHostileEntity extends RogueEntity{
     public int maxAtt;
     private Random rand;
-
     public RogueHostileEntity(Level l1) {
         super(l1);
     }

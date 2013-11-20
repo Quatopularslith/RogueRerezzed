@@ -15,14 +15,14 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Torrj
+ * @author Torri
  */
 public class RenderPanel extends JPanel{
     private Level l = Rogue.getLevel();
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
     Room[] room = l.getRooms();
-    private final Image img = la.createImage("DungeonFloor216.png","What",32,32);
+    private final Image img = la.createImage("DungeonFloor116.png","What",32,32);
     private List<RogueEntity> current = l.getEntities();
     public RenderPanel(){
         l=Rogue.getLevel();
