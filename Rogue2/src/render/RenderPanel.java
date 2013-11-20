@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -65,7 +64,7 @@ public class RenderPanel extends JPanel{
             }
         }
         for (int i=0;i<current.size();i++) {
-            g2.drawRect(current.get(i).x*32+offx-10, current.get(i).y*32+offy, 10, 5);
+//            g2.drawRect(current.get(i).x*32+offx-10, current.get(i).y*32+offy, 10, 10);
             g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*32+offx-10, current.get(i).y*32+offy+3);
             g2.drawImage(current.get(i).sp.i, current.get(i).x*32+offx, current.get(i).y*32+offy, this);
         }
