@@ -26,6 +26,7 @@ public class Map extends JPanel{
     LoadArt la= new LoadArt();
     private final Image img = la.createImage("DungeonFloor116.png","What",8,8);
     private final Image pimg = la.createImage("Player16.png","What",8,8);
+    private final Image stimg = la.createImage("Stairway16.png", "d", 8, 8);
     Level l = Rogue.getLevel();
     public void update(){
         repaint();
@@ -48,6 +49,7 @@ public class Map extends JPanel{
                 }
             }
         }
+        g2.drawImage(stimg, l.getStairWay().x*8+offx,l.getStairWay().y*8+offy, this);
         g2.drawImage(pimg,l.getPlayer().x*8+offx,l.getPlayer().y*8+offy,this);
     }
 }

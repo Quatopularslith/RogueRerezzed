@@ -8,10 +8,13 @@ import javax.swing.ImageIcon;
  * @author Torri
  */
 public class LoadArt {
-    public Image createImage(String path,String description) {
+    public Image createImage(String path,String description, int sizeX, int sizeY) {
         java.net.URL imgURL = getClass().getResource(path);
         if (imgURL != null) {
-            return (new ImageIcon(imgURL, description)).getImage();
+            ImageIcon ii = new ImageIcon(imgURL, description);
+            Image i = ii.getImage();
+            i=i.getScaledInstance(sizeY, sizeY, 0);
+            return i;
         } else {
             System.err.println("Couldn't find file: " + path);
             return null;

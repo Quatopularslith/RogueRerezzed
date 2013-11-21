@@ -41,7 +41,6 @@ public class RenderPanel extends JPanel{
             }else if(current.get(i).health<=0){
                 current.get(i).death();
             }else if(current.get(i).health<current.get(i).maxhealth){
-//                current.get(i).health++;
                 current.get(i).turn();
             }else{
                 current.get(i).turn();
@@ -85,5 +84,6 @@ public class RenderPanel extends JPanel{
                 g2.drawImage(deimg, getWidth()/2-50, getHeight()/2-64, this);
             }
         }
+        g2.drawImage(l.getStairWay().sp.i, l.getStairWay().x*64+offx,l.getStairWay().y*64+offy, this);
     }
 }

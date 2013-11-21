@@ -86,7 +86,7 @@ public class Level {
             }
         }
         st = new Stairway(this);
-        this.addEntity(st);
+//        this.addEntity(st);
         numLevels++;
     }
     /**
@@ -138,5 +138,8 @@ public class Level {
      */
     public Player getPlayer(){
         return p;
+    }
+    public Stairway getStairWay(){
+        return st;
     }
 }
