@@ -7,6 +7,7 @@
 package entity;
 
 import dungeon.Level;
+import render.Sprite;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Stairway extends RogueEntity{
     public Stairway(Level l1) {
         super(l1);
         this.spawn(l1.getRoom(rand.nextInt(l1.numRooms)));
+        this.sp = new Sprite("Stairway");
     }
     @Override
     public void turn(){}
