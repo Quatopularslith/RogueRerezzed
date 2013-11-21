@@ -31,6 +31,12 @@ public class Level {
     public int numRooms;
     /**
      * Creates a level
+     */
+    public Level(){
+        this(100,100,numLevels);
+    }
+    /**
+     * Creates a level
      * @param lvl level of difficulty
      */
     public Level(int lvl){

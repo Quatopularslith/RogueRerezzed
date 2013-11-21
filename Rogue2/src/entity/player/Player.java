@@ -10,6 +10,8 @@ import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
+import entity.Stairway;
+import entity.mob.RogueHostileEntity;
 import render.Sprite;
 
 /**
@@ -18,7 +20,7 @@ import render.Sprite;
  */
 public class Player extends RogueEntity{
     boolean attack = false;
-    int att = 100;
+    int att = 5;
     public Player(Level l1){
         super(l1);
         health=100;
@@ -37,9 +39,11 @@ public class Player extends RogueEntity{
         attack=false;
         if(Rogue.mm.ki.keyBind[0]){//up
             for(RogueEntity re:l.getEntities()){
-                if(re.x==this.x && re.y==this.y-1){
-                    re.damage(rand.nextInt(att-1)+1);
+                if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y-1){
+                    re.damage(rand.nextInt(att));
                     attack=true;
+                }else if(re instanceof Stairway){
+                    Rogue.setLevel(new Level());
                 }
             }
             if(!attack){
@@ -47,9 +51,11 @@ public class Player extends RogueEntity{
             }
         }else if(Rogue.mm.ki.keyBind[1]){//down
             for(RogueEntity re:l.getEntities()){
-                if(re.x==this.x && re.y==this.y+1){
+                if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
                     re.damage(rand.nextInt(att));
                     attack=true;
+                }else if(re instanceof Stairway){
+                    Rogue.setLevel(new Level());
                 }
             }
             if(!attack){
@@ -57,9 +63,11 @@ public class Player extends RogueEntity{
             }
         }else if(Rogue.mm.ki.keyBind[2]){//right
             for(RogueEntity re:l.getEntities()){
-                if(re.x==this.x+1 && re.y==this.y){
-                    re.damage(rand.nextInt(att-1)+1);
+                if(re instanceof RogueHostileEntity && re.x==this.x+1 && re.y==this.y){
+                    re.damage(rand.nextInt(att));
                     attack=true;
+                }else if(re instanceof Stairway){
+                    Rogue.setLevel(new Level());
                 }
             }
             if(!attack){
@@ -67,9 +75,11 @@ public class Player extends RogueEntity{
             }
         }else if(Rogue.mm.ki.keyBind[3]){//left
             for(RogueEntity re:l.getEntities()){
-                if(re.x==this.x-1 && re.y==this.y){
-                    re.damage(rand.nextInt(att-1)+1);
+                if(re instanceof RogueHostileEntity && re.x==this.x-1 && re.y==this.y){
+                    re.damage(rand.nextInt(att));
                     attack=true;
+                }else if(re instanceof Stairway){
+                    Rogue.setLevel(new Level());
                 }
             }
             if(!attack){

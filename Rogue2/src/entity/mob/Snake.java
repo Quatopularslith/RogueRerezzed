@@ -20,6 +20,7 @@ public class Snake extends RogueHostileEntity{
         super(l1);
         l=l1;
         health=10*(lvl);
+        this.maxhealth=(int) this.health;
         maxAtt=lvl+1;
         sp = new Sprite("Snake");
         spawn(r);
@@ -27,11 +28,6 @@ public class Snake extends RogueHostileEntity{
     @Override
     public void turn(){
         this.move(pointTowards(this.l.getPlayer()));
-        if(health<=0){
-            death();
-        }else if(health<maxhealth){
-            health++;
-        }
         if((l.getPlayer().x-this.x<=1 && l.getPlayer().y-this.y<=1)&&(-l.getPlayer().x+this.x<=1 && -l.getPlayer().y+this.y<=1)){
             l.getPlayer().damage(rand.nextInt(maxAtt));
         }
