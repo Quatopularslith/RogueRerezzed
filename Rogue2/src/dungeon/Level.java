@@ -2,6 +2,7 @@
 package dungeon;
 
 import entity.RogueEntity;
+import entity.Stairway;
 import entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class Level {
     private Player p;
     public static int renderlevel;
     private static int rows=10,cols=10;
+    private Stairway st;
     public boolean[][] board;
     /**
      * Number of levels
@@ -79,11 +81,12 @@ public class Level {
         for(Room r:rooms){
             for(int[][] a:r.area){
                 for(int[] a1:a){
-                    System.out.println(a1[0]+","+a1[1]);
                     board[a1[0]][a1[1]]=true;
                 }
             }
         }
+        st = new Stairway(this);
+        this.addEntity(st);
         numLevels++;
     }
     /**
