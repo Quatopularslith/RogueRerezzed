@@ -42,9 +42,10 @@ public class Player extends RogueEntity{
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y-1){
                     re.damage(rand.nextInt(att));
                     attack=true;
-                }else if(re instanceof Stairway){
-                    Rogue.setLevel(new Level());
                 }
+            }
+            if(x==l.getStairWay().x&&y==l.getStairWay().y-1){
+                Rogue.setLevel(new Level());
             }
             if(!attack){
                 this.move(0);
@@ -54,9 +55,10 @@ public class Player extends RogueEntity{
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
                     re.damage(rand.nextInt(att));
                     attack=true;
-                }else if(re instanceof Stairway){
-                    Rogue.setLevel(new Level());
                 }
+            }
+            if(x==l.getStairWay().x&&y==l.getStairWay().y+1){
+                Rogue.setLevel(new Level());
             }
             if(!attack){
                 this.move(180);
@@ -66,9 +68,10 @@ public class Player extends RogueEntity{
                 if(re instanceof RogueHostileEntity && re.x==this.x+1 && re.y==this.y){
                     re.damage(rand.nextInt(att));
                     attack=true;
-                }else if(re instanceof Stairway){
-                    Rogue.setLevel(new Level());
                 }
+            }
+            if(x==l.getStairWay().x+1&&y==l.getStairWay().y){
+                Rogue.setLevel(new Level());
             }
             if(!attack){
                 this.move(90);
@@ -78,9 +81,10 @@ public class Player extends RogueEntity{
                 if(re instanceof RogueHostileEntity && re.x==this.x-1 && re.y==this.y){
                     re.damage(rand.nextInt(att));
                     attack=true;
-                }else if(re instanceof Stairway){
-                    Rogue.setLevel(new Level());
                 }
+            }
+            if(x==l.getStairWay().x-1&&y==l.getStairWay().y){
+                Rogue.setLevel(new Level());
             }
             if(!attack){
                 this.move(270);

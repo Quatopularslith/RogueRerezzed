@@ -29,6 +29,7 @@ public class Map extends JPanel{
     private final Image stimg = la.createImage("Stairway16.png", "d", 8, 8);
     Level l = Rogue.getLevel();
     public void update(){
+        l = Rogue.getLevel();
         repaint();
     }
     void setReletiveTo(RogueEntity e){

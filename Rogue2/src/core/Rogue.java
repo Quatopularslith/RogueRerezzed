@@ -17,6 +17,7 @@ public class Rogue {
         mm = new Menu();
     }
     public static Level setLevel(Level l1){
+        System.out.println("New World");
         l=l1;
         return l;
     }
