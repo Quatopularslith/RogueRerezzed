@@ -38,7 +38,8 @@ public class RenderPanel extends JPanel{
         for(int i=0;i<l.getEntities().size();i++){
             if(current.get(i) instanceof Player && current.get(i).health<=0){
                 death=true;
-            }else if(current.get(i).health<=0){
+            }
+            if(current.get(i).health<=0){
                 current.get(i).death();
             }else if(current.get(i).health<current.get(i).maxhealth){
                 current.get(i).turn();
@@ -53,7 +54,6 @@ public class RenderPanel extends JPanel{
         offx=(getWidth()/2)-e.x*64;
         offy=(getHeight()/2)-e.y*64;
     }
-    int j=0;
     /**
      * Paints the world
      * @param g 
@@ -62,7 +62,6 @@ public class RenderPanel extends JPanel{
     public void paint(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
         setReletiveTo(l.getPlayer());
-        System.out.println(j++);
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, getWidth(), getHeight());
         room = l.getRooms();

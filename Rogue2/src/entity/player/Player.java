@@ -20,7 +20,7 @@ import render.Sprite;
  */
 public class Player extends RogueEntity{
     boolean attack = false;
-    int att = 5;
+    int att = 10;
     public Player(Level l1){
         super(l1);
         health=100;
