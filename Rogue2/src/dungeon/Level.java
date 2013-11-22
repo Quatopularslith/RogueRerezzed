@@ -69,7 +69,7 @@ public class Level {
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
         re=new ArrayList<>();
-        rooms=new Room[numRooms];
+        rooms=new Room[numRooms+1];
         renderlevel=Math.round(numLevels/16)*16;
         renderlevel=16;
         for(int x=0;x<sx;x+=maxRoomSX){
@@ -78,6 +78,7 @@ public class Level {
                 roomnum++;
             }
         }
+        rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],100,1,lvl,this);
         p=new Player(this);
         this.addEntity(p);
         System.out.println(re.size());
