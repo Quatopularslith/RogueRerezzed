@@ -25,8 +25,7 @@ public class Snake extends RogueHostileEntity{
         maxAtt=lvl+2;
         sp = new Sprite("Snake");
         inv = new Item[1];
-        inv[0] = new Item(4,l);
-        System.out.println("Snake "+inv[0].id);
+        inv[0] = new Item(rand.nextInt(Item.numid),l);
         spawn(r);
     }
     @Override

@@ -26,8 +26,7 @@ public class Item extends RogueEntity{
     int[] stats;
     public Item(int id1,Level l1) {
         super(l1);
-        id1=id;
-        System.out.println(id1);
+        id=id1;
         if(id!=0){
             name = modifiers[rand.nextInt(modifiers.length)]+names[id];
             cursed = rand.nextBoolean();

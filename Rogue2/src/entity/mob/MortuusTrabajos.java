@@ -25,8 +25,6 @@ public class MortuusTrabajos extends RogueHostileEntity{
         maxAtt=lvl*50;
         sp = new Sprite("MortuusTrabajos");
         inv = new Item[1];
-        inv[0] = new Item(4,l);
-        System.out.println("MortuusTrabajos "+inv[0].id);
         spawn(r);
     }
     @Override
