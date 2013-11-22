@@ -2,7 +2,7 @@
 package entity;
 
 import dungeon.Room;
-//import java.util.Random;
+import java.util.Random;
 
 /**
  *
@@ -10,14 +10,15 @@ import dungeon.Room;
  */
 public class Spawner {
     public static void spawner(int am,int lvl,Room r){
-//        Random rand = new Random();
-//        int type;
+        RogueEntity e = new RogueEntity(r.l);
+        Random rand = new Random();
+        int type = rand.nextInt(2);
         for(int i=0;i<am;i++){
-            RogueEntity e = new entity.mob.Snake(lvl,r,r.l);
-            r.l.addEntity(e);
-        }
-            for(int i=0;i<am;i++){
-            RogueEntity e = new entity.mob.Bandit(lvl,r,r.l);
+            if(type==0){
+                e = new entity.mob.Snake(lvl,r,r.l);
+            }else if(type==1){
+                e = new entity.mob.Bandit(lvl,r,r.l);
+            }
             r.l.addEntity(e);
         }
     }
