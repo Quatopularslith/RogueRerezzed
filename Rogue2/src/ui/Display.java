@@ -39,10 +39,10 @@ public class Display extends javax.swing.JPanel {
         gameplay = gp;
         jTabbedPane1 = new javax.swing.JTabbedPane();
         map = mapp;
-        inventory = invp;
+        stats = s;
         save = new javax.swing.JButton();
         optionsD = new javax.swing.JButton();
-        jPanel1 = s;
+        inventory = invp;
 
         setFont(new java.awt.Font("Hobo Std", 0, 11)); // NOI18N
         setPreferredSize(new java.awt.Dimension(750, 500));
@@ -81,20 +81,20 @@ public class Display extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Map", map);
 
-        inventory.setPreferredSize(new java.awt.Dimension(200, 390));
+        stats.setPreferredSize(new java.awt.Dimension(200, 390));
 
-        javax.swing.GroupLayout inventoryLayout = new javax.swing.GroupLayout(inventory);
-        inventory.setLayout(inventoryLayout);
-        inventoryLayout.setHorizontalGroup(
-            inventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout statsLayout = new javax.swing.GroupLayout(stats);
+        stats.setLayout(statsLayout);
+        statsLayout.setHorizontalGroup(
+            statsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 201, Short.MAX_VALUE)
         );
-        inventoryLayout.setVerticalGroup(
-            inventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        statsLayout.setVerticalGroup(
+            statsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 197, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Inventory", inventory);
+        jTabbedPane1.addTab("Stats", stats);
 
         save.setFont(new java.awt.Font("Hobo Std", 0, 12)); // NOI18N
         save.setText("Save And Quit");
@@ -107,14 +107,14 @@ public class Display extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout inventoryLayout = new javax.swing.GroupLayout(inventory);
+        inventory.setLayout(inventoryLayout);
+        inventoryLayout.setHorizontalGroup(
+            inventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        inventoryLayout.setVerticalGroup(
+            inventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 187, Short.MAX_VALUE)
         );
 
@@ -132,7 +132,7 @@ public class Display extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(optionsD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jTabbedPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(inventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -144,7 +144,7 @@ public class Display extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(inventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(optionsD)
@@ -169,10 +169,10 @@ public class Display extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel gameplay;
     private javax.swing.JPanel inventory;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel map;
     public javax.swing.JButton optionsD;
     public javax.swing.JButton save;
+    private javax.swing.JPanel stats;
     // End of variables declaration//GEN-END:variables
 }

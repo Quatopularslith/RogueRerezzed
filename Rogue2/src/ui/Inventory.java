@@ -6,10 +6,10 @@
 
 package ui;
 
-import dungeon.Level;
+import core.Rogue;
+import entity.item.Item;
 import java.awt.Color;
 import java.awt.Graphics;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -17,12 +17,19 @@ import javax.swing.JPanel;
  * @author Torri
  */
 public class Inventory extends JPanel{
+    int ind = 0;
     public Inventory() {
         this.setVisible(true);
     }
     @Override
     public void paint(Graphics g){
-        g.setColor(Color.red);
-        g.drawString("This is level: "+Level.numLevels, 40, 40);
+        ind = 0;
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, getWidth(), getHeight());
+        g.setColor(Color.BLUE);
+        for(Item i:Rogue.getLevel().getPlayer().inv){
+            g.drawString(i.name, 10, (ind*20)+20);
+            ind++;
+        }
     }
 }

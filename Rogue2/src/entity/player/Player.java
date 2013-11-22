@@ -10,7 +10,7 @@ import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
-import entity.Stairway;
+import entity.item.Item;
 import entity.mob.RogueHostileEntity;
 import render.Sprite;
 
@@ -19,10 +19,20 @@ import render.Sprite;
  * @author Torri
  */
 public class Player extends RogueEntity{
+    public int maxMana;//mana=magic points
+    public int mana;
+    public int kills;
     boolean attack = false;
-    int att = 10;
+    int att = 5;
+    int currinv = 0;
     public Player(Level l1){
         super(l1);
+        inv = new Item[10];
+        for(int i=0;i<inv.length;i++){
+            inv[i]=new Item(0,l);
+        }
+        mana=50;
+        maxMana=100;
         health=100;
         maxhealth=150;
         this.sp = new Sprite("Player");
@@ -31,6 +41,7 @@ public class Player extends RogueEntity{
     }
     @Override
     public void turn(){
+        l=Rogue.getLevel();
         if(health>=1 && health<maxhealth){
             health++;
         }else{
@@ -41,7 +52,14 @@ public class Player extends RogueEntity{
             for(RogueEntity re:l.getEntities()){
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y-1){
                     re.damage(rand.nextInt(att));
+                    if(re.health<=0){
+                        re.death();
+                    }
                     attack=true;
+                }else if(re instanceof Item && re.x==this.x && re.y==this.y-1){
+                    this.inv[currinv]=(Item) re;
+                    currinv++;
+                    re.death();
                 }
             }
             if(!attack){
@@ -51,7 +69,14 @@ public class Player extends RogueEntity{
             for(RogueEntity re:l.getEntities()){
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
                     re.damage(rand.nextInt(att));
+                    if(re.health<=0){
+                        re.death();
+                    }
                     attack=true;
+                }else if(re instanceof Item && re.x==this.x && re.y==this.y+1){
+                    this.inv[currinv]=(Item) re;
+                    currinv++;
+                    re.death();
                 }
             }
             if(!attack){
@@ -61,7 +86,14 @@ public class Player extends RogueEntity{
             for(RogueEntity re:l.getEntities()){
                 if(re instanceof RogueHostileEntity && re.x==this.x+1 && re.y==this.y){
                     re.damage(rand.nextInt(att));
+                    if(re.health<=0){
+                        re.death();
+                    }
                     attack=true;
+                }else if(re instanceof Item && re.x==this.x+1 && re.y==this.y){
+                    this.inv[currinv]=(Item) re;
+                    currinv++;
+                    re.death();
                 }
             }
             if(!attack){
@@ -71,7 +103,14 @@ public class Player extends RogueEntity{
             for(RogueEntity re:l.getEntities()){
                 if(re instanceof RogueHostileEntity && re.x==this.x-1 && re.y==this.y){
                     re.damage(rand.nextInt(att));
+                    if(re.health<=0){
+                        re.death();
+                    }
                     attack=true;
+                }else if(re instanceof Item && re.x==this.x-1 && re.y==this.y){
+                    this.inv[currinv]=(Item) re;
+                    currinv++;
+                    re.death();
                 }
             }
             if(!attack){

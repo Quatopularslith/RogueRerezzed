@@ -9,6 +9,7 @@ package entity.mob;
 import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
+import entity.item.Item;
 import render.Sprite;
 
 /**
@@ -19,10 +20,13 @@ public class Snake extends RogueHostileEntity{
     public Snake(int lvl,Room r,Level l1){
         super(l1);
         l=l1;
-        health=10*(lvl);
+        health=5*(lvl);
         this.maxhealth=(int) this.health;
-        maxAtt=lvl+1;
+        maxAtt=lvl+2;
         sp = new Sprite("Snake");
+        inv = new Item[1];
+        inv[0] = new Item(4,l);
+        System.out.println("Snake "+inv[0].id);
         spawn(r);
     }
     @Override
