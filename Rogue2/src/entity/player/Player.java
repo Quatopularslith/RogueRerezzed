@@ -23,7 +23,7 @@ public class Player extends RogueEntity{
     public int mana;
     public int kills;
     boolean attack = false;
-    int att = 500;
+    int att = 5;
     int currinv = 0;
     public Player(Level l1){
         super(l1);
