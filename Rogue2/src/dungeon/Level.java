@@ -4,6 +4,7 @@ package dungeon;
 import entity.RogueEntity;
 import entity.Stairway;
 import entity.mob.MortuusTrabajos;
+import entity.mob.Quatopularslith;
 import entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +95,9 @@ public class Level {
         
         MortuusTrabajos mt = new MortuusTrabajos(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(mt);
+        
+        Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
+        this.addEntity(qt);
         
         
     }
