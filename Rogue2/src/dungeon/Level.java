@@ -3,15 +3,18 @@ package dungeon;
 
 import entity.RogueEntity;
 import entity.Stairway;
+import entity.mob.MortuusTrabajos;
 import entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
- * 
+ *  
  * @author Torri
  */
 public class Level {
+    private Random rand = new Random();
     private List<RogueEntity> re;
     private Room[] rooms;
     private Player p;
@@ -86,8 +89,12 @@ public class Level {
             }
         }
         st = new Stairway(this);
-//        this.addEntity(st);
+        this.addEntity(st);
         numLevels++;
+        
+        MortuusTrabajos mt = new MortuusTrabajos(lvl,this.rooms[rand.nextInt(rooms.length)],this);
+        this.addEntity(mt);
+        
     }
     /**
      * Gets Room Array
