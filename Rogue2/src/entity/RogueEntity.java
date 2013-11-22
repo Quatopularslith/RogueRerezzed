@@ -10,7 +10,7 @@ import render.Sprite;
  * @author Torri
  */
 public class RogueEntity {
-    public int maxAtt;
+    public int maxAtt,defence=0;
     public int x,y,uuid;
     public float health;
     public int maxhealth;
@@ -52,6 +52,7 @@ public class RogueEntity {
      * @param att 
      */
     public void damage(int att){
+        att-=defence;
         health-=att;
     }
     /**

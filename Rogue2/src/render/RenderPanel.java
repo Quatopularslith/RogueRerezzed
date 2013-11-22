@@ -34,6 +34,7 @@ public class RenderPanel extends JPanel{
      * The core updater
      */
     public void update(){
+        death=false;
         l.getStairWay().turn();
         l=Rogue.getLevel();
         for(int i=0;i<l.getEntities().size();i++){
@@ -52,6 +53,12 @@ public class RenderPanel extends JPanel{
         Rogue.mm.d.s.update();
         Rogue.mm.d.mapp.update();
         repaint();
+        if(Player.dead && death==true){
+            Rogue.mm.mmp.setVisible(true);
+            Rogue.mm.omp.setVisible(false);
+            Rogue.mm.d.setVisible(false);
+            Level.numLevels=0;
+        }
     }
     void setReletiveTo(RogueEntity e){
         offx=(getWidth()/2)-e.x*64;

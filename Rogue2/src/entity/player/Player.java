@@ -19,6 +19,7 @@ import render.Sprite;
  * @author Torri
  */
 public class Player extends RogueEntity{
+    public static boolean dead=false;
     public int maxMana;//mana=magic points
     public int mana;
     public int kills;
@@ -40,8 +41,19 @@ public class Player extends RogueEntity{
         spawn(r);
     }
     @Override
+    public void death(){
+        dead=true;
+    }
+    @Override
     public void turn(){
+        if(health<=0){
+            dead=true;
+        }
         for (Item inv1 : inv) {
+//            this.maxhealth+=inv1.stats[3];
+//            this.maxMana+=inv1.stats[2];
+//            this.defence+=inv1.stats[1];
+//            this.maxAtt+=inv1.stats[0];
             inv1.update();
         }
         l=Rogue.getLevel();
@@ -62,7 +74,7 @@ public class Player extends RogueEntity{
                     attack=true;
                 }else if(re instanceof Item && re.x==this.x && re.y==this.y-1 && inv[currinv]!=(Item) re){
                     this.inv[currinv]=(Item) re;
-                    if(currinv<inv.length-1){
+                    if(currinv<inv.length-1 && inv[currinv].name.equalsIgnoreCase("EMPTY")){
                         currinv++;
                     }
                     re.death();
@@ -84,7 +96,7 @@ public class Player extends RogueEntity{
                     attack=true;
                 }else if(re instanceof Item && re.x==this.x && re.y==this.y+1 && inv[currinv]!=(Item) re){
                     this.inv[currinv]=(Item) re;
-                    if(currinv<inv.length-1){
+                    if(currinv<inv.length-1 && inv[currinv].name.equalsIgnoreCase("EMPTY")){
                         currinv++;
                     }
                     re.death();
@@ -106,7 +118,7 @@ public class Player extends RogueEntity{
                     attack=true;
                 }else if(re instanceof Item && re.x==this.x+1 && re.y==this.y && inv[currinv]!=(Item) re){
                     this.inv[currinv]=(Item) re;
-                    if(currinv<inv.length-1){
+                    if(currinv<inv.length-1 && inv[currinv].name.equalsIgnoreCase("EMPTY")){
                         currinv++;
                     }
                     re.death();
@@ -128,7 +140,7 @@ public class Player extends RogueEntity{
                     attack=true;
                 }else if(re instanceof Item && re.x==this.x-1 && re.y==this.y && inv[currinv]!=(Item) re){
                     this.inv[currinv]=(Item) re;
-                    if(currinv<inv.length-1){
+                    if(currinv<inv.length-1 && inv[currinv].name.equalsIgnoreCase("EMPTY")){
                         currinv++;
                     }
                     re.death();
