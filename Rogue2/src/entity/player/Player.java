@@ -33,7 +33,7 @@ public class Player extends RogueEntity{
         }
         mana=50;
         maxMana=100;
-        health=999999;
+        health=100;
         maxhealth=150;
         this.sp = new Sprite("Player");
         Room r = l1.getRoom(0);

@@ -8,6 +8,7 @@ package entity.item;
 
 import dungeon.Level;
 import entity.RogueEntity;
+import render.Sprite;
 
 
 /**
@@ -27,6 +28,7 @@ public class Item extends RogueEntity{
     public Item(int id1,Level l1) {
         super(l1);
         id=id1;
+        sp=new Sprite("Bag");
         if(id!=0){
             name = modifiers[rand.nextInt(modifiers.length)]+names[id];
             cursed = rand.nextBoolean();
