@@ -22,7 +22,7 @@ public class MortuusTrabajos extends RogueHostileEntity{
         l=l1;
         health=100*(lvl);
         this.maxhealth=(int) this.health;
-        maxAtt=lvl*100;
+        maxAtt=lvl*50;
         sp = new Sprite("MortuusTrabajos");
         inv = new Item[1];
         inv[0] = new Item(4,l);
