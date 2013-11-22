@@ -16,12 +16,16 @@ public class Inventory extends JPanel{
     public Inventory() {
         this.setVisible(true);
     }
+    public void update(){
+        repaint();
+    }
     @Override
     public void paint(Graphics g){
         ind = 0;
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.WHITE);
+        g.drawString("INVENTORY", (getWidth()/2)-45, 20);
         for(Item i:Rogue.getLevel().getPlayer().inv){
             g.drawString(i.name, 10, (ind*20)+40);
             ind++;

@@ -42,12 +42,15 @@ public class RenderPanel extends JPanel{
             }
             if(current.get(i).health<=0){
                 current.get(i).death();
+//                l.removeEntity(current.get(i));
+                continue;
             }else if(current.get(i).health<current.get(i).maxhealth){
                 current.get(i).turn();
             }else{
                 current.get(i).turn();
             }
         }
+        Rogue.mm.d.invp.update();
         Rogue.mm.d.s.update();
         Rogue.mm.d.mapp.update();
         repaint();

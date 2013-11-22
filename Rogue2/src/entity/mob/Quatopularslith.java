@@ -8,7 +8,6 @@ package entity.mob;
 
 import dungeon.Level;
 import dungeon.Room;
-import entity.RogueEntity;
 import entity.item.Item;
 import render.Sprite;
 
@@ -25,7 +24,7 @@ public class Quatopularslith extends RogueHostileEntity{
         maxAtt=lvl*100;
         sp = new Sprite("Quatopularslith");
         inv = new Item[1];
-        inv[0] = new Item(rand.nextInt(Item.numid),l);
+        inv[0] = new Item(rand.nextInt(Item.numid),this,l);
         spawn(r);
     }
     @Override

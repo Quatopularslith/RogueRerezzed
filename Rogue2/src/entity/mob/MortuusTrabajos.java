@@ -25,7 +25,11 @@ public class MortuusTrabajos extends RogueHostileEntity{
         maxAtt=lvl*50;
         sp = new Sprite("MortuusTrabajos");
         inv = new Item[1];
+        inv[0] = new Item(rand.nextInt(Item.numid),this,l);
         spawn(r);
+        for (Item inv1 : inv) {
+            inv1.update();
+        }
     }
     @Override
     public void turn(){

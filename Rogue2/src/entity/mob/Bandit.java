@@ -25,7 +25,11 @@ public class Bandit extends RogueHostileEntity{
         maxAtt=lvl+6;
         sp = new Sprite("Bandit");
         inv = new Item[1];
+        inv[0] = new Item(rand.nextInt(Item.numid),this,l);
         spawn(r);
+        for (Item inv1 : inv) {
+            inv1.update();
+        }
     }
     @Override
     public void turn(){

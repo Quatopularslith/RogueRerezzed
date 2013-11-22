@@ -29,7 +29,7 @@ public class Player extends RogueEntity{
         super(l1);
         inv = new Item[10];
         for(int i=0;i<inv.length;i++){
-            inv[i]=new Item(0,l);
+            inv[i]=new Item(0,this,l);
         }
         mana=50;
         maxMana=100;
@@ -38,6 +38,9 @@ public class Player extends RogueEntity{
         this.sp = new Sprite("Player");
         Room r = l1.getRoom(0);
         spawn(r);
+        for (Item inv1 : inv) {
+            inv1.update();
+        }
     }
     @Override
     public void turn(){
@@ -94,6 +97,9 @@ public class Player extends RogueEntity{
                     }
                     attack=true;
                 }else if(re instanceof Item && re.x==this.x+1 && re.y==this.y){
+                    if(inv[currinv-1]==(Item) re){
+                        continue;
+                    }
                     this.inv[currinv]=(Item) re;
                     currinv++;
                     re.death();
