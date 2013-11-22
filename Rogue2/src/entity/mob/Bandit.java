@@ -16,17 +16,17 @@ import render.Sprite;
  *
  * @author Mnenmenth
  */
-public class MortuusTrabajos extends RogueHostileEntity{
-    public MortuusTrabajos(int lvl,Room r,Level l1){
+public class Bandit extends RogueHostileEntity{
+    public Bandit(int lvl,Room r,Level l1){
         super(l1);
         l=l1;
-        health=100*(lvl);
+        health=20*(lvl);
         this.maxhealth=(int) this.health;
-        maxAtt=lvl*50;
-        sp = new Sprite("MortuusTrabajos");
+        maxAtt=lvl+6;
+        sp = new Sprite("Bandit");
         inv = new Item[1];
         inv[0] = new Item(4,l);
-        System.out.println("MortuusTrabajos "+inv[0].id);
+        System.out.println("Bandit "+inv[0].id);
         spawn(r);
     }
     @Override

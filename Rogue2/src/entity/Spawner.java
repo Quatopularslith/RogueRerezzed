@@ -16,5 +16,9 @@ public class Spawner {
             RogueEntity e = new entity.mob.Snake(lvl,r,r.l);
             r.l.addEntity(e);
         }
+            for(int i=0;i<am;i++){
+            RogueEntity e = new entity.mob.Bandit(lvl,r,r.l);
+            r.l.addEntity(e);
+        }
     }
 }
