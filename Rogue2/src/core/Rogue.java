@@ -2,6 +2,7 @@ package core;
 
 import ui.Menu;
 import dungeon.Level;
+import loading.Loading;
 
 /**
  * @version 0.1
@@ -14,7 +15,7 @@ public class Rogue {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        mm = new Menu();
+        Loading l = new Loading(750);
     }
     public static Level setLevel(Level l1){
         System.out.println("New World "+Level.numLevels);

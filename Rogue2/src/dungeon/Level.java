@@ -72,7 +72,6 @@ public class Level {
         re=new ArrayList<>();
         rooms=new Room[numRooms];
         renderlevel=Math.round(numLevels/16)*16;
-        renderlevel=16;
         for(int x=0;x<sx;x+=maxRoomSX){
             for(int y=0;y<sy;y+=maxRoomSY){
                 rooms[roomnum]=new Room(x,y,maxRoomSX,maxRoomSY,lvl,this);
@@ -89,17 +88,16 @@ public class Level {
                 }
             }
         }
-        st = new Stairway(this);
-        this.addEntity(st);
-        numLevels++;
-        
+                
         MortuusTrabajos mt = new MortuusTrabajos(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(mt);
         
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
         
-        
+        st = new Stairway(this);
+        this.addEntity(st);
+        numLevels++;
     }
     /**
      * Gets Room Array
