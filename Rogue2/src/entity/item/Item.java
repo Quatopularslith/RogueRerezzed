@@ -95,6 +95,6 @@ public class Item extends RogueEntity{
     public void turn(){}
     @Override
     public void death(){
-        this.health=-10000;
+        l.removeEntity(this);
     }
 }
