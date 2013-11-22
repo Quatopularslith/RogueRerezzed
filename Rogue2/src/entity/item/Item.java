@@ -22,7 +22,7 @@ public class Item extends RogueEntity{
     public boolean cursed;
     public int id;
     public static final String[] modifiers = {"","Broken ","Ordinary ","Shattered ","Old ","Healthy ","Magical ","Strong "};
-    public static final String[] names = {"Empty","Sword","Axe","Stick","Shield","Potion"};
+    public static final String[] names = {"Empty","Wood Sword","Wood Axe","Stick","Wood Shield","Potion"};
     public String name;
     //stats in form of
     // Attack,Defence,Mana,Health
@@ -31,13 +31,18 @@ public class Item extends RogueEntity{
         super(l1);
         health=1;
         maxhealth=1;
-        parent = parent1;
+        parent=parent1;
         id=id1;
         sp=new Sprite("Bag");
         modifierid=rand.nextInt(modifiers.length);
         if(id!=0){
             name = modifiers[modifierid]+names[id];
             cursed = rand.nextBoolean();
+            if(id==1){
+                if(modifierid==1){
+//                    stats
+                }
+            }
         }else{
             name = names[0];
         }
@@ -59,6 +64,5 @@ public class Item extends RogueEntity{
     @Override
     public void death(){
         this.health=-10000;
-        l.removeEntity(this);
     }
 }

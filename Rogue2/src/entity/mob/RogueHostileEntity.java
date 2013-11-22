@@ -14,7 +14,6 @@ import entity.RogueEntity;
  * @author Torri
  */
 public class RogueHostileEntity extends RogueEntity{
-    public int maxAtt;
     public RogueHostileEntity(Level l1) {
         super(l1);
     }

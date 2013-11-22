@@ -23,7 +23,6 @@ public class Player extends RogueEntity{
     public int mana;
     public int kills;
     boolean attack = false;
-    int att = 5;
     int currinv = 0;
     public Player(Level l1){
         super(l1);
@@ -31,6 +30,7 @@ public class Player extends RogueEntity{
         for(int i=0;i<inv.length;i++){
             inv[i]=new Item(0,this,l);
         }
+        maxAtt=5;
         mana=50;
         maxMana=100;
         health=100;
@@ -38,31 +38,33 @@ public class Player extends RogueEntity{
         this.sp = new Sprite("Player");
         Room r = l1.getRoom(0);
         spawn(r);
-        for (Item inv1 : inv) {
-            inv1.update();
-        }
     }
     @Override
     public void turn(){
+        for (Item inv1 : inv) {
+            inv1.update();
+        }
         l=Rogue.getLevel();
         if(health>=1 && health<maxhealth){
             health++;
-        }else{
-            
         }
         attack=false;
         if(Rogue.mm.ki.keyBind[0]){//up
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y-1){
-                    re.damage(rand.nextInt(att));
+                    re.damage(rand.nextInt(maxAtt));
                     if(re.health<=0){
+                        mana++;
+                        kills++;
                         re.death();
                     }
                     attack=true;
-                }else if(re instanceof Item && re.x==this.x && re.y==this.y-1){
+                }else if(re instanceof Item && re.x==this.x && re.y==this.y-1 && inv[currinv]!=(Item) re){
                     this.inv[currinv]=(Item) re;
-                    currinv++;
+                    if(currinv<inv.length-1){
+                        currinv++;
+                    }
                     re.death();
                 }
             }
@@ -73,14 +75,18 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
-                    re.damage(rand.nextInt(att));
+                    re.damage(rand.nextInt(maxAtt));
                     if(re.health<=0){
+                        mana++;
+                        kills++;
                         re.death();
                     }
                     attack=true;
-                }else if(re instanceof Item && re.x==this.x && re.y==this.y+1){
+                }else if(re instanceof Item && re.x==this.x && re.y==this.y+1 && inv[currinv]!=(Item) re){
                     this.inv[currinv]=(Item) re;
-                    currinv++;
+                    if(currinv<inv.length-1){
+                        currinv++;
+                    }
                     re.death();
                 }
             }
@@ -91,17 +97,18 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x+1 && re.y==this.y){
-                    re.damage(rand.nextInt(att));
+                    re.damage(rand.nextInt(maxAtt));
                     if(re.health<=0){
+                        mana++;
+                        kills++;
                         re.death();
                     }
                     attack=true;
-                }else if(re instanceof Item && re.x==this.x+1 && re.y==this.y){
-                    if(inv[currinv-1]==(Item) re){
-                        continue;
-                    }
+                }else if(re instanceof Item && re.x==this.x+1 && re.y==this.y && inv[currinv]!=(Item) re){
                     this.inv[currinv]=(Item) re;
-                    currinv++;
+                    if(currinv<inv.length-1){
+                        currinv++;
+                    }
                     re.death();
                 }
             }
@@ -112,14 +119,18 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x-1 && re.y==this.y){
-                    re.damage(rand.nextInt(att));
+                    re.damage(rand.nextInt(maxAtt));
                     if(re.health<=0){
+                        mana++;
+                        kills++;
                         re.death();
                     }
                     attack=true;
-                }else if(re instanceof Item && re.x==this.x-1 && re.y==this.y){
+                }else if(re instanceof Item && re.x==this.x-1 && re.y==this.y && inv[currinv]!=(Item) re){
                     this.inv[currinv]=(Item) re;
-                    currinv++;
+                    if(currinv<inv.length-1){
+                        currinv++;
+                    }
                     re.death();
                 }
             }

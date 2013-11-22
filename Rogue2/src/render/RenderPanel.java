@@ -42,8 +42,6 @@ public class RenderPanel extends JPanel{
             }
             if(current.get(i).health<=0){
                 current.get(i).death();
-//                l.removeEntity(current.get(i));
-                continue;
             }else if(current.get(i).health<current.get(i).maxhealth){
                 current.get(i).turn();
             }else{
@@ -84,9 +82,9 @@ public class RenderPanel extends JPanel{
             g2.setColor(Color.BLACK);
             g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*64+offx+3, current.get(i).y*64+offy+4);
             g2.drawImage(current.get(i).sp.i, current.get(i).x*64+offx, current.get(i).y*64+offy, this);
-            if(current.get(i) instanceof Player && death==true){
-                g2.drawImage(deimg, getWidth()/2-50, getHeight()/2-64, this);
-            }
+        }
+        if(death==true){
+            g2.drawImage(deimg, getWidth()/2-50, getHeight()/2-64, this);
         }
         g2.drawImage(l.getStairWay().sp.i, l.getStairWay().x*64+offx,l.getStairWay().y*64+offy, this);
     }

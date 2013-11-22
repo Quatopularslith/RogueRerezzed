@@ -10,6 +10,7 @@ import render.Sprite;
  * @author Torri
  */
 public class RogueEntity {
+    public int maxAtt;
     public int x,y,uuid;
     public float health;
     public int maxhealth;

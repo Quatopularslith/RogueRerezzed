@@ -22,6 +22,7 @@ public class Level {
     public static int renderlevel;
     private static int rows=10,cols=10;
     private Stairway st;
+    private int nument=0;
     public boolean[][] board;
     /**
      * Number of levels
@@ -97,7 +98,7 @@ public class Level {
         this.addEntity(qt);
         
         st = new Stairway(this);
-        this.addEntity(st);
+//        this.addEntity(st);
         numLevels++;
     }
     /**
@@ -135,6 +136,8 @@ public class Level {
      * @param e the entity to add
      */
     public void addEntity(RogueEntity e){
+        e.uuid=nument;
+        nument++;
         re.add(e);
     }
     /**
