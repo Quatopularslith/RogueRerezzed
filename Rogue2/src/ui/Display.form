@@ -129,7 +129,6 @@
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="invp;"/>
-            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="inventory = new Inventory();"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -180,6 +179,9 @@
       </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="s"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

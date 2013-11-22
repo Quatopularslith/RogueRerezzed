@@ -6,7 +6,11 @@
 
 package ui;
 
-import javax.swing.*;
+import dungeon.Level;
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
@@ -15,8 +19,10 @@ import javax.swing.*;
 public class Inventory extends JPanel{
     public Inventory() {
         this.setVisible(true);
-        JButton button = new JButton();
-        this.add(button);
-        this.setSize(200, 390);
+    }
+    @Override
+    public void paint(Graphics g){
+        g.setColor(Color.red);
+        g.drawString("This is level: "+Level.numLevels, 40, 40);
     }
 }

@@ -6,6 +6,7 @@
 
 package entity;
 
+import core.Rogue;
 import dungeon.Level;
 import render.Sprite;
 
@@ -20,7 +21,11 @@ public class Stairway extends RogueEntity{
         this.sp = new Sprite("Stairway");
     }
     @Override
-    public void turn(){}
+    public void turn(){
+        if(l.getPlayer().x==x&&l.getPlayer().y==y){
+            Rogue.setLevel(new Level());
+        }
+    }
     @Override
     public void death(){}
 }

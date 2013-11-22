@@ -6,12 +6,24 @@
 
 package entity.item;
 
+import dungeon.Level;
+import entity.RogueEntity;
+
 
 /**
  *
  * @author Torri
  */
-public class Item {
+public class Item extends RogueEntity{
+    public boolean cursed;
+    public int id;
+    public String modifiers;
+    //stats in form of
+    // Attack Defence Mana Health
+    int[] stats;
+    public Item(int id1,Level l1) {
+        super(l1);
+    }
     public void drop(){
         
     }

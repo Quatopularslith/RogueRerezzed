@@ -17,8 +17,9 @@ public class Display extends javax.swing.JPanel {
     char[] type;
     int in;
     public Map mapp = new Map();
-    Inventory invp = new Inventory();
+    public Inventory invp = new Inventory();
     public RenderPanel gp = new RenderPanel();
+    public Status s = new Status();
     /**
      * Creates new form TextRender
      */
@@ -39,10 +40,9 @@ public class Display extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         map = mapp;
         inventory = invp;
-        inventory = new Inventory();
         save = new javax.swing.JButton();
         optionsD = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = s;
 
         setFont(new java.awt.Font("Hobo Std", 0, 11)); // NOI18N
         setPreferredSize(new java.awt.Dimension(750, 500));

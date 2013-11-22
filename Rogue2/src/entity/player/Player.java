@@ -44,9 +44,6 @@ public class Player extends RogueEntity{
                     attack=true;
                 }
             }
-            if(x==l.getStairWay().x&&y==l.getStairWay().y-1){
-                Rogue.setLevel(new Level());
-            }
             if(!attack){
                 this.move(0);
             }
@@ -56,9 +53,6 @@ public class Player extends RogueEntity{
                     re.damage(rand.nextInt(att));
                     attack=true;
                 }
-            }
-            if(x==l.getStairWay().x&&y==l.getStairWay().y+1){
-                Rogue.setLevel(new Level());
             }
             if(!attack){
                 this.move(180);
@@ -70,9 +64,6 @@ public class Player extends RogueEntity{
                     attack=true;
                 }
             }
-            if(x==l.getStairWay().x+1&&y==l.getStairWay().y){
-                Rogue.setLevel(new Level());
-            }
             if(!attack){
                 this.move(90);
             }
@@ -82,9 +73,6 @@ public class Player extends RogueEntity{
                     re.damage(rand.nextInt(att));
                     attack=true;
                 }
-            }
-            if(x==l.getStairWay().x-1&&y==l.getStairWay().y){
-                Rogue.setLevel(new Level());
             }
             if(!attack){
                 this.move(270);

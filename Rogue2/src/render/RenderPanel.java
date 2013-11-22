@@ -34,6 +34,7 @@ public class RenderPanel extends JPanel{
      * The core updater
      */
     public void update(){
+        l.getStairWay().turn();
         l=Rogue.getLevel();
         for(int i=0;i<l.getEntities().size();i++){
             if(current.get(i) instanceof Player && current.get(i).health<=0){
@@ -47,6 +48,7 @@ public class RenderPanel extends JPanel{
                 current.get(i).turn();
             }
         }
+        Rogue.mm.d.s.update();
         Rogue.mm.d.mapp.update();
         repaint();
     }
