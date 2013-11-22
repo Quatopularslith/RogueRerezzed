@@ -95,6 +95,7 @@ public class Level {
         MortuusTrabajos mt = new MortuusTrabajos(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(mt);
         
+        
     }
     /**
      * Gets Room Array
