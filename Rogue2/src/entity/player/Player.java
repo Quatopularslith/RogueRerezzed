@@ -49,7 +49,8 @@ public class Player extends RogueEntity{
         }
         attack=false;
         if(Rogue.mm.ki.keyBind[0]){//up
-            for(RogueEntity re:l.getEntities()){
+            for(int i=0;i<l.getEntities().size();i++){
+                RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y-1){
                     re.damage(rand.nextInt(att));
                     if(re.health<=0){
@@ -66,7 +67,8 @@ public class Player extends RogueEntity{
                 this.move(0);
             }
         }else if(Rogue.mm.ki.keyBind[1]){//down
-            for(RogueEntity re:l.getEntities()){
+            for(int i=0;i<l.getEntities().size();i++){
+                RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
                     re.damage(rand.nextInt(att));
                     if(re.health<=0){
@@ -83,7 +85,8 @@ public class Player extends RogueEntity{
                 this.move(180);
             }
         }else if(Rogue.mm.ki.keyBind[2]){//right
-            for(RogueEntity re:l.getEntities()){
+            for(int i=0;i<l.getEntities().size();i++){
+                RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x+1 && re.y==this.y){
                     re.damage(rand.nextInt(att));
                     if(re.health<=0){
@@ -100,7 +103,8 @@ public class Player extends RogueEntity{
                 this.move(90);
             }
         }else if(Rogue.mm.ki.keyBind[3]){//left
-            for(RogueEntity re:l.getEntities()){
+            for(int i=0;i<l.getEntities().size();i++){
+                RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x-1 && re.y==this.y){
                     re.damage(rand.nextInt(att));
                     if(re.health<=0){
