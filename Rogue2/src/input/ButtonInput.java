@@ -8,6 +8,7 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
+import entity.RogueEntity;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import ui.DebugMenu;
@@ -97,6 +98,16 @@ public class ButtonInput implements ActionListener{
                 Rogue.mm.dmp.setVisible(false);
                 Rogue.mm.omp.setVisible(true);
             }
+        }
+        if(command.equalsIgnoreCase("Spawn Entity")){
+            Rogue.mm.dm.chooseEntitySpawn.getSelectedItem();
+            
+        }
+        if(command.equalsIgnoreCase("Spawn Item")){
+            Rogue.mm.dm.chooseItemSpawn.getSelectedItem();
+        }
+        if(command.equalsIgnoreCase("Generate")){
+            Rogue.mm.dm.chooseLvl.getText();
         }
     }
 }

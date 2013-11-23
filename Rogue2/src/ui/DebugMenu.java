@@ -102,8 +102,8 @@ public class DebugMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox chooseEntitySpawn;
     public javax.swing.JButton chooseEntitySpawnBtn;
-    private javax.swing.JComboBox chooseItemSpawn;
-    private javax.swing.JButton chooseItemSpawnBtn;
+    public javax.swing.JComboBox chooseItemSpawn;
+    public javax.swing.JButton chooseItemSpawnBtn;
     public javax.swing.JTextField chooseLvl;
     public javax.swing.JButton chooseLvlBtn;
     private javax.swing.JLabel jLabel2;
