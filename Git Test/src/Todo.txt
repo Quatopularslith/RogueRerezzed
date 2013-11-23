@@ -1,3 +1,0 @@
-Add:
-Classes(Archer, Mage, Alchemist, Knight)
-Companions(Archer,Dog,Cat,Medic,Warrior)
