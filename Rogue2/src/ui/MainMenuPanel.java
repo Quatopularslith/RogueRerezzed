@@ -6,6 +6,9 @@
 
 package ui;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author 1003749
@@ -17,6 +20,8 @@ public class MainMenuPanel extends javax.swing.JPanel {
      */
     public MainMenuPanel() {
         initComponents();
+//        JLabel background = new JLabel(new ImageIcon("RogueLogo.png"));
+//        add(background);
     }
 
     /**
@@ -33,6 +38,7 @@ public class MainMenuPanel extends javax.swing.JPanel {
         loadGame = new javax.swing.JButton();
         options = new javax.swing.JButton();
         quit = new javax.swing.JButton();
+        menuBackgroundTesting = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(750, 500));
 
@@ -51,6 +57,8 @@ public class MainMenuPanel extends javax.swing.JPanel {
         quit.setFont(new java.awt.Font("Hobo Std", 0, 36)); // NOI18N
         quit.setText("Quit");
 
+        menuBackgroundTesting.setText("Don't Touch");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,6 +72,9 @@ public class MainMenuPanel extends javax.swing.JPanel {
                     .addComponent(quit, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(title))
                 .addContainerGap(198, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(menuBackgroundTesting)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,13 +89,15 @@ public class MainMenuPanel extends javax.swing.JPanel {
                 .addComponent(options)
                 .addGap(18, 18, 18)
                 .addComponent(quit)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(menuBackgroundTesting))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton loadGame;
+    public javax.swing.JButton menuBackgroundTesting;
     public javax.swing.JButton newGame;
     public javax.swing.JButton options;
     public javax.swing.JButton quit;
