@@ -10,10 +10,10 @@ import render.Sprite;
  * @author Torri
  */
 public class RogueEntity {
-    public int maxAtt,defence=0;
-    public int x,y,uuid;
-    public float health;
-    public int maxhealth;
+    public int maxAtt=0,defence=0;
+    public int x=0,y=0,uuid=0;
+    public float health=0;
+    public int maxhealth=0;
     public Item[] inv;
     public Sprite sp = new Sprite("Bag");
     public Random rand = new Random();

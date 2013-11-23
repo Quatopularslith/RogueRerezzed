@@ -22,7 +22,7 @@ public class Bandit extends RogueHostileEntity{
         l=l1;
         health=20*(lvl);
         this.maxhealth=(int) this.health;
-        maxAtt=lvl+6;
+        maxAtt=lvl;
         sp = new Sprite("Bandit");
         inv = new Item[1];
         inv[0] = new Item(rand.nextInt(Item.numid),this,l);
