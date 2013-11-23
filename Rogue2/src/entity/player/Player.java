@@ -12,6 +12,8 @@ import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Item;
 import entity.mob.RogueHostileEntity;
+import java.util.ArrayList;
+import java.util.Iterator;
 import render.Sprite;
 
 /**
@@ -46,6 +48,7 @@ public class Player extends RogueEntity{
     }
     @Override
     public void turn(){
+        l=Rogue.getLevel();
         if(health<=0){
             dead=true;
         }
@@ -55,14 +58,23 @@ public class Player extends RogueEntity{
         defence=0;
         for (Item inv1 : inv) {
             this.maxhealth+=inv1.stats[3];
-//            this.maxMana+=inv1.stats[2];
-//            this.defence+=inv1.stats[1];
-//            this.maxAtt+=inv1.stats[0];
+            this.maxMana+=inv1.stats[2];
+            this.defence+=inv1.stats[1];
+            this.maxAtt+=inv1.stats[0];
             inv1.update();
         }
         l=Rogue.getLevel();
         if(health>=1 && health<maxhealth){
             health++;
+        }
+        for (Item i : l.getItems()) {
+            if(i.x==this.x && i.y==this.y && inv[currinv]!=i){
+                this.inv[currinv]=i;
+                if(currinv<inv.length-1 && !inv[currinv].name.equalsIgnoreCase("EMPTY")){
+                    currinv++;
+                }
+                i.death();
+            }
         }
         attack=false;
         if(Rogue.mm.ki.keyBind[0]){//up
@@ -76,15 +88,6 @@ public class Player extends RogueEntity{
                         re.death();
                     }
                     attack=true;
-                }
-            }
-            for(Item i:l.items){
-                if(i.x==this.x && i.y==this.y-1 && inv[currinv]!=i){
-                    this.inv[currinv]=i;
-                    if(currinv<inv.length-1 && !inv[currinv].name.equalsIgnoreCase("EMPTY")){
-                        currinv++;
-                    }
-                    i.death();
                 }
             }
             if(!attack){
@@ -103,15 +106,6 @@ public class Player extends RogueEntity{
                     attack=true;
                 }
             }
-            for(Item i:l.items){
-                if(i.x==this.x && i.y==this.y+1 && inv[currinv]!=i){
-                    this.inv[currinv]=i;
-                    if(currinv<inv.length-1 && !inv[currinv].name.equalsIgnoreCase("EMPTY")){
-                        currinv++;
-                    }
-                    i.death();
-                }
-            }
             if(!attack){
                 this.move(180);
             }
@@ -128,15 +122,6 @@ public class Player extends RogueEntity{
                     attack=true;
                 }
             }
-            for(Item i:l.items){
-                if(i.x==this.x+1 && i.y==this.y && inv[currinv]!=i){
-                    this.inv[currinv]=i;
-                    if(currinv<inv.length-1 && !inv[currinv].name.equalsIgnoreCase("EMPTY")){
-                        currinv++;
-                    }
-                    i.death();
-                }
-            }
             if(!attack){
                 this.move(90);
             }
@@ -151,15 +136,6 @@ public class Player extends RogueEntity{
                         re.death();
                     }
                     attack=true;
-                }
-            }
-            for(Item i:l.items){
-                if(i.x==this.x-1 && i.y==this.y-1 && inv[currinv]!=i){
-                    this.inv[currinv]=i;
-                    if(currinv<inv.length-1 && !inv[currinv].name.equalsIgnoreCase("EMPTY")){
-                        currinv++;
-                    }
-                    i.death();
                 }
             }
             if(!attack){

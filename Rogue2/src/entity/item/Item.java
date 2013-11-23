@@ -85,7 +85,7 @@ public class Item extends RogueEntity{
         this.x=parent.x;
         this.y=parent.y;
         System.out.println("Dropped: "+name+" @ ("+x+","+y+")");
-        l.items.add(this);
+        l.addItem(this);
     }
     public void update(){
         this.x=parent.x;
@@ -93,7 +93,7 @@ public class Item extends RogueEntity{
     }
     @Override
     public void death(){
-        l.items.remove(this);
+        l.removeItem(this);
     }
     @Override
     public void turn(){}

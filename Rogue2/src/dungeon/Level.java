@@ -17,8 +17,8 @@ import java.util.Random;
  */
 public class Level {
     private final Random rand = new Random();
-    private ArrayList<RogueEntity> re =new ArrayList<>();
-    public ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<RogueEntity> re =new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
     private Room[] rooms;
     private Player p;
     public static int renderlevel;
@@ -158,5 +158,14 @@ public class Level {
     }
     public Stairway getStairWay(){
         return st;
+    }
+    public ArrayList<Item> getItems(){
+        return items;
+    }
+    public void addItem(Item i){
+        items.add(i);
+    }
+    public void removeItem(Item i){
+        items.remove(i);
     }
 }
