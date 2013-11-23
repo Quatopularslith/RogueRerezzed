@@ -79,7 +79,7 @@ public class RenderPanel extends JPanel{
             }
         }
         for(Item i:l.items){
-            g2.drawImage(i.sp.i, i.x*16+offx,i.y*16+offy, this);
+            g2.drawImage(i.sp.i, i.x*64+offx+32,i.y*64+offy+32, this);
         }
         for (int i=0;i<current.size();i++) {
             g2.setColor(Color.RED);
