@@ -109,5 +109,9 @@ public class ButtonInput implements ActionListener{
         if(command.equalsIgnoreCase("Generate")){
             Rogue.mm.dm.chooseLvl.getText();
         }
+        if(command.equalsIgnoreCase("Don't Touch")){
+            Rogue.mm.mbt = new MenuBackgroundTest();
+            Rogue.mm.mbt.setVisible(true);
+        }
     }
 }
