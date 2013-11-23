@@ -84,8 +84,10 @@ public class Item extends RogueEntity{
     public void drop(){
         this.x=parent.x;
         this.y=parent.y;
-        System.out.println("Dropped: "+name+" @ ("+x+","+y+")");
-        l.addItem(this);
+        if(this.id!=0){
+            System.out.println("Dropped: "+name+" @ ("+x+","+y+")");
+            l.addItem(this);
+        }
     }
     public void update(){
         this.x=parent.x;
