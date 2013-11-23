@@ -72,11 +72,6 @@ public class RogueEntity {
      * What to do when this entity dies
      */
     public void death(){
-        if(inv!=null){
-            for (Item inv1 : inv) {
-                inv1.drop();
-            }
-        }
         l.removeEntity(this);
     }
     /**

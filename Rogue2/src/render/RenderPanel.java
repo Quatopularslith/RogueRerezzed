@@ -37,7 +37,7 @@ public class RenderPanel extends JPanel{
         death=false;
         l.getStairWay().turn();
         l=Rogue.getLevel();
-        for(int i=0;i<l.getEntities().size();i++){
+        for(int i=0;i<l.getEntities().size()-1;i++){
             if(current.get(i) instanceof Player && current.get(i).health<=0){
                 death=true;
             }
@@ -83,7 +83,7 @@ public class RenderPanel extends JPanel{
                 }
             }
         }
-        for (int i=0;i<current.size();i++) {
+        for (int i=0;i<current.size()-1;i++) {
             g2.setColor(Color.RED);
             g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-10, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
             g2.setColor(Color.BLACK);

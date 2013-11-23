@@ -49,6 +49,10 @@ public class Player extends RogueEntity{
         if(health<=0){
             dead=true;
         }
+        maxAtt=5;
+        maxMana=100;
+        maxhealth=150;
+        defence=0;
         for (Item inv1 : inv) {
             this.maxhealth+=inv1.stats[3];
             this.maxMana+=inv1.stats[2];

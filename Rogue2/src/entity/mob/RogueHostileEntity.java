@@ -8,6 +8,7 @@ package entity.mob;
 
 import dungeon.Level;
 import entity.RogueEntity;
+import entity.item.Item;
 
 /**
  *
@@ -53,5 +54,14 @@ public class RogueHostileEntity extends RogueEntity{
             }
         }
         return (int) pdir;
+    }
+    @Override
+    public void death(){
+        if(inv!=null){
+            for (Item inv1 : inv) {
+                inv1.drop();
+            }
+        }
+        l.removeEntity(this);
     }
 }

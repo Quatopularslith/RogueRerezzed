@@ -93,8 +93,4 @@ public class Item extends RogueEntity{
     }
     @Override
     public void turn(){}
-    @Override
-    public void death(){
-        l.removeEntity(this);
-    }
 }

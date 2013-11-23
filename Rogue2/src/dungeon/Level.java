@@ -137,8 +137,9 @@ public class Level {
      */
     public void addEntity(RogueEntity e){
         e.uuid=nument;
+        re.add(nument,e);
+        re.add(nument+1,new RogueEntity(this));
         nument++;
-        re.add(e);
     }
     /**
      * gets rid of an entity
