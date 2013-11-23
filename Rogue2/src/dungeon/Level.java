@@ -33,7 +33,12 @@ public class Level {
     /**
      * Maximum Room size
      */
-    public int maxRoomSX=0,maxRoomSY=0;
+    public int maxRoomSX=0,
+
+    /**
+     * Maximum Room size
+     */
+    maxRoomSY=0;
     /**
      * Maximum Rooms
      */

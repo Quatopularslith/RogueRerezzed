@@ -25,12 +25,14 @@ public class Player extends RogueEntity{
     public int kills;
     boolean attack = false;
     int currinv = 0;
-    public static Item[] inv;
+    public static Item[] pinv;
     public Player(Level l1){
         super(l1);
-        inv = new Item[10];
-        for(int i=0;i<inv.length;i++){
-            inv[i]=new Item(0,this,l);
+        if(pinv==null){
+            pinv = new Item[10];
+            for(int i=0;i<pinv.length;i++){
+                pinv[i]=new Item(0,this,l);
+            }
         }
         maxAtt=5;
         mana=50;
@@ -55,7 +57,7 @@ public class Player extends RogueEntity{
         maxMana=100;
         maxhealth=150;
         defence=0;
-        for (Item inv1 : inv) {
+        for (Item inv1 : pinv) {
             this.maxhealth+=inv1.stats[3];
             this.maxMana+=inv1.stats[2];
             this.defence+=inv1.stats[1];
@@ -68,9 +70,9 @@ public class Player extends RogueEntity{
         }
         for (int j=0;j<l.getItems().size();j++) {
             Item i = l.getItems().get(j);
-            if(i.x==this.x && i.y==this.y && inv[currinv]!=i){
-                this.inv[currinv]=i;
-                if(currinv<inv.length-1 && !inv[currinv].name.equalsIgnoreCase("EMPTY")){
+            if(i.x==this.x && i.y==this.y && pinv[currinv]!=i){
+                this.pinv[currinv]=i;
+                if(currinv<pinv.length-1 && !pinv[currinv].name.equalsIgnoreCase("EMPTY")){
                     currinv++;
                 }
                 i.death();

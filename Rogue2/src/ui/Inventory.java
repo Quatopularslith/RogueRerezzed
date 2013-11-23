@@ -26,7 +26,7 @@ public class Inventory extends JPanel{
         g.fillRect(0, 0, getWidth(), getHeight());
         g.setColor(Color.WHITE);
         g.drawString("INVENTORY", (getWidth()/2)-45, 20);
-        for(Item i:Player.inv){
+        for(Item i:Player.pinv){
             g.drawString(i.name, 10, (ind*20)+40);
             ind++;
         }

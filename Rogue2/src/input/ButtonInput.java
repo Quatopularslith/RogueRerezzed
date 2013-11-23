@@ -18,7 +18,7 @@ import ui.MenuBackgroundTest;
 
 /**
  *
- * @author Torri & Mnenmenth
+ * @author Torri &  Mnenmenth
  */
 public class ButtonInput implements ActionListener{
     private boolean backtogame;
@@ -42,7 +42,7 @@ public class ButtonInput implements ActionListener{
             }
         }
         if(command.equalsIgnoreCase("New Game")){
-            Player.inv = null;
+            Player.pinv = null;
             Rogue.setLevel(new Level(1));
             Rogue.mm.d=new ui.Display();
             Rogue.mm.add(Rogue.mm.d);
@@ -103,9 +103,7 @@ public class ButtonInput implements ActionListener{
         }
         if(command.equalsIgnoreCase("Enter")){
             String pass = ui.DebugMPassword.dmpass.getText();
-            System.out.println(pass);
             if(pass.equalsIgnoreCase("JigglyMuffin")){
-                System.out.println("jkdagbk");
 //                Rogue.mm.dm = new DebugMenu();
                 Rogue.mm.dmp.setVisible(false);
                 Rogue.mm.omp.setVisible(true);
