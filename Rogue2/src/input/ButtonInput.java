@@ -14,7 +14,7 @@ import ui.Menu;
 
 /**
  *
- * @author Torri
+ * @author Torri & Mnenmenth
  */
 public class ButtonInput implements ActionListener{
     private boolean backtogame;
@@ -86,9 +86,11 @@ public class ButtonInput implements ActionListener{
         if(command.equalsIgnoreCase("Enter")){
             String pass = ui.DebugMPassword.dmpass.getText();
             if(pass.equalsIgnoreCase("JigglyMuffin")){
-                Rogue.mm.dm.setVisible(true);
+             Rogue.mm.dmp.setVisible(true);
+             Rogue.mm.omp.setVisible(false);
             }else{
-             Rogue.mm.dmp.dispose();   
+             Rogue.mm.dmp.setVisible(false);
+             Rogue.mm.omp.setVisible(true);
             }
         }
     }
