@@ -80,5 +80,16 @@ public class ButtonInput implements ActionListener{
         if(command.equalsIgnoreCase("quit")){
             Rogue.mm.dispose();
         }
+        if(command.equalsIgnoreCase("Debug Menu")){
+            Rogue.mm.dmp.setVisible(true);
+        }
+        if(command.equalsIgnoreCase("Enter")){
+            String pass = ui.DebugMPassword.dmpass.getText();
+            if(pass.equalsIgnoreCase("JigglyMuffin")){
+                Rogue.mm.dm.setVisible(true);
+            }else{
+             Rogue.mm.dmp.dispose();   
+            }
+        }
     }
 }
