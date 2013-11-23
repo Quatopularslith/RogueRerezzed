@@ -5,12 +5,11 @@
  */
 
 package ui;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import art.LoadArt;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.Image;
 import javax.swing.*;
+import util.IPanel;
 /**
  *
  * @author Razim
@@ -22,36 +21,24 @@ public class MenuBackgroundTest extends JFrame{
     public JButton options1=new JButton("NEW LEVEL");
     public JButton quit1=new JButton("NEW LEVEL");
     public JLabel title1=new JLabel("NEW LEVEL");
-    public JLabel bg = new JLabel(new ImageIcon("RogueLogo.png"));
+//    public JLabel bg = new JLabel(new ImageIcon("RogueLogo.png"));
+    LoadArt la = new LoadArt();
+    Image img = la.createImage("RogueLogo.png", "Hello", 750, 500);
     public MenuBackgroundTest(){
         super("TEST");
         setLocationRelativeTo(null);
         this.setVisible(true);
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(750, 500);
-        setLayout(new BorderLayout());
-        setContentPane(bg);
-        bg.setLayout(new FlowLayout());
-        bg.add(title1);
-        bg.add(newGame1);
-        bg.add(loadGame1);
-        bg.add(quit1);
-//    public MenuBackgroundTest(){
-//        super("Test");
-//        setLocationRelativeTo(null);
-//        this.setVisible(true);
-//        this.setSize(750, 500);
-//        setLayout(new BorderLayout());
-//	setContentPane(new JLabel(new ImageIcon("RogueLogo.png")));
-//	setLayout(new FlowLayout());
-//	add(newGame1);
-//	add(loadGame1);
-//        add(options1);
-//        add(quit1);
-//    }
-//    @Override
-//    public void paint(Graphics g){
-//        Graphics2D g2 = (Graphics2D) g;
-//        g2.setBackground(Color.yellow);
+        JPanel up = new IPanel(img);
+        up.setLayout(new FlowLayout());
+        up.add(title1);
+        up.add(newGame1);
+        up.add(loadGame1);
+        up.add(quit1);
+        this.add(up);
+        this.setSize(399,399);
+        this.setSize(750, 500);
     }
 }
