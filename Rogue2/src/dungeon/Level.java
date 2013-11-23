@@ -146,7 +146,9 @@ public class Level {
      * @param e the entity to be removed 
      */
     public void removeEntity(RogueEntity e){
-        re.remove(e.uuid-2);
+        if(e.uuid<re.size()){
+            re.remove(e.uuid);
+        }
     }
     /**
      * @return player
