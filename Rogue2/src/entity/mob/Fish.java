@@ -8,7 +8,6 @@ package entity.mob;
 
 import dungeon.Level;
 import dungeon.Room;
-import entity.RogueEntity;
 import entity.item.Item;
 import render.Sprite;
 
@@ -16,7 +15,7 @@ import render.Sprite;
  *
  * @author Mnenmenth
  */
-public class Fish extends RogueEntity{
+public class Fish extends RogueHostileEntity{
     public Fish(int lvl,Room r,Level l1){
         super(l1);
         l=l1;

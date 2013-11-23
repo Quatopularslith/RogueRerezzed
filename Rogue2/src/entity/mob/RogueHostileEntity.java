@@ -23,15 +23,15 @@ public class RogueHostileEntity extends RogueEntity{
     }
     public int pointTowards(RogueEntity e){
         double pdir=0;
-        int ux=this.x;
-        int uy=this.y;
-        int ex = e.x;
-        int ey = e.y;
-        int m;
+        double ux=this.x;
+        double uy=this.y;
+        double ex = e.x;
+        double ey = e.y;
+        double m = 0;
         if(ex!=ux){
             m =(ey-uy)/(ex-ux);
         }else{
-            ex++;
+            ex+=0.1;
             m =(ey-uy)/(ex-ux);
         }
         if(ex==ux){

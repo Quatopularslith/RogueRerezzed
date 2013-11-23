@@ -6,11 +6,11 @@ import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
+import entity.item.Item;
 import entity.player.Player;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -23,7 +23,7 @@ public class RenderPanel extends JPanel{
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
     Room[] room = l.getRooms();
-    private Sprite fsp = new Sprite("DungeonFloor");
+    private Sprite fsp = new Sprite("DungeonFloor1");
     private List<RogueEntity> current = l.getEntities();
     public RenderPanel(){
         l=Rogue.getLevel();
@@ -33,7 +33,6 @@ public class RenderPanel extends JPanel{
      */
     public void update(){
         l=Rogue.getLevel();
-        fsp = new Sprite("DungeonFloor");
         l.getStairWay().turn();
         for(int i=0;i<l.getEntities().size()-1;i++){
             if(current.get(i).health<=0){
@@ -79,14 +78,21 @@ public class RenderPanel extends JPanel{
                 }
             }
         }
-        for (int i=0;i<current.size()-1;i++) {
+        for(Item i:l.items){
+            g2.drawImage(i.sp.i, i.x*16+offx,i.y*16+offy, this);
+        }
+        for (int i=0;i<current.size();i++) {
             g2.setColor(Color.RED);
             g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-10, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
             g2.setColor(Color.BLACK);
             g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*64+offx+3, current.get(i).y*64+offy+4);
             g2.drawImage(current.get(i).sp.i, current.get(i).x*64+offx, current.get(i).y*64+offy, this);
         }
-        g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
+        g2.setColor(Color.RED);
+        g2.fillRect(l.getPlayer().x*64+offx+2, l.getPlayer().y*64+offy-10, (int) ((l.getPlayer().health/l.getPlayer().maxhealth)*61), 20);
+        g2.setColor(Color.BLACK);
+        g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy+4);
         g2.drawImage(l.getStairWay().sp.i, l.getStairWay().x*64+offx,l.getStairWay().y*64+offy, this);
+        g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
     }
 }

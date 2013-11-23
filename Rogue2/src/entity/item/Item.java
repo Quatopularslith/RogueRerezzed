@@ -33,7 +33,7 @@ public class Item extends RogueEntity{
         maxhealth=1;
         parent=parent1;
         id=id1;
-        sp=new Sprite("Bag");
+        sp=new Sprite("Bag",16);
         modifierid=rand.nextInt(modifiers.length);
         if(id!=0){
             name = modifiers[modifierid]+names[id];
@@ -85,11 +85,15 @@ public class Item extends RogueEntity{
         this.x=parent.x;
         this.y=parent.y;
         System.out.println("Dropped: "+name+" @ ("+x+","+y+")");
-        l.addEntity(this);
+        l.items.add(this);
     }
     public void update(){
         this.x=parent.x;
         this.y=parent.y;
+    }
+    @Override
+    public void death(){
+        l.items.remove(this);
     }
     @Override
     public void turn(){}

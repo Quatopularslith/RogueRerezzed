@@ -19,4 +19,9 @@ public class Sprite {
         LoadArt load = new LoadArt();
         i=load.createImage(imdir, "Sprite",64,64);
     }
+    public Sprite(String imdir,int x){
+        imdir+=Level.renderlevel+".png";
+        LoadArt load = new LoadArt();
+        i=load.createImage(imdir, "Sprite",x,x);
+    }
 }

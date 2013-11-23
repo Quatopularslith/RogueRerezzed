@@ -3,6 +3,7 @@ package dungeon;
 
 import entity.RogueEntity;
 import entity.Stairway;
+import entity.item.Item;
 import entity.mob.MortuusTrabajos;
 import entity.mob.Quatopularslith;
 import entity.player.Player;
@@ -15,8 +16,9 @@ import java.util.Random;
  * @author Torri
  */
 public class Level {
-    private Random rand = new Random();
-    private List<RogueEntity> re;
+    private final Random rand = new Random();
+    private ArrayList<RogueEntity> re =new ArrayList<>();
+    public ArrayList<Item> items = new ArrayList<>();
     private Room[] rooms;
     private Player p;
     public static int renderlevel;
@@ -64,12 +66,13 @@ public class Level {
      * @param lvl the level of difficulty
      */
     public Level(int sx,int sy,int lvl){
+        Player.dead=false;
+        nument=0;
         int roomnum=0;
         board=new boolean[1000][1000];
         maxRoomSX=(sx/rows);
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
-        re=new ArrayList<>();
         rooms=new Room[numRooms+1];
         renderlevel=Math.round(numLevels/16)*16;
         renderlevel=16;
@@ -81,7 +84,6 @@ public class Level {
         }
         rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],100,1,lvl,this);
         p=new Player(this);
-//        this.addEntity(p);
         System.out.println(re.size());
         for(Room r:rooms){
             for(int[][] a:r.area){
@@ -98,7 +100,6 @@ public class Level {
         this.addEntity(qt);
         
         st = new Stairway(this);
-//        this.addEntity(st);
         numLevels++;
     }
     /**
@@ -137,8 +138,7 @@ public class Level {
      */
     public void addEntity(RogueEntity e){
         e.uuid=nument;
-        re.add(nument,e);
-        re.add(nument+1,new RogueEntity(this));
+        re.add(e);
         nument++;
     }
     /**
@@ -146,7 +146,7 @@ public class Level {
      * @param e the entity to be removed 
      */
     public void removeEntity(RogueEntity e){
-        re.remove(e.uuid);
+        re.remove(e.uuid-2);
     }
     /**
      * @return player
