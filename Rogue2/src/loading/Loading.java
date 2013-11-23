@@ -20,6 +20,7 @@ public class Loading extends JFrame{
         this.setSize(w,w);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         width=w;
         r=w/4;

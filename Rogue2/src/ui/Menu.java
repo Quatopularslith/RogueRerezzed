@@ -54,14 +54,16 @@ public class Menu extends JFrame{
         omp = new OptionMenuPanel();
         mmp = new MainMenuPanel();
         dmp = new DebugMPassword();
-        dm = new DebugMenu();
         
+        dmp.setVisible(false);
         omp.setVisible(false);
         mmp.setVisible(true);
         
+        dmp.setSize(750, 500);
         omp.setSize(750, 500);
         mmp.setSize(750, 500);
         
+        this.add(dmp);
         this.add(omp);
         this.add(mmp);
         
@@ -77,6 +79,8 @@ public class Menu extends JFrame{
         omp.defaultKB.addActionListener(bi);
         omp.debug.addActionListener(bi);
         
+        dmp.debugPass.addActionListener(bi);
+        
         int[] j = new int[rp.getSettings().length];
         char[] c = new char[j.length];
         for(int i=0;i<j.length;i++){
@@ -84,6 +88,7 @@ public class Menu extends JFrame{
             j[i]=Integer.valueOf(rp.getSettings()[i]);
             c[i]=(char) j[i];
         }
+        
         omp.fwdKB.setText(String.valueOf(c[0]));
         omp.backKB.setText(String.valueOf(c[1]));
         omp.rightKB.setText(String.valueOf(c[2]));

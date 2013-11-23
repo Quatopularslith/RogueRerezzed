@@ -10,6 +10,7 @@ import core.Rogue;
 import dungeon.Level;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import ui.DebugMenu;
 import ui.Menu;
 
 /**
@@ -81,16 +82,20 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.dispose();
         }
         if(command.equalsIgnoreCase("Debug Menu")){
+            Rogue.mm.omp.setVisible(false);
             Rogue.mm.dmp.setVisible(true);
         }
         if(command.equalsIgnoreCase("Enter")){
             String pass = ui.DebugMPassword.dmpass.getText();
+            System.out.println(pass);
             if(pass.equalsIgnoreCase("JigglyMuffin")){
-             Rogue.mm.dmp.setVisible(true);
-             Rogue.mm.omp.setVisible(false);
+                System.out.println("jkdagbk");
+                Rogue.mm.dm = new DebugMenu();
+                Rogue.mm.dmp.setVisible(false);
+                Rogue.mm.omp.setVisible(true);
             }else{
-             Rogue.mm.dmp.setVisible(false);
-             Rogue.mm.omp.setVisible(true);
+                Rogue.mm.dmp.setVisible(false);
+                Rogue.mm.omp.setVisible(true);
             }
         }
     }

@@ -15,7 +15,7 @@ public class RogueEntity {
     public float health;
     public int maxhealth;
     public Item[] inv;
-    public Sprite sp;
+    public Sprite sp = new Sprite("Bag");
     public Random rand = new Random();
     public Level l;
     public RogueEntity(Level l1){
