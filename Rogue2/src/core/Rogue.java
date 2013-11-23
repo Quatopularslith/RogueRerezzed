@@ -5,7 +5,7 @@ import dungeon.Level;
 import loading.Loading;
 
 /**
- * @version 0.1
+ * @version 1.0 POC
  * @author Torri
  */
 public class Rogue {
