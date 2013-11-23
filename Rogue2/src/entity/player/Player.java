@@ -28,6 +28,7 @@ public class Player extends RogueEntity{
     public static Item[] pinv;
     public Player(Level l1){
         super(l1);
+        currinv=0;
         if(pinv==null){
             pinv = new Item[10];
             for(int i=0;i<pinv.length;i++){
