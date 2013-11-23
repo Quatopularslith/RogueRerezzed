@@ -12,8 +12,6 @@ import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Item;
 import entity.mob.RogueHostileEntity;
-import java.util.ArrayList;
-import java.util.Iterator;
 import render.Sprite;
 
 /**
@@ -27,6 +25,7 @@ public class Player extends RogueEntity{
     public int kills;
     boolean attack = false;
     int currinv = 0;
+    public static Item[] inv;
     public Player(Level l1){
         super(l1);
         inv = new Item[10];
@@ -67,7 +66,8 @@ public class Player extends RogueEntity{
         if(health>=1 && health<maxhealth){
             health++;
         }
-        for (Item i : l.getItems()) {
+        for (int j=0;j<l.getItems().size();j++) {
+            Item i = l.getItems().get(j);
             if(i.x==this.x && i.y==this.y && inv[currinv]!=i){
                 this.inv[currinv]=i;
                 if(currinv<inv.length-1 && !inv[currinv].name.equalsIgnoreCase("EMPTY")){

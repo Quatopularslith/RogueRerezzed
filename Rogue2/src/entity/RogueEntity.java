@@ -52,7 +52,11 @@ public class RogueEntity {
      * @param att 
      */
     public void damage(int att){
-        att-=defence;
+        if(defence<=att){
+            att-=defence;
+        }else{
+            att=0;
+        }
         health-=att;
     }
     /**

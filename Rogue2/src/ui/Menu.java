@@ -20,8 +20,8 @@ public class Menu extends JFrame{
     public OptionMenuPanel omp;
     public Display d;
     public DebugMPassword dmp;
-    public DebugMenu dm;
-    public MenuBackgroundTest mbt;
+//    public DebugMenu dm;
+//    public MenuBackgroundTest mbt;
     
     public KeyboardInput ki;
     public ButtonInput bi;
@@ -55,17 +55,17 @@ public class Menu extends JFrame{
         omp = new OptionMenuPanel();
         mmp = new MainMenuPanel();
         dmp = new DebugMPassword();
-        mbt = new MenuBackgroundTest();
+//        mbt = new MenuBackgroundTest();
         
         dmp.setVisible(false);
         omp.setVisible(false);
         mmp.setVisible(true);
-        mbt.setVisible(false);
+//        mbt.setVisible(false);
         
         dmp.setSize(750, 500);
         omp.setSize(750, 500);
         mmp.setSize(750, 500);
-        mbt.setSize(750, 500);
+//        mbt.setSize(750, 500);
         
         this.add(dmp);
         this.add(omp);

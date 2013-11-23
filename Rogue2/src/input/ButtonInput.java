@@ -8,7 +8,8 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
-import entity.RogueEntity;
+import entity.item.Item;
+import entity.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import ui.DebugMenu;
@@ -41,6 +42,7 @@ public class ButtonInput implements ActionListener{
             }
         }
         if(command.equalsIgnoreCase("New Game")){
+            Player.inv = null;
             Rogue.setLevel(new Level(1));
             Rogue.mm.d=new ui.Display();
             Rogue.mm.add(Rogue.mm.d);
@@ -104,7 +106,7 @@ public class ButtonInput implements ActionListener{
             System.out.println(pass);
             if(pass.equalsIgnoreCase("JigglyMuffin")){
                 System.out.println("jkdagbk");
-                Rogue.mm.dm = new DebugMenu();
+//                Rogue.mm.dm = new DebugMenu();
                 Rogue.mm.dmp.setVisible(false);
                 Rogue.mm.omp.setVisible(true);
             }else{
@@ -113,16 +115,16 @@ public class ButtonInput implements ActionListener{
             }
         }
         if(command.equalsIgnoreCase("Spawn Entity")){
-            Rogue.mm.dm.chooseEntitySpawn.getSelectedItem();
+//            Rogue.mm.dm.chooseEntitySpawn.getSelectedItem();
         }
         if(command.equalsIgnoreCase("Spawn Item")){
-            Rogue.mm.dm.chooseItemSpawn.getSelectedItem();
+//            Rogue.mm.dm.chooseItemSpawn.getSelectedItem();
         }
         if(command.equalsIgnoreCase("Generate")){
-            Rogue.mm.dm.chooseLvl.getText();
+//            Rogue.mm.dm.chooseLvl.getText();
         }
         if(command.equalsIgnoreCase("Don't Touch")){
-            Rogue.mm.mbt = new MenuBackgroundTest();
+//            Rogue.mm.mbt = new MenuBackgroundTest();
         }
     }
 }

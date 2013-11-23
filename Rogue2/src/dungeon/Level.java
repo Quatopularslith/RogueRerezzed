@@ -82,7 +82,7 @@ public class Level {
                 roomnum++;
             }
         }
-        rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],100,1,lvl,this);
+        rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],50,3,lvl,this);
         p=new Player(this);
         System.out.println(re.size());
         for(Room r:rooms){
@@ -146,9 +146,7 @@ public class Level {
      * @param e the entity to be removed 
      */
     public void removeEntity(RogueEntity e){
-        if(e.uuid<re.size()){
-            re.remove(e.uuid);
-        }
+        re.set(e.uuid, null);
     }
     /**
      * @return player
