@@ -25,6 +25,7 @@ public class MenuBackgroundTest extends JFrame{
     public JLabel bg = new JLabel(new ImageIcon("RogueLogo.png"));
     public MenuBackgroundTest(){
         super("TEST");
+        setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(750, 500);
@@ -35,10 +36,22 @@ public class MenuBackgroundTest extends JFrame{
         bg.add(newGame1);
         bg.add(loadGame1);
         bg.add(quit1);
-    }
+//    public MenuBackgroundTest(){
+//        super("Test");
+//        setLocationRelativeTo(null);
+//        this.setVisible(true);
+//        this.setSize(750, 500);
+//        setLayout(new BorderLayout());
+//	setContentPane(new JLabel(new ImageIcon("RogueLogo.png")));
+//	setLayout(new FlowLayout());
+//	add(newGame1);
+//	add(loadGame1);
+//        add(options1);
+//        add(quit1);
+//    }
 //    @Override
 //    public void paint(Graphics g){
 //        Graphics2D g2 = (Graphics2D) g;
 //        g2.setBackground(Color.yellow);
-//    }
+    }
 }
