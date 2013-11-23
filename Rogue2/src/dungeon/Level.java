@@ -87,7 +87,7 @@ public class Level {
                 roomnum++;
             }
         }
-        rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],50,3,lvl,this);
+        rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],100,3,lvl,this);
         p=new Player(this);
         System.out.println(re.size());
         for(Room r:rooms){
