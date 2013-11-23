@@ -53,25 +53,25 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.d.setVisible(true);
         }
-        if(command.equalsIgnoreCase("Apply")){
-            char[] inc = {Rogue.mm.omp.fwdKB.getText().toLowerCase().toCharArray()[0],
-                Rogue.mm.omp.backKB.getText().toLowerCase().toCharArray()[0],
-                Rogue.mm.omp.rightKB.getText().toLowerCase().toCharArray()[0],
-                Rogue.mm.omp.leftKB.getText().toLowerCase().toCharArray()[0],
-                Rogue.mm.omp.spellKB.getText().toLowerCase().toCharArray()[0],
-                Rogue.mm.omp.eatKB.getText().toLowerCase().toCharArray()[0]
-            };
-            int[] in = new int[inc.length];
-            for(int i=0;i<in.length;i++){
-                in[i]=(int) inc[i];
-            }
-            String[] s = new String[in.length];
-            for(int i=0;i<in.length;i++){
-                s[i]=Integer.toString(in[i]);
-            }
-            Menu.rp.setData(s);
-            Rogue.mm.ki.checkSettings(Menu.rp.getSettings());
-        }
+//        if(command.equalsIgnoreCase("Apply")){
+//            char[] inc = {Rogue.mm.omp.fwdKB.getText().toLowerCase().toCharArray()[0],
+//                Rogue.mm.omp.backKB.getText().toLowerCase().toCharArray()[0],
+//                Rogue.mm.omp.rightKB.getText().toLowerCase().toCharArray()[0],
+//                Rogue.mm.omp.leftKB.getText().toLowerCase().toCharArray()[0],
+//                Rogue.mm.omp.spellKB.getText().toLowerCase().toCharArray()[0],
+//                Rogue.mm.omp.eatKB.getText().toLowerCase().toCharArray()[0]
+//            };
+//            int[] in = new int[inc.length];
+//            for(int i=0;i<in.length;i++){
+//                in[i]=(int) inc[i];
+//            }
+//            String[] s = new String[in.length];
+//            for(int i=0;i<in.length;i++){
+//                s[i]=Integer.toString(in[i]);
+//            }
+//            Menu.rp.setData(s);
+//            Rogue.mm.ki.checkSettings(Menu.rp.getSettings());
+//        }
         if(command.equalsIgnoreCase("Default Keybinds")){
             Menu.rp.setData(defkeys);
             Rogue.mm.omp.fwdKB.setText("w");

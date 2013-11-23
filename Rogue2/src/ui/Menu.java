@@ -73,7 +73,7 @@ public class Menu extends JFrame{
         
         this.addKeyListener(ki);
         
-        mmp.menuBackgroundTesting.addActionListener(bi);
+//        mmp.menuBackgroundTesting.addActionListener(bi);
         mmp.loadGame.addActionListener(bi);
         mmp.newGame.addActionListener(bi);
         mmp.options.addActionListener(bi);
