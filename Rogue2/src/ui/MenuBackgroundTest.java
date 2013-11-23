@@ -14,11 +14,11 @@ import javax.swing.*;
  */
 //http://java-demos.blogspot.com/2012/09/setting-background-image-in-jframe.html
 public class MenuBackgroundTest extends JFrame{
-    public JButton newGame;
-    public JButton loadGame;
-    public JButton options;
-    public JButton quit;
-    public JLabel title;       
+    public JButton newGame1;
+    public JButton loadGame1;
+    public JButton options1;
+    public JButton quit1;
+    public JLabel title1;       
     public JLabel bg = new JLabel(new ImageIcon("RogueLogo.png"));
     public MenuBackgroundTest(){
         super("Rogue Rerezzed");
@@ -26,10 +26,9 @@ public class MenuBackgroundTest extends JFrame{
         setLayout(new BorderLayout());
         add(bg);
         bg.setLayout(new FlowLayout());
-        bg.add(title);
-        bg.add(newGame);
-        bg.add(loadGame);
-        bg.add(quit);
-//        Please don't touch this file currently Torri
+        bg.add(title1);
+        bg.add(newGame1);
+        bg.add(loadGame1);
+        bg.add(quit1);
     }
 }
