@@ -52,7 +52,17 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.d.setVisible(true);
         }
         if(command.equalsIgnoreCase("Apply")){
-            int[] in = {Rogue.mm.omp.fwdKB.getText().toLowerCase().toCharArray()[0],Rogue.mm.omp.backKB.getText().toLowerCase().toCharArray()[0],Rogue.mm.omp.rightKB.getText().toLowerCase().toCharArray()[0],Rogue.mm.omp.leftKB.getText().toLowerCase().toCharArray()[0],Rogue.mm.omp.spellKB.getText().toLowerCase().toCharArray()[0],Rogue.mm.omp.eatKB.getText().toLowerCase().toCharArray()[0]};
+            char[] inc = {Rogue.mm.omp.fwdKB.getText().toLowerCase().toCharArray()[0],
+                Rogue.mm.omp.backKB.getText().toLowerCase().toCharArray()[0],
+                Rogue.mm.omp.rightKB.getText().toLowerCase().toCharArray()[0],
+                Rogue.mm.omp.leftKB.getText().toLowerCase().toCharArray()[0],
+                Rogue.mm.omp.spellKB.getText().toLowerCase().toCharArray()[0],
+                Rogue.mm.omp.eatKB.getText().toLowerCase().toCharArray()[0]
+            };
+            int[] in = new int[inc.length];
+            for(int i=0;i<in.length;i++){
+                in[i]=(int) inc[i];
+            }
             String[] s = new String[in.length];
             for(int i=0;i<in.length;i++){
                 s[i]=Integer.toString(in[i]);
@@ -72,6 +82,8 @@ public class ButtonInput implements ActionListener{
         }
         if(command.equalsIgnoreCase("save and quit")){
             //TODO some save code
+//            Rogue.mm.dm.dispose();
+//            Rogue.mm.mbt.dispose();
             Rogue.mm.dispose();
         }
         if(command.equalsIgnoreCase("settings")){
@@ -111,7 +123,6 @@ public class ButtonInput implements ActionListener{
         }
         if(command.equalsIgnoreCase("Don't Touch")){
             Rogue.mm.mbt = new MenuBackgroundTest();
-            Rogue.mm.mbt.setVisible(true);
         }
     }
 }
