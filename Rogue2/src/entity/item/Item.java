@@ -36,41 +36,41 @@ public class Item extends RogueEntity{
         sp=new Sprite("Bag",16);
         modifierid=rand.nextInt(modifiers.length);
         if(id!=0){
-            name = modifiers[modifierid]+names[id];
+            name = "Lvl "+Level.numLevels+" "+modifiers[modifierid]+names[id];
             cursed = rand.nextBoolean();
             switch(id){
                 case 1:
-                    stats[0]=5;
+                    stats[0]=(int) (5*(0.4*Level.numLevels));
                     stats[1]=0;
                     stats[2]=0;
                     stats[3]=0;
                 case 2:
-                    stats[0]=2;
+                    stats[0]=(int) (2*(0.4*Level.numLevels));
                     stats[1]=0;
                     stats[2]=0;
                     stats[3]=0;
                 case 3:
-                    stats[0]=1;
+                    stats[0]=(int) (1*(0.4*Level.numLevels));
                     stats[1]=0;
                     stats[2]=0;
                     stats[3]=0;
                 case 4:
                     stats[0]=0;
-                    stats[1]=5;
+                    stats[1]=(int) (5*(0.4*Level.numLevels));
                     stats[2]=0;
                     stats[3]=0;
             }
             switch(modifierid){
                 case 1:
-                    stats[0]-=1;
+                    stats[0]-=(int) (1*(0.4*Level.numLevels));
                 case 3:
-                    stats[1]-=1;
+                    stats[1]-=(int) (1*(0.4*Level.numLevels));
                 case 5:
-                    stats[3]+=3;
+                    stats[3]+=(int) (1*(1.4*Level.numLevels));
                 case 6:
-                    stats[2]+=1;
+                    stats[2]+=(int) (1*(0.4*Level.numLevels));
                 case 7:
-                    stats[0]+=10;
+                    stats[0]+=(int) (5*(0.4*Level.numLevels));
             }
         }else{
             name = names[0];
