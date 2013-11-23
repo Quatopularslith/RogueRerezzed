@@ -81,7 +81,7 @@ public class Level {
         }
         rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],100,1,lvl,this);
         p=new Player(this);
-        this.addEntity(p);
+//        this.addEntity(p);
         System.out.println(re.size());
         for(Room r:rooms){
             for(int[][] a:r.area){

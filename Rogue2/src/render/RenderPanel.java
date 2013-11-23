@@ -19,13 +19,11 @@ import javax.swing.JPanel;
  * @author Torri
  */
 public class RenderPanel extends JPanel{
-    boolean death=false;
     private Level l = Rogue.getLevel();
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
     Room[] room = l.getRooms();
-    private final Image img = la.createImage("DungeonFloor116.png","What",64,64);
-    private final Image deimg = la.createImage("RogueLogo.png", "yuo", 64, 200);
+    private Sprite fsp = new Sprite("DungeonFloor");
     private List<RogueEntity> current = l.getEntities();
     public RenderPanel(){
         l=Rogue.getLevel();
@@ -34,13 +32,10 @@ public class RenderPanel extends JPanel{
      * The core updater
      */
     public void update(){
-        death=false;
-        l.getStairWay().turn();
         l=Rogue.getLevel();
+        fsp = new Sprite("DungeonFloor");
+        l.getStairWay().turn();
         for(int i=0;i<l.getEntities().size()-1;i++){
-            if(current.get(i) instanceof Player && current.get(i).health<=0){
-                death=true;
-            }
             if(current.get(i).health<=0){
                 current.get(i).death();
             }else if(current.get(i).health<current.get(i).maxhealth){
@@ -49,11 +44,12 @@ public class RenderPanel extends JPanel{
                 current.get(i).turn();
             }
         }
+        l.getPlayer().turn();
         Rogue.mm.d.invp.update();
         Rogue.mm.d.s.update();
         Rogue.mm.d.mapp.update();
         repaint();
-        if(Player.dead && death==true){
+        if(Player.dead){
             Rogue.mm.mmp.setVisible(true);
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.d.setVisible(false);
@@ -79,7 +75,7 @@ public class RenderPanel extends JPanel{
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
-                    g2.drawImage(img, area1[0]*64+offx,area1[1]*64+offy, this);
+                    g2.drawImage(fsp.i, area1[0]*64+offx,area1[1]*64+offy, this);
                 }
             }
         }
@@ -90,9 +86,7 @@ public class RenderPanel extends JPanel{
             g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*64+offx+3, current.get(i).y*64+offy+4);
             g2.drawImage(current.get(i).sp.i, current.get(i).x*64+offx, current.get(i).y*64+offy, this);
         }
-        if(death==true){
-            g2.drawImage(deimg, getWidth()/2-50, getHeight()/2-64, this);
-        }
+        g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
         g2.drawImage(l.getStairWay().sp.i, l.getStairWay().x*64+offx,l.getStairWay().y*64+offy, this);
     }
 }
