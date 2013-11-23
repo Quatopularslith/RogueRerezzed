@@ -6,6 +6,9 @@
 
 package ui;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author 1003749
@@ -17,6 +20,8 @@ public class MainMenuPanel extends javax.swing.JPanel {
      */
     public MainMenuPanel() {
         initComponents();
+//        JLabel background = new JLabel(new ImageIcon("RogueLogo.png"));
+//        add(background);
     }
 
     /**

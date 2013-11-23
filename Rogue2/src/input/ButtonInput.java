@@ -101,7 +101,6 @@ public class ButtonInput implements ActionListener{
         }
         if(command.equalsIgnoreCase("Spawn Entity")){
             Rogue.mm.dm.chooseEntitySpawn.getSelectedItem();
-            
         }
         if(command.equalsIgnoreCase("Spawn Item")){
             Rogue.mm.dm.chooseItemSpawn.getSelectedItem();
