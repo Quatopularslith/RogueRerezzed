@@ -45,6 +45,7 @@ public class OptionMenuPanel extends javax.swing.JPanel {
         apply = new javax.swing.JButton();
         defaultKB = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        debug = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -94,6 +95,14 @@ public class OptionMenuPanel extends javax.swing.JPanel {
             }
         });
 
+        debug.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
+        debug.setText("Debug Menu");
+        debug.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                debugActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,11 +141,15 @@ public class OptionMenuPanel extends javax.swing.JPanel {
                             .addComponent(rightKB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(spellKB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(58, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(debug)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(141, Short.MAX_VALUE)
+                .addContainerGap(139, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -179,7 +192,9 @@ public class OptionMenuPanel extends javax.swing.JPanel {
                                 .addComponent(defaultKB)
                                 .addGap(18, 18, 18)
                                 .addComponent(back)))))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(debug)
+                .addGap(81, 81, 81))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -187,11 +202,16 @@ public class OptionMenuPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_backActionPerformed
 
+    private void debugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debugActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_debugActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton apply;
     public javax.swing.JButton back;
     public javax.swing.JFormattedTextField backKB;
+    public javax.swing.JButton debug;
     public javax.swing.JButton defaultKB;
     public javax.swing.JFormattedTextField eatKB;
     public javax.swing.JFormattedTextField fwdKB;

@@ -19,6 +19,8 @@ public class Menu extends JFrame{
     public MainMenuPanel mmp;
     public OptionMenuPanel omp;
     public Display d;
+    public DebugMPassword dmp;
+    public DebugMenu dm;
     
     public KeyboardInput ki;
     public ButtonInput bi;
@@ -51,6 +53,8 @@ public class Menu extends JFrame{
         
         omp = new OptionMenuPanel();
         mmp = new MainMenuPanel();
+        dmp = new DebugMPassword();
+        dm = new DebugMenu();
         
         omp.setVisible(false);
         mmp.setVisible(true);
@@ -71,6 +75,7 @@ public class Menu extends JFrame{
         omp.apply.addActionListener(bi);
         omp.back.addActionListener(bi);
         omp.defaultKB.addActionListener(bi);
+        omp.debug.addActionListener(bi);
         
         int[] j = new int[rp.getSettings().length];
         char[] c = new char[j.length];
