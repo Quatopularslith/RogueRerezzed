@@ -81,7 +81,7 @@ public class RenderPanel extends JPanel{
             }
         }
         for(Item i:l.getItems()){
-            g2.drawImage(i.sp.i, i.x*64+offx+32,i.y*64+offy+32, this);
+            g2.drawImage(i.sp.i, i.x*64+offx+i.ofx,i.y*64+offy+i.ofy, this);
         }
         for (int i=0;i<current.size();i++) {
             if(current.get(i)!=null){
