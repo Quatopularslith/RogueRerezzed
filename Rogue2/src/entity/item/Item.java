@@ -16,7 +16,7 @@ import render.Sprite;
  * @author Torri
  */
 public class Item extends RogueEntity{
-    public int ofx=rand.nextInt(64),ofy=rand.nextInt(64);
+    public int ofx=rand.nextInt(42),ofy=rand.nextInt(42);
     private final RogueEntity parent;
     public int modifierid;
     public static int numid = 5;
