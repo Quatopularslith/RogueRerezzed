@@ -82,8 +82,10 @@ public class Level {
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
         rooms=new Room[numRooms+1];
-        renderlevel=(numLevels%16)*16;
-        renderlevel=(numLevels%4)*16;
+        renderlevel=Math.round(numLevels/5)*16;
+        if(renderlevel>16){
+            renderlevel=16;
+        }
         RenderPanel.fsp=new Sprite("DungeonFloor1");
         Map.img=new Sprite("DungeonFloor1",8);
         Map.pimg=new Sprite("Player",8);

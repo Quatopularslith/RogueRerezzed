@@ -13,9 +13,6 @@ public class RogueHostileEntity extends RogueEntity{
     public RogueHostileEntity(Level l1) {
         super(l1);
     }
-    public void att(RogueEntity e){
-        e.damage(rand.nextInt(maxAtt));
-    }
     @Override
     public void turn(){
         this.move(pointTowards(this.l.getPlayer()));
@@ -49,7 +46,12 @@ public class RogueHostileEntity extends RogueEntity{
         return (int) pdir;
     }
     public boolean doatt(RogueEntity e){
-        return ((x-1==e.x || x+1==e.x) && (y-1==e.y || y+1==e.y));
+        int dx = Math.abs(x-e.x);
+        int dy = Math.abs(y-e.y);
+        boolean bx = dx==1 || dx==0;
+        boolean by = dy==1 || dy==0;
+        boolean out = (bx && by);
+        return out;
     }
     @Override
     public void death(){

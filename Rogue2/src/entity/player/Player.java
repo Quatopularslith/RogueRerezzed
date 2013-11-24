@@ -36,11 +36,11 @@ public class Player extends RogueEntity{
             }
         }
         defence=0;
-        maxAtt=5;
+        maxAtt=2;
         mana=50;
         maxMana=100;
-        health=150;
-        maxhealth=150;
+        health=100;
+        maxhealth=100;
         this.sp = new Sprite("Player");
         Room r = l1.getRoom(0);
         spawn(r);
@@ -55,9 +55,9 @@ public class Player extends RogueEntity{
         if(health<=0){
             dead=true;
         }
-        maxAtt=5;
+        maxAtt=2;
         maxMana=100;
-        maxhealth=150;
+        maxhealth=100;
         defence=0;
         for (Item inv1 : pinv) {
             this.maxhealth+=inv1.stats[3];
