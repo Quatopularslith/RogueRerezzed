@@ -10,6 +10,9 @@ import entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import render.RenderPanel;
+import render.Sprite;
+import ui.Map;
 
 /**
  *  
@@ -80,8 +83,11 @@ public class Level {
         numRooms=(rows)*(cols);
         rooms=new Room[numRooms+1];
         renderlevel=(numLevels%16)*16;
-        renderlevel=(numLevels%2)*16;
-//        renderlevel=16;
+        renderlevel=(numLevels%4)*16;
+        RenderPanel.fsp=new Sprite("DungeonFloor1");
+        Map.img=new Sprite("DungeonFloor1",8);
+        Map.pimg=new Sprite("Player",8);
+        Map.stimg=new Sprite("Stairway",8);
         for(int x=0;x<sx;x+=maxRoomSX){
             for(int y=0;y<sy;y+=maxRoomSY){
                 rooms[roomnum]=new Room(x,y,maxRoomSX,maxRoomSY,lvl,this);

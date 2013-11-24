@@ -8,7 +8,6 @@ package entity.mob;
 
 import dungeon.Level;
 import dungeon.Room;
-import entity.RogueEntity;
 import entity.item.Item;
 import render.Sprite;
 
@@ -29,13 +28,6 @@ public class Snake extends RogueHostileEntity{
         spawn(r);
         for (Item inv1 : inv) {
             inv1.update();
-        }
-    }
-    @Override
-    public void turn(){
-        this.move(pointTowards(this.l.getPlayer()));
-        if(doatt(l.getPlayer())){
-            l.getPlayer().damage(rand.nextInt(maxAtt));
         }
     }
 }

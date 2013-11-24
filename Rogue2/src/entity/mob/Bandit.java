@@ -30,11 +30,4 @@ public class Bandit extends RogueHostileEntity{
             inv1.update();
         }
     }
-    @Override
-    public void turn(){
-        this.move(this.pointTowards(this.l.getPlayer()));
-        if(doatt(l.getPlayer())){
-            l.getPlayer().damage(rand.nextInt(maxAtt));
-        }
-    }
 }

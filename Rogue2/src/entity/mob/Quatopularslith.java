@@ -26,12 +26,8 @@ public class Quatopularslith extends RogueHostileEntity{
         inv = new Item[1];
         inv[0] = new Item(rand.nextInt(Item.numid),this,l);
         spawn(r);
-    }
-    @Override
-    public void turn(){
-        this.move(pointTowards(this.l.getPlayer()));
-        if(doatt(l.getPlayer())){
-            l.getPlayer().damage(rand.nextInt(maxAtt));
+        for (Item inv1 : inv) {
+            inv1.update();
         }
     }
 }

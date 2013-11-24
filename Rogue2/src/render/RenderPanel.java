@@ -23,7 +23,7 @@ public class RenderPanel extends JPanel{
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
     Room[] room = l.getRooms();
-    private Sprite fsp = new Sprite("DungeonFloor1");
+    public static Sprite fsp = new Sprite("DungeonFloor1");
     private List<RogueEntity> current = l.getEntities();
     public RenderPanel(){
         l=Rogue.getLevel();
@@ -32,15 +32,14 @@ public class RenderPanel extends JPanel{
      * The core updater
      */
     public void update(){
-        fsp=new Sprite("DungeonFloor1");
         l=Rogue.getLevel();
         l.getStairWay().turn();
         for(int i=0;i<l.getEntities().size()-1;i++){
-            if(l.getEntities().get(i) != null && l.getEntities().get(i).health != 0){
-                if(current.get(i).health<=0){
-                    current.get(i).death();
+            if(l.getEntities().get(i) != null){
+                if(l.getEntities().get(i).health<=0){
+                    l.getEntities().get(i).death();
                 }else{
-                    current.get(i).turn();
+                    l.getEntities().get(i).turn();
                 }
             }
         }

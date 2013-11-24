@@ -6,7 +6,6 @@
 
 package ui;
 
-import art.LoadArt;
 import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
@@ -14,8 +13,8 @@ import entity.RogueEntity;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import javax.swing.JPanel;
+import render.Sprite;
 
 /**
  *
@@ -23,10 +22,9 @@ import javax.swing.JPanel;
  */
 public class Map extends JPanel{
     int offx=0,offy=0;
-    LoadArt la= new LoadArt();
-    private final Image img = la.createImage("DungeonFloor116.png","What",8,8);
-    private final Image pimg = la.createImage("Player16.png","What",8,8);
-    private final Image stimg = la.createImage("Stairway16.png", "d", 8, 8);
+    public static Sprite img=new Sprite("DungeonFloor1",8);
+    public static Sprite pimg=new Sprite("Player",8);
+    public static Sprite stimg=new Sprite("Stairway",8);
     Level l = Rogue.getLevel();
     public void update(){
         l = Rogue.getLevel();
@@ -46,11 +44,11 @@ public class Map extends JPanel{
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
-                    g2.drawImage(img, area1[0]*8+offx,area1[1]*8+offy, this);
+                    g2.drawImage(img.i, area1[0]*8+offx,area1[1]*8+offy, this);
                 }
             }
         }
-        g2.drawImage(stimg, l.getStairWay().x*8+offx,l.getStairWay().y*8+offy, this);
-        g2.drawImage(pimg,l.getPlayer().x*8+offx,l.getPlayer().y*8+offy,this);
+        g2.drawImage(stimg.i, l.getStairWay().x*8+offx,l.getStairWay().y*8+offy, this);
+        g2.drawImage(pimg.i,l.getPlayer().x*8+offx,l.getPlayer().y*8+offy,this);
     }
 }

@@ -16,6 +16,13 @@ public class RogueHostileEntity extends RogueEntity{
     public void att(RogueEntity e){
         e.damage(rand.nextInt(maxAtt));
     }
+    @Override
+    public void turn(){
+        this.move(pointTowards(this.l.getPlayer()));
+        if(doatt(l.getPlayer())){
+            l.getPlayer().damage(rand.nextInt(maxAtt));
+        }
+    }
     public int pointTowards(RogueEntity e){
         double pdir=0;
         double ux=this.x;

@@ -30,11 +30,4 @@ public class MortuusTrabajos extends RogueHostileEntity{
             inv1.update();
         }
     }
-    @Override
-    public void turn(){
-        this.move(pointTowards(this.l.getPlayer()));
-        if(doatt(l.getPlayer())){
-            l.getPlayer().damage(rand.nextInt(maxAtt));
-        }
-    }
 }
