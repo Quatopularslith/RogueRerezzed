@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package entity.mob;
 
@@ -27,21 +22,12 @@ public class RogueHostileEntity extends RogueEntity{
         double uy=this.y;
         double ex = e.x;
         double ey = e.y;
-        double m = 0;
-        if(ex!=ux){
-            m =(ey-uy)/(ex-ux);
-        }else{
-            ex+=0.1;
-            m =(ey-uy)/(ex-ux);
-        }
         if(ex==ux){
-            if(ey>=uy){
-                pdir=90;
+            if(ey>uy){
+                pdir=180;
             }else{
-                pdir=270;
+                pdir=0;
             }
-        }else if(ey==uy){
-            pdir=180;
         }else{
             if(ex>ux && ey>=uy){//Quad 1
                 pdir=Math.toDegrees(Math.atan(ux));
@@ -54,6 +40,9 @@ public class RogueHostileEntity extends RogueEntity{
             }
         }
         return (int) pdir;
+    }
+    public boolean doatt(RogueEntity e){
+        return ((x-1==e.x || x+1==e.x) && (y-1==e.y || y+1==e.y));
     }
     @Override
     public void death(){

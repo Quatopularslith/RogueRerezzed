@@ -42,6 +42,18 @@ public class RogueEntity {
         }else if(d>=225 && d<=315){//left
             dx--;
         }
+        for(RogueEntity re:l.getEntities()){
+            if(re != null){
+                if(re.x==x+dx && re.y==y+dy){
+                    dx=0;
+                    dy=0;
+                }
+            }
+        }
+        if(l.getPlayer().x==x+dx && l.getPlayer().y==y+dy){
+            dx=0;
+            dy=0;
+        }
         if(l.board[dx+x][dy+y]==true){
             x+=dx;
             y+=dy;
@@ -52,7 +64,7 @@ public class RogueEntity {
      * @param att 
      */
     public void damage(int att){
-        if(defence<=att){
+        if(defence<att){
             att-=defence;
         }else{
             att=0;

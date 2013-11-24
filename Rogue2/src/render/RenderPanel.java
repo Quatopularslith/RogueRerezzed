@@ -35,11 +35,9 @@ public class RenderPanel extends JPanel{
         l=Rogue.getLevel();
         l.getStairWay().turn();
         for(int i=0;i<l.getEntities().size()-1;i++){
-            if(l.getEntities().get(i)!=null){
+            if(l.getEntities().get(i) != null && l.getEntities().get(i).health != 0){
                 if(current.get(i).health<=0){
                     current.get(i).death();
-                }else if(current.get(i).health<current.get(i).maxhealth){
-                    current.get(i).turn();
                 }else{
                     current.get(i).turn();
                 }

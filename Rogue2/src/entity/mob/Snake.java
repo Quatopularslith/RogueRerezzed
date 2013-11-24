@@ -22,7 +22,7 @@ public class Snake extends RogueHostileEntity{
         l=l1;
         health=5*(lvl);
         this.maxhealth=(int) this.health;
-        maxAtt=lvl+2;
+        maxAtt=lvl+5;
         sp = new Sprite("Snake");
         inv = new Item[1];
         inv[0] = new Item(rand.nextInt(Item.numid),this,l);
@@ -34,7 +34,7 @@ public class Snake extends RogueHostileEntity{
     @Override
     public void turn(){
         this.move(pointTowards(this.l.getPlayer()));
-        if((l.getPlayer().x-this.x<=1 && l.getPlayer().y-this.y<=1)&&(-l.getPlayer().x+this.x<=1 && -l.getPlayer().y+this.y<=1)){
+        if(doatt(l.getPlayer())){
             l.getPlayer().damage(rand.nextInt(maxAtt));
         }
     }

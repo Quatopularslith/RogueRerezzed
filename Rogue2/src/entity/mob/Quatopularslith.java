@@ -30,7 +30,7 @@ public class Quatopularslith extends RogueHostileEntity{
     @Override
     public void turn(){
         this.move(pointTowards(this.l.getPlayer()));
-        if((l.getPlayer().x-this.x<=1 && l.getPlayer().y-this.y<=1)&&(-l.getPlayer().x+this.x<=1 && -l.getPlayer().y+this.y<=1)){
+        if(doatt(l.getPlayer())){
             l.getPlayer().damage(rand.nextInt(maxAtt));
         }
     }

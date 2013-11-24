@@ -22,7 +22,7 @@ public class Player extends RogueEntity{
     public static boolean dead=false;
     public int maxMana;//mana=magic points
     public int mana;
-    public int kills;
+    public static int kills;
     boolean attack = false;
     int currinv = 0;
     public static Item[] pinv;
@@ -35,10 +35,11 @@ public class Player extends RogueEntity{
                 pinv[i]=new Item(0,this,l);
             }
         }
+        defence=0;
         maxAtt=5;
         mana=50;
         maxMana=100;
-        health=100;
+        health=150;
         maxhealth=150;
         this.sp = new Sprite("Player");
         Room r = l1.getRoom(0);
@@ -66,9 +67,6 @@ public class Player extends RogueEntity{
             inv1.update();
         }
         l=Rogue.getLevel();
-        if(health>=1 && health<maxhealth){
-            health++;
-        }
         for (int j=0;j<l.getItems().size();j++) {
             Item i = l.getItems().get(j);
             if(i.x==this.x && i.y==this.y && pinv[currinv]!=i){

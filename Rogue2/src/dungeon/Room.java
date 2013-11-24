@@ -1,7 +1,6 @@
 
 package dungeon;
 
-import core.Rogue;
 import entity.Spawner;
 import java.util.Random;
 
@@ -10,7 +9,7 @@ import java.util.Random;
  * @author Torri
  */
 public class Room {
-    private Random rand;
+    private final Random rand = new Random();
     public int[][][] area;
     public Level l;
     /**
@@ -23,7 +22,6 @@ public class Room {
      * @param l1 level of which is contained in
      */
     public Room(int x1,int y1,int sizeX,int sizeY,int lvl,Level l1){
-        rand = new Random();
         l=l1;
         x1=rand.nextInt(l.maxRoomSX)+1+x1;
         y1=rand.nextInt(l.maxRoomSY)+1+y1;
@@ -34,6 +32,6 @@ public class Room {
                 area[x][y][1]=y+y1;
             }
         }
-        Spawner.spawner(rand.nextInt(10),lvl,this);
+        Spawner.spawner(rand.nextInt(5),lvl,this);
     }
 }

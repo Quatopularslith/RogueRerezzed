@@ -8,7 +8,6 @@ package entity.mob;
 
 import dungeon.Level;
 import dungeon.Room;
-import entity.RogueEntity;
 import entity.item.Item;
 import render.Sprite;
 
@@ -34,7 +33,7 @@ public class MortuusTrabajos extends RogueHostileEntity{
     @Override
     public void turn(){
         this.move(pointTowards(this.l.getPlayer()));
-        if((l.getPlayer().x-this.x<=1 && l.getPlayer().y-this.y<=1)&&(-l.getPlayer().x+this.x<=1 && -l.getPlayer().y+this.y<=1)){
+        if(doatt(l.getPlayer())){
             l.getPlayer().damage(rand.nextInt(maxAtt));
         }
     }

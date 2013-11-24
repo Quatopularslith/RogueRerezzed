@@ -8,7 +8,6 @@ package entity.mob;
 
 import dungeon.Level;
 import dungeon.Room;
-import entity.RogueEntity;
 import entity.item.Item;
 import render.Sprite;
 
@@ -22,7 +21,7 @@ public class Bandit extends RogueHostileEntity{
         l=l1;
         health=20*(lvl);
         this.maxhealth=(int) this.health;
-        maxAtt=lvl;
+        maxAtt=lvl*2;
         sp = new Sprite("Bandit");
         inv = new Item[1];
         inv[0] = new Item(rand.nextInt(Item.numid),this,l);
@@ -34,7 +33,7 @@ public class Bandit extends RogueHostileEntity{
     @Override
     public void turn(){
         this.move(this.pointTowards(this.l.getPlayer()));
-        if((l.getPlayer().x-this.x<=1 && l.getPlayer().y-this.y<=1)&&(-l.getPlayer().x+this.x<=1 && -l.getPlayer().y+this.y<=1)){
+        if(doatt(l.getPlayer())){
             l.getPlayer().damage(rand.nextInt(maxAtt));
         }
     }
