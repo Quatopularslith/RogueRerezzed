@@ -26,7 +26,7 @@ public class Item extends RogueEntity{
     public String name;
     //stats in form of
     // Attack,Defence,Mana,Health
-    public int[] stats = new int[4];
+    public double[] stats = new double[4];
     public Item(int id1,RogueEntity parent1,Level l1) {
         super(l1);
         health=1;
@@ -36,45 +36,45 @@ public class Item extends RogueEntity{
         sp=new Sprite("Bag",16);
         modifierid=rand.nextInt(modifiers.length);
         if(id!=0){
-            name = "Lvl "+Level.numLevels+" "+modifiers[modifierid]+names[id];
+            name = "Lvl "+(Level.numLevels+1)+" "+modifiers[modifierid]+names[id];
             cursed = rand.nextBoolean();
             switch(id){
                 case 1:
-                    stats[0]=(int) (5*(0.4*Level.numLevels));
+                    stats[0]=(5*(0.4*Level.numLevels+1));
                     stats[1]=0;
                     stats[2]=0;
                     stats[3]=0;
                 case 2:
-                    stats[0]=(int) (2*(0.4*Level.numLevels));
+                    stats[0]=(2*(0.4*Level.numLevels+1));
                     stats[1]=0;
                     stats[2]=0;
                     stats[3]=0;
                 case 3:
-                    stats[0]=(int) (1*(0.4*Level.numLevels));
+                    stats[0]=(1*(0.4*Level.numLevels+1));
                     stats[1]=0;
                     stats[2]=0;
                     stats[3]=0;
                 case 4:
                     stats[0]=0;
-                    stats[1]=(int) (5*(0.4*Level.numLevels));
+                    stats[1]=(5*(0.4*Level.numLevels+1));
                     stats[2]=0;
                     stats[3]=0;
             }
             switch(modifierid){
                 case 1:
-                    stats[0]-=(int) (1*(0.4*Level.numLevels));
+                    stats[0]-=(1*(0.4*Level.numLevels+1));
                 case 3:
-                    stats[1]-=(int) (1*(0.4*Level.numLevels));
+                    stats[1]-=(1*(0.4*Level.numLevels+1));
                 case 5:
-                    stats[3]+=(int) (1*(1.4*Level.numLevels));
+                    stats[3]+=(1*(0.4*Level.numLevels+1));
                 case 6:
-                    stats[2]+=(int) (1*(0.4*Level.numLevels));
+                    stats[2]+=(1*(0.4*Level.numLevels+1));
                 case 7:
-                    stats[0]+=(int) (5*(0.4*Level.numLevels));
+                    stats[0]+=(5*(0.4*Level.numLevels+1));
             }
         }else{
             name = names[0];
-            for(int ind:stats){
+            for(double ind:stats){
                 ind=0;
             }
         }

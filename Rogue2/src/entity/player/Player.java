@@ -72,7 +72,7 @@ public class Player extends RogueEntity{
         for (int j=0;j<l.getItems().size();j++) {
             Item i = l.getItems().get(j);
             if(i.x==this.x && i.y==this.y && pinv[currinv]!=i){
-                this.pinv[currinv]=i;
+                Player.pinv[currinv]=i;
                 if(currinv<pinv.length-1 && !pinv[currinv].name.equalsIgnoreCase("EMPTY")){
                     currinv++;
                 }
