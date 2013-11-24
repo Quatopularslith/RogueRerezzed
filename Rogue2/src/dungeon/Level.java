@@ -79,8 +79,9 @@ public class Level {
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
         rooms=new Room[numRooms+1];
-        renderlevel=Math.round(numLevels/16)*16;
-        renderlevel=16;
+        renderlevel=(numLevels%16)*16;
+        renderlevel=(numLevels%2)*16;
+//        renderlevel=16;
         for(int x=0;x<sx;x+=maxRoomSX){
             for(int y=0;y<sy;y+=maxRoomSY){
                 rooms[roomnum]=new Room(x,y,maxRoomSX,maxRoomSY,lvl,this);
