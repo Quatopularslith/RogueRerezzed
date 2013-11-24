@@ -81,7 +81,7 @@ public class Level {
         maxRoomSX=(sx/rows);
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
-        rooms=new Room[numRooms+1];
+        rooms=new Room[numRooms+3];
         renderlevel=Math.round(numLevels/5)*16;
         if(renderlevel>16){
             renderlevel=16;
@@ -96,7 +96,10 @@ public class Level {
                 roomnum++;
             }
         }
+        st = new Stairway(this);
         rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],100,3,lvl,this);
+        rooms[roomnum+1]=new Room(rooms[st.room].area[0][0][0],rooms[st.room].area[0][0][1],100,3,lvl,this);
+        rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],rooms[st.room].area[0][0][1],3,100,lvl,this);
         p=new Player(this);
         System.out.println(re.size());
         for(Room r:rooms){
@@ -113,7 +116,6 @@ public class Level {
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
         
-        st = new Stairway(this);
         numLevels++;
     }
     /**

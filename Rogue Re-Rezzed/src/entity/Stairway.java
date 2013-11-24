@@ -15,9 +15,11 @@ import render.Sprite;
  * @author Torri
  */
 public class Stairway extends RogueEntity{
+    public int room  = rand.nextInt(l.numRooms);
     public Stairway(Level l1) {
         super(l1);
-        this.spawn(l1.getRoom(rand.nextInt(l1.numRooms)));
+        room = rand.nextInt(l1.numRooms-2);
+        this.spawn(l1.getRoom(room));
         this.sp = new Sprite("Stairway");
     }
     @Override
