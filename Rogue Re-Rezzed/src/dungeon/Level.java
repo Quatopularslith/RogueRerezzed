@@ -83,8 +83,8 @@ public class Level {
         numRooms=(rows)*(cols);
         rooms=new Room[numRooms+3];
         renderlevel=Math.round(numLevels/5)*16;
-        if(renderlevel>16){
-            renderlevel=16;
+        if(renderlevel>32){
+            renderlevel=32;
         }
         RenderPanel.fsp=new Sprite("DungeonFloor1");
         Map.img=new Sprite("DungeonFloor1",8);

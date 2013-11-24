@@ -32,6 +32,6 @@ public class Room {
                 area[x][y][1]=y+y1;
             }
         }
-        Spawner.spawner(rand.nextInt(lvl*2),lvl,this);
+        Spawner.spawner(rand.nextInt(lvl+1),lvl,this);
     }
 }
