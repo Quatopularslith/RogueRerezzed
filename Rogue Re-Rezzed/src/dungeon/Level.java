@@ -99,7 +99,7 @@ public class Level {
         st = new Stairway(this);
         rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],100,3,lvl,this);
         rooms[roomnum+1]=new Room(rooms[st.room].area[0][0][0],rooms[st.room].area[0][0][1],100,3,lvl,this);
-        rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],rooms[st.room].area[0][0][1],3,100,lvl,this);
+        rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],rooms[st.room].area[0][0][1]-50,3,100,lvl,this);
         p=new Player(this);
         System.out.println(re.size());
         for(Room r:rooms){
