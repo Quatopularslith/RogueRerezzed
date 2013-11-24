@@ -54,6 +54,8 @@ public class Player extends RogueEntity{
         l=Rogue.getLevel();
         if(health<=0){
             dead=true;
+        }else if(health<maxhealth){
+            health+=0.5;
         }
         maxAtt=2;
         maxMana=100;
