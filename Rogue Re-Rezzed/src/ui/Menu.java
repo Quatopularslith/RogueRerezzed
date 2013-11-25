@@ -73,7 +73,6 @@ public class Menu extends JFrame{
         
         this.addKeyListener(ki);
         
-//        mmp.menuBackgroundTesting.addActionListener(bi);
         mmp.loadGame.addActionListener(bi);
         mmp.newGame.addActionListener(bi);
         mmp.options.addActionListener(bi);
@@ -86,6 +85,16 @@ public class Menu extends JFrame{
         
         dmp.debugPass.addActionListener(bi);
         
+        if(rp.getSettings()==null){
+            Menu.rp.setData(bi.defkeys);
+            omp.fwdKB.setText("w");
+            omp.backKB.setText("s");
+            omp.rightKB.setText("d");
+            omp.leftKB.setText("a");
+            omp.spellKB.setText("q");
+            omp.eatKB.setText("e");
+            ki.checkSettings(bi.defkeys);
+        }
         int[] j = new int[rp.getSettings().length];
         char[] c = new char[j.length];
         for(int i=0;i<j.length;i++){

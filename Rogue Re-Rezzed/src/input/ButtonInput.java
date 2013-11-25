@@ -22,7 +22,7 @@ import ui.MenuBackgroundTest;
  */
 public class ButtonInput implements ActionListener{
     private boolean backtogame;
-    private final String[] defkeys = {"87","83","68","65","81","69"};//wsdaqe
+    public final String[] defkeys = {"87","83","68","65","81","69"};//wsdaqe
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
@@ -53,7 +53,7 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.d.setVisible(true);
         }
-//        if(command.equalsIgnoreCase("Apply")){
+        if(command.equalsIgnoreCase("Apply")){
 //            char[] inc = {Rogue.mm.omp.fwdKB.getText().toLowerCase().toCharArray()[0],
 //                Rogue.mm.omp.backKB.getText().toLowerCase().toCharArray()[0],
 //                Rogue.mm.omp.rightKB.getText().toLowerCase().toCharArray()[0],
@@ -64,6 +64,7 @@ public class ButtonInput implements ActionListener{
 //            int[] in = new int[inc.length];
 //            for(int i=0;i<in.length;i++){
 //                in[i]=(int) inc[i];
+//                System.out.println(in[i]+":"+inc[i]);
 //            }
 //            String[] s = new String[in.length];
 //            for(int i=0;i<in.length;i++){
@@ -71,7 +72,7 @@ public class ButtonInput implements ActionListener{
 //            }
 //            Menu.rp.setData(s);
 //            Rogue.mm.ki.checkSettings(Menu.rp.getSettings());
-//        }
+        }
         if(command.equalsIgnoreCase("Default Keybinds")){
             Menu.rp.setData(defkeys);
             Rogue.mm.omp.fwdKB.setText("w");
