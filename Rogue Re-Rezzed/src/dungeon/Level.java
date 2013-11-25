@@ -85,6 +85,8 @@ public class Level {
         renderlevel=Math.round(numLevels/5)*16;
         if(renderlevel>32){
             renderlevel=32;
+        }else if(renderlevel<16 && numLevels>3){
+            renderlevel=16;
         }
         RenderPanel.fsp=new Sprite("DungeonFloor1");
         Map.img=new Sprite("DungeonFloor1",8);
