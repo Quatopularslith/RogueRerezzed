@@ -10,6 +10,10 @@ import entity.item.Item;
  * @author Torri
  */
 public class RogueHostileEntity extends RogueEntity{
+    /**
+     * 
+     * @param l1 
+     */
     public RogueHostileEntity(Level l1) {
         super(l1);
     }
@@ -20,6 +24,11 @@ public class RogueHostileEntity extends RogueEntity{
             l.getPlayer().damage(rand.nextInt(maxAtt));
         }
     }
+    /**
+     * basic tracer AI
+     * @param e
+     * @return 
+     */
     public int pointTowards(RogueEntity e){
         double pdir=0;
         double ux=this.x;
@@ -45,6 +54,11 @@ public class RogueHostileEntity extends RogueEntity{
         }
         return (int) pdir;
     }
+    /**
+     * asks if it can attack
+     * @param e
+     * @return 
+     */
     public boolean doatt(RogueEntity e){
         int dx = Math.abs(x-e.x);
         int dy = Math.abs(y-e.y);

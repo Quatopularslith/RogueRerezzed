@@ -8,13 +8,10 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
-import entity.item.Item;
 import entity.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import ui.DebugMenu;
 import ui.Menu;
-import ui.MenuBackgroundTest;
 
 /**
  *

@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
  * @author Torri
  */
 public class KeyboardInput implements KeyListener{
-    private boolean[] keys = new boolean[1000];
+    private final boolean[] keys = new boolean[1000];
     private int[] keyn = new int[6];
     public boolean[] keyBind = new boolean[6];
     public static boolean b;

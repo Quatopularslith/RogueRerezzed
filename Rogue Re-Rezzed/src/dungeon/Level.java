@@ -24,10 +24,16 @@ public class Level {
     private final ArrayList<Item> items = new ArrayList<>();
     private Room[] rooms;
     private Player p;
-    public static int renderlevel;
     private static int rows=10,cols=10;
     private Stairway st;
     private int nument=0;
+    /**
+     * multiple of 16
+     */
+    public static int renderlevel;
+    /**
+     * solid and non-solid objects
+     */
     public boolean[][] board;
     /**
      * Number of levels
@@ -172,15 +178,31 @@ public class Level {
     public Player getPlayer(){
         return p;
     }
+    /**
+     * gets current set of stairs
+     * @return stairway of this level
+     */
     public Stairway getStairWay(){
         return st;
     }
+    /**
+     * gets all items
+     * @return 
+     */
     public ArrayList<Item> getItems(){
         return items;
     }
+    /**
+     * adds item
+     * @param i 
+     */
     public void addItem(Item i){
         items.add(i);
     }
+    /**
+     * removes items
+     * @param i 
+     */
     public void removeItem(Item i){
         items.remove(i);
     }

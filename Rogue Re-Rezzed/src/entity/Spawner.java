@@ -9,6 +9,12 @@ import java.util.Random;
  * @author Torri
  */
 public class Spawner {
+    /**
+     * spawns stuff
+     * @param am
+     * @param lvl
+     * @param r 
+     */
     public static void spawner(int am,int lvl,Room r){
         RogueEntity e = new RogueEntity(r.l);
         Random rand = new Random();

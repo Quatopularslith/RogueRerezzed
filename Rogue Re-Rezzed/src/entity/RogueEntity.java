@@ -88,7 +88,6 @@ public class RogueEntity {
      * What to do when this entity dies
      */
     public void death(){
-//        l.removeEntity(this);
     }
     /**
      * What to do when this entity is initialized
