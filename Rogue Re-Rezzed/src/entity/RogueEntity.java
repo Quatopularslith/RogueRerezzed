@@ -64,8 +64,9 @@ public class RogueEntity {
      * @param att 
      */
     public void damage(int att){
-        if(defence<att){
-            att-=defence;
+        int td = rand.nextInt(defence+1);
+        if(td<att){
+            att-=td;
         }else{
             att=0;
         }

@@ -20,6 +20,7 @@ public class Menu extends JFrame{
     public OptionMenuPanel omp;
     public Display d;
     public DebugMPassword dmp;
+    public StatMenu sm;
 //    public DebugMenu dm;
 //    public MenuBackgroundTest mbt;
     
@@ -55,21 +56,25 @@ public class Menu extends JFrame{
         omp = new OptionMenuPanel();
         mmp = new MainMenuPanel();
         dmp = new DebugMPassword();
+        sm = new StatMenu();
 //        mbt = new MenuBackgroundTest();
         
         dmp.setVisible(false);
         omp.setVisible(false);
         mmp.setVisible(true);
+        sm.setVisible(false);
 //        mbt.setVisible(false);
         
         dmp.setSize(750, 500);
         omp.setSize(750, 500);
         mmp.setSize(750, 500);
+        sm.setSize(750, 500);
 //        mbt.setSize(750, 500);
         
         this.add(dmp);
         this.add(omp);
         this.add(mmp);
+        this.add(sm);
         
         this.addKeyListener(ki);
         
@@ -84,6 +89,8 @@ public class Menu extends JFrame{
         omp.debug.addActionListener(bi);
         
         dmp.debugPass.addActionListener(bi);
+        
+        sm.jb.addActionListener(bi);
         
         if(rp.getSettings()==null){
             Menu.rp.setData(bi.defkeys);

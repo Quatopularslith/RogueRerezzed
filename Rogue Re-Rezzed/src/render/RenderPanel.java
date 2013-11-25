@@ -49,9 +49,10 @@ public class RenderPanel extends JPanel{
         Rogue.mm.d.mapp.update();
         repaint();
         if(Player.dead){
-            Rogue.mm.mmp.setVisible(true);
+            Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.d.setVisible(false);
+            Rogue.mm.sm.setVisible(true);
             Level.numLevels=0;
         }
     }
@@ -71,7 +72,6 @@ public class RenderPanel extends JPanel{
         g2.fillRect(0, 0, getWidth(), getHeight());
         room = l.getRooms();
         current = l.getEntities();
-        g2.drawImage(l.getStairWay().sp.i, l.getStairWay().x*64+offx,l.getStairWay().y*64+offy, this);
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
@@ -79,6 +79,7 @@ public class RenderPanel extends JPanel{
                 }
             }
         }
+        g2.drawImage(l.getStairWay().sp.i, l.getStairWay().x*64+offx,l.getStairWay().y*64+offy, this);
         for(Item i:l.getItems()){
             g2.drawImage(i.sp.i, i.x*64+offx+i.ofx,i.y*64+offy+i.ofy, this);
         }

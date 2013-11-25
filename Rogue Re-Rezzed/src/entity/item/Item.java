@@ -41,7 +41,7 @@ public class Item extends RogueEntity{
             cursed = rand.nextBoolean();
             switch(id){
                 case 1:
-                    stats[0]=(5*(0.4*Level.numLevels+1));
+                    stats[0]=(2*(0.4*Level.numLevels+1));
                     stats[1]=0;
                     stats[2]=0;
                     stats[3]=0;
@@ -57,7 +57,7 @@ public class Item extends RogueEntity{
                     stats[3]=0;
                 case 4:
                     stats[0]=0;
-                    stats[1]=(5*(0.4*Level.numLevels+1));
+                    stats[1]=(2*(0.4*Level.numLevels+1));
                     stats[2]=0;
                     stats[3]=0;
             }
@@ -71,7 +71,7 @@ public class Item extends RogueEntity{
                 case 6:
                     stats[2]+=(1*(0.4*Level.numLevels+1));
                 case 7:
-                    stats[0]+=(5*(0.4*Level.numLevels+1));
+                    stats[0]+=(2*(0.4*Level.numLevels+1));
             }
         }else{
             name = names[0];
