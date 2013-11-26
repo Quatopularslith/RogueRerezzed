@@ -11,7 +11,6 @@ import dungeon.Level;
 import entity.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import ui.Menu;
 
 /**
@@ -53,11 +52,11 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.d.setVisible(true);
-            for(JButton j: Rogue.mm.d.invp.drop){
-                j.addActionListener(this);
+            for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
+                Rogue.mm.d.invp.drop[i].addActionListener(Rogue.mm.bi);
             }
-            for(JButton j: Rogue.mm.d.invp.equip){
-                j.addActionListener(this);
+            for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
+                Rogue.mm.d.invp.equip[i].addActionListener(Rogue.mm.bi);
             }
         }
         if(command.equalsIgnoreCase("Apply")){
