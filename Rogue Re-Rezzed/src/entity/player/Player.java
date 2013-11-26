@@ -70,6 +70,8 @@ public class Player extends RogueEntity{
         if(xp%(10*xplevels)==0 && xp>1){
             xp=0;
             xplevels++;
+            health=maxhealth;
+            mana=maxMana;
         }
         maxAtt=2;
         maxMana=100;

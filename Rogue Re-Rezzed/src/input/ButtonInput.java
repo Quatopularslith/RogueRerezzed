@@ -42,6 +42,7 @@ public class ButtonInput implements ActionListener{
             Player.pinv = null;
             Player.xplevels = 1;
             Player.xp = 0;
+            Player.kills =0;
             Rogue.setLevel(new Level(1));
             Rogue.mm.d=new ui.Display();
             Rogue.mm.add(Rogue.mm.d);
