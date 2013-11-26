@@ -8,6 +8,7 @@ package ui;
 
 import input.ButtonInput;
 import input.KeyboardInput;
+import input.MouseInput;
 import javax.swing.JFrame;
 import util.RogueProperties;
 
@@ -26,8 +27,10 @@ public class Menu extends JFrame{
     
     public KeyboardInput ki;
     public ButtonInput bi;
+    public MouseInput mi;
     
     public static RogueProperties rp;
+    public static int x,y,sx,sy;
     
     private final String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
     private final int[] propn;
@@ -43,6 +46,11 @@ public class Menu extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        x=getX();
+        y=getY();
+        sx=getWidth();
+        sy=getHeight();
+        
         rp = new RogueProperties("RogueConfig.properties",props);
         propn = new int[rp.getSettings().length];
         
@@ -52,6 +60,7 @@ public class Menu extends JFrame{
         
         bi=new ButtonInput();
         ki=new KeyboardInput(propn);
+        mi=new MouseInput();
         
         omp = new OptionMenuPanel();
         mmp = new MainMenuPanel();
@@ -76,6 +85,7 @@ public class Menu extends JFrame{
         this.add(mmp);
         this.add(sm);
         
+        this.addMouseListener(mi);
         this.addKeyListener(ki);
         
         mmp.loadGame.addActionListener(bi);

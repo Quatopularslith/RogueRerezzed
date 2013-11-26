@@ -8,30 +8,33 @@ package input;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import ui.Menu;
 
 /**
  *
  * @author Torri
  */
 public class MouseInput implements MouseListener{
+    boolean onscreen=false;
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println(((e.getX()-Menu.x)-(Menu.sx/2))+" "+((e.getY()-Menu.y)-(Menu.sy/2)));
+//        if(RenderPanel.itempickup && onscreen){
+//            
+//        }
     }
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        onscreen=true;
     }
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        onscreen=false;
     }
 }
