@@ -22,7 +22,7 @@ public class Item extends RogueEntity{
     public boolean cursed;
     public int id;
     public static final String[] modifiers = {"","Broken ","Ordinary ","Shattered ","Old ","Healthy ","Magical ","Strong "};
-    public static final String[] type = {"Empty","Bar","Sword","Axe","Shield"};
+    public static final String[] type = {"Empty","Sword","Axe","Shield"};
     public static final String[] materials = {"Wood ","Stone ","Copper ","Bronze ","Iron ","Steel ","Unknown "};
     public String name;
     public boolean equip = true;
@@ -40,7 +40,7 @@ public class Item extends RogueEntity{
         sp=new Sprite("Bag",16);
         modifierid=rand.nextInt(modifiers.length);
         int matid = (int) id/materials.length;
-        int tyid = (id%4)+1;
+        int tyid = (id%3)+1;
         if(id!=0){
             name = "Lvl "+(Level.numLevels+1)+" "+modifiers[modifierid]+materials[matid]+type[tyid];
             cursed = rand.nextBoolean();
