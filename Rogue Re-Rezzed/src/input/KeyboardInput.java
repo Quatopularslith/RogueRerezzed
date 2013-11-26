@@ -57,7 +57,7 @@ public class KeyboardInput implements KeyListener{
                 break;
             }
         }
-        if(b && !RenderPanel.itempickup){
+        if(b){
             Rogue.mm.d.gp.update();
         }
     }

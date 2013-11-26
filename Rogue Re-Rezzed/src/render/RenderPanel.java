@@ -100,12 +100,12 @@ public class RenderPanel extends JPanel{
         g2.setColor(Color.BLACK);
         g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy+4);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
-        if(pickup==null){
-            pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
-        }
-        if(pickup.name.equalsIgnoreCase("Empty")==false){
-            g2.drawImage(dialogue.i, getWidth()/2-32, getHeight()/2-32, this);
-            itempickup = true;
-        }
+//        if(pickup==null){
+//            pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
+//        }
+//        if(pickup.name.equalsIgnoreCase("Empty")==false){
+//            g2.drawImage(dialogue.i, getWidth()/2-32, getHeight()/2-32, this);
+//            itempickup = true;
+//        }
     }
 }
