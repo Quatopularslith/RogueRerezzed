@@ -120,4 +120,12 @@ public class Menu extends JFrame{
         this.validate();
         this.repaint();
     }
+    /**
+     * makes everything repaint
+     */
+    public void refresh(){
+        this.invalidate();
+        this.validate();
+        this.repaint();
+    }
 }
