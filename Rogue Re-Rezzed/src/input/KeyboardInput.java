@@ -9,6 +9,7 @@ package input;
 import core.Rogue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import render.RenderPanel;
 
 /**
  *
@@ -56,7 +57,7 @@ public class KeyboardInput implements KeyListener{
                 break;
             }
         }
-        if(b){
+        if(b && !RenderPanel.itempickup){
             Rogue.mm.d.gp.update();
         }
     }

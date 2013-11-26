@@ -19,6 +19,7 @@ import javax.swing.JPanel;
  * @author Torri
  */
 public class RenderPanel extends JPanel{
+    public static boolean itempickup = false;
     private Level l = Rogue.getLevel();
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
@@ -35,7 +36,6 @@ public class RenderPanel extends JPanel{
      */
     public void update(){
         l=Rogue.getLevel();
-//        pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
         l.getStairWay().turn();
         l.getPlayer().turn();
         for(int i=0;i<l.getEntities().size()-1;i++){
@@ -101,11 +101,11 @@ public class RenderPanel extends JPanel{
         g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy+4);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
         if(pickup==null){
-            System.out.println("LKAFN");
             pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
         }
         if(pickup.name.equalsIgnoreCase("Empty")==false){
             g2.drawImage(dialogue.i, getWidth()/2-32, getHeight()/2-32, this);
+            itempickup = true;
         }
     }
 }
