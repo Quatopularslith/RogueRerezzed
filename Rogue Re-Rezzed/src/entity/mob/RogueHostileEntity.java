@@ -60,7 +60,10 @@ public class RogueHostileEntity extends RogueEntity{
         this.maxhealth=(int) this.health;
         sp = new Sprite(name);
         inv = new Item[1];
-        inv[0] = new Item(rand.nextInt(Item.numid),this,l);
+        if(lvl>Item.numid){
+            lvl=Item.numid;
+        }
+        inv[0] = new Item(rand.nextInt(lvl+1),this,l);
         spawn(r);
         for (Item inv1 : inv) {
             inv1.update();

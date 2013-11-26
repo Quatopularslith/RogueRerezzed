@@ -81,6 +81,7 @@ public class Player extends RogueEntity{
         defence=0;
         for (Item inv1 : pinv) {
             if(inv1.equip==true){
+//                System.out.println(inv1.name);
                 this.maxhealth+=inv1.stats[3];
                 this.maxMana+=inv1.stats[2];
                 this.defence+=inv1.stats[1];

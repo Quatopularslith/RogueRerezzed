@@ -11,6 +11,7 @@ import dungeon.Level;
 import entity.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import ui.Menu;
 
 /**
@@ -52,41 +53,46 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.d.setVisible(true);
+            for(JButton j: Rogue.mm.d.invp.drop){
+                j.addActionListener(this);
+            }
+            for(JButton j: Rogue.mm.d.invp.equip){
+                j.addActionListener(this);
+            }
         }
         if(command.equalsIgnoreCase("Apply")){
-//            char[] inc = {Rogue.mm.omp.fwdKB.getText().toLowerCase().toCharArray()[0],
-//                Rogue.mm.omp.backKB.getText().toLowerCase().toCharArray()[0],
-//                Rogue.mm.omp.rightKB.getText().toLowerCase().toCharArray()[0],
-//                Rogue.mm.omp.leftKB.getText().toLowerCase().toCharArray()[0],
-//                Rogue.mm.omp.spellKB.getText().toLowerCase().toCharArray()[0],
-//                Rogue.mm.omp.eatKB.getText().toLowerCase().toCharArray()[0]
-//            };
-//            int[] in = new int[inc.length];
-//            for(int i=0;i<in.length;i++){
-//                in[i]=(int) inc[i];
-//                System.out.println(in[i]+":"+inc[i]);
-//            }
-//            String[] s = new String[in.length];
-//            for(int i=0;i<in.length;i++){
-//                s[i]=Integer.toString(in[i]);
-//            }
-//            Menu.rp.setData(s);
-//            Rogue.mm.ki.checkSettings(Menu.rp.getSettings());
+            char[] inc = {Rogue.mm.omp.fwdKB.getText().toUpperCase().toCharArray()[0],
+                Rogue.mm.omp.backKB.getText().toUpperCase().toCharArray()[0],
+                Rogue.mm.omp.rightKB.getText().toUpperCase().toCharArray()[0],
+                Rogue.mm.omp.leftKB.getText().toUpperCase().toCharArray()[0],
+                Rogue.mm.omp.spellKB.getText().toUpperCase().toCharArray()[0],
+                Rogue.mm.omp.eatKB.getText().toUpperCase().toCharArray()[0]
+            };
+            int[] in = new int[inc.length];
+            for(int i=0;i<in.length;i++){
+                in[i]=(int) inc[i];
+                System.out.println(in[i]+":"+inc[i]);
+            }
+            String[] s = new String[in.length];
+            for(int i=0;i<in.length;i++){
+                s[i]=Integer.toString(in[i]);
+            }
+            Menu.rp.setData(s);
+            Rogue.mm.ki.checkSettings(Menu.rp.getSettings());
         }
         if(command.equalsIgnoreCase("Default Keybinds")){
             Menu.rp.setData(defkeys);
-            Rogue.mm.omp.fwdKB.setText("w");
-            Rogue.mm.omp.backKB.setText("s");
-            Rogue.mm.omp.rightKB.setText("d");
-            Rogue.mm.omp.leftKB.setText("a");
-            Rogue.mm.omp.spellKB.setText("q");
-            Rogue.mm.omp.eatKB.setText("e");
+            Rogue.mm.omp.fwdKB.setText("W");
+            Rogue.mm.omp.backKB.setText("S");
+            Rogue.mm.omp.rightKB.setText("D");
+            Rogue.mm.omp.leftKB.setText("A");
+            Rogue.mm.omp.spellKB.setText("Q");
+            Rogue.mm.omp.eatKB.setText("E");
             Rogue.mm.ki.checkSettings(defkeys);
         }
         if(command.equalsIgnoreCase("save and quit")){
             //TODO some save code
 //            Rogue.mm.dm.dispose();
-//            Rogue.mm.mbt.dispose();
             Rogue.mm.dispose();
         }
         if(command.equalsIgnoreCase("settings")){
@@ -126,5 +132,16 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.mmp.setVisible(true);
             Rogue.mm.sm.setVisible(false);
         }
+//        for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
+//            if(command.equalsIgnoreCase("Drop "+i)){
+//                Player.pinv[i].drop();
+//            }
+//        }
+//        for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
+//            if(command.equalsIgnoreCase("Equip "+i)){
+//                Player.pinv[i].equip=true;
+//            }
+//        }
+        System.out.println(command);
     }
 }
