@@ -23,12 +23,12 @@ public class RogueHostileEntity extends RogueEntity{
      * @param r
      * @param l1 
      * @param name 
-     * @param op0 operation for attack
+     * @param op0 operation for health
      * @param attmod attack modifier
-     * @param op1 operation for health
+     * @param op1 operation for attack
      * @param hmod health modifier
      */
-    public RogueHostileEntity(int lvl,Room r,Level l1,String name,int op0,int attmod,int op1,int hmod) {
+    public RogueHostileEntity(int lvl,Room r,Level l1,String name,int op0,int hmod,int op1,int attmod) {
         super(l1);
         l=l1;
         switch(op0){
@@ -44,8 +44,20 @@ public class RogueHostileEntity extends RogueEntity{
             case 3:
                 health=hmod/(lvl);
         }
+        switch(op0){
+            case 0:
+                maxAtt=attmod+(lvl);
+                break;
+            case 1:
+                maxAtt=attmod-(lvl);
+                break;
+            case 2:
+                maxAtt=attmod*(lvl);
+                break;
+            case 3:
+                maxAtt=attmod/(lvl);
+        }
         this.maxhealth=(int) this.health;
-        maxAtt=lvl*attmod;
         sp = new Sprite(name);
         inv = new Item[1];
         inv[0] = new Item(rand.nextInt(Item.numid),this,l);
