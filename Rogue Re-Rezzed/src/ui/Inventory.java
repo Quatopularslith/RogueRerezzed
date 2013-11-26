@@ -1,6 +1,7 @@
 
 package ui;
 
+import core.Rogue;
 import entity.item.Item;
 import entity.player.Player;
 import java.awt.Color;
@@ -14,19 +15,22 @@ import javax.swing.JPanel;
  * @author Torri
  */
 public class Inventory extends JPanel{
-    int ind = 0;
-    int inde =0;
+    int ind=0;
+    int inde=0;
     public JButton[] drop = new JButton[Player.pinv.length];
     public JButton[] equip = new JButton[Player.pinv.length];
+    String dropn;
     public Inventory() {
         this.setVisible(true);
         this.setLayout(null);
         for(int i=0;i<Player.pinv.length;i++){
-            drop[i] = new JButton("Drop "+i);
-            drop[i].setBounds(130, (i*25)+40-25, 70, 15);
+            dropn = "Drop"+i;
+            drop[i] = new JButton(dropn);
+            drop[i].setBounds(135, (i*25)+40-25, 75, 15);
             drop[i].setVisible(true);
-            equip[i] = new JButton("Equip "+i);
-            equip[i].setBounds(56, (i*25)+40-25, 74, 15);
+            dropn = "Equip"+i;
+            equip[i] = new JButton(dropn);
+            equip[i].setBounds(55, (i*25)+15, 75, 15);
             equip[i].setVisible(true);
         }
     }
@@ -60,9 +64,14 @@ public class Inventory extends JPanel{
         }
         g2.dispose();
         for(int i=0;i<Player.pinv.length;i++){
-            if(!Player.pinv[i].name.equalsIgnoreCase("Empty")){
+            if(Player.pinv[i].name.equalsIgnoreCase("Empty")){
+                this.remove(drop[i]);
+                this.remove(equip[i]);
+            }else{
                 this.add(drop[i]);
+                drop[i].addActionListener(Rogue.mm.bi);
                 this.add(equip[i]);
+                equip[i].addActionListener(Rogue.mm.bi);
             }
         }
     }

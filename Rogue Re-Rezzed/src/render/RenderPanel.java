@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -19,7 +20,7 @@ import javax.swing.JPanel;
  * @author Torri
  */
 public class RenderPanel extends JPanel{
-    public static boolean itempickup = false;
+    public static boolean pickedup = false;
     private Level l = Rogue.getLevel();
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
@@ -28,13 +29,17 @@ public class RenderPanel extends JPanel{
     public static Sprite fsp = new Sprite("DungeonFloor1");
     public static Sprite dialogue = new Sprite("Dialogue",128);
     private List<RogueEntity> current = l.getEntities();
+    JButton ajb = new JButton("Pick up");
+    JButton djb = new JButton("Leave it");
     public RenderPanel(){
         l=Rogue.getLevel();
+        this.setLayout(null);
     }
     /**
      * The core updater
      */
     public void update(){
+        pickup=null;
         l=Rogue.getLevel();
         l.getStairWay().turn();
         l.getPlayer().turn();
@@ -69,6 +74,7 @@ public class RenderPanel extends JPanel{
      */
     @Override
     public void paint(Graphics g){
+        super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
         setReletiveTo(l.getPlayer());
         g2.setColor(Color.BLACK);
@@ -100,12 +106,22 @@ public class RenderPanel extends JPanel{
         g2.setColor(Color.BLACK);
         g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy+4);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
-//        if(pickup==null){
-//            pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
-//        }
-//        if(pickup.name.equalsIgnoreCase("Empty")==false){
-//            g2.drawImage(dialogue.i, getWidth()/2-32, getHeight()/2-32, this);
-//            itempickup = true;
-//        }
+        if(pickup==null){
+            pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
+        }
+        if(pickup.name.equalsIgnoreCase("Empty")==false){
+            g2.drawImage(dialogue.i, getWidth()/2-32, getHeight()/2-32, this);
+            g2.dispose();
+            ajb.setBounds(getWidth()/2-16,getHeight()/2-16,70,80);
+            ajb.addActionListener(Rogue.mm.bi);
+            this.add(ajb);
+            djb.setBounds(getWidth()/2-16,getHeight()/2-16,70,80);
+            djb.addActionListener(Rogue.mm.bi);
+            this.add(djb);
+        }
+        g2.dispose();
+    }
+    public static boolean pickupItem(){
+        return pickedup;
     }
 }

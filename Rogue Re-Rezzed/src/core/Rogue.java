@@ -18,7 +18,6 @@ public class Rogue {
         Loading l = new Loading(750);
     }
     public static Level setLevel(Level l1){
-        System.out.println("New World "+Level.numLevels);
         l=l1;
         return l;
     }

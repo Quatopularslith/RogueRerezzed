@@ -8,7 +8,6 @@ package ui;
 
 import input.ButtonInput;
 import input.KeyboardInput;
-import input.MouseInput;
 import javax.swing.JFrame;
 import util.RogueProperties;
 
@@ -27,7 +26,6 @@ public class Menu extends JFrame{
     
     public KeyboardInput ki;
     public ButtonInput bi;
-    public MouseInput mi;
     
     public static RogueProperties rp;
     public static int x,y,sx,sy;
@@ -38,7 +36,7 @@ public class Menu extends JFrame{
      * Creates and handles the menus of the game
      */
     public Menu(){
-        super("Rogue Re-Rezzed (Proof of Concept v1.3.2)");
+        super("Rogue Re-Rezzed (Proof of Concept v1.4.0)");
         this.setSize(750, 500);
         this.setFocusable(true);
         this.setResizable(true);
@@ -60,7 +58,6 @@ public class Menu extends JFrame{
         
         bi=new ButtonInput();
         ki=new KeyboardInput(propn);
-        mi=new MouseInput();
         
         omp = new OptionMenuPanel();
         mmp = new MainMenuPanel();
@@ -85,7 +82,6 @@ public class Menu extends JFrame{
         this.add(mmp);
         this.add(sm);
         
-        this.addMouseListener(mi);
         this.addKeyListener(ki);
         
         mmp.loadGame.addActionListener(bi);

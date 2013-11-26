@@ -10,6 +10,7 @@ import core.Rogue;
 import entity.player.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import render.RenderPanel;
 
 /**
  *

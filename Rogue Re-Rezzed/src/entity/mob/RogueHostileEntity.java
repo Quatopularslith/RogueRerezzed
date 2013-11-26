@@ -64,7 +64,6 @@ public class RogueHostileEntity extends RogueEntity{
             lvl=Item.numid;
         }
         inv[0] = new Item(rand.nextInt((lvl*3)+1),this,l);
-        System.out.println(inv[0].id);
         spawn(r);
         for (Item inv1 : inv) {
             inv1.update();

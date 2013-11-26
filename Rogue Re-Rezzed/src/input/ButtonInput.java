@@ -8,6 +8,7 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
+import entity.item.Item;
 import entity.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,12 +53,6 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.d.setVisible(true);
-            for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
-                Rogue.mm.d.invp.drop[i].addActionListener(Rogue.mm.bi);
-            }
-            for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
-                Rogue.mm.d.invp.equip[i].addActionListener(Rogue.mm.bi);
-            }
         }
         if(command.equalsIgnoreCase("Apply")){
             char[] inc = {Rogue.mm.omp.fwdKB.getText().toUpperCase().toCharArray()[0],
@@ -131,16 +126,17 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.mmp.setVisible(true);
             Rogue.mm.sm.setVisible(false);
         }
-//        for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
-//            if(command.equalsIgnoreCase("Drop "+i)){
-//                Player.pinv[i].drop();
-//            }
-//        }
-//        for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
-//            if(command.equalsIgnoreCase("Equip "+i)){
-//                Player.pinv[i].equip=true;
-//            }
-//        }
-        System.out.println(command);
+        for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
+            if(command.equalsIgnoreCase("Drop "+i)){
+                Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
+                Player.pinv[i].drop();
+            }
+        }
+        for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
+            if(command.equalsIgnoreCase("Equip "+i)){
+                Player.pinv[i].equip=true;
+            }
+        }
+        Rogue.mm.refresh();
     }
 }

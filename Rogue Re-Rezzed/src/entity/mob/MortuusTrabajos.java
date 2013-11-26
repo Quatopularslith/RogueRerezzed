@@ -15,6 +15,6 @@ import dungeon.Room;
  */
 public class MortuusTrabajos extends RogueHostileEntity{
     public MortuusTrabajos(int lvl,Room r,Level l1){
-        super(lvl,r,l1,"MortuusTrabajos",3,100,3,50);
+        super(lvl,r,l1,"MortuusTrabajos",3,50,3,25);
     }
 }

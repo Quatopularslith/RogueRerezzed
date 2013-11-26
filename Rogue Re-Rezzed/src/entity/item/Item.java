@@ -25,7 +25,7 @@ public class Item extends RogueEntity{
     public static final String[] type = {"Empty","Sword","Axe","Shield"};
     public static final String[] materials = {"Wood ","Stone ","Copper ","Bronze ","Iron ","Steel ","Unknown "};
     public String name;
-    public boolean equip = true;
+    public boolean equip = false;
     public static int numid = type.length*materials.length;
     
     //stats in form of

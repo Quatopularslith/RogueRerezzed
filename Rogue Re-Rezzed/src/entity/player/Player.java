@@ -27,6 +27,7 @@ public class Player extends RogueEntity{
     boolean attack = false;
     int currinv = 0;
     public static Item[] pinv;
+    public static Item[] equipped;
     public static int xp=0;
     public static int xplevels=1;
     public Player(Level l1){
@@ -38,19 +39,26 @@ public class Player extends RogueEntity{
                 pinv[i]=new Item(0,this,l);
             }
         }
-        defence=(int) (0);
+        if(equipped==null){
+            equipped = new Item[10];
+            for(int i=0;i<equipped.length;i++){
+                equipped[i]=new Item(0,this,l);
+            }
+        }
+        defence=(int) (1);
         maxAtt=2;
         mana=(int) (50);
         maxMana=(int) (100);
         health=(float) (100);
         maxhealth=(int) (100);
-        for (Item inv1 : pinv) {
-            if(inv1.equip==true){
-                this.maxhealth+=inv1.stats[3];
-                this.maxMana+=inv1.stats[2];
-                this.defence+=inv1.stats[1];
-                this.maxAtt+=inv1.stats[0];
-                inv1.update();
+        for (int i=0;i<pinv.length;i++) {
+            pinv[i].update();
+            if(pinv[i].equip==true){
+                equipped[i]=pinv[i];
+                this.maxhealth+=pinv[i].stats[3];
+                this.maxMana+=pinv[i].stats[2];
+                this.defence+=pinv[i].stats[1];
+                this.maxAtt+=pinv[i].stats[0];
             }
         }
         this.sp = new Sprite("Player");
@@ -79,14 +87,14 @@ public class Player extends RogueEntity{
         maxMana=100;
         maxhealth=100;
         defence=0;
-        for (Item inv1 : pinv) {
-            if(inv1.equip==true){
-//                System.out.println(inv1.name);
-                this.maxhealth+=inv1.stats[3];
-                this.maxMana+=inv1.stats[2];
-                this.defence+=inv1.stats[1];
-                this.maxAtt+=inv1.stats[0];
-                inv1.update();
+        for (int i=0;i<pinv.length;i++) {
+            pinv[i].update();
+            if(pinv[i].equip==true){
+                equipped[i]=pinv[i];
+                this.maxhealth+=pinv[i].stats[3];
+                this.maxMana+=pinv[i].stats[2];
+                this.defence+=pinv[i].stats[1];
+                this.maxAtt+=pinv[i].stats[0];
             }
         }
         l=Rogue.getLevel();
@@ -95,6 +103,11 @@ public class Player extends RogueEntity{
             if(i.x==this.x && i.y==this.y && pinv[currinv]!=i){
                 Player.pinv[currinv]=i;
                 RenderPanel.pickup = i;
+                for(int k=0;k<pinv.length;k++){
+                    if(pinv[k].name.equalsIgnoreCase("empty")){
+                        currinv=k;
+                    }
+                }
                 if(currinv<pinv.length-1 && !pinv[currinv].name.equalsIgnoreCase("EMPTY")){
                     currinv++;
                 }
