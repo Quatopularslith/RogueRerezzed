@@ -45,11 +45,13 @@ public class Player extends RogueEntity{
         health=(float) (100);
         maxhealth=(int) (100);
         for (Item inv1 : pinv) {
-            this.maxhealth+=inv1.stats[3];
-            this.maxMana+=inv1.stats[2];
-            this.defence+=inv1.stats[1];
-            this.maxAtt+=inv1.stats[0];
-            inv1.update();
+            if(inv1.equip==true){
+                this.maxhealth+=inv1.stats[3];
+                this.maxMana+=inv1.stats[2];
+                this.defence+=inv1.stats[1];
+                this.maxAtt+=inv1.stats[0];
+                inv1.update();
+            }
         }
         this.sp = new Sprite("Player");
         Room r = l1.getRoom(0);
@@ -78,11 +80,13 @@ public class Player extends RogueEntity{
         maxhealth=100;
         defence=0;
         for (Item inv1 : pinv) {
-            this.maxhealth+=inv1.stats[3];
-            this.maxMana+=inv1.stats[2];
-            this.defence+=inv1.stats[1];
-            this.maxAtt+=inv1.stats[0];
-            inv1.update();
+            if(inv1.equip==true){
+                this.maxhealth+=inv1.stats[3];
+                this.maxMana+=inv1.stats[2];
+                this.defence+=inv1.stats[1];
+                this.maxAtt+=inv1.stats[0];
+                inv1.update();
+            }
         }
         l=Rogue.getLevel();
         for (int j=0;j<l.getItems().size();j++) {

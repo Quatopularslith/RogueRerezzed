@@ -25,6 +25,7 @@ public class Item extends RogueEntity{
     public static final String[] modifiers = {"","Broken ","Ordinary ","Shattered ","Old ","Healthy ","Magical ","Strong "};
     public static final String[] names = {"Empty","Stone Sword","Stone Axe","Stick","Wood Shield","Potion"};
     public String name;
+    public boolean equip = false;
     //stats in form of
     // Attack,Defence,Mana,Health
     public double[] stats = new double[4];

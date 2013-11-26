@@ -8,8 +8,6 @@ package entity.mob;
 
 import dungeon.Level;
 import dungeon.Room;
-import entity.item.Item;
-import render.Sprite;
 
 /**
  *
@@ -17,14 +15,7 @@ import render.Sprite;
  */
 public class Fish extends RogueHostileEntity{
     public Fish(int lvl,Room r,Level l1){
-        super(l1);
-        l=l1;
-        health=5*(lvl);
-        this.maxhealth=(int) this.health;
-        sp = new Sprite("Fish");
-        inv = new Item[1];
-        inv[0] = new Item(rand.nextInt(Item.numid),this,l);
-        spawn(r);
+        super(lvl,r,l1,"Fish",3,5,3,0);
     }
     @Override
     public void turn(){
