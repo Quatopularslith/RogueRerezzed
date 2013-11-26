@@ -67,7 +67,8 @@ public class Player extends RogueEntity{
         }else if(health<maxhealth){
             health+=0.1;
         }
-        if(xp%10*(xplevels)==0 && xp>1){
+        if(xp%(10*xplevels)==0 && xp>1){
+            xp=0;
             xplevels++;
         }
         maxAtt=2;
