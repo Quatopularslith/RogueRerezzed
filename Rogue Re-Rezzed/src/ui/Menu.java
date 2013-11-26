@@ -30,7 +30,7 @@ public class Menu extends JFrame{
     public static RogueProperties rp;
     
     private final String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
-    private int[] propn;
+    private final int[] propn;
     /**
      * Creates and handles the menus of the game
      */

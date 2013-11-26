@@ -94,7 +94,7 @@ public class Level {
         }else if(renderlevel<16 && numLevels>3){
             renderlevel=16;
         }
-        RenderPanel.fsp=new Sprite("DungeonFloor1");
+        RenderPanel.fsp = new Sprite("DungeonFloor1");
         Map.img=new Sprite("DungeonFloor1",8);
         Map.pimg=new Sprite("Player",8);
         Map.stimg=new Sprite("Stairway",8);

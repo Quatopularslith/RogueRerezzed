@@ -12,6 +12,7 @@ import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Item;
 import entity.mob.RogueHostileEntity;
+import render.RenderPanel;
 import render.Sprite;
 
 /**
@@ -66,7 +67,7 @@ public class Player extends RogueEntity{
         }else if(health<maxhealth){
             health+=0.1;
         }
-        if(xp%10*(xplevels)==0 && xp!=0){
+        if(xp%10*(xplevels)==0 && xp>1){
             xplevels++;
         }
         maxAtt=2;
@@ -85,6 +86,7 @@ public class Player extends RogueEntity{
             Item i = l.getItems().get(j);
             if(i.x==this.x && i.y==this.y && pinv[currinv]!=i){
                 Player.pinv[currinv]=i;
+                RenderPanel.pickup = i;
                 if(currinv<pinv.length-1 && !pinv[currinv].name.equalsIgnoreCase("EMPTY")){
                     currinv++;
                 }
