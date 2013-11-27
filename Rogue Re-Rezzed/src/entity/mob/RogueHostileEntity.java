@@ -31,6 +31,7 @@ public class RogueHostileEntity extends RogueEntity{
     public RogueHostileEntity(int lvl,Room r,Level l1,String name,int op0,int hmod,int op1,int attmod) {
         super(l1);
         l=l1;
+        defence=0;
         switch(op0){
             case 0:
                 health=hmod+(lvl);
@@ -60,8 +61,8 @@ public class RogueHostileEntity extends RogueEntity{
         this.maxhealth=(int) this.health;
         sp = new Sprite(name);
         inv = new Item[1];
-        if(lvl>Item.numid){
-            lvl=Item.numid;
+        if(lvl>Item.numid/3){
+            lvl=Item.numid/3;
         }
         inv[0] = new Item(rand.nextInt((lvl*3)+1),this,l);
         spawn(r);

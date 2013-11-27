@@ -20,7 +20,6 @@ import javax.swing.JPanel;
  * @author Torri
  */
 public class RenderPanel extends JPanel{
-    public static boolean pickedup = false;
     private Level l = Rogue.getLevel();
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
@@ -39,9 +38,9 @@ public class RenderPanel extends JPanel{
      * The core updater
      */
     public void update(){
-        pickup=null;
         l=Rogue.getLevel();
         l.getStairWay().turn();
+        pickup=null;
         l.getPlayer().turn();
         for(int i=0;i<l.getEntities().size()-1;i++){
             if(l.getEntities().get(i) != null){
@@ -111,17 +110,18 @@ public class RenderPanel extends JPanel{
         }
         if(pickup.name.equalsIgnoreCase("Empty")==false){
             g2.drawImage(dialogue.i, getWidth()/2-32, getHeight()/2-32, this);
+            g2.drawString(pickup.name, getWidth()/2-32,getHeight()/2);
             g2.dispose();
-            ajb.setBounds(getWidth()/2-16,getHeight()/2-16,70,80);
+            ajb.setBounds(getWidth()/2-16,getHeight()/2,100,20);
             ajb.addActionListener(Rogue.mm.bi);
             this.add(ajb);
-            djb.setBounds(getWidth()/2-16,getHeight()/2-16,70,80);
+            djb.setBounds(getWidth()/2-16,getHeight()/2+32,100,20);
             djb.addActionListener(Rogue.mm.bi);
             this.add(djb);
+        }else{
+            this.remove(ajb);
+            this.remove(djb);
         }
         g2.dispose();
-    }
-    public static boolean pickupItem(){
-        return pickedup;
     }
 }

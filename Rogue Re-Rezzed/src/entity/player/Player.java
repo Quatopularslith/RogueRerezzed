@@ -25,7 +25,7 @@ public class Player extends RogueEntity{
     public int mana;
     public static int kills;
     boolean attack = false;
-    int currinv = 0;
+    public static int currinv = 0;
     public static Item[] pinv;
     public static Item[] equipped;
     public static int xp=0;
@@ -45,7 +45,13 @@ public class Player extends RogueEntity{
                 equipped[i]=new Item(0,this,l);
             }
         }
-        defence=(int) (1);
+        for(int k=0;k<pinv.length;k++){
+            if(pinv[k].name.equalsIgnoreCase("empty")){
+                Player.currinv=k;
+                break;
+            }
+        }
+        defence=0;
         maxAtt=2;
         mana=(int) (50);
         maxMana=(int) (100);
@@ -97,21 +103,17 @@ public class Player extends RogueEntity{
                 this.maxAtt+=pinv[i].stats[0];
             }
         }
+        if(defence<0){
+            defence=0;
+        }
         l=Rogue.getLevel();
         for (int j=0;j<l.getItems().size();j++) {
             Item i = l.getItems().get(j);
             if(i.x==this.x && i.y==this.y && pinv[currinv]!=i){
-                Player.pinv[currinv]=i;
                 RenderPanel.pickup = i;
-                for(int k=0;k<pinv.length;k++){
-                    if(pinv[k].name.equalsIgnoreCase("empty")){
-                        currinv=k;
-                    }
-                }
                 if(currinv<pinv.length-1 && !pinv[currinv].name.equalsIgnoreCase("EMPTY")){
                     currinv++;
                 }
-                i.death();
             }
         }
         attack=false;
