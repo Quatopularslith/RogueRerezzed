@@ -37,7 +37,8 @@ public class Item extends RogueEntity{
         maxhealth=1;
         parent=parent1;
         id=id1;
-        sp=new Sprite("Bag",16);
+//        sp=new Sprite("Bag",16);
+        sp=new Sprite("BagB",16);
         modifierid=rand.nextInt(modifiers.length);
         int matid = (int) id/materials.length;
         int tyid = (id%3)+1;
