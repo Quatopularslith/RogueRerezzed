@@ -128,22 +128,24 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.mmp.setVisible(true);
             Rogue.mm.sm.setVisible(false);
         }
-        for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
-            if(command.equalsIgnoreCase("Drop "+i)){
-                Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
-                Player.pinv[i].drop();
-                Rogue.mm.d.invp.setVisible(false);
-                Rogue.mm.d.invp.setVisible(true);
-                Rogue.mm.d.gp.update();
+        if(Rogue.mm.d!=null){
+            for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
+                if(command.equalsIgnoreCase("Drop "+i)){
+                    Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
+                    Player.pinv[i].drop();
+                    Rogue.mm.d.invp.setVisible(false);
+                    Rogue.mm.d.invp.setVisible(true);
+                    Rogue.mm.d.gp.update();
+                }
             }
-        }
-        for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
-            if(command.equalsIgnoreCase("Equip "+i)){
-                Player.pinv[i].equip=true;
-                Rogue.mm.d.invp.update();
-                Rogue.mm.d.invp.setVisible(false);
-                Rogue.mm.d.invp.setVisible(true);
-                Rogue.mm.d.gp.update();
+            for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
+                if(command.equalsIgnoreCase("Equip "+i)){
+                    Player.pinv[i].equip=true;
+                    Rogue.mm.d.invp.update();
+                    Rogue.mm.d.invp.setVisible(false);
+                    Rogue.mm.d.invp.setVisible(true);
+                    Rogue.mm.d.gp.update();
+                }
             }
         }
         if(command.equalsIgnoreCase("pick up")){
