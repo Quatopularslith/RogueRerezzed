@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package entity.player;
 
@@ -94,13 +89,15 @@ public class Player extends RogueEntity{
         maxhealth=100;
         defence=0;
         for (int i=0;i<pinv.length;i++) {
-            pinv[i].update();
-            if(pinv[i].equip==true){
-                equipped[i]=pinv[i];
-                this.maxhealth+=pinv[i].stats[3];
-                this.maxMana+=pinv[i].stats[2];
-                this.defence+=pinv[i].stats[1];
-                this.maxAtt+=pinv[i].stats[0];
+            if(pinv[i]!=null){
+                pinv[i].update();
+                if(pinv[i].equip==true){
+                    equipped[i]=pinv[i];
+                    this.maxhealth+=pinv[i].stats[3];
+                    this.maxMana+=pinv[i].stats[2];
+                    this.defence+=pinv[i].stats[1];
+                    this.maxAtt+=pinv[i].stats[0];
+                }
             }
         }
         if(defence<0){
@@ -111,8 +108,10 @@ public class Player extends RogueEntity{
             Item i = l.getItems().get(j);
             if(i.x==this.x && i.y==this.y && pinv[currinv]!=i){
                 RenderPanel.pickup = i;
-                if(currinv<pinv.length-1 && !pinv[currinv].name.equalsIgnoreCase("EMPTY")){
-                    currinv++;
+                if(pinv[currinv]!=null){
+                    if(currinv<pinv.length-1 && !pinv[currinv].name.equalsIgnoreCase("EMPTY")){
+                        currinv++;
+                    }
                 }
             }
         }

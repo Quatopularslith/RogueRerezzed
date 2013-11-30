@@ -44,7 +44,6 @@ public class Loading extends JFrame{
         int scx = (int) (cX+(width/11));
         int scy = (int) (cY+(width/(6.666666666666666666666666666666666666666666666666666666666666666667)));
         g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,((17*width)/1000)));
-        // TODO insert graphic logo
         while(currtick<(arrs-1)){
             g2.setColor(Color.RED);
             g2.drawString("Quotopulularslith", scx-10, scy);

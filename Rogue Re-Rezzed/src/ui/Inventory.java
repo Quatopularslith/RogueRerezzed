@@ -36,17 +36,19 @@ public class Inventory extends JPanel{
     }
     public void update(){
         for(int i=0;i<Player.pinv.length;i++){
-            if(Player.pinv[i].name.equalsIgnoreCase("Empty")){
-                drop[i]=null;
-            }else if(drop[i]!=null){
-                drop[i].setSelected(false);
-                drop[i] = new JButton("Drop "+i);
-                drop[i].setBounds(130, (i*25)+40-25, 70, 15);
-                drop[i].setVisible(true);
-                equip[i].setSelected(false);
-                equip[i] = new JButton("Equip "+i);
-                equip[i].setBounds(56, (i*25)+40-25, 74, 15);
-                equip[i].setVisible(true);
+            if(Player.pinv[i]!=null){
+                if(Player.pinv[i].name.equalsIgnoreCase("Empty")){
+                    drop[i]=null;
+                }else if(drop[i]!=null){
+                    drop[i].setSelected(false);
+                    drop[i] = new JButton("Drop "+i);
+                    drop[i].setBounds(130, (i*25)+40-25, 70, 15);
+                    drop[i].setVisible(true);
+                    equip[i].setSelected(false);
+                    equip[i] = new JButton("Equip "+i);
+                    equip[i].setBounds(56, (i*25)+40-25, 74, 15);
+                    equip[i].setVisible(true);
+                }
             }
         }
         repaint();
@@ -61,27 +63,31 @@ public class Inventory extends JPanel{
         g2.setColor(Color.WHITE);
         g2.drawString("INVENTORY", (getWidth()/4)-50, 20);
         for(Item i:Player.pinv){
-            g2.drawString(i.name, 10, (ind*20)+40);
-            ind++;
+            if(i!=null){
+                g2.drawString(i.name, 10, (ind*20)+40);
+                ind++;
+            }
         }
         g2.dispose();
         for(int i=0;i<Player.pinv.length;i++){
-            if(Player.pinv[i].name.equalsIgnoreCase("Empty")){
-                if(drop[i]!=null){
-                    this.remove(drop[i]);
-                    this.remove(equip[i]);
+            if(Player.pinv[i]!=null){
+                if(Player.pinv[i].name.equalsIgnoreCase("Empty")){
+                    if(drop[i]!=null){
+                        this.remove(drop[i]);
+                        this.remove(equip[i]);
+                    }
+                }else{
+                    drop[i] = new JButton("Drop "+i);
+                    drop[i].setBounds(130, (i*25)+40-25, 70, 20);
+                    drop[i].setVisible(true);
+                    equip[i] = new JButton("Equip "+i);
+                    equip[i].setBounds(56, (i*25)+40-25, 74, 20);
+                    equip[i].setVisible(true);
+                    this.add(drop[i]);
+                    drop[i].addActionListener(Rogue.mm.bi);
+                    this.add(equip[i]);
+                    equip[i].addActionListener(Rogue.mm.bi);
                 }
-            }else{
-                drop[i] = new JButton("Drop "+i);
-                drop[i].setBounds(130, (i*25)+40-25, 70, 20);
-                drop[i].setVisible(true);
-                equip[i] = new JButton("Equip "+i);
-                equip[i].setBounds(56, (i*25)+40-25, 74, 20);
-                equip[i].setVisible(true);
-                this.add(drop[i]);
-                drop[i].addActionListener(Rogue.mm.bi);
-                this.add(equip[i]);
-                equip[i].addActionListener(Rogue.mm.bi);
             }
         }
     }

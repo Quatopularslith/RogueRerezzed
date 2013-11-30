@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package input;
 
@@ -10,9 +5,9 @@ import core.Rogue;
 import dungeon.Level;
 import entity.item.Item;
 import entity.player.Player;
-import static entity.player.Player.pinv;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JPanel;
 import render.RenderPanel;
 import ui.Menu;
 
@@ -133,8 +128,7 @@ public class ButtonInput implements ActionListener{
                 if(command.equalsIgnoreCase("Drop "+i)){
                     Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
                     Player.pinv[i].drop();
-                    Rogue.mm.d.invp.setVisible(false);
-                    Rogue.mm.d.invp.setVisible(true);
+                    refresh(Rogue.mm.d.invp);
                     Rogue.mm.d.gp.update();
                 }
             }
@@ -142,24 +136,28 @@ public class ButtonInput implements ActionListener{
                 if(command.equalsIgnoreCase("Equip "+i)){
                     Player.pinv[i].equip=true;
                     Rogue.mm.d.invp.update();
-                    Rogue.mm.d.invp.setVisible(false);
-                    Rogue.mm.d.invp.setVisible(true);
+                    refresh(Rogue.mm.d.invp);
                     Rogue.mm.d.gp.update();
                 }
             }
         }
         if(command.equalsIgnoreCase("pick up")){
             Player.pinv[Player.currinv]=RenderPanel.pickup;
-            RenderPanel.pickup.death();
-            Rogue.mm.d.gp.setVisible(false);
-            Rogue.mm.d.gp.setVisible(true);
+            if(RenderPanel.pickup!=null){
+                RenderPanel.pickup.death();
+            }
+            Rogue.mm.d.gp.update();
+            refresh(Rogue.mm.d);
         }
         if(command.equalsIgnoreCase("leave it")){
-            Rogue.mm.d.gp.update();
             RenderPanel.pickup=null;
-            Rogue.mm.d.gp.setVisible(false);
-            Rogue.mm.d.gp.setVisible(true);
+            Rogue.mm.d.gp.update();
+            refresh(Rogue.mm.d);
         }
         Rogue.mm.refresh();
+    }
+    private void refresh(JPanel p){
+        p.setVisible(false);
+        p.setVisible(true);
     }
 }

@@ -1,6 +1,4 @@
-
 package dungeon;
-
 import entity.RogueEntity;
 import entity.Stairway;
 import entity.item.Item;
@@ -13,7 +11,6 @@ import java.util.Random;
 import render.RenderPanel;
 import render.Sprite;
 import ui.Map;
-
 /**
  *  
  * @author Torri
