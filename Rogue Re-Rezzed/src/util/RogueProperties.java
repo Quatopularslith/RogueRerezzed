@@ -8,13 +8,14 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
+ * Handles all things good and file-y
  * @author Torri
  */
 public class RogueProperties {
-    private File rp;
+    private final File rp;
     private Properties p;
-    private String[] props;
-    private String[] out;
+    private final String[] props;
+    private final String[] out;
     /**
      * Creates properties file
      * @param dir

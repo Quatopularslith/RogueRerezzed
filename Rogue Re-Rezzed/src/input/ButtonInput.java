@@ -1,4 +1,3 @@
-
 package input;
 
 import core.Rogue;
@@ -12,7 +11,7 @@ import render.RenderPanel;
 import ui.Menu;
 
 /**
- *
+ * Handles the buttons of the UIs
  * @author Torri &  Mnenmenth
  */
 public class ButtonInput implements ActionListener{
@@ -146,7 +145,7 @@ public class ButtonInput implements ActionListener{
             if(RenderPanel.pickup!=null){
                 RenderPanel.pickup.death();
             }
-            Rogue.mm.d.gp.update();
+//            Rogue.mm.d.gp.update();
             refresh(Rogue.mm.d);
         }
         if(command.equalsIgnoreCase("leave it")){

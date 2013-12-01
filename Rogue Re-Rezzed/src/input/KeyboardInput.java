@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- *
+ * This gets and keeps information from the keyboard
  * @author Torri
  */
 public class KeyboardInput implements KeyListener{

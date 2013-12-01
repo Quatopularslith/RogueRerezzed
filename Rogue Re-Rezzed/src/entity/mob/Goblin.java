@@ -8,13 +8,14 @@ package entity.mob;
 
 import dungeon.Level;
 import dungeon.Room;
+import util.Operation;
 
 /**
- *
+ * Newest in the family of bad guys.
  * @author Torri
  */
 public class Goblin extends RogueHostileEntity{
     public Goblin(int lvl,Room r,Level l1){
-        super(lvl,r,l1,"Goblin",3,25,3,3);
+        super(lvl,r,l1,"Goblin",Operation.MULT,25,Operation.MULT,3);
     }
 }

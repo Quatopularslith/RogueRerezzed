@@ -5,7 +5,7 @@ import dungeon.Level;
 import java.awt.Image;
 
 /**
- *
+ * This allows images to be made the correct size and pick the correct one
  * @author Torri
  */
 public class Sprite {

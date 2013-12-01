@@ -13,7 +13,7 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JPanel;
 
 /**
- *
+ * Not our code; This is something we tried (and failed to use)
  * @author Java42
  */
 public class IPanel extends JPanel {
@@ -38,8 +38,11 @@ public class IPanel extends JPanel {
     }
     @Override
     public void paintComponent(final Graphics g) {
+        super.paint(g);
         super.paintComponent(g);
-        if (image != null)
+        if (image != null){
             g.drawImage(image, 0, 0, null);
+        }
+        g.dispose();
     }
 }

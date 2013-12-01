@@ -1,4 +1,5 @@
 package dungeon;
+
 import entity.RogueEntity;
 import entity.Stairway;
 import entity.item.Item;
@@ -11,8 +12,9 @@ import java.util.Random;
 import render.RenderPanel;
 import render.Sprite;
 import ui.Map;
+
 /**
- *  
+ * Handles everything having to do with spawning the world
  * @author Torri
  */
 public class Level {
@@ -92,6 +94,7 @@ public class Level {
             renderlevel=16;
         }
         RenderPanel.fsp = new Sprite("DungeonFloor1");
+        RenderPanel.dialogue = new Sprite("Dialogue");
         Map.img=new Sprite("DungeonFloor1",8);
         Map.pimg=new Sprite("Player",8);
         Map.stimg=new Sprite("Stairway",8);

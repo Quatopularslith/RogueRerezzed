@@ -7,10 +7,11 @@ import render.Sprite;
 
 
 /**
- *
+ * Items!
  * @author Torri
  */
 public class Item extends RogueEntity{
+    public Type tyname;
     public int ofx=rand.nextInt(42),ofy=rand.nextInt(42);
     private final RogueEntity parent;
     public int modifierid;
@@ -22,9 +23,10 @@ public class Item extends RogueEntity{
     public String name;
     public boolean equip = false;
     public static int numid = type.length*materials.length;
-    
-    //stats in form of
-    // Attack,Defence,Mana,Health
+    /**
+     * In form of
+     * {Attack,Defense,Mana,Health}
+     */
     public double[] stats = {0.0,0.0,0.0,0.0};
     public Item(int id1,RogueEntity parent1,Level l1) {
         super(l1);
@@ -41,12 +43,15 @@ public class Item extends RogueEntity{
             name = "Lvl "+(Level.numLevels+1)+" "+modifiers[modifierid]+materials[matid]+type[tyid];
             cursed = rand.nextBoolean();
             switch(tyid){
-                case 2:
+                case 0:
+                    tyname=Type.SWORD;
                     stats[0]=1;
-                case 3:
+                case 1:
+                    tyname=Type.AXE;
                     stats[0]=0.5;
                     stats[1]=0.5;
-                case 4:
+                case 2:
+                    tyname=Type.SHEILD;
                     stats[1]=1;
             }
             stats[0]*=matid+1;

@@ -5,6 +5,7 @@ import dungeon.Level;
 import loading.Loading;
 //http://semver.org/
 /**
+ * This makes it all go!
  * @version 1.0 POC
  * @author Torri
  */
@@ -15,7 +16,7 @@ public class Rogue {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Loading l = new Loading(750);
+        Loading g = new Loading(750);
     }
     public static Level setLevel(Level l1){
         l=l1;

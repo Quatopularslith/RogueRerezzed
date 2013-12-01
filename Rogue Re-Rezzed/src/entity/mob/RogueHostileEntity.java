@@ -6,9 +6,10 @@ import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Item;
 import render.Sprite;
+import util.Operation;
 
 /**
- *
+ * Parent class for all monsters
  * @author Torri
  */
 public class RogueHostileEntity extends RogueEntity{
@@ -45,7 +46,7 @@ public class RogueHostileEntity extends RogueEntity{
             case 3:
                 health=hmod/(lvl);
         }
-        switch(op0){
+        switch(op1){
             case 0:
                 maxAtt=attmod+(lvl);
                 break;
@@ -56,6 +57,48 @@ public class RogueHostileEntity extends RogueEntity{
                 maxAtt=attmod*(lvl);
                 break;
             case 3:
+                maxAtt=attmod/(lvl);
+        }
+        this.maxhealth=(int) this.health;
+        sp = new Sprite(name);
+        inv = new Item[1];
+        if(lvl>Item.numid/3){
+            lvl=Item.numid/3;
+        }
+        inv[0] = new Item(rand.nextInt((lvl*3)+1),this,l);
+        spawn(r);
+        for (Item inv1 : inv) {
+            inv1.update();
+        }
+    }
+    public RogueHostileEntity(int lvl,Room r,Level l1,String name,Operation op0,int hmod,Operation op1,int attmod) {
+        super(l1);
+        l=l1;
+        defence=0;
+        switch(op0){
+            case ADD:
+                health=hmod+(lvl);
+                break;
+            case SUB:
+                health=hmod-(lvl);
+                break;
+            case MULT:
+                health=hmod*(lvl);
+                break;
+            case DIV:
+                health=hmod/(lvl);
+        }
+        switch(op1){
+            case ADD:
+                maxAtt=attmod+(lvl);
+                break;
+            case SUB:
+                maxAtt=attmod-(lvl);
+                break;
+            case MULT:
+                maxAtt=attmod*(lvl);
+                break;
+            case DIV:
                 maxAtt=attmod/(lvl);
         }
         this.maxhealth=(int) this.health;

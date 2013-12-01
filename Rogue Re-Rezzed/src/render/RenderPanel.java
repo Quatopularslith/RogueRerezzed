@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- *
+ * This is what you see.
  * @author Torri
  */
 public class RenderPanel extends JPanel{

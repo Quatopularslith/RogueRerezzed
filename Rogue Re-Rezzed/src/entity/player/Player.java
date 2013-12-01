@@ -1,4 +1,3 @@
-
 package entity.player;
 
 import core.Rogue;
@@ -11,7 +10,7 @@ import render.RenderPanel;
 import render.Sprite;
 
 /**
- *
+ * Hello! This is you!
  * @author Torri
  */
 public class Player extends RogueEntity{
