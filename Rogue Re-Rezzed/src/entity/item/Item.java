@@ -40,19 +40,25 @@ public class Item extends RogueEntity{
         int matid = (int) id/materials.length;
         int tyid = (id%3)+1;
         if(id!=0){
-            name = "Lvl "+(Level.numLevels+1)+" "+modifiers[modifierid]+materials[matid]+type[tyid];
+            name = "Lvl "+Level.numLevels+" "+modifiers[modifierid]+materials[matid]+type[tyid];
             cursed = rand.nextBoolean();
             switch(tyid){
-                case 0:
+                case 1:
                     tyname=Type.SWORD;
                     stats[0]=1;
-                case 1:
+                    break;
+                case 2:
                     tyname=Type.AXE;
                     stats[0]=0.5;
                     stats[1]=0.5;
-                case 2:
+                    break;
+                case 3:
                     tyname=Type.SHEILD;
                     stats[1]=1;
+                    break;
+                default:
+                    tyname=Type.EMPTY;
+                    break;
             }
             stats[0]*=matid+1;
             stats[1]*=matid+1;
@@ -60,18 +66,24 @@ public class Item extends RogueEntity{
             stats[3]*=matid+1;
             switch(modifierid){
                 case 1:
-                    stats[0]-=(0.4*Level.numLevels+1);
+                    stats[0]-=(0.4*(Level.numLevels+1));
+                    break;
                 case 3:
-                    stats[1]-=(0.4*Level.numLevels+1);
+                    stats[1]-=(0.4*(Level.numLevels+1));
+                    break;
                 case 5:
-                    stats[3]+=(0.4*Level.numLevels+1);
+                    stats[3]+=(0.4*(Level.numLevels+1));
+                    break;
                 case 6:
-                    stats[2]+=(0.4*Level.numLevels+1);
+                    stats[2]+=(0.4*(Level.numLevels+1));
+                    break;
                 case 7:
-                    stats[0]+=(0.4*Level.numLevels+1);
+                    stats[0]+=(0.4*(Level.numLevels+1));
+                    break;
             }
         }else{
             name = type[0];
+            tyname=Type.EMPTY;
             for(double ind:stats){
                 ind=0;
             }

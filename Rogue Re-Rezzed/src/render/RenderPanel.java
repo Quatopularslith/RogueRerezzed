@@ -95,28 +95,31 @@ public class RenderPanel extends JPanel{
             if(current.get(i)!=null){
                 g2.setColor(Color.RED);
                 g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-10, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
-                g2.setColor(Color.BLACK);
+                g2.setColor(Color.WHITE);
                 g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*64+offx+3, current.get(i).y*64+offy+4);
                 g2.drawImage(current.get(i).sp.i, current.get(i).x*64+offx, current.get(i).y*64+offy, this);
             }
         }
         g2.setColor(Color.RED);
         g2.fillRect(l.getPlayer().x*64+offx+2, l.getPlayer().y*64+offy-10, (int) ((l.getPlayer().health/l.getPlayer().maxhealth)*61), 20);
-        g2.setColor(Color.BLACK);
+        g2.setColor(Color.WHITE);
         g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy+4);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
         if(pickup==null){
             pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
         }
         if(pickup.name.equalsIgnoreCase("Empty")==false){
+            g2.setColor(Color.BLACK);
             g2.drawImage(dialogue.i, getWidth()/2-32, getHeight()/2-32, this);
             g2.drawString(pickup.name, getWidth()/2-32,getHeight()/2);
             g2.dispose();
             ajb.setBounds(getWidth()/2-16,getHeight()/2,100,20);
             ajb.addActionListener(Rogue.mm.bi);
+            ajb.setOpaque(true);
             this.add(ajb);
             djb.setBounds(getWidth()/2-16,getHeight()/2+32,100,20);
             djb.addActionListener(Rogue.mm.bi);
+            djb.setOpaque(true);
             this.add(djb);
         }else{
             this.remove(ajb);

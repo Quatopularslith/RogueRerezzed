@@ -141,9 +141,11 @@ public class ButtonInput implements ActionListener{
             }
         }
         if(command.equalsIgnoreCase("pick up")){
-            Player.pinv[Player.currinv]=RenderPanel.pickup;
+            Player.pinv[Player.currinv]=new Item(RenderPanel.pickup.id,Rogue.getLevel().getPlayer(),Rogue.getLevel());
             if(RenderPanel.pickup!=null){
                 RenderPanel.pickup.death();
+            }else{
+                
             }
 //            Rogue.mm.d.gp.update();
             refresh(Rogue.mm.d);
@@ -152,6 +154,8 @@ public class ButtonInput implements ActionListener{
             RenderPanel.pickup=null;
             Rogue.mm.d.gp.update();
             refresh(Rogue.mm.d);
+        }
+        if(command.equalsIgnoreCase("Auto Equip")){
         }
         Rogue.mm.refresh();
     }

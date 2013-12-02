@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import util.RogueProperties;
 
 /**
- *
+ * 
  * @author Torri
  */
 public class Menu extends JFrame{
@@ -88,6 +88,7 @@ public class Menu extends JFrame{
         omp.back.addActionListener(bi);
         omp.defaultKB.addActionListener(bi);
         omp.debug.addActionListener(bi);
+        omp.autoequip.addActionListener(bi);
         
         dmp.debugPass.addActionListener(bi);
         

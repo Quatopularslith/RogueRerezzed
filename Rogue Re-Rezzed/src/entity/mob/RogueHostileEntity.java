@@ -15,11 +15,6 @@ import util.Operation;
 public class RogueHostileEntity extends RogueEntity{
     /**
      * creates new entity
-     * operations:
-     * 0 add
-     * 1 sub
-     * 2 mult
-     * 3 div
      * @param lvl
      * @param r
      * @param l1 
@@ -29,52 +24,10 @@ public class RogueHostileEntity extends RogueEntity{
      * @param op1 operation for attack
      * @param hmod health modifier
      */
-    public RogueHostileEntity(int lvl,Room r,Level l1,String name,int op0,int hmod,int op1,int attmod) {
-        super(l1);
-        l=l1;
-        defence=0;
-        switch(op0){
-            case 0:
-                health=hmod+(lvl);
-                break;
-            case 1:
-                health=hmod-(lvl);
-                break;
-            case 2:
-                health=hmod*(lvl);
-                break;
-            case 3:
-                health=hmod/(lvl);
-        }
-        switch(op1){
-            case 0:
-                maxAtt=attmod+(lvl);
-                break;
-            case 1:
-                maxAtt=attmod-(lvl);
-                break;
-            case 2:
-                maxAtt=attmod*(lvl);
-                break;
-            case 3:
-                maxAtt=attmod/(lvl);
-        }
-        this.maxhealth=(int) this.health;
-        sp = new Sprite(name);
-        inv = new Item[1];
-        if(lvl>Item.numid/3){
-            lvl=Item.numid/3;
-        }
-        inv[0] = new Item(rand.nextInt((lvl*3)+1),this,l);
-        spawn(r);
-        for (Item inv1 : inv) {
-            inv1.update();
-        }
-    }
     public RogueHostileEntity(int lvl,Room r,Level l1,String name,Operation op0,int hmod,Operation op1,int attmod) {
         super(l1);
         l=l1;
-        defence=0;
+        maxDefence=0;
         switch(op0){
             case ADD:
                 health=hmod+(lvl);
@@ -87,6 +40,7 @@ public class RogueHostileEntity extends RogueEntity{
                 break;
             case DIV:
                 health=hmod/(lvl);
+                break;
         }
         switch(op1){
             case ADD:
@@ -120,7 +74,7 @@ public class RogueHostileEntity extends RogueEntity{
         }
         this.move(pointTowards(this.l.getPlayer()));
         if(doatt(l.getPlayer())){
-            l.getPlayer().damage(rand.nextInt(maxAtt));
+            l.getPlayer().damage(rand.nextInt((int) maxAtt));
         }
     }
     /**

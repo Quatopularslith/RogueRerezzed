@@ -10,7 +10,7 @@ import render.Sprite;
  * @author Torri
  */
 public class RogueEntity {
-    public int maxAtt=0,defence=0;
+    public double maxAtt=0,maxDefence=0;
     public int x=0,y=0,uuid=0;
     public float health=0;
     public int maxhealth=0;
@@ -63,12 +63,12 @@ public class RogueEntity {
      * Take damage
      * @param att 
      */
-    public void damage(int att){
+    public void damage(double att){
         int td;
-        if(defence<0){
-            defence=0;
+        if(maxDefence<0){
+            maxDefence=0;
         }
-        td = rand.nextInt(defence+1);
+        td = rand.nextInt((int) (maxDefence+1));
         if(td<att){
             att-=td;
         }else{

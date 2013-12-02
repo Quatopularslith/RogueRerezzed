@@ -16,7 +16,7 @@ import render.Sprite;
 public class Player extends RogueEntity{
     public static boolean dead=false;
     public int maxMana;//mana=magic points
-    public int mana;
+    public double mana;
     public static int kills;
     boolean attack = false;
     public static int currinv = 0;
@@ -45,7 +45,7 @@ public class Player extends RogueEntity{
                 break;
             }
         }
-        defence=0;
+        maxDefence=0;
         maxAtt=2;
         mana=(int) (50);
         maxMana=(int) (100);
@@ -57,7 +57,7 @@ public class Player extends RogueEntity{
                 equipped[i]=pinv[i];
                 this.maxhealth+=pinv[i].stats[3];
                 this.maxMana+=pinv[i].stats[2];
-                this.defence+=pinv[i].stats[1];
+                this.maxDefence+=pinv[i].stats[1];
                 this.maxAtt+=pinv[i].stats[0];
             }
         }
@@ -86,7 +86,7 @@ public class Player extends RogueEntity{
         maxAtt=2;
         maxMana=100;
         maxhealth=100;
-        defence=0;
+        maxDefence=0;
         for (int i=0;i<pinv.length;i++) {
             if(pinv[i]!=null){
                 pinv[i].update();
@@ -94,23 +94,21 @@ public class Player extends RogueEntity{
                     equipped[i]=pinv[i];
                     this.maxhealth+=pinv[i].stats[3];
                     this.maxMana+=pinv[i].stats[2];
-                    this.defence+=pinv[i].stats[1];
+                    this.maxDefence+=pinv[i].stats[1];
                     this.maxAtt+=pinv[i].stats[0];
                 }
             }
         }
-        if(defence<0){
-            defence=0;
+        if(maxDefence<0){
+            maxDefence=0;
         }
         l=Rogue.getLevel();
         for (int j=0;j<l.getItems().size();j++) {
             Item i = l.getItems().get(j);
-            if(i.x==this.x && i.y==this.y && pinv[currinv]!=i){
+            if(i.x==this.x && i.y==this.y && pinv[currinv]!=i && pinv[currinv]!=null){
                 RenderPanel.pickup = i;
-                if(pinv[currinv]!=null){
-                    if(currinv<pinv.length-1 && !pinv[currinv].name.equalsIgnoreCase("EMPTY")){
-                        currinv++;
-                    }
+                if(currinv<pinv.length-1 && !pinv[currinv].name.equalsIgnoreCase("EMPTY")){
+                    currinv=j;
                 }
             }
         }
@@ -119,7 +117,7 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y-1){
-                    re.damage(rand.nextInt(maxAtt));
+                    re.damage(rand.nextInt((int) maxAtt));
                     if(re.health<=0){
                         mana++;
                         kills++;
@@ -136,7 +134,7 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
-                    re.damage(rand.nextInt(maxAtt));
+                    re.damage(rand.nextInt((int) maxAtt));
                     if(re.health<=0){
                         mana++;
                         kills++;
@@ -153,7 +151,7 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x+1 && re.y==this.y){
-                    re.damage(rand.nextInt(maxAtt));
+                    re.damage(rand.nextInt((int) maxAtt));
                     if(re.health<=0){
                         mana++;
                         kills++;
@@ -170,7 +168,7 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x-1 && re.y==this.y){
-                    re.damage(rand.nextInt(maxAtt));
+                    re.damage(rand.nextInt((int) maxAtt));
                     if(re.health<=0){
                         mana++;
                         kills++;
