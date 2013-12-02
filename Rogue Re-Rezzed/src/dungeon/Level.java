@@ -50,14 +50,14 @@ public class Level {
      * Creates a level
      */
     public Level(){
-        this(100,100,numLevels);
+        this(150,150,numLevels);
     }
     /**
      * Creates a level
      * @param lvl level of difficulty
      */
     public Level(int lvl){
-        this(100,100,lvl);
+        this(150,150,lvl);
     }
     /**
      * Creates a level
@@ -75,6 +75,7 @@ public class Level {
      */
     public Level(int sx,int sy,int lvl){
         Player.dead=false;
+        numLevels++;
         nument=0;
         int roomnum=0;
         board=new boolean[1000][1000];
@@ -89,7 +90,7 @@ public class Level {
             renderlevel=16;
         }
         RenderPanel.fsp = new Sprite("DungeonFloor1");
-        RenderPanel.dialogue = new Sprite("Dialogue");
+        RenderPanel.dialogue = new Sprite("Dialogue",144);
         Map.img=new Sprite("DungeonFloor1",8);
         Map.pimg=new Sprite("Player",8);
         Map.stimg=new Sprite("Stairway",8);
@@ -100,8 +101,8 @@ public class Level {
             }
         }
         st = new Stairway(this);
-        rooms[roomnum]=new Room(rooms[0].area[0][0][0],rooms[0].area[0][0][1],100,3,lvl,this);
-        rooms[roomnum+1]=new Room(rooms[st.room].area[0][0][0],rooms[st.room].area[0][0][1],100,3,lvl,this);
+        rooms[roomnum]=new Room(rooms[0].area[0][0][0]-2,rooms[0].area[0][0][1]-2,100,3,lvl,this);
+        rooms[roomnum+1]=new Room(0,rooms[st.room].area[0][0][1],100,3,lvl,this);
         rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],0,3,100,lvl,this);
         p=new Player(this);
         for(Room r:rooms){
@@ -117,8 +118,6 @@ public class Level {
         
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
-        
-        numLevels++;
     }
     /**
      * Gets Room Array

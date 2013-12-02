@@ -33,7 +33,10 @@ public class RogueEntity {
     public void move(int d){
         int dx=0;
         int dy=0;
-        if(d<=45 || d>315){//up
+        if(d>360){
+            dx=0;
+            dy=0;
+        }else if(d<=45 || d>315){//up
             dy--;
         }else if(d<=135 && d>45){//right
             dx++;
@@ -101,5 +104,13 @@ public class RogueEntity {
     public void spawn(Room r){
         x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][0];
         y=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1];
+    }
+    /**
+     * Gets the distance to an entity
+     * @param e
+     * @return
+     */
+    public double distTo(RogueEntity e){
+        return Math.sqrt(((e.x-x)^2)+((e.y-y)^2));
     }
 }

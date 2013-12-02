@@ -11,10 +11,6 @@ import util.Operation;
  */
 public class Fish extends RogueHostileEntity{
     public Fish(int lvl,Room r,Level l1){
-        super(lvl,r,l1,"Fish",Operation.MULT,5,Operation.MULT,0);
-    }
-    @Override
-    public void turn(){
-        this.move(rand.nextInt(360));
+        super(lvl,r,l1,"Fish",Operation.MULT,5,Operation.MULT,0,-1);
     }
 }

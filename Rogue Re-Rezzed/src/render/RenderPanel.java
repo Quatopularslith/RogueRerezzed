@@ -26,7 +26,7 @@ public class RenderPanel extends JPanel{
     Room[] room = l.getRooms();
     public static Item pickup;
     public static Sprite fsp = new Sprite("DungeonFloor1");
-    public static Sprite dialogue = new Sprite("Dialogue",128);
+    public static Sprite dialogue = new Sprite("Dialogue",144);
     private List<RogueEntity> current = l.getEntities();
     JButton ajb = new JButton("Pick up");
     JButton djb = new JButton("Leave it");
@@ -110,8 +110,8 @@ public class RenderPanel extends JPanel{
         }
         if(pickup.name.equalsIgnoreCase("Empty")==false){
             g2.setColor(Color.BLACK);
-            g2.drawImage(dialogue.i, getWidth()/2-32, getHeight()/2-32, this);
-            g2.drawString(pickup.name, getWidth()/2-32,getHeight()/2);
+            g2.drawImage(dialogue.i, getWidth()/2-36, getHeight()/2-36, this);
+            g2.drawString(pickup.name, getWidth()/2-32,getHeight()/2-10);
             g2.dispose();
             ajb.setBounds(getWidth()/2-16,getHeight()/2,100,20);
             ajb.addActionListener(Rogue.mm.bi);

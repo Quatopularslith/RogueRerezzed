@@ -13,6 +13,9 @@ import util.Operation;
  * @author Torri
  */
 public class RogueHostileEntity extends RogueEntity{
+    public int followdist;
+    private int last=0;
+    private int now=0;
     /**
      * creates new entity
      * @param lvl
@@ -24,8 +27,9 @@ public class RogueHostileEntity extends RogueEntity{
      * @param op1 operation for attack
      * @param hmod health modifier
      */
-    public RogueHostileEntity(int lvl,Room r,Level l1,String name,Operation op0,int hmod,Operation op1,int attmod) {
+    public RogueHostileEntity(int lvl,Room r,Level l1,String name,Operation op0,int hmod,Operation op1,int attmod,int followdist1) {
         super(l1);
+        followdist=followdist1;
         l=l1;
         maxDefence=0;
         switch(op0){
@@ -73,8 +77,8 @@ public class RogueHostileEntity extends RogueEntity{
             inv1.update();
         }
         this.move(pointTowards(this.l.getPlayer()));
-        if(doatt(l.getPlayer())){
-            l.getPlayer().damage(rand.nextInt((int) maxAtt));
+        if(doatt(l.getPlayer()) && maxAtt>0){
+            l.getPlayer().damage(rand.nextInt(Math.abs((int) maxAtt)));
         }
     }
     /**
@@ -83,26 +87,45 @@ public class RogueHostileEntity extends RogueEntity{
      * @return 
      */
     public int pointTowards(RogueEntity e){
-        double pdir=0;
-        double ux=this.x;
-        double uy=this.y;
-        double ex = e.x;
-        double ey = e.y;
-        if(ex==ux){
-            if(ey>uy){
-                pdir=180;
+        double pdir=720;
+        if(distTo(e)<followdist){
+//            if(e.x==x){
+//                pdir=720;
+//            }else{
+//                pdir=Math.toDegrees(Math.atan((e.y-y)/(e.x-x)));
+//                pdir=Math.abs(pdir)+90;
+//                System.out.println(pdir+":"+this.getClass());
+//            }
+            if(e.x==x){
+                if(e.y>y){
+                    pdir=180;
+                }else{
+                    pdir=0;
+                }
+            }else if(e.y==y){
+                if(e.x>x){
+                    pdir=90;
+                }else{
+                    pdir=270;
+                }
             }else{
-                pdir=0;
+                if(e.x>x && e.y>=y){//Quad 1
+                    pdir=Math.toDegrees(Math.atan(x));
+                }else if(e.x>x && e.y<y){//Quad 2
+                    pdir=360+Math.toDegrees(Math.atan(x));
+                }else if(e.x<x && e.y<y){//Quad 3
+                    pdir=180+Math.toDegrees(Math.atan(x));
+                }else if(e.x < x && e.y>=y){//Quad 4
+                    pdir=180+Math.toDegrees(Math.atan(x));
+                }
             }
         }else{
-            if(ex>ux && ey>=uy){//Quad 1
-                pdir=Math.toDegrees(Math.atan(ux));
-            }else if(ex>ux && ey<uy){//Quad 2
-                pdir=360+Math.toDegrees(Math.atan(ux));
-            }else if(ex<ux && ey<uy){//Quad 3
-                pdir=180+Math.toDegrees(Math.atan(ux));
-            }else if(ex < ux && ey>=uy){//Quad 4
-                pdir=180+Math.toDegrees(Math.atan(ux));
+            now=rand.nextInt(359)+1;
+            if(now!=last){
+                pdir=now;
+                last=now;
+            }else{
+                pdir=720;
             }
         }
         return (int) pdir;

@@ -16,6 +16,6 @@ import util.Operation;
  */
 public class MortuusTrabajos extends RogueHostileEntity{
     public MortuusTrabajos(int lvl,Room r,Level l1){
-        super(lvl,r,l1,"MortuusTrabajos",Operation.MULT,50,Operation.MULT,25);
+        super(lvl,r,l1,"MortuusTrabajos",Operation.MULT,50,Operation.MULT,25,2);
     }
 }

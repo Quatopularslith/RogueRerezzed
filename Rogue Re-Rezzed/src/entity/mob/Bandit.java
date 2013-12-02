@@ -11,6 +11,6 @@ import util.Operation;
  */
 public class Bandit extends RogueHostileEntity{
     public Bandit(int lvl,Room r,Level l1){
-        super(lvl,r,l1,"Bandit",Operation.MULT,20,Operation.MULT,2);
+        super(lvl,r,l1,"Bandit",Operation.MULT,20,Operation.MULT,2,20);
     }
 }

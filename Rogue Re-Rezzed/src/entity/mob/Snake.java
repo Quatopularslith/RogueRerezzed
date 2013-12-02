@@ -16,6 +16,6 @@ import util.Operation;
  */
 public class Snake extends RogueHostileEntity{
     public Snake(int lvl,Room r,Level l1){
-        super(lvl,r,l1,"Snake",Operation.MULT,5,Operation.ADD,5);
+        super(lvl,r,l1,"Snake",Operation.MULT,5,Operation.ADD,5,10);
     }
 }

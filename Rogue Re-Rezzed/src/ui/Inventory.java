@@ -36,18 +36,14 @@ public class Inventory extends JPanel{
     public void update(){
         for(int i=0;i<Player.pinv.length;i++){
             if(Player.pinv[i]!=null){
-                if(Player.pinv[i].name.equalsIgnoreCase("Empty")){
-                    drop[i]=null;
-                }else if(drop[i]!=null){
-                    drop[i].setSelected(false);
-                    drop[i] = new JButton("Drop "+i);
-                    drop[i].setBounds(130, (i*25)+40-25, 70, 15);
-                    drop[i].setVisible(true);
-                    equip[i].setSelected(false);
-                    equip[i] = new JButton("Equip "+i);
-                    equip[i].setBounds(56, (i*25)+40-25, 74, 15);
-                    equip[i].setVisible(true);
-                }
+                drop[i].setSelected(false);
+                drop[i] = new JButton("Drop "+i);
+                drop[i].setBounds(130, (i*25)+40-25, 70, 15);
+                drop[i].setVisible(true);
+                equip[i].setSelected(false);
+                equip[i] = new JButton("Equip "+i);
+                equip[i].setBounds(56, (i*25)+40-25, 74, 15);
+                equip[i].setVisible(true);
             }
         }
         repaint();
@@ -71,16 +67,14 @@ public class Inventory extends JPanel{
         for(int i=0;i<Player.pinv.length;i++){
             if(Player.pinv[i]!=null){
                 if(Player.pinv[i].name.equalsIgnoreCase("Empty")){
-                    if(drop[i]!=null){
-                        this.remove(drop[i]);
-                        this.remove(equip[i]);
-                    }
+                    this.remove(drop[i]);
+                    this.remove(equip[i]);
                 }else{
                     drop[i] = new JButton("Drop "+i);
-                    drop[i].setBounds(130, (i*25)+40-25, 70, 20);
+                    drop[i].setBounds(130, (i*20)+15, 70, 20);
                     drop[i].setVisible(true);
                     equip[i] = new JButton("Equip "+i);
-                    equip[i].setBounds(56, (i*25)+40-25, 74, 20);
+                    equip[i].setBounds(56, (i*20)+15, 74, 20);
                     equip[i].setVisible(true);
                     this.add(drop[i]);
                     drop[i].addActionListener(Rogue.mm.bi);

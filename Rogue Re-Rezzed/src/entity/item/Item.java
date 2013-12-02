@@ -13,7 +13,7 @@ import render.Sprite;
 public class Item extends RogueEntity{
     public Type tyname;
     public int ofx=rand.nextInt(42),ofy=rand.nextInt(42);
-    private final RogueEntity parent;
+    private RogueEntity parent;
     public int modifierid;
     public boolean cursed;
     public int id;
@@ -35,7 +35,6 @@ public class Item extends RogueEntity{
         parent=parent1;
         id=id1;
         sp=new Sprite("Bag",16);
-//        sp=new Sprite("BagB",16);
         modifierid=rand.nextInt(modifiers.length);
         int matid = (int) id/materials.length;
         int tyid = (id%3)+1;
@@ -101,6 +100,12 @@ public class Item extends RogueEntity{
     public void update(){
         this.x=parent.x;
         this.y=parent.y;
+    }
+    public RogueEntity getParent(){
+        return parent;
+    }
+    public void setParent(RogueEntity e){
+        parent=e;
     }
     @Override
     public void death(){

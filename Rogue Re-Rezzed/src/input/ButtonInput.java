@@ -141,13 +141,12 @@ public class ButtonInput implements ActionListener{
             }
         }
         if(command.equalsIgnoreCase("pick up")){
-            Player.pinv[Player.currinv]=new Item(RenderPanel.pickup.id,Rogue.getLevel().getPlayer(),Rogue.getLevel());
             if(RenderPanel.pickup!=null){
+                RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
+                Player.pinv[Player.currinv]=RenderPanel.pickup;
                 RenderPanel.pickup.death();
-            }else{
-                
+                Rogue.mm.d.gp.update();
             }
-//            Rogue.mm.d.gp.update();
             refresh(Rogue.mm.d);
         }
         if(command.equalsIgnoreCase("leave it")){

@@ -5,10 +5,15 @@ import dungeon.Level;
 import entity.RogueEntity;
 
 /**
- * You read the name right! (look for this in the next update)
+ * Master for all new NPCs
  * @author Torri
  */
 public class RogueNPC extends RogueEntity{
+    public boolean hostile;
+    /**
+     * Creates NPC
+     * @param l1 
+     */
     public RogueNPC(Level l1) {
         super(l1);
     }

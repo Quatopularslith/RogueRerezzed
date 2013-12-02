@@ -16,6 +16,6 @@ import util.Operation;
  */
 public class Goblin extends RogueHostileEntity{
     public Goblin(int lvl,Room r,Level l1){
-        super(lvl,r,l1,"Goblin",Operation.MULT,25,Operation.MULT,3);
+        super(lvl,r,l1,"Goblin",Operation.MULT,25,Operation.MULT,3,15);
     }
 }
