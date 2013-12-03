@@ -6,5 +6,5 @@ package entity.item;
  * @author Torri
  */
 public enum Type {
-    EMPTY,SWORD,AXE,SHEILD,POTION
+    EMPTY,SWORD,AXE,SHEILD,POTION,GOLD
 }
