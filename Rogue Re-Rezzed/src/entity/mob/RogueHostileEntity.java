@@ -88,16 +88,26 @@ public class RogueHostileEntity extends RogueEntity{
      * @return 
      */
     public Direction pointTowards(RogueEntity e){
-        Direction pdir=Direction.UP;
+        Direction pdir=Direction.STOP;
         if(distTo(e)<followdist){
-            if(x>e.x && y>e.y){
-                
-            }else if(x>e.x && y<e.y){
-                
-            }else if(x<e.x && y>e.y){
-                
-            }else if(x<e.x && y<e.y){
-                
+            try{
+                int slope = (e.y-y)/(e.x-x);
+                double ang = Math.atan(slope);
+                if(ang<=45 || ang>315){//up
+                    pdir=Direction.UP;
+                }else if(ang<=135 && ang>45){//right
+                    pdir=Direction.RIGHT;
+                }else if(ang<=225 && ang>135){//angown
+                    pdir=Direction.DOWN;
+                }else if(ang>=225 && ang<=315){//left
+                    pdir=Direction.LEFT;
+                }
+            }catch(Exception j){
+                if(y>e.y){
+                    pdir=Direction.UP;
+                }else{
+                    pdir=Direction.DOWN;
+                }
             }
         }else{
             boolean b = rand.nextBoolean();
