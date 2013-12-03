@@ -42,7 +42,7 @@ public class RenderPanel extends JPanel{
         l.getStairWay().turn();
         pickup=null;
         l.getPlayer().turn();
-        for(int i=0;i<l.getEntities().size()-1;i++){
+        for(int i=0;i<l.getEntities().size();i++){
             if(l.getEntities().get(i) != null){
                 if(l.getEntities().get(i).health<=0){
                     l.getEntities().get(i).death();
@@ -112,14 +112,18 @@ public class RenderPanel extends JPanel{
             g2.setColor(Color.BLACK);
             g2.drawImage(dialogue.i, getWidth()/2-36, getHeight()/2-36, this);
             g2.drawString(pickup.name, getWidth()/2-32,getHeight()/2-10);
+            g2.drawString("[Pick Up]", getWidth()/2+4, getHeight()/2+15);
+            g2.drawString("[Leave It]", getWidth()/2+4, getHeight()/2+47);
             g2.dispose();
             ajb.setBounds(getWidth()/2-16,getHeight()/2,100,20);
             ajb.addActionListener(Rogue.mm.bi);
-            ajb.setOpaque(true);
+            ajb.setSelected(true);
+            ajb.setVisible(true);
             this.add(ajb);
             djb.setBounds(getWidth()/2-16,getHeight()/2+32,100,20);
             djb.addActionListener(Rogue.mm.bi);
-            djb.setOpaque(true);
+            djb.setSelected(true);
+            djb.setVisible(true);
             this.add(djb);
         }else{
             this.remove(ajb);
