@@ -92,12 +92,12 @@ public class RogueHostileEntity extends RogueEntity{
         if(distTo(e)<followdist){
             try{
                 int slope = (e.y-y)/(e.x-x);
-                double ang = Math.atan(slope);
+                double ang = Math.toDegrees(Math.atan(slope))+90;
                 if(ang<=45 || ang>315){//up
                     pdir=Direction.UP;
                 }else if(ang<=135 && ang>45){//right
                     pdir=Direction.RIGHT;
-                }else if(ang<=225 && ang>135){//angown
+                }else if(ang<=225 && ang>135){//down
                     pdir=Direction.DOWN;
                 }else if(ang>=225 && ang<=315){//left
                     pdir=Direction.LEFT;
