@@ -3,6 +3,7 @@ package entity.player;
 import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
+import entity.Direction;
 import entity.RogueEntity;
 import entity.item.Item;
 import entity.mob.RogueHostileEntity;
@@ -24,6 +25,7 @@ public class Player extends RogueEntity{
     public static int xp;
     public static int xplevels;
     public static int rep;
+    public static int gold;
     public Player(Level l1){
         super(l1);
         if(pinv==null){
@@ -121,7 +123,7 @@ public class Player extends RogueEntity{
                 }
             }
             if(!attack){
-                this.move(0);
+                this.move(Direction.UP);
             }
         }else if(Rogue.mm.ki.keyBind[1]){//down
             for(int i=0;i<l.getEntities().size();i++){
@@ -138,7 +140,7 @@ public class Player extends RogueEntity{
                 }
             }
             if(!attack){
-                this.move(180);
+                this.move(Direction.DOWN);
             }
         }else if(Rogue.mm.ki.keyBind[2]){//right
             for(int i=0;i<l.getEntities().size();i++){
@@ -155,7 +157,7 @@ public class Player extends RogueEntity{
                 }
             }
             if(!attack){
-                this.move(90);
+                this.move(Direction.RIGHT);
             }
         }else if(Rogue.mm.ki.keyBind[3]){//left
             for(int i=0;i<l.getEntities().size();i++){
@@ -172,7 +174,7 @@ public class Player extends RogueEntity{
                 }
             }
             if(!attack){
-                this.move(270);
+                this.move(Direction.LEFT);
             }
         }
     }

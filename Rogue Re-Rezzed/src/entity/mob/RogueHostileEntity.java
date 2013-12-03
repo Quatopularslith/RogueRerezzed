@@ -3,6 +3,7 @@ package entity.mob;
 
 import dungeon.Level;
 import dungeon.Room;
+import entity.Direction;
 import entity.RogueEntity;
 import entity.item.Item;
 import render.Sprite;
@@ -14,8 +15,7 @@ import util.Operation;
  */
 public class RogueHostileEntity extends RogueEntity{
     public int followdist;
-    private int last=0;
-    private int now=0;
+    private Direction last=Direction.DOWN;
     /**
      * creates new entity
      * @param lvl
@@ -26,6 +26,7 @@ public class RogueHostileEntity extends RogueEntity{
      * @param attmod attack modifier
      * @param op1 operation for attack
      * @param hmod health modifier
+     * @param followdist1 follow distance
      */
     public RogueHostileEntity(int lvl,Room r,Level l1,String name,Operation op0,int hmod,Operation op1,int attmod,int followdist1) {
         super(l1);
@@ -86,49 +87,36 @@ public class RogueHostileEntity extends RogueEntity{
      * @param e
      * @return 
      */
-    public int pointTowards(RogueEntity e){
-        double pdir=720;
+    public Direction pointTowards(RogueEntity e){
+        Direction pdir=Direction.UP;
         if(distTo(e)<followdist){
-//            if(e.x==x){
-//                pdir=720;
-//            }else{
-//                pdir=Math.toDegrees(Math.atan((e.y-y)/(e.x-x)));
-//                pdir=Math.abs(pdir)+90;
-//                System.out.println(pdir+":"+this.getClass());
-//            }
-            if(e.x==x){
-                if(e.y>y){
-                    pdir=180;
-                }else{
-                    pdir=0;
-                }
-            }else if(e.y==y){
-                if(e.x>x){
-                    pdir=90;
-                }else{
-                    pdir=270;
-                }
-            }else{
-                if(e.x>x && e.y>=y){//Quad 1
-                    pdir=Math.toDegrees(Math.atan(x));
-                }else if(e.x>x && e.y<y){//Quad 2
-                    pdir=360+Math.toDegrees(Math.atan(x));
-                }else if(e.x<x && e.y<y){//Quad 3
-                    pdir=180+Math.toDegrees(Math.atan(x));
-                }else if(e.x < x && e.y>=y){//Quad 4
-                    pdir=180+Math.toDegrees(Math.atan(x));
-                }
+            if(x>e.x && y>e.y){
+                
+            }else if(x>e.x && y<e.y){
+                
+            }else if(x<e.x && y>e.y){
+                
+            }else if(x<e.x && y<e.y){
+                
             }
         }else{
-            now=rand.nextInt(359)+1;
-            if(now!=last){
-                pdir=now;
-                last=now;
+            boolean b = rand.nextBoolean();
+            int d = rand.nextInt(359)+1;
+            if(b){
+                if(d<=45 || d>315){//up
+                    pdir=Direction.UP;
+                }else if(d<=135 && d>45){//right
+                    pdir=Direction.RIGHT;
+                }else if(d<=225 && d>135){//down
+                    pdir=Direction.DOWN;
+                }else if(d>=225 && d<=315){//left
+                    pdir=Direction.LEFT;
+                }
             }else{
-                pdir=720;
+                pdir=Direction.STOP;
             }
         }
-        return (int) pdir;
+        return pdir;
     }
     /**
      * asks if it can attack
