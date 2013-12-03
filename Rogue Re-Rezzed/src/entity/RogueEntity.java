@@ -63,6 +63,47 @@ public class RogueEntity {
         }
     }
     /**
+     * Moves Entity
+     * @param d Direction
+     */
+    public void move(Direction d){
+        int dx=0;
+        int dy=0;
+        switch(d){
+            case UP:
+                dy=-1;
+                break;
+            case DOWN:
+                dy=1;
+                break;
+            case LEFT:
+                dx=-1;
+                break;
+            case RIGHT:
+                dx=1;
+                break;
+            default:
+                dx=0;
+                dy=0;
+        }
+        for(RogueEntity re:l.getEntities()){
+            if(re != null){
+                if(re.x==x+dx && re.y==y+dy){
+                    dx=0;
+                    dy=0;
+                }
+            }
+        }
+        if(l.getPlayer().x==x+dx && l.getPlayer().y==y+dy){
+            dx=0;
+            dy=0;
+        }
+        if(l.board[dx+x][dy+y]==true){
+            x+=dx;
+            y+=dy;
+        }
+    }
+    /**
      * Take damage
      * @param att 
      */
