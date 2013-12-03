@@ -11,7 +11,7 @@ import render.Sprite;
  * @author Torri
  */
 public class Item extends RogueEntity{
-    public Type tyname;
+    public ItemType tyname;
     public int ofx=rand.nextInt(42),ofy=rand.nextInt(42);
     private RogueEntity parent;
     public int modifierid;
@@ -43,20 +43,20 @@ public class Item extends RogueEntity{
             cursed = rand.nextBoolean();
             switch(tyid){
                 case 1:
-                    tyname=Type.SWORD;
+                    tyname=ItemType.SWORD;
                     stats[0]=1;
                     break;
                 case 2:
-                    tyname=Type.AXE;
+                    tyname=ItemType.AXE;
                     stats[0]=0.5;
                     stats[1]=0.5;
                     break;
                 case 3:
-                    tyname=Type.SHEILD;
+                    tyname=ItemType.SHEILD;
                     stats[1]=1;
                     break;
                 default:
-                    tyname=Type.EMPTY;
+                    tyname=ItemType.EMPTY;
                     break;
             }
             stats[0]*=matid+1;
@@ -82,7 +82,7 @@ public class Item extends RogueEntity{
             }
         }else{
             name = type[0];
-            tyname=Type.EMPTY;
+            tyname=ItemType.EMPTY;
             for(double ind:stats){
                 ind=0;
             }

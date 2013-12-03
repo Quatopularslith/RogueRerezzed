@@ -2,12 +2,14 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
+import entity.item.Gold;
 import entity.item.Item;
 import entity.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import render.RenderPanel;
+import ui.DebugMenu;
 import ui.Menu;
 
 /**
@@ -101,7 +103,7 @@ public class ButtonInput implements ActionListener{
         if(command.equalsIgnoreCase("Enter")){
             String pass = ui.DebugMPassword.dmpass.getText();
             if(pass.equalsIgnoreCase("JigglyMuffin")){
-//                Rogue.mm.dm = new DebugMenu();
+                Rogue.mm.dm = new DebugMenu();
                 Rogue.mm.dmp.setVisible(false);
                 Rogue.mm.omp.setVisible(true);
             }else{
@@ -110,13 +112,14 @@ public class ButtonInput implements ActionListener{
             }
         }
         if(command.equalsIgnoreCase("Spawn Entity")){
-//            Rogue.mm.dm.chooseEntitySpawn.getSelectedItem();
+            Rogue.mm.dm.chooseEntitySpawn.getSelectedItem();
         }
         if(command.equalsIgnoreCase("Spawn Item")){
-//            Rogue.mm.dm.chooseItemSpawn.getSelectedItem();
+            Rogue.mm.dm.chooseItemSpawn.getSelectedItem();
         }
         if(command.equalsIgnoreCase("Generate")){
-//            Rogue.mm.dm.chooseLvl.getText();
+            Rogue.setLevel(new Level());
+            Rogue.mm.d.gp.update();
         }
         if(command.equalsIgnoreCase("Return")){
             Rogue.mm.mmp.setVisible(true);
@@ -142,8 +145,12 @@ public class ButtonInput implements ActionListener{
         }
         if(command.equalsIgnoreCase("pick up")){
             if(RenderPanel.pickup!=null){
-                RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
-                Player.pinv[Player.currinv]=RenderPanel.pickup;
+                if(RenderPanel.pickup instanceof Gold){
+                    Player.gold+=RenderPanel.pickup.id;
+                }else{
+                    RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
+                    Player.pinv[Player.currinv]=RenderPanel.pickup;
+                }
                 RenderPanel.pickup.death();
                 Rogue.mm.d.gp.update();
             }

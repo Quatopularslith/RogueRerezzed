@@ -17,7 +17,7 @@ public class Menu extends JFrame{
     public Display d;
     public DebugMPassword dmp;
     public StatMenu sm;
-//    public DebugMenu dm;
+    public DebugMenu dm;
 //    public MenuBackgroundTest mbt;
     
     public KeyboardInput ki;

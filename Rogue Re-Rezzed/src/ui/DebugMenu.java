@@ -31,7 +31,6 @@ public class DebugMenu extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         chooseEntitySpawn = new javax.swing.JComboBox();
-        chooseLvl = new javax.swing.JTextField();
         chooseLvlBtn = new javax.swing.JButton();
         chooseEntitySpawnBtn = new javax.swing.JButton();
         chooseItemSpawn = new javax.swing.JComboBox();
@@ -43,8 +42,6 @@ public class DebugMenu extends javax.swing.JFrame {
         jLabel2.setText("Debug Menu");
 
         chooseEntitySpawn.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Snake", "Bandit", "Fish", "Mortuus Trabajos", "Quatopularslith", "Bag", "Stairway" }));
-
-        chooseLvl.setText("Insert lvl #");
 
         chooseLvlBtn.setText("Generate");
 
@@ -72,9 +69,7 @@ public class DebugMenu extends javax.swing.JFrame {
                     .addComponent(chooseItemSpawn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chooseItemSpawnBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(chooseLvl)
-                    .addComponent(chooseLvlBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
+                .addComponent(chooseLvlBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(180, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,7 +80,6 @@ public class DebugMenu extends javax.swing.JFrame {
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chooseEntitySpawn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chooseLvl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chooseItemSpawn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -104,7 +98,6 @@ public class DebugMenu extends javax.swing.JFrame {
     public javax.swing.JButton chooseEntitySpawnBtn;
     public javax.swing.JComboBox chooseItemSpawn;
     public javax.swing.JButton chooseItemSpawnBtn;
-    public javax.swing.JTextField chooseLvl;
     public javax.swing.JButton chooseLvlBtn;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

@@ -36,5 +36,6 @@ public class Status extends JPanel{
         g2.drawString("Max Attack: "+Rogue.getLevel().getPlayer().maxAtt, 10, 100);
         g2.drawString("Defence: "+Rogue.getLevel().getPlayer().maxDefence, 10, 120);
         g2.drawString("Kills: "+Player.kills+" Enemies",10,140);
+        g2.drawString("Gold: "+Player.gold, 10, 160);
     }
 }

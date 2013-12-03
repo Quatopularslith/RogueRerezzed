@@ -5,6 +5,7 @@ import dungeon.Level;
 import dungeon.Room;
 import entity.Direction;
 import entity.RogueEntity;
+import entity.item.Gold;
 import entity.item.Item;
 import render.Sprite;
 import util.Operation;
@@ -62,11 +63,12 @@ public class RogueHostileEntity extends RogueEntity{
         }
         this.maxhealth=(int) this.health;
         sp = new Sprite(name);
-        inv = new Item[1];
+        inv = new Item[2];
         if(lvl>Item.numid/3){
             lvl=Item.numid/3;
         }
         inv[0] = new Item(rand.nextInt((lvl*3)+1),this,l);
+        inv[1] = new Gold(rand.nextInt(lvl),this,l);
         spawn(r);
         for (Item inv1 : inv) {
             inv1.update();
