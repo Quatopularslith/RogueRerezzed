@@ -79,7 +79,7 @@ public class Level {
         numLevels++;
         nument=0;
         int roomnum=0;
-        board=new boolean[sx+maxRoomSX][sy+maxRoomSY];
+        board=new boolean[1000][1000];
         maxRoomSX=(sx/rows);
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
@@ -124,10 +124,6 @@ public class Level {
         
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
-        
-        if(Rogue.mm.d.gp!=null){
-            Rogue.mm.d.gp.update();
-        }
     }
     /**
      * Gets Room Array

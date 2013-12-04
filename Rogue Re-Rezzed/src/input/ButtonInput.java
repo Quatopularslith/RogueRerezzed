@@ -42,7 +42,6 @@ public class ButtonInput implements ActionListener{
             Player.xplevels = 1;
             Player.xp = 0;
             Player.kills =0;
-            Rogue.setLevel(new Level(1));
             Rogue.mm.d=new ui.Display();
             Rogue.mm.add(Rogue.mm.d);
             Rogue.mm.d.setSize(750, 500);
@@ -51,6 +50,7 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.d.setVisible(true);
+            Rogue.setLevel(new Level(1));
         }
         if(command.equalsIgnoreCase("Apply")){
             char[] inc = {Rogue.mm.omp.fwdKB.getText().toUpperCase().toCharArray()[0],
@@ -84,8 +84,8 @@ public class ButtonInput implements ActionListener{
         }
         if(command.equalsIgnoreCase("save and quit")){
             //TODO some save code
-//            Rogue.mm.dm.dispose();
-            Rogue.mm.dispose();
+            Rogue.mm.d.setVisible(false);
+            Rogue.mm.mmp.setVisible(true);
         }
         if(command.equalsIgnoreCase("settings")){
             backtogame=true;
