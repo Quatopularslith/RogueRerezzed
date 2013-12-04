@@ -44,4 +44,11 @@ public class Vector2i {
         y-=v1.y;
         return this;
     }
+    @Override
+    public boolean equals(Object object){
+        if(!(object instanceof Vector2i)) return false;
+        Vector2i vec = (Vector2i) object;
+        if(vec.getX()==getX() && vec.getY()==getY()) return true;
+        return false;
+    }
 }

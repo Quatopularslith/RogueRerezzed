@@ -1,5 +1,6 @@
 package dungeon;
 
+import core.Rogue;
 import entity.RogueEntity;
 import entity.Stairway;
 import entity.item.Item;
@@ -78,7 +79,7 @@ public class Level {
         numLevels++;
         nument=0;
         int roomnum=0;
-        board=new boolean[1000][1000];
+        board=new boolean[sx+maxRoomSX][sy+maxRoomSY];
         maxRoomSX=(sx/rows);
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
@@ -105,6 +106,11 @@ public class Level {
         rooms[roomnum+1]=new Room(0,rooms[st.room].area[0][0][1],100,3,lvl,this);
         rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],0,3,100,lvl,this);
         p=new Player(this);
+        for(boolean[] b1:board){
+            for(boolean b:b1){
+                b=false;
+            }
+        }
         for(Room r:rooms){
             for(int[][] a:r.area){
                 for(int[] a1:a){
@@ -118,6 +124,10 @@ public class Level {
         
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
+        
+        if(Rogue.mm.d.gp!=null){
+            Rogue.mm.d.gp.update();
+        }
     }
     /**
      * Gets Room Array

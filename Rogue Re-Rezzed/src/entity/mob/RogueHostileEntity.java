@@ -131,6 +131,13 @@ public class RogueHostileEntity extends RogueEntity{
         return pdir;
     }
     /**
+     * FINALY A*
+     * @param e 
+     */
+//    public Direction Astar(RogueEntity e){
+//        
+//    }
+    /**
      * asks if it can attack
      * @param e
      * @return 
