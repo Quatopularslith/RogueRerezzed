@@ -83,11 +83,6 @@ public class Menu extends JFrame{
         this.addMouseListener(mi);
         this.addKeyListener(ki);
         
-        mmp.loadGame.addActionListener(bi);
-        mmp.newGame.addActionListener(bi);
-        mmp.options.addActionListener(bi);
-        mmp.quit.addActionListener(bi);
-        
         omp.apply.addActionListener(bi);
         omp.back.addActionListener(bi);
         omp.defaultKB.addActionListener(bi);
