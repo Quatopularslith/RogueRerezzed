@@ -92,37 +92,23 @@ public class RogueHostileEntity extends RogueEntity{
     public Direction pointTowards(RogueEntity e){
         Direction pdir=Direction.STOP;
         if(distTo(e)<followdist){
-            try{
-                int slope = (e.y-y)/(e.x-x);
-                double ang = Math.toDegrees(Math.atan(slope))+90;
-                if(ang<=45 || ang>315){//up
-                    pdir=Direction.UP;
-                }else if(ang<=135 && ang>45){//right
-                    pdir=Direction.RIGHT;
-                }else if(ang<=225 && ang>135){//down
-                    pdir=Direction.DOWN;
-                }else if(ang>=225 && ang<=315){//left
-                    pdir=Direction.LEFT;
-                }
-            }catch(Exception j){
-                if(y>e.y){
-                    pdir=Direction.UP;
-                }else{
-                    pdir=Direction.DOWN;
-                }
-            }
+            if(x<e.x)pdir= Direction.RIGHT;
+            if(x>e.x)pdir= Direction.LEFT;
+            if(y<e.y)pdir= Direction.DOWN;
+            if(y>e.y)pdir=Direction.UP;
         }else{
             boolean b = rand.nextBoolean();
-            int d = rand.nextInt(359)+1;
+            int d = rand.nextInt(3);
             if(b){
-                if(d<=45 || d>315){//up
-                    pdir=Direction.UP;
-                }else if(d<=135 && d>45){//right
-                    pdir=Direction.RIGHT;
-                }else if(d<=225 && d>135){//down
-                    pdir=Direction.DOWN;
-                }else if(d>=225 && d<=315){//left
-                    pdir=Direction.LEFT;
+                switch (d){
+                    case 0:
+                        pdir=Direction.UP;
+                        break;
+                    case 1:
+                        pdir=Direction.DOWN;
+                        break;
+                    case 2:
+                        pdir=Direction.LEFT;
                 }
             }else{
                 pdir=Direction.STOP;
