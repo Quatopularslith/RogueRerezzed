@@ -13,7 +13,7 @@ public class LoadArt {
         if (imgURL != null) {
             ImageIcon ii = new ImageIcon(imgURL, description);
             Image i = ii.getImage();
-            i=i.getScaledInstance(sizeY, sizeY, 0);
+            i=i.getScaledInstance(sizeX, sizeY, 0);
             return i;
         } else {
             System.err.println("Couldn't find file: " + path);
