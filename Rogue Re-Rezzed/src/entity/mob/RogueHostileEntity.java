@@ -7,8 +7,12 @@ import entity.Direction;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
+import java.util.List;
 import render.Sprite;
+import util.Astar;
+import util.Node;
 import util.Operation;
+import util.Vector2i;
 
 /**
  * Parent class for all monsters
@@ -79,7 +83,7 @@ public class RogueHostileEntity extends RogueEntity{
         for (Item inv1 : inv) {
             inv1.update();
         }
-        this.move(pointTowards(this.l.getPlayer()));
+        this.move(pathFind(this.l.getPlayer()));
         if(doatt(l.getPlayer()) && maxAtt>0){
             l.getPlayer().damage(rand.nextInt(Math.abs((int) maxAtt)));
         }
@@ -89,13 +93,13 @@ public class RogueHostileEntity extends RogueEntity{
      * @param e
      * @return 
      */
-    public Direction pointTowards(RogueEntity e){
+    public Direction pointTowards(Node e){
         Direction pdir=Direction.STOP;
-        if(distTo(e)<followdist){
-            if(x<e.x)pdir= Direction.RIGHT;
-            if(x>e.x)pdir= Direction.LEFT;
-            if(y<e.y)pdir= Direction.DOWN;
-            if(y>e.y)pdir=Direction.UP;
+        if(distTo(e.tile.getEntity())<followdist){
+            if(x<e.tile.getX())pdir= Direction.RIGHT;
+            if(x>e.tile.getX())pdir= Direction.LEFT;
+            if(y<e.tile.getY())pdir= Direction.DOWN;
+            if(y>e.tile.getY())pdir=Direction.UP;
         }else{
             boolean b = rand.nextBoolean();
             int d = rand.nextInt(3);
@@ -109,6 +113,13 @@ public class RogueHostileEntity extends RogueEntity{
                         break;
                     case 2:
                         pdir=Direction.LEFT;
+                        break;
+                    case 3:
+                        pdir=Direction.RIGHT;
+                        break;
+                    default:
+                        pdir=Direction.STOP;
+                        break;
                 }
             }else{
                 pdir=Direction.STOP;
@@ -119,10 +130,41 @@ public class RogueHostileEntity extends RogueEntity{
     /**
      * FINALY A*
      * @param e 
+     * @return  
      */
-//    public Direction Astar(RogueEntity e){
-//        
-//    }
+    public Direction pathFind(RogueEntity e){
+        Direction out = Direction.STOP;
+        if(distTo(e)>followdist){
+            boolean b = rand.nextBoolean();
+            int d = rand.nextInt(3);
+            if(b){
+                switch (d){
+                    case 0:
+                        out=Direction.UP;
+                        break;
+                    case 1:
+                        out=Direction.DOWN;
+                        break;
+                    case 2:
+                        out=Direction.LEFT;
+                        break;
+                    case 3:
+                        out=Direction.RIGHT;
+                        break;
+                    default:
+                        out=Direction.STOP;
+                        break;
+                }
+            }else{
+                out=Direction.STOP;
+            }
+        }else{
+            List<Node> path = Astar.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y));
+            if(path==null)return Direction.STOP;
+            out = pointTowards(path.get(path.size()-1));
+        }
+        return out;
+    }
     /**
      * asks if it can attack
      * @param e

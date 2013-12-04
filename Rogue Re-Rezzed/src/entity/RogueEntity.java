@@ -145,6 +145,12 @@ public class RogueEntity {
     public void spawn(Room r){
         x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][0];
         y=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1];
+        for(RogueEntity e:l.getEntities()){
+            if(x==e.x && y==e.y){
+                x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][0];
+                y=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1];
+            }
+        }
     }
     /**
      * Gets the distance to an entity

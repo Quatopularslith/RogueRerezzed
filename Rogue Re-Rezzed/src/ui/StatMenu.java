@@ -29,7 +29,7 @@ public class StatMenu extends JPanel{
         g2.setColor(Color.red);
         g2.drawString("YOU HAVE DIED", 10, 20);
         g2.setColor(Color.WHITE);
-        g2.drawString("You were on level: "+(Level.numLevels+1), 10, 40);
+        g2.drawString("You in dungeon: "+(Level.numLevels+1), 10, 40);
         g2.drawString("You killed "+Player.kills+" Enemies",10,60);
         g2.drawString("You are Level: "+Player.xplevels, 10, 80);
         g2.drawString("Your Items were: ",10,100);

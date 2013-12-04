@@ -2,7 +2,6 @@
 package util;
 
 import core.Rogue;
-import entity.RogueEntity;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,7 +12,15 @@ import java.util.List;
  * @author Torri
  */
 public class Astar {
-    private Comparator<Node> nodeSort = new Comparator<Node>(){
+    private static int x;
+    private static int y;
+    private static int xi;
+    private static int yi;
+    private static Vector2i a;
+    private static double gCost;
+    private static double hCost;
+    private static Node node;
+    private static final Comparator<Node> nodeSort = new Comparator<Node>(){
         @Override
         public int compare(Node n0,Node n1){
             if(n1.fCost<n0.fCost) return 1;
@@ -21,7 +28,7 @@ public class Astar {
             return 0;
         }
     };
-    public List<Node> findPath(Vector2i start,Vector2i goal){
+    public static List<Node> findPath(Vector2i start,Vector2i goal){
         List<Node> openList = new ArrayList<>();
         List<Node> closedList = new ArrayList<>();
         Node current = new Node(start,null,0,getDist(start,goal));
@@ -42,16 +49,17 @@ public class Astar {
             openList.remove(current);
             closedList.add(current);
             for(int i=0;i<9;i++){
-                if(i==4)continue;
-                int x = current.tile.getX();
-                int y = current.tile.getY();
-                int xi = (i%3)-1;
-                int yi = (i/3)-1;
+                if(i==0 || i==2 || i==4 || i==6 || i==8)continue;
+                x = current.tile.getX();
+                y = current.tile.getY();
+                xi = (i%3)-1;
+                yi = (i/3)-1;
+                if(x+xi<0 || y+yi<0) continue;
                 if(Rogue.getLevel().board[x+xi][y+yi]) continue;
-                Vector2i a = new Vector2i(x+xi,y+yi);
-                double gCost = current.gCost + getDist(current.tile,a);
-                double hCost = getDist(a,goal);
-                Node node = new Node(a,current, gCost, hCost);
+                a = new Vector2i(x+xi,y+yi);
+                gCost = current.gCost + getDist(current.tile,a);
+                hCost = getDist(a,goal);
+                node = new Node(a,current, gCost, hCost);
                 if(vecInList(closedList,a) /*&& gCost>=current.gCost*/) continue;
                 if(!vecInList(openList,a) /*|| gCost<current.gCost*/) openList.add(node);
             }
@@ -59,13 +67,13 @@ public class Astar {
         closedList.clear();
         return null;
     }
-    private boolean vecInList(List<Node> list, Vector2i v){
+    private static boolean vecInList(List<Node> list, Vector2i v){
         for(Node n:list){
             if(n.tile.equals(v)) return true;
         }
         return false;
     }
-    private double getDist(Vector2i v1,Vector2i v2){
+    private static double getDist(Vector2i v1,Vector2i v2){
         double dx = v1.getX()-v2.getY();
         double dy = v1.getY()-v2.getY();
         return Math.sqrt((dx*dx)+(dy+dy));

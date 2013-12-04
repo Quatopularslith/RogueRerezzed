@@ -29,7 +29,7 @@ public class Status extends JPanel{
         g2.setColor(Color.GREEN);
         g2.fillRect(10, 65, 100*Player.xp/(10*Player.xplevels), 20);
         g2.setColor(Color.WHITE);
-        g2.drawString("You are on level: "+Level.numLevels, 10, 20);
+        g2.drawString("You are in dungeon: "+Level.numLevels, 10, 20);
         g2.drawString("Health: "+(int) Rogue.getLevel().getPlayer().health, 10, 40);
         g2.drawString("Mana: "+Rogue.getLevel().getPlayer().mana, 10, 60);
         g2.drawString("You are Level: "+Player.xplevels, 10, 80);
