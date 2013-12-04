@@ -21,7 +21,7 @@ public class Astar {
     private static double hCost;
     private static Node node;
     private static final Comparator<Node> nodeSort = new Comparator<Node>(){
-//        @Override
+        @Override
         public int compare(Node n0,Node n1){
             if(n1.fCost<n0.fCost) return 1;
             if(n1.fCost>n0.fCost) return -1;

@@ -27,7 +27,7 @@ public class MainMenuPanel extends javax.swing.JPanel{
         g2.setFont(new Font("Arial",Font.BOLD,15));
         g2.fillRect(0,0,getHeight(),getWidth());
         g2.drawImage(button, 10,10, this);
-        g2.drawString("New Game", 60, 25);
+        g2.drawString("New Game", 65, 25);
         g2.dispose();
     }
 }
