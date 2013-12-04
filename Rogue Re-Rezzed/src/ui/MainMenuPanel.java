@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 /**
- *
+ *h
  * @author Mnenmenth
  */
 public class MainMenuPanel extends javax.swing.JPanel{
