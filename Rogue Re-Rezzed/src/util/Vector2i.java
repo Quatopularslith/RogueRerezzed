@@ -1,5 +1,8 @@
 package util;
 
+import dungeon.Level;
+import entity.RogueEntity;
+
 /**
  * Part of A*
  * @author Torri
@@ -48,7 +51,12 @@ public class Vector2i {
     public boolean equals(Object object){
         if(!(object instanceof Vector2i)) return false;
         Vector2i vec = (Vector2i) object;
-        if(vec.getX()==getX() && vec.getY()==getY()) return true;
-        return false;
+        return vec.getX()==getX() && vec.getY()==getY();
+    }
+    public RogueEntity getEntity(){
+        RogueEntity re = new RogueEntity(new Level());
+        re.x=x;
+        re.y=y;
+        return re;
     }
 }
