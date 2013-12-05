@@ -2,7 +2,6 @@ package art;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
@@ -14,7 +13,7 @@ import javax.swing.ImageIcon;
  */
 public class LoadArt {
     public Image createImage(String path,String description, int sizeX, int sizeY) {
-        java.net.URL imgURL = getClass().getResource(path);
+        URL imgURL = getClass().getResource(path);
         if (imgURL != null) {
             ImageIcon ii = new ImageIcon(imgURL, description);
             Image i = ii.getImage();
@@ -30,7 +29,7 @@ public class LoadArt {
         if(imgurl!=null){
             BufferedImage out = new BufferedImage(sx,sy,BufferedImage.TYPE_INT_ARGB);
             try {
-                out = ImageIO.read(new File(path));
+                out = ImageIO.read(imgurl);
             } catch (IOException ex) {
                 System.err.println("Could not find file1: "+path);
             }

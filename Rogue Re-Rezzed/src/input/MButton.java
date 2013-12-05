@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package input;
 
@@ -42,7 +37,7 @@ public class MButton {
         name=name1;
         img = la.createBufferedImage("Button.png", sx, sy);
         Graphics g = img.getGraphics();
-        g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,sy));
+        img.getGraphics().setFont(new Font(Font.SANS_SERIF,Font.BOLD,sy));
         FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF,Font.BOLD,sy));
         int width = fm.stringWidth(name);
         g.drawString(name, sx/2-width/2, 0);
@@ -50,7 +45,9 @@ public class MButton {
     }
     public void addListener(MButtonInput mbi1){
         mbi=mbi1;
-        Rogue.mm.mi.mb.add(this);
+        if(Rogue.mm!=null){
+            Rogue.mm.mi.mb.add(this);
+        }
     }
     public void update(int mx,int my){
         if(mx>x && mx<x+sx && my>y && my<y+sy){
