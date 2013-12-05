@@ -8,7 +8,7 @@ import java.awt.geom.Ellipse2D;
 import javax.swing.*;
 public class Loading extends JPanel{
     double n = .875;
-    int r, width, arrs = 501;
+    int r, width, arrs = 401;
     double newTheta, theta = 2*Math.asin(1/(2*n));
     double[] x=new double[arrs], y=new double[arrs];
     double cX, cY;
