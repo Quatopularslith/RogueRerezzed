@@ -25,8 +25,12 @@ public class MouseInput implements MouseListener{
         mx=e.getX();
         my=e.getY();
         System.out.println(mx +" "+ my);
-        for(MButton m:mb){
-            m.update(mx, my);
+        for(int i=0;i<mb.size();i++){
+            if(i>0 && mb.get(i).equals(mb.get(i-1))){
+                mb.remove(i);
+                continue;
+            }
+            mb.get(i).update(mx, my);
         }
     }
     @Override

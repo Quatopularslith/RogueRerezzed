@@ -1,6 +1,7 @@
 
 package ui;
 
+import core.Rogue;
 import input.MButton;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,6 +24,7 @@ public class MainMenuPanel extends javax.swing.JPanel{
         g2.setColor(Color.BLUE);
         g2.fillRect(0,0,getWidth(),getHeight());
         g2.drawImage(newGame.img, newGame.x, newGame.y, this);
+        newGame.addListener(Rogue.mm.mbi);
         g2.dispose();
     }
 }

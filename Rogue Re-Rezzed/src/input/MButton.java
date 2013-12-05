@@ -50,7 +50,7 @@ public class MButton {
         }
     }
     public void update(int mx,int my){
-        if(mx>x && mx<x+sx && my>y && my<y+sy){
+        if(mx>x && mx<x+sx && my>y+30 && my<y+sy+30){
             mbi.clicked(name);
         }
     }

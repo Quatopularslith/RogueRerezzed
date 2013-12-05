@@ -129,6 +129,9 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
+                    if((int) maxAtt<1){
+                        maxAtt=1;
+                    }
                     re.damage(rand.nextInt((int) maxAtt));
                     if(re.health<=0){
                         mana++;
