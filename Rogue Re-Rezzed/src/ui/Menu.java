@@ -5,7 +5,6 @@ import input.ButtonInput;
 import input.KeyboardInput;
 import input.MButtonInput;
 import input.MouseInput;
-import java.awt.Graphics;
 import javax.swing.JFrame;
 import loading.Loading;
 import util.RogueProperties;
@@ -22,7 +21,6 @@ public class Menu extends JFrame{
     public StatMenu sm;
     public DebugMenu dm;
     public Loading load;
-//    public MenuBackgroundTest mbt;
     
     public KeyboardInput ki;
     public ButtonInput bi;
@@ -38,7 +36,7 @@ public class Menu extends JFrame{
      * Creates and handles the menus of the game
      */
     public Menu(){
-        super("Rogue Re-Rezzed (Proof of Concept v1.6.2)");
+        super("Rogue Re-Rezzed (Proof of Concept v1.6.5)");
         this.setSize(750, 750);
         this.setFocusable(true);
         this.setResizable(true);
@@ -68,21 +66,18 @@ public class Menu extends JFrame{
         dmp = new DebugMPassword();
         sm = new StatMenu();
         load = new Loading();
-//        mbt = new MenuBackgroundTest();
         
         dmp.setVisible(false);
         omp.setVisible(false);
         mmp.setVisible(false);
         sm.setVisible(false);
         load.setVisible(true);
-//        mbt.setVisible(false);
         
         load.setSize(getWidth(), getWidth());
         dmp.setSize(750, 500);
         omp.setSize(750, 500);
         mmp.setSize(750, 500);
         sm.setSize(750, 500);
-//        mbt.setSize(750, 500);
         
         this.add(dmp);
         this.add(omp);
@@ -127,9 +122,7 @@ public class Menu extends JFrame{
         omp.spellKB.setText(String.valueOf(c[4]));
         omp.eatKB.setText(String.valueOf(c[5]));
         
-        this.invalidate();
-        this.validate();
-        this.repaint();
+        refresh();
     }
     /**
      * makes everything repaint

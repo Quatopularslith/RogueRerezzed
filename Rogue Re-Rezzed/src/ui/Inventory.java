@@ -35,15 +35,19 @@ public class Inventory extends JPanel{
     }
     public void update(){
         for(int i=0;i<Player.pinv.length;i++){
-            if(Player.pinv[i]!=null){
+            if(Player.pinv[i]!=null && !Player.pinv[i].name.equalsIgnoreCase("EMPTY")){
                 drop[i].setSelected(false);
                 drop[i] = new JButton("Drop "+i);
-                drop[i].setBounds(130, (i*25)+40-25, 70, 15);
+                drop[i].setBounds(130, (i*25)+40, 70, 15);
                 drop[i].setVisible(true);
                 equip[i].setSelected(false);
                 equip[i] = new JButton("Equip "+i);
-                equip[i].setBounds(56, (i*25)+40-25, 74, 15);
+                equip[i].setBounds(56, (i*25)+40, 74, 15);
                 equip[i].setVisible(true);
+            }
+            if(Player.pinv[i].name.equalsIgnoreCase("EMPTY")){
+                this.remove(drop[i]);
+                this.remove(equip[i]);
             }
         }
         repaint();
@@ -66,10 +70,7 @@ public class Inventory extends JPanel{
         g2.dispose();
         for(int i=0;i<Player.pinv.length;i++){
             if(Player.pinv[i]!=null){
-                if(Player.pinv[i].name.equalsIgnoreCase("Empty")){
-                    this.remove(drop[i]);
-                    this.remove(equip[i]);
-                }else{
+                if(!Player.pinv[i].name.equalsIgnoreCase("Empty")){
                     drop[i] = new JButton("Drop "+i);
                     drop[i].setBounds(130, (i*20)+15, 70, 20);
                     drop[i].setVisible(true);

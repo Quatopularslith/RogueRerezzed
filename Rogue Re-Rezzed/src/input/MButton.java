@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 /**
@@ -14,14 +15,14 @@ import java.awt.image.BufferedImage;
  * @author Torri
  */
 public class MButton {
-    public final BufferedImage img;
+    public BufferedImage img;
     public int x;
     public int y;
     private boolean isListened = false;
     private final LoadArt la = new LoadArt();
     private MButtonInput mbi;
-    private final int sx;
-    private final int sy;
+    private int sx;
+    private int sy;
     private final String name;
     /**
      * Makes a MButton
@@ -42,7 +43,7 @@ public class MButton {
         Graphics2D g = img.createGraphics();
         g.setColor(Color.BLUE);
         g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,sy/2));
-        FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF,Font.BOLD,sy/2));
+        FontMetrics fm = g.getFontMetrics(g.getFont());
         int width = fm.stringWidth(name);
         g.drawString(name, sx/2-width/2, sy/2+sy/4);
         g.dispose();
@@ -54,7 +55,6 @@ public class MButton {
                 Rogue.mm.mi.mb.add(this);
             }
             isListened=true;
-            System.out.println(name);
         }
     }
     public void update(int mx,int my){
@@ -62,8 +62,20 @@ public class MButton {
             mbi.clicked(name);
         }
     }
-    public void setPos(int x1,int y1){
+    public void setPos(int x1,int y1,int sx1,int sy1){
         x=x1;
         y=y1;
+        sx=sx1;
+        sy=sy1;
+//        img = new BufferedImage(sx,sy, BufferedImage.TYPE_INT_ARGB);
+        img = la.createBufferedImage("Button.png", sx, sy);
+        isListened=false;
+        Graphics2D g = img.createGraphics();
+        g.setColor(Color.BLUE);
+        g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,sy/2));
+        FontMetrics fm = g.getFontMetrics(g.getFont());
+        int width = fm.stringWidth(name);
+        g.drawString(name, sx/2-width/2, sy/2+sy/4);
+        g.dispose();
     }
 }

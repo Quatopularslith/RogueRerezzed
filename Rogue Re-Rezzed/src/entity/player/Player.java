@@ -84,7 +84,6 @@ public class Player extends RogueEntity{
         boolean curr=false;
         for (int i=0;i<pinv.length;i++) {
             if(pinv[i]!=null){
-                pinv[i].update();
                 if(pinv[i].equip==true){
                     this.maxhealth+=pinv[i].stats[3];
                     this.maxMana+=pinv[i].stats[2];

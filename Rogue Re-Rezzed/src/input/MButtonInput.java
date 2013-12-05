@@ -17,7 +17,6 @@ import entity.player.Player;
 public class MButtonInput {
     public static boolean backtogame;
     public void clicked(String command){
-        System.out.println(command);
         if(command.equalsIgnoreCase("New Game")){
             Player.pinv = null;
             Player.xplevels = 1;
@@ -34,11 +33,9 @@ public class MButtonInput {
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.d.setVisible(true);
         }else if(command.equalsIgnoreCase("Options")){
-            if(command.equalsIgnoreCase("Options")){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);
             backtogame=false;
-        }
         }else if(command.equalsIgnoreCase("Quit")){
             Rogue.mm.dispose();
         }

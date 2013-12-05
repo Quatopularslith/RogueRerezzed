@@ -18,8 +18,8 @@ public class Loading extends JPanel{
         this.setVisible(true);
         width=w;
         r=w/4;
-        cX=(w/2)-r/2;
-        cY=(w/2)-r/2;
+        cX=(w/2)-(r/1.63);
+        cY=(w/2)-(r/1.63);
         for(int i=0;i<(arrs-1);i++){
             newTheta=i*theta;
             x[i]=((0-r)*Math.sin(newTheta));
@@ -50,7 +50,7 @@ public class Loading extends JPanel{
         long currtick=Load.getTickNum();
         double nr = r/n;
         int scx = (int) (cX+(width/11));
-        int scy = (int) (cY+(width/(6.666666666666666666666666666666666666666666666666666666666666666667)));
+        int scy = (int) (cY+(width/(6.6666666667)));
         g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,((17*width)/1000)));
         for(int i=0;i<currtick;i++){
             g2.setColor(Color.BLUE);
