@@ -3,6 +3,7 @@ package ui;
 
 import input.ButtonInput;
 import input.KeyboardInput;
+import input.MButtonInput;
 import input.MouseInput;
 import javax.swing.JFrame;
 import loading.Loading;
@@ -25,6 +26,7 @@ public class Menu extends JFrame{
     public KeyboardInput ki;
     public ButtonInput bi;
     public MouseInput mi;
+    public MButtonInput mbi;
     
     public static RogueProperties rp;
     public static int x,y,sx,sy;
@@ -58,6 +60,7 @@ public class Menu extends JFrame{
         bi=new ButtonInput();
         ki=new KeyboardInput(propn);
         mi=new MouseInput();
+        mbi=new MButtonInput();
         
         omp = new OptionMenuPanel();
         mmp = new MainMenuPanel();
@@ -88,6 +91,8 @@ public class Menu extends JFrame{
         
         this.addMouseListener(mi);
         this.addKeyListener(ki);
+        
+        mmp.newGame.addListener(mbi);
         
         omp.apply.addActionListener(bi);
         omp.back.addActionListener(bi);

@@ -6,14 +6,17 @@ import dungeon.Level;
 import entity.player.Player;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Torri
  */
 public class MouseInput implements MouseListener{
-    public double mx;
-    public double my;
+    public int mx;
+    public int my;
+    public List<MButton> mb = new ArrayList<>();
     @Override
     public void mouseClicked(MouseEvent e) {
     }
@@ -22,6 +25,9 @@ public class MouseInput implements MouseListener{
         mx=e.getX();
         my=e.getY();
         System.out.println(mx +" "+ my);
+        for(MButton m:mb){
+            m.update(mx, my);
+        }
         if(Rogue.mm.mmp.isVisible()){
 //            if(mx < 750 && my > 950 && mx < 450 && my > 500){
             if(mx > 10 && my > 10 && mx < 210 && my < 90){
