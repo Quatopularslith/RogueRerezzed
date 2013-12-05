@@ -76,11 +76,11 @@ public class Menu extends JFrame{
         load.setVisible(true);
 //        mbt.setVisible(false);
         
-        load.setSize(750, 750);
-        dmp.setSize(750, 500);
-        omp.setSize(750, 500);
-        mmp.setSize(750, 500);
-        sm.setSize(750, 500);
+        load.setSize(getWidth(), getWidth());
+        dmp.setSize(getWidth(), getHeight());
+        omp.setSize(getWidth(), getHeight());
+        mmp.setSize(getWidth(), getHeight());
+        sm.setSize(getWidth(), getHeight());
 //        mbt.setSize(750, 500);
         
         this.add(dmp);

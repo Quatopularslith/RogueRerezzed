@@ -20,6 +20,7 @@ public class MainMenuPanel extends javax.swing.JPanel{
     @Override
     public void paint(Graphics g){
         super.paint(g);
+        System.out.println(getWidth()+" "+getHeight());
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.BLUE);
         g2.fillRect(0,0,getWidth(),getHeight());

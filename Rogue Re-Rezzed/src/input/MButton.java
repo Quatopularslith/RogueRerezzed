@@ -3,9 +3,10 @@ package input;
 
 import art.LoadArt;
 import core.Rogue;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
@@ -36,11 +37,12 @@ public class MButton {
         sy=sy1;
         name=name1;
         img = la.createBufferedImage("Button.png", sx, sy);
-        Graphics g = img.getGraphics();
-        img.getGraphics().setFont(new Font(Font.SANS_SERIF,Font.BOLD,sy));
-        FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF,Font.BOLD,sy));
+        Graphics2D g = img.createGraphics();
+        g.setColor(Color.GREEN);
+        g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,sy/2));
+        FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF,Font.BOLD,sy/2));
         int width = fm.stringWidth(name);
-        g.drawString(name, sx/2-width/2, 0);
+        g.drawString(name, sx/2-width/2, sy/2+sy/4);
         g.dispose();
     }
     public void addListener(MButtonInput mbi1){
