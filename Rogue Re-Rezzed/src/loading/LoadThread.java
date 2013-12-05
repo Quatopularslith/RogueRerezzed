@@ -2,9 +2,9 @@ package loading;
 /**
  * @author Torri
  */
-public class GameThread extends Thread implements Runnable{
+public class LoadThread extends Thread implements Runnable{
     boolean running = true;
-    Game g = new Game();
+    Load g = new Load();
     @Override
     public void run(){
         while(running){

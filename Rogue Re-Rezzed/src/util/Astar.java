@@ -23,9 +23,10 @@ public class Astar {
     private static final Comparator<Node> nodeSort = new Comparator<Node>(){
         @Override
         public int compare(Node n0,Node n1){
-            if(n1.fCost<n0.fCost) return 1;
-            if(n1.fCost>n0.fCost) return -1;
-            return 0;
+            int pos = 0;
+            if(n1.fCost<n0.fCost) pos = 1;
+            if(n1.fCost>=n0.fCost) pos = -1;
+            return pos;
         }
     };
     public static List<Node> findPath(Vector2i start,Vector2i goal){

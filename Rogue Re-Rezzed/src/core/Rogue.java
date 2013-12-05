@@ -2,7 +2,6 @@ package core;
 
 import ui.Menu;
 import dungeon.Level;
-import loading.Loading;
 //http://semver.org/
 /**
  * This makes it all go!
@@ -16,7 +15,7 @@ public class Rogue {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Loading g = new Loading(750);
+        mm = new Menu();
     }
     public static Level setLevel(Level l1){
         l=l1;

@@ -5,6 +5,7 @@ import input.ButtonInput;
 import input.KeyboardInput;
 import input.MouseInput;
 import javax.swing.JFrame;
+import loading.Loading;
 import util.RogueProperties;
 
 /**
@@ -18,6 +19,7 @@ public class Menu extends JFrame{
     public DebugMPassword dmp;
     public StatMenu sm;
     public DebugMenu dm;
+    public Loading load;
 //    public MenuBackgroundTest mbt;
     
     public KeyboardInput ki;
@@ -33,8 +35,8 @@ public class Menu extends JFrame{
      * Creates and handles the menus of the game
      */
     public Menu(){
-        super("Rogue Re-Rezzed (Proof of Concept v1.5.1)");
-        this.setSize(750, 500);
+        super("Rogue Re-Rezzed (Proof of Concept v1.6.2)");
+        this.setSize(750, 750);
         this.setFocusable(true);
         this.setResizable(true);
         this.setVisible(true);
@@ -61,14 +63,17 @@ public class Menu extends JFrame{
         mmp = new MainMenuPanel();
         dmp = new DebugMPassword();
         sm = new StatMenu();
+        load = new Loading();
 //        mbt = new MenuBackgroundTest();
         
         dmp.setVisible(false);
         omp.setVisible(false);
-        mmp.setVisible(true);
+        mmp.setVisible(false);
         sm.setVisible(false);
+        load.setVisible(true);
 //        mbt.setVisible(false);
         
+        load.setSize(750, 750);
         dmp.setSize(750, 500);
         omp.setSize(750, 500);
         mmp.setSize(750, 500);
@@ -79,6 +84,7 @@ public class Menu extends JFrame{
         this.add(omp);
         this.add(mmp);
         this.add(sm);
+        this.add(load);
         
         this.addMouseListener(mi);
         this.addKeyListener(ki);
@@ -95,12 +101,12 @@ public class Menu extends JFrame{
         
         if(rp.getSettings()==null){
             Menu.rp.setData(bi.defkeys);
-            omp.fwdKB.setText("w");
-            omp.backKB.setText("s");
-            omp.rightKB.setText("d");
-            omp.leftKB.setText("a");
-            omp.spellKB.setText("q");
-            omp.eatKB.setText("e");
+            omp.fwdKB.setText("W");
+            omp.backKB.setText("S");
+            omp.rightKB.setText("D");
+            omp.leftKB.setText("A");
+            omp.spellKB.setText("Q");
+            omp.eatKB.setText("E");
             ki.checkSettings(bi.defkeys);
         }
         int[] j = new int[rp.getSettings().length];

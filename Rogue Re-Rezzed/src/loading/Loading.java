@@ -6,22 +6,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import javax.swing.*;
-import ui.Menu;
-public class Loading extends JFrame{
+public class Loading extends JPanel{
     double n = .875;
-    int r, width, arrs = 201;
-    boolean go=false;
+    int r, width, arrs = 501;
     double newTheta, theta = 2*Math.asin(1/(2*n));
     double[] x=new double[arrs], y=new double[arrs];
     double cX, cY;
-    long now, timeTaken;
-    public Loading(int w){
-        super("Quotopulularslith Studios");
+    public Loading(){
+        int w = 750;
         this.setSize(w,w);
         this.setVisible(true);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         width=w;
         r=w/4;
         cX=(w/2)-r/2;
@@ -33,27 +27,38 @@ public class Loading extends JFrame{
             x[i]+=cX;
             y[i]+=cY;
         }
+        LoadLoop.start();
+        this.repaint();
+    }
+    public void update(){
+        this.repaint();
+        if(Load.getTickNum()>=x.length-1){
+            this.setVisible(false);
+            if(Rogue.mm!=null){
+                LoadLoop.pause();
+                Rogue.mm.mmp.setVisible(true);
+                Rogue.mm.setSize(750, 500);
+            }
+        }
     }
     @Override
     public void paint(Graphics g) {
+        super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
-        GameLoop.start();
-        long starttick= Game.getTickNum();
-        long currtick = (Game.getTickNum()-starttick);
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0, 0, getWidth(), getHeight());
+        long currtick=Load.getTickNum();
         double nr = r/n;
         int scx = (int) (cX+(width/11));
         int scy = (int) (cY+(width/(6.666666666666666666666666666666666666666666666666666666666666666667)));
         g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,((17*width)/1000)));
-        while(currtick<(arrs-1)){
-            g2.setColor(Color.RED);
-            g2.drawString("Quotopulularslith", scx-10, scy);
-            g2.drawString("Studios",scx+15,scy+15);
+        for(int i=0;i<currtick;i++){
             g2.setColor(Color.BLUE);
-            g2.draw(new Ellipse2D.Double(x[(int) currtick], y[(int) currtick], nr, nr));
-            currtick = (Game.getTickNum()-starttick);
+            g2.draw(new Ellipse2D.Double(x[i], y[i], nr, nr));
         }
-        Rogue.mm = new Menu();
-        this.dispose();
-        GameLoop.pause();
+        g2.setColor(Color.RED);
+        g2.drawString("Quotopulularslith", scx-10, scy);
+        g2.drawString("Studios",scx+15,scy+15);
+        g2.dispose();
     }
 }

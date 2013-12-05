@@ -83,7 +83,8 @@ public class RogueHostileEntity extends RogueEntity{
         for (Item inv1 : inv) {
             inv1.update();
         }
-        this.move(pathFind(this.l.getPlayer()));
+//        this.move(pathFind(this.l.getPlayer()));
+        this.move(pointTowards(l.getPlayer()));
         if(doatt(l.getPlayer()) && maxAtt>0){
             l.getPlayer().damage(rand.nextInt(Math.abs((int) maxAtt)));
         }
@@ -96,10 +97,45 @@ public class RogueHostileEntity extends RogueEntity{
     public Direction pointTowards(Node e){
         Direction pdir=Direction.STOP;
         if(distTo(e.tile.getEntity())<followdist){
-            if(x<e.tile.getX())pdir= Direction.RIGHT;
-            if(x>e.tile.getX())pdir= Direction.LEFT;
-            if(y<e.tile.getY())pdir= Direction.DOWN;
-            if(y>e.tile.getY())pdir=Direction.UP;
+            if(x<e.tile.getX())pdir = Direction.RIGHT;
+            if(x>e.tile.getX())pdir = Direction.LEFT;
+            if(y<e.tile.getY())pdir = Direction.DOWN;
+            if(y>e.tile.getY())pdir =Direction.UP;
+        }else{
+            boolean b = rand.nextBoolean();
+            int d = rand.nextInt(3);
+            if(b){
+                switch (d){
+                    case 0:
+                        pdir=Direction.UP;
+                        break;
+                    case 1:
+                        pdir=Direction.DOWN;
+                        break;
+                    case 2:
+                        pdir=Direction.LEFT;
+                        break;
+                    case 3:
+                        pdir=Direction.RIGHT;
+                        break;
+                    default:
+                        pdir=Direction.STOP;
+                        break;
+                }
+            }else{
+                pdir=Direction.STOP;
+            }
+        }
+        System.out.println(pdir);
+        return pdir;
+    }
+    public Direction pointTowards(RogueEntity e){
+        Direction pdir=Direction.STOP;
+        if(distTo(e)<followdist){
+            if(x<e.x)pdir = Direction.RIGHT;
+            if(x>e.x)pdir = Direction.LEFT;
+            if(y<e.y)pdir = Direction.DOWN;
+            if(y>e.y)pdir =Direction.UP;
         }else{
             boolean b = rand.nextBoolean();
             int d = rand.nextInt(3);
@@ -134,7 +170,11 @@ public class RogueHostileEntity extends RogueEntity{
      */
     public Direction pathFind(RogueEntity e){
         Direction out = Direction.STOP;
-        if(distTo(e)>followdist){
+        if(distTo(e)<=followdist){
+            List<Node> path = Astar.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y));
+            if(path==null)return Direction.STOP;
+            out = pointTowards(path.get(path.size()-1));
+        }else{
             boolean b = rand.nextBoolean();
             int d = rand.nextInt(3);
             if(b){
@@ -158,10 +198,6 @@ public class RogueHostileEntity extends RogueEntity{
             }else{
                 out=Direction.STOP;
             }
-        }else{
-            List<Node> path = Astar.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y));
-            if(path==null)return Direction.STOP;
-            out = pointTowards(path.get(path.size()-1));
         }
         return out;
     }

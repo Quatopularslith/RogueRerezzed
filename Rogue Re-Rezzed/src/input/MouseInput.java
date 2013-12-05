@@ -19,12 +19,12 @@ public class MouseInput implements MouseListener{
     }
     @Override
     public void mousePressed(MouseEvent e) {
-        mx=e.getXOnScreen();
-        my=e.getYOnScreen();
+        mx=e.getX();
+        my=e.getY();
         System.out.println(mx +" "+ my);
         if(Rogue.mm.mmp.isVisible()){
 //            if(mx < 750 && my > 950 && mx < 450 && my > 500){
-            if(mx > 480 && my > 300 && mx < 680 && my < 350){
+            if(mx > 10 && my > 10 && mx < 210 && my < 90){
                 Player.pinv = null;
                 Player.xplevels = 1;
                 Player.xp = 0;
