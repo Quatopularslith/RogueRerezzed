@@ -15,8 +15,9 @@ import java.awt.image.BufferedImage;
  */
 public class MButton {
     public final BufferedImage img;
-    public final int x;
-    public final int y;
+    public int x;
+    public int y;
+    private boolean isListened = false;
     private final LoadArt la = new LoadArt();
     private MButtonInput mbi;
     private final int sx;
@@ -37,8 +38,9 @@ public class MButton {
         sy=sy1;
         name=name1;
         img = la.createBufferedImage("Button.png", sx, sy);
+        isListened=false;
         Graphics2D g = img.createGraphics();
-        g.setColor(Color.GREEN);
+        g.setColor(Color.BLUE);
         g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,sy/2));
         FontMetrics fm = g.getFontMetrics(new Font(Font.SANS_SERIF,Font.BOLD,sy/2));
         int width = fm.stringWidth(name);
@@ -46,14 +48,22 @@ public class MButton {
         g.dispose();
     }
     public void addListener(MButtonInput mbi1){
-        mbi=mbi1;
-        if(Rogue.mm!=null){
-            Rogue.mm.mi.mb.add(this);
+        if(!isListened){
+            mbi=mbi1;
+            if(Rogue.mm!=null){
+                Rogue.mm.mi.mb.add(this);
+            }
+            isListened=true;
+            System.out.println(name);
         }
     }
     public void update(int mx,int my){
         if(mx>x && mx<x+sx && my>y+30 && my<y+sy+30){
             mbi.clicked(name);
         }
+    }
+    public void setPos(int x1,int y1){
+        x=x1;
+        y=y1;
     }
 }

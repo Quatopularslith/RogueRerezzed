@@ -5,6 +5,7 @@ import input.ButtonInput;
 import input.KeyboardInput;
 import input.MButtonInput;
 import input.MouseInput;
+import java.awt.Graphics;
 import javax.swing.JFrame;
 import loading.Loading;
 import util.RogueProperties;
@@ -77,10 +78,10 @@ public class Menu extends JFrame{
 //        mbt.setVisible(false);
         
         load.setSize(getWidth(), getWidth());
-        dmp.setSize(getWidth(), getHeight());
-        omp.setSize(getWidth(), getHeight());
-        mmp.setSize(getWidth(), getHeight());
-        sm.setSize(getWidth(), getHeight());
+        dmp.setSize(750, 500);
+        omp.setSize(750, 500);
+        mmp.setSize(750, 500);
+        sm.setSize(750, 500);
 //        mbt.setSize(750, 500);
         
         this.add(dmp);
@@ -91,8 +92,6 @@ public class Menu extends JFrame{
         
         this.addMouseListener(mi);
         this.addKeyListener(ki);
-        
-        mmp.newGame.addListener(mbi);
         
         omp.apply.addActionListener(bi);
         omp.back.addActionListener(bi);

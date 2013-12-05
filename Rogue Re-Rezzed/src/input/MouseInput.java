@@ -1,9 +1,6 @@
 
 package input;
 
-import core.Rogue;
-import dungeon.Level;
-import entity.player.Player;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -24,12 +21,15 @@ public class MouseInput implements MouseListener{
     public void mousePressed(MouseEvent e) {
         mx=e.getX();
         my=e.getY();
-        System.out.println(mx +" "+ my);
+        boolean b = false;
         for(int i=0;i<mb.size();i++){
-            if(i>0 && mb.get(i).equals(mb.get(i-1))){
-                mb.remove(i);
-                continue;
+            for(int j=0;j<mb.size();j++){
+                if(j!=i && i!=0 && mb.get(i).equals(mb.get(j))){
+                    mb.remove(i);
+                    b=true;
+                }
             }
+            if(b) continue;
             mb.get(i).update(mx, my);
         }
     }

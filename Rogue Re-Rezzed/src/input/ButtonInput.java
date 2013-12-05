@@ -17,18 +17,12 @@ import ui.Menu;
  * @author Torri &  Mnenmenth
  */
 public class ButtonInput implements ActionListener{
-    private boolean backtogame;
     public final String[] defkeys = {"87","83","68","65","81","69"};//wsdaqe
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if(command.equalsIgnoreCase("Options")){
-            Rogue.mm.mmp.setVisible(false);
-            Rogue.mm.omp.setVisible(true);
-            backtogame=false;
-        }
         if(command.equalsIgnoreCase("Back")){
-            if(backtogame==false){
+            if(MButtonInput.backtogame==false){
                 Rogue.mm.mmp.setVisible(true);
                 Rogue.mm.omp.setVisible(false);
             }else{
@@ -88,13 +82,10 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.mmp.setVisible(true);
         }
         if(command.equalsIgnoreCase("settings")){
-            backtogame=true;
+            MButtonInput.backtogame=true;
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);
             Rogue.mm.d.setVisible(false);
-        }
-        if(command.equalsIgnoreCase("quit")){
-            Rogue.mm.dispose();
         }
         if(command.equalsIgnoreCase("Debug Menu")){
             Rogue.mm.omp.setVisible(false);
@@ -145,12 +136,8 @@ public class ButtonInput implements ActionListener{
         }
         if(command.equalsIgnoreCase("pick up")){
             if(RenderPanel.pickup!=null){
-                if(RenderPanel.pickup instanceof Gold){
-                    Player.gold+=RenderPanel.pickup.id;
-                }else{
-                    RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
-                    Player.pinv[Player.currinv]=RenderPanel.pickup;
-                }
+                RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
+                Player.pinv[Player.currinv]=RenderPanel.pickup;
                 RenderPanel.pickup.death();
                 Rogue.mm.d.gp.update();
             }

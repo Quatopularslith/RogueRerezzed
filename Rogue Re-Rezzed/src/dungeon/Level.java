@@ -79,7 +79,7 @@ public class Level {
         numLevels++;
         nument=0;
         int roomnum=0;
-        board=new boolean[1000][1000];
+        board=new boolean[2*sx][2*sy];
         maxRoomSX=(sx/rows);
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
@@ -102,9 +102,9 @@ public class Level {
             }
         }
         st = new Stairway(this);
-        rooms[roomnum]=new Room(rooms[0].area[0][0][0]-2,rooms[0].area[0][0][1]-2,100,3,lvl,this);
-        rooms[roomnum+1]=new Room(0,rooms[st.room].area[0][0][1],100,3,lvl,this);
-        rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],0,3,100,lvl,this);
+        rooms[roomnum]=new Room(rooms[0].area[0][0][0]-2,rooms[0].area[0][0][1]-2,sx,3,lvl,this);
+        rooms[roomnum+1]=new Room(0,rooms[st.room].area[0][0][1],sx,3,lvl,this);
+        rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],0,3,sy,lvl,this);
         p=new Player(this);
         for(boolean[] b1:board){
             for(boolean b:b1){

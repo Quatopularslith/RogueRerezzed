@@ -6,6 +6,7 @@ import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
+import entity.item.Gold;
 import entity.item.Item;
 import entity.player.Player;
 import java.awt.Color;
@@ -42,6 +43,10 @@ public class RenderPanel extends JPanel{
         l.getStairWay().turn();
         pickup=null;
         l.getPlayer().turn();
+        if(pickup instanceof Gold){
+            Player.gold+=pickup.id;
+            pickup=null;
+        }
         for(int i=0;i<l.getEntities().size();i++){
             if(l.getEntities().get(i) != null){
                 if(l.getEntities().get(i).health<=0){
