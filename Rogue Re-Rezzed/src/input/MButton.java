@@ -4,6 +4,7 @@ package input;
 import art.LoadArt;
 import core.Rogue;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
@@ -24,6 +25,7 @@ public class MButton {
     private int sx;
     private int sy;
     private final String name;
+    private final Component parent;
     /**
      * Makes a MButton
      * @param x1 top left corner
@@ -31,14 +33,16 @@ public class MButton {
      * @param sx1 width
      * @param sy1 height
      * @param name1 name
+     * @param parent1
      */
-    public MButton(int x1,int y1,int sx1,int sy1, String name1){
+    public MButton(int x1,int y1,int sx1,int sy1, String name1, Component parent1){
         x=x1;
         y=y1;
         sx=sx1;
         sy=sy1;
         name=name1;
         img = la.createBufferedImage("Button.png", sx, sy);
+        parent=parent1;
         isListened=false;
         Graphics2D g = img.createGraphics();
         g.setColor(Color.BLUE);
@@ -58,7 +62,7 @@ public class MButton {
         }
     }
     public void update(int mx,int my){
-        if(mx>x && mx<x+sx && my>y+30 && my<y+sy+30){
+        if(mx>x && mx<x+sx && my>y+30 && my<y+sy+30 && parent.isVisible()){
             mbi.clicked(name);
         }
     }
@@ -67,7 +71,7 @@ public class MButton {
         y=y1;
         sx=sx1;
         sy=sy1;
-//        img = new BufferedImage(sx,sy, BufferedImage.TYPE_INT_ARGB);
+        img = new BufferedImage(sx,sy, BufferedImage.TYPE_INT_ARGB);
         img = la.createBufferedImage("Button.png", sx, sy);
         isListened=false;
         Graphics2D g = img.createGraphics();

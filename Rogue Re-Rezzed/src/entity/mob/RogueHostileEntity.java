@@ -80,9 +80,6 @@ public class RogueHostileEntity extends RogueEntity{
     }
     @Override
     public void turn(){
-        for (Item inv1 : inv) {
-            inv1.update();
-        }
 //        this.move(pathFind(this.l.getPlayer()));
         this.move(pointTowards(l.getPlayer()));
         if(doatt(l.getPlayer()) && maxAtt>0){

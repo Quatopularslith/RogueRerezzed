@@ -4,12 +4,9 @@ package ui;
 import art.LoadArt;
 import core.Rogue;
 import input.MButton;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 
@@ -20,9 +17,9 @@ public class MainMenuPanel extends javax.swing.JPanel{
     double[] size = {0.26666666666666667,0.1};
     LoadArt la = new LoadArt();
     Image img = la.createImage("MainMenu.png", "MMP", 750, 500);
-    MButton newGame = new MButton(getWidth()/2-100,150,200,50,"New Game");
-    MButton options = new MButton(getWidth()/2-100,210,200,50,"Options");
-    MButton quit = new MButton(getWidth()/2-100,270,200,50,"Quit");
+    MButton newGame = new MButton(getWidth()/2-100,150,200,50,"New Game",this);
+    MButton options = new MButton(getWidth()/2-100,210,200,50,"Options",this);
+    MButton quit = new MButton(getWidth()/2-100,270,200,50,"Quit",this);
     public MainMenuPanel(){
         this.setVisible(true);
         this.repaint();

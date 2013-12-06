@@ -84,15 +84,14 @@ public class Player extends RogueEntity{
         boolean curr=false;
         for (int i=0;i<pinv.length;i++) {
             if(pinv[i]!=null){
-                if(pinv[i].equip==true){
+                if(pinv[i].name.equalsIgnoreCase("EMPTY") && !curr){
+                    currinv=i;
+                    curr=true;
+                }else if(pinv[i].equip==true){
                     this.maxhealth+=pinv[i].stats[3];
                     this.maxMana+=pinv[i].stats[2];
                     this.maxDefence+=pinv[i].stats[1];
                     this.maxAtt+=pinv[i].stats[0];
-                }
-                if(pinv[i].name.equalsIgnoreCase("EMPTY") && !curr){
-                    currinv=i;
-                    curr=true;
                 }
             }
         }
