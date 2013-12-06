@@ -84,6 +84,7 @@ public class Level {
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
         rooms=new Room[numRooms+3];
+        Player.xplevels=1000000000;
         renderlevel=Math.round(numLevels/5)*16;
         if(renderlevel>32){
             renderlevel=32;

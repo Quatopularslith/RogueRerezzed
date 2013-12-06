@@ -40,12 +40,12 @@ public class Player extends RogueEntity{
                 break;
             }
         }
-        maxDefence=0;
-        maxAtt=2;
-        mana=(int) (50);
-        maxMana=(int) (100);
-        health=(float) (100);
-        maxhealth=(int) (100);
+        maxDefence=(xplevels);
+        maxAtt=2*xplevels;
+        maxMana=100+(xplevels);
+        mana=(int) (maxMana/1.5);
+        maxhealth=100+(xplevels);
+        health=(float) (maxhealth/1.5);
         for (Item pinv1 : pinv) {
             pinv1.update();
             if (pinv1.equip == true) {
@@ -77,10 +77,10 @@ public class Player extends RogueEntity{
             health=maxhealth;
             mana=maxMana;
         }
-        maxAtt=2;
-        maxMana=100;
-        maxhealth=100;
-        maxDefence=0;
+        maxAtt=2*xplevels;
+        maxMana=100+(xplevels);
+        maxhealth=100+(xplevels);
+        maxDefence=(xplevels);
         boolean curr=false;
         for (int i=0;i<pinv.length;i++) {
             if(pinv[i]!=null){

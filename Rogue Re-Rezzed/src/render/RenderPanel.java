@@ -9,6 +9,7 @@ import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
 import entity.player.Player;
+import input.MButton;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -29,8 +30,8 @@ public class RenderPanel extends JPanel{
     public static Sprite fsp = new Sprite("DungeonFloor1");
     public static Sprite dialogue = new Sprite("Dialogue",144);
     private List<RogueEntity> current = l.getEntities();
-    JButton ajb = new JButton("Pick up");
-    JButton djb = new JButton("Leave it");
+    MButton amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
+    MButton dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
     public RenderPanel(){
         l=Rogue.getLevel();
         this.setLayout(null);
@@ -117,22 +118,13 @@ public class RenderPanel extends JPanel{
             g2.setColor(Color.BLACK);
             g2.drawImage(dialogue.i, getWidth()/2-36, getHeight()/2-36, this);
             g2.drawString(pickup.name, getWidth()/2-32,getHeight()/2-10);
-            g2.drawString("[Pick Up]", getWidth()/2+4, getHeight()/2+15);
-            g2.drawString("[Leave It]", getWidth()/2+4, getHeight()/2+47);
+            amb.setPos(getWidth()/2-16,getHeight()/2,100,20);
+            dmb.setPos(getWidth()/2-16,getHeight()/2+32,100,20);
+            g2.drawImage(amb.img, amb.x,amb.y, this);
+            g2.drawImage(dmb.img, dmb.x,dmb.y, this);
+            amb.addListener(Rogue.mm.mbi);
+            dmb.addListener(Rogue.mm.mbi);
             g2.dispose();
-            ajb.setBounds(getWidth()/2-16,getHeight()/2,100,20);
-            ajb.addActionListener(Rogue.mm.bi);
-            ajb.setSelected(true);
-            ajb.setVisible(true);
-            this.add(ajb);
-            djb.setBounds(getWidth()/2-16,getHeight()/2+32,100,20);
-            djb.addActionListener(Rogue.mm.bi);
-            djb.setSelected(true);
-            djb.setVisible(true);
-            this.add(djb);
-        }else{
-            this.remove(ajb);
-            this.remove(djb);
         }
         g2.dispose();
     }

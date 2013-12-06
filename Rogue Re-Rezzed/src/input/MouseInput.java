@@ -27,6 +27,7 @@ public class MouseInput implements MouseListener{
                 if(j!=i && i!=0 && mb.get(i).equals(mb.get(j))){
                     mb.remove(i);
                     b=true;
+                    break;
                 }
             }
             if(b) continue;

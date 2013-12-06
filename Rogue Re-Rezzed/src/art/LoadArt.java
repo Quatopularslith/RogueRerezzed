@@ -33,7 +33,8 @@ public class LoadArt {
             } catch (IOException ex) {
                 System.err.println("Could not find file1: "+path);
             }
-            out.getScaledInstance(sx, sy, 0);
+            out.createGraphics().drawImage(out.getScaledInstance(sx, sy, 0), 0,0, null);
+            out.createGraphics().dispose();
             return out;
         }else{
             System.err.println("Could not find file2: "+path);

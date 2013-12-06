@@ -85,6 +85,7 @@ public class RogueEntity {
             default:
                 dx=0;
                 dy=0;
+                break;
         }
         for(RogueEntity re:l.getEntities()){
             if(re != null){
