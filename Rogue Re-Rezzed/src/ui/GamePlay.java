@@ -198,7 +198,7 @@ public class GamePlay extends JPanel{
         }
         //Stats
         g2.setColor(Color.BLACK);
-        g2.fillRect(10, 10, 50, 190);
+        g2.fillRect(5, 5, 140, 200);
         g2.setColor(Color.RED);
         g2.fillRect(20, 25, (int) ((Rogue.getLevel().getPlayer().health/Rogue.getLevel().getPlayer().maxhealth)*100), 20);
         g2.setColor(Color.BLUE);
