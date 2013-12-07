@@ -22,6 +22,7 @@ public class MouseInput implements MouseListener{
         mx=e.getX();
         my=e.getY();
         boolean b = false;
+        System.out.println(mx+" "+my);
         for(int i=0;i<mb.size();i++){
             for(int j=0;j<mb.size();j++){
                 if(j!=i && i!=0 && mb.get(i).equals(mb.get(j))){

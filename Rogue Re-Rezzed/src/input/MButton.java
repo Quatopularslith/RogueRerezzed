@@ -8,7 +8,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 /**
@@ -19,13 +18,14 @@ public class MButton {
     public BufferedImage img;
     public int x;
     public int y;
+    private boolean visible = true;
     private boolean isListened = false;
     private final LoadArt la = new LoadArt();
     private MButtonInput mbi;
     private int sx;
     private int sy;
     private final String name;
-    private final Component parent;
+    private Component parent;
     /**
      * Makes a MButton
      * @param x1 top left corner
@@ -53,7 +53,9 @@ public class MButton {
         g.dispose();
     }
     public void addListener(MButtonInput mbi1){
+        visible=true;
         if(!isListened){
+            System.out.println(name+"Listener created on: "+parent.getClass().toString());
             mbi=mbi1;
             if(Rogue.mm!=null){
                 Rogue.mm.mi.mb.add(this);
@@ -62,7 +64,7 @@ public class MButton {
         }
     }
     public void update(int mx,int my){
-        if(mx>x && mx<x+sx && my>y+30 && my<y+sy+30 && parent.isVisible()){
+        if(mx>x+parent.getX() && mx<x+sx+parent.getX() && my>y+parent.getY()+30 && my<y+sy+parent.getY()+30 && parent.isVisible() && visible){
             mbi.clicked(name);
         }
     }
@@ -81,5 +83,11 @@ public class MButton {
         int width = fm.stringWidth(name);
         g.drawString(name, sx/2-width/2, sy/2+sy/4);
         g.dispose();
+    }
+    public void hide(){
+        visible=false;
+    }
+    public void setParent(Component c){
+        parent=c;
     }
 }

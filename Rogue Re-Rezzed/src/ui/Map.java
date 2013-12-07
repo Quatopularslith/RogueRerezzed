@@ -22,7 +22,7 @@ import render.Sprite;
  */
 public class Map extends JPanel{
     int offx=0,offy=0;
-    public static Sprite img=new Sprite("DungeonFloor1",8);
+    public static Sprite img=new Sprite("DungeonFloor",8);
     public static Sprite pimg=new Sprite("Player",8);
     public static Sprite stimg=new Sprite("Stairway",8);
     Level l = Rogue.getLevel();

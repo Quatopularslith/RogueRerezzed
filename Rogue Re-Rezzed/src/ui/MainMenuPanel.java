@@ -29,6 +29,9 @@ public class MainMenuPanel extends javax.swing.JPanel{
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
         if(img.getWidth(this)!=Rogue.mm.getHeight() && img.getWidth(this)!=Rogue.mm.getWidth()){
+            newGame.setParent(this);
+            options.setParent(this);
+            quit.setParent(this);
             img = la.createImage("MainMenu.png","MMP",Rogue.mm.getWidth(), Rogue.mm.getHeight());
             this.setSize(Rogue.mm.getWidth(), Rogue.mm.getHeight());
             newGame.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));

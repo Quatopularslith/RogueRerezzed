@@ -14,7 +14,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -27,13 +26,15 @@ public class RenderPanel extends JPanel{
     LoadArt la = new LoadArt();
     Room[] room = l.getRooms();
     public static Item pickup;
-    public static Sprite fsp = new Sprite("DungeonFloor1");
+    public static Sprite fsp = new Sprite("DungeonFloor");
     public static Sprite dialogue = new Sprite("Dialogue",144);
     private List<RogueEntity> current = l.getEntities();
     MButton amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
     MButton dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
     public RenderPanel(){
         l=Rogue.getLevel();
+        amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
+        dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
         this.setLayout(null);
     }
     /**
@@ -115,16 +116,22 @@ public class RenderPanel extends JPanel{
             pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
         }
         if(pickup.name.equalsIgnoreCase("Empty")==false){
+            amb.setParent(this);
+            dmb.setParent(this);
             g2.setColor(Color.BLACK);
             g2.drawImage(dialogue.i, getWidth()/2-36, getHeight()/2-36, this);
             g2.drawString(pickup.name, getWidth()/2-32,getHeight()/2-10);
             amb.setPos(getWidth()/2-16,getHeight()/2,100,20);
             dmb.setPos(getWidth()/2-16,getHeight()/2+32,100,20);
+            System.out.println(amb.x);
             g2.drawImage(amb.img, amb.x,amb.y, this);
             g2.drawImage(dmb.img, dmb.x,dmb.y, this);
             amb.addListener(Rogue.mm.mbi);
             dmb.addListener(Rogue.mm.mbi);
             g2.dispose();
+        }else{
+            amb.hide();
+            dmb.hide();
         }
         g2.dispose();
     }

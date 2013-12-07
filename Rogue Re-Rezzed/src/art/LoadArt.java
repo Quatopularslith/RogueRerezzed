@@ -27,13 +27,14 @@ public class LoadArt {
     public BufferedImage createBufferedImage(String path, int sx, int sy){
         URL imgurl = getClass().getResource(path);
         if(imgurl!=null){
+            BufferedImage temp = new BufferedImage(sx,sy,BufferedImage.TYPE_INT_ARGB);
             BufferedImage out = new BufferedImage(sx,sy,BufferedImage.TYPE_INT_ARGB);
             try {
-                out = ImageIO.read(imgurl);
+                temp = ImageIO.read(imgurl);
             } catch (IOException ex) {
                 System.err.println("Could not find file1: "+path);
             }
-            out.createGraphics().drawImage(out.getScaledInstance(sx, sy, 0), 0,0, null);
+            out.createGraphics().drawImage(temp.getScaledInstance(sx, sy, 0), 0,0, null);
             out.createGraphics().dispose();
             return out;
         }else{
