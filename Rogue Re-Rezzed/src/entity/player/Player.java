@@ -9,6 +9,7 @@ import entity.item.Item;
 import entity.mob.RogueHostileEntity;
 import render.RenderPanel;
 import render.Sprite;
+import ui.GamePlay;
 
 /**
  * Hello! This is you!
@@ -104,13 +105,6 @@ public class Player extends RogueEntity{
         if((int) maxAtt<1){
             maxAtt=1;
         }
-        l=Rogue.getLevel();
-        for (int j=0;j<l.getItems().size();j++) {
-            Item i = l.getItems().get(j);
-            if(i.x==this.x && i.y==this.y && pinv[currinv]!=i && pinv[currinv]!=null){
-                RenderPanel.pickup = i;
-            }
-        }
         attack=false;
         if(Rogue.mm.ki.keyBind[0]){//up
             for(int i=0;i<l.getEntities().size();i++){
@@ -127,6 +121,12 @@ public class Player extends RogueEntity{
                 }
             }
             if(!attack){
+                for (int j=0;j<l.getItems().size();j++) {
+                    Item i = l.getItems().get(j);
+                    if(i.x==this.x && i.y==this.y-1 && pinv[currinv]!=i && pinv[currinv]!=null){
+                        GamePlay.pickup = i;
+                    }
+                }
                 this.move(Direction.UP);
             }
         }else if(Rogue.mm.ki.keyBind[1]){//down
@@ -144,6 +144,12 @@ public class Player extends RogueEntity{
                 }
             }
             if(!attack){
+                for (int j=0;j<l.getItems().size();j++) {
+                    Item i = l.getItems().get(j);
+                    if(i.x==this.x && i.y==this.y+1 && pinv[currinv]!=i && pinv[currinv]!=null){
+                        GamePlay.pickup = i;
+                    }
+                }
                 this.move(Direction.DOWN);
             }
         }else if(Rogue.mm.ki.keyBind[2]){//right
@@ -161,6 +167,12 @@ public class Player extends RogueEntity{
                 }
             }
             if(!attack){
+                for (int j=0;j<l.getItems().size();j++) {
+                    Item i = l.getItems().get(j);
+                    if(i.x==this.x+1 && i.y==this.y && pinv[currinv]!=i && pinv[currinv]!=null){
+                        GamePlay.pickup = i;
+                    }
+                }
                 this.move(Direction.RIGHT);
             }
         }else if(Rogue.mm.ki.keyBind[3]){//left
@@ -178,6 +190,12 @@ public class Player extends RogueEntity{
                 }
             }
             if(!attack){
+                for (int j=0;j<l.getItems().size();j++) {
+                    Item i = l.getItems().get(j);
+                    if(i.x==this.x-1 && i.y==this.y && pinv[currinv]!=i && pinv[currinv]!=null){
+                        GamePlay.pickup = i;
+                    }
+                }
                 this.move(Direction.LEFT);
             }
         }

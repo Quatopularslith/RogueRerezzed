@@ -11,6 +11,7 @@ import dungeon.Level;
 import entity.player.Player;
 import javax.swing.JPanel;
 import render.RenderPanel;
+import ui.GamePlay;
 
 /**
  * listener for MButtons
@@ -29,6 +30,7 @@ public class MButtonInput {
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.gp.setVisible(true);
+            Rogue.mm.gp.update();
         }else if(command.equalsIgnoreCase("Options")){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);
@@ -36,15 +38,15 @@ public class MButtonInput {
         }else if(command.equalsIgnoreCase("Quit")){
             Rogue.mm.dispose();
         }else if(command.equalsIgnoreCase("pick up")){
-            if(RenderPanel.pickup!=null){
-                RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
-                Player.pinv[Player.currinv]=RenderPanel.pickup;
-                RenderPanel.pickup.death();
+            if(GamePlay.pickup!=null){
+                GamePlay.pickup.setParent(Rogue.getLevel().getPlayer());
+                Player.pinv[Player.currinv]=GamePlay.pickup;
+                GamePlay.pickup.death();
                 Rogue.mm.gp.update();
             }
             refresh(Rogue.mm.gp);
         }else if(command.equalsIgnoreCase("leave it")){
-            RenderPanel.pickup=null;
+            GamePlay.pickup=null;
             Rogue.mm.gp.update();
             refresh(Rogue.mm.gp);
         }

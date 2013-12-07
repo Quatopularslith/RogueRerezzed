@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Random;
 import render.RenderPanel;
 import render.Sprite;
+import ui.GamePlay;
 import ui.Map;
 
 /**
@@ -51,14 +52,14 @@ public class Level {
      * Creates a level
      */
     public Level(){
-        this(150,150,numLevels);
+        this(100,100,numLevels);
     }
     /**
      * Creates a level
      * @param lvl level of difficulty
      */
     public Level(int lvl){
-        this(150,150,lvl);
+        this(100,150,lvl);
     }
     /**
      * Creates a level
@@ -91,11 +92,11 @@ public class Level {
         }else if(renderlevel<16 && numLevels>3){
             renderlevel=16;
         }
-        RenderPanel.fsp = new Sprite("DungeonFloor");
-        RenderPanel.dialogue = new Sprite("Dialogue",144);
-        Map.img=new Sprite("DungeonFloor",8);
-        Map.pimg=new Sprite("Player",8);
-        Map.stimg=new Sprite("Stairway",8);
+        GamePlay.fsp = new Sprite("DungeonFloor");
+        GamePlay.dialogue = new Sprite("Dialogue",144);
+        GamePlay.floorimg=new Sprite("DungeonFloor",8);
+        GamePlay.pimg=new Sprite("Player",8);
+        GamePlay.stimg=new Sprite("Stairway",8);
         for(int x=0;x<sx;x+=maxRoomSX){
             for(int y=0;y<sy;y+=maxRoomSY){
                 rooms[roomnum]=new Room(x,y,maxRoomSX,maxRoomSY,lvl,this);
@@ -126,7 +127,6 @@ public class Level {
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
         
-        Rogue.mm.gp.update();
     }
     /**
      * Gets Room Array

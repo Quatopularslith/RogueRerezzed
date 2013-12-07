@@ -1,12 +1,14 @@
 
 package ui;
 
+import art.LoadArt;
 import core.Rogue;
 import dungeon.Level;
 import input.ButtonInput;
 import input.KeyboardInput;
 import input.MButtonInput;
 import input.MouseInput;
+import java.awt.Image;
 import javax.swing.JFrame;
 import loading.Loading;
 import util.RogueProperties;
@@ -16,6 +18,8 @@ import util.RogueProperties;
  * @author Torri
  */
 public class Menu extends JFrame{
+    public LoadArt la = new LoadArt();
+    
     public MainMenuPanel mmp;
     public OptionMenuPanel omp;
 //    public Display d;
@@ -48,6 +52,9 @@ public class Menu extends JFrame{
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        Image ico = la.createBufferedImage("Quatopularslith16.png", 16, 16);
+        this.setIconImage(ico);
         
         x=getX();
         y=getY();

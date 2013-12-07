@@ -44,12 +44,15 @@ public class GamePlay extends JPanel{
         }
         amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
         dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
+        amb.hide();
+        dmb.hide();
     }
     /**
      * The core updater
      */
     public void update(){
         l=Rogue.getLevel();
+        if(l==null) return;
         l.getStairWay().turn();
         room=l.getRooms();
         current=l.getEntities();
@@ -92,6 +95,8 @@ public class GamePlay extends JPanel{
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
+        //Main stuff
+        if(l==null) return;
         setReletiveTo(l.getPlayer());
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, getWidth(), getHeight());
@@ -122,6 +127,7 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.WHITE);
         g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy+4);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
+        //pickup
         if(pickup==null){
             pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
         }
@@ -141,24 +147,26 @@ public class GamePlay extends JPanel{
             amb.hide();
             dmb.hide();
         }
+        //Map
         g2.setColor(Color.BLACK);
         g2.fillRect(getWidth()-(int) (0.25*getWidth())-10, 10, (int) (0.25*getWidth()), (int) (0.3515625*getHeight()));
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
-//                    System.out.println("Room spot: "+area1[0]*8);
-//                    System.out.println("Is less than: "+(getWidth()-(int) (0.25*getWidth())-10));
-                    if(area1[0]*8<=getWidth()-(int) (0.25*getWidth())-10 /*&& area1[0]*8>=getWidth()-10 */&& area1[1]*8<=10 /*&& area1[0]*8>=10+(int) (0.3515625*getHeight())*/){
-                        g2.drawImage(floorimg.i, area1[0]*8+moffx,area1[1]*8+moffy, this);
+                    if(area1[0]*8+moffx>=getWidth()-(getWidth()/4) && area1[0]*8+moffy<getWidth()-10){
+                        if((area1[1]*8+moffy)>=10 && area1[1]*8+moffy<10+(getHeight()*0.3515625)){
+                            g2.drawImage(floorimg.i, area1[0]*8+moffx,area1[1]*8+moffy, this);
+                        }
                     }
-//                    g2.drawImage(floorimg.i, area1[0]*8+moffx,area1[1]*8+moffy, this);
                 }
             }
         }
-//        if(l.getStairWay().x*8>=getWidth()-(int) (0.25*getWidth())-10 && l.getStairWay().x*8<=getWidth()-10 && l.getStairWay().y*8>=10 && l.getStairWay().x*8<=10+(int) (0.3515625*getHeight())){
-//            g2.drawImage(stimg.i, l.getStairWay().x*8+moffx,l.getStairWay().y*8+moffy, this);
-//        }
-        g2.drawImage(stimg.i, l.getStairWay().x*8+moffx,l.getStairWay().y*8+moffy, this);
+        if(l.getStairWay().x*8+moffx>getWidth()-(getWidth()/4) && l.getStairWay().x*8+moffy<=getWidth()-10){
+            if((l.getStairWay().y*8+moffy)>=10 && l.getStairWay().y*8+moffy<=10+(getHeight()*0.3515625)){
+                g2.drawImage(stimg.i, l.getStairWay().x*8+moffx,l.getStairWay().y*8+moffy, this);
+            }
+        }
         g2.drawImage(pimg.i,l.getPlayer().x*8+moffx,l.getPlayer().y*8+moffy,this);
+        //Inventory
     }
 }
