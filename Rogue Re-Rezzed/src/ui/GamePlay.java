@@ -211,8 +211,8 @@ public class GamePlay extends JPanel{
         g2.drawString("Mana: "+Rogue.getLevel().getPlayer().mana, 20, 60);
         g2.drawString("You are Level: "+Player.xplevels, 20, 80);
         g2.drawString("Max Attack: "+Rogue.getLevel().getPlayer().maxAtt, 20, 100);
-        g2.drawString("Defence: "+Rogue.getLevel().getPlayer().maxDefence, 20, 140);
-        g2.drawString("Kills: "+Player.kills+" Enemies", 20, 160);
-        g2.drawString("Gold: "+Player.gold, 20, 180);
+        g2.drawString("Defence: "+Rogue.getLevel().getPlayer().maxDefence, 20, 120);
+        g2.drawString("Kills: "+Player.kills+" Enemies", 20, 140);
+        g2.drawString("Gold: "+Player.gold, 20, 160);
     }
 }

@@ -48,13 +48,13 @@ public class Player extends RogueEntity{
         mana=(int) (maxMana/1.5);
         maxhealth=100+(xplevels);
         health=(float) (maxhealth/1.5);
-        for (Item inv : pinv) {
-            inv.update();
-            if (inv.equip == true) {
-                this.maxhealth += inv.stats[3];
-                this.maxMana += inv.stats[2];
-                this.maxDefence += inv.stats[1];
-                this.maxAtt += inv.stats[0];
+        for (Item inv1 : pinv) {
+            inv1.update();
+            if (inv1.equip == true) {
+                this.maxhealth += inv1.stats[3];
+                this.maxMana += inv1.stats[2];
+                this.maxDefence += inv1.stats[1];
+                this.maxAtt += inv1.stats[0];
             }
         }
         pinv1=pinv;

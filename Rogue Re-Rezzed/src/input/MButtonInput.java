@@ -20,6 +20,7 @@ import ui.GamePlay;
 public class MButtonInput {
     public static boolean backtogame;
     public void clicked(String command){
+        System.out.println(command);
         if(command.equalsIgnoreCase("New Game")){
             Player.pinv = null;
             Player.xplevels = 1;
