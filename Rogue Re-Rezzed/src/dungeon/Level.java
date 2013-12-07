@@ -77,7 +77,6 @@ public class Level {
      */
     public Level(int sx,int sy,int lvl){
         Player.dead=false;
-        Player.xplevels=100;
         numLevels++;
         nument=0;
         int roomnum=0;

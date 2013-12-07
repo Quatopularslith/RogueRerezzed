@@ -25,6 +25,7 @@ public class MButton {
     private int sx;
     private int sy;
     private final String name;
+    private String data;
     private Component parent;
     /**
      * Makes a MButton
@@ -64,7 +65,8 @@ public class MButton {
     }
     public void update(int mx,int my){
         if(mx>x+parent.getX() && mx<x+sx+parent.getX() && my>y+parent.getY()+30 && my<y+sy+parent.getY()+30 && parent.isVisible() && visible){
-            mbi.clicked(name);
+            if(data!=null) mbi.clicked(name+data);
+            if(data==null) mbi.clicked(name);
         }
     }
     public void setPos(int x1,int y1,int sx1,int sy1){
@@ -77,7 +79,7 @@ public class MButton {
         isListened=false;
         Graphics2D g = img.createGraphics();
         g.setColor(Color.BLUE);
-        g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,sy/2));
+        g.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,sy/2));
         FontMetrics fm = g.getFontMetrics(g.getFont());
         int width = fm.stringWidth(name);
         g.drawString(name, sx/2-width/2, sy/2+sy/4);
@@ -88,5 +90,8 @@ public class MButton {
     }
     public void setParent(Component c){
         parent=c;
+    }
+    public void setData(String s){
+        data=s;
     }
 }

@@ -46,7 +46,6 @@ public class OptionMenuPanel extends javax.swing.JPanel {
         defaultKB = new javax.swing.JButton();
         back = new javax.swing.JButton();
         debug = new javax.swing.JButton();
-        autoequip = new javax.swing.JToggleButton();
 
         jButton1.setText("jButton1");
 
@@ -104,8 +103,6 @@ public class OptionMenuPanel extends javax.swing.JPanel {
             }
         });
 
-        autoequip.setText("Auto Equip");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,7 +118,6 @@ public class OptionMenuPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(autoequip)
                     .addComponent(eatKB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spellKB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rightKB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,9 +181,7 @@ public class OptionMenuPanel extends javax.swing.JPanel {
                                 .addComponent(defaultKB)
                                 .addGap(18, 18, 18)
                                 .addComponent(back)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(autoequip)
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addComponent(debug)
                 .addGap(67, 67, 67))
         );
@@ -204,7 +198,6 @@ public class OptionMenuPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton apply;
-    public javax.swing.JToggleButton autoequip;
     public javax.swing.JButton back;
     public javax.swing.JFormattedTextField backKB;
     public javax.swing.JButton debug;

@@ -17,7 +17,7 @@ public class LoadArt {
         if (imgURL != null) {
             ImageIcon ii = new ImageIcon(imgURL, description);
             Image i = ii.getImage();
-            i=i.getScaledInstance(sizeX, sizeY, 0);
+            i=i.getScaledInstance(sizeX, sizeY, Image.SCALE_SMOOTH);
             return i;
         } else {
             System.err.println("Couldn't find file: " + path);
@@ -34,7 +34,7 @@ public class LoadArt {
             } catch (IOException ex) {
                 System.err.println("Could not find file1: "+path);
             }
-            out.createGraphics().drawImage(temp.getScaledInstance(sx, sy, 0), 0,0, null);
+            out.createGraphics().drawImage(temp.getScaledInstance(sx, sy, Image.SCALE_SMOOTH), 0,0, null);
             out.createGraphics().dispose();
             return out;
         }else{

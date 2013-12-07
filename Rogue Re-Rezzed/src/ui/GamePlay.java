@@ -11,6 +11,7 @@ import entity.item.Item;
 import entity.player.Player;
 import input.MButton;
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.List;
@@ -36,6 +37,8 @@ public class GamePlay extends JPanel{
     public static Sprite floorimg =new Sprite("DungeonFloor",8);
     public static Sprite pimg =new Sprite("Player",8);
     public static Sprite stimg =new Sprite("Stairway",8);
+    public MButton[] equip = new MButton[10];
+    public MButton[] drop = new MButton[10];
     public GamePlay(){
         l=Rogue.getLevel();
         if(l!=null){
@@ -46,6 +49,12 @@ public class GamePlay extends JPanel{
         dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
         amb.hide();
         dmb.hide();
+        for(int i=0;i<10;i++){
+            equip[i]=new MButton(750-(int) (0.25*750)+30,(int) (((i)*(0.032*500))+(int) (0.3515625*500)+74),50,10,"Equip",this);
+            equip[i].setData(Integer.toString(i));
+            drop[i]=new MButton(750-(int) (0.25*750)+60,(int) (((i)*(0.032*500))+(int) (0.3515625*500)+74),50,10,"Drop",this);
+            equip[i].setData(Integer.toString(i));
+        }
     }
     /**
      * The core updater
@@ -95,7 +104,7 @@ public class GamePlay extends JPanel{
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
-        //Main stuff
+        //Main Graphic
         if(l==null) return;
         setReletiveTo(l.getPlayer());
         g2.setColor(Color.BLACK);
@@ -127,7 +136,7 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.WHITE);
         g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy+4);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
-        //pickup
+        //Pickup
         if(pickup==null){
             pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
         }
@@ -168,5 +177,42 @@ public class GamePlay extends JPanel{
         }
         g2.drawImage(pimg.i,l.getPlayer().x*8+moffx,l.getPlayer().y*8+moffy,this);
         //Inventory
+        g2.setColor(Color.BLACK);
+        g2.fillRect(getWidth()-(int) (0.25*getWidth())-10, (int) (0.3515625*getHeight())+64, (int) (0.25*getWidth()), (int) (0.3515625*getHeight()));
+        g2.setColor(Color.WHITE);
+        for(int i=0;i<Player.pinv.length;i++){
+            g2.drawString(Player.pinv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
+            FontMetrics fm = g2.getFontMetrics(g2.getFont());
+            int width = fm.stringWidth(Player.pinv[i].name);
+            if(Player.pinv[i].id>0){
+                equip[i].addListener(Rogue.mm.mbi);
+                drop[i].addListener(Rogue.mm.mbi);
+                equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0266666666666667*getWidth()),(int) (0.015*getHeight()));
+                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.0266666666666667*getWidth()*2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0266666666666667*getWidth()),(int) (0.015*getHeight()));
+                g2.drawImage(drop[i].img, drop[i].x,drop[i].y, this);
+                g2.drawImage(equip[i].img, equip[i].x,equip[i].y, this);
+            }else{
+                equip[i].hide();
+                drop[i].hide();
+            }
+        }
+        //Stats
+        g2.setColor(Color.BLACK);
+        g2.fillRect(10, 10, 50, 190);
+        g2.setColor(Color.RED);
+        g2.fillRect(20, 25, (int) ((Rogue.getLevel().getPlayer().health/Rogue.getLevel().getPlayer().maxhealth)*100), 20);
+        g2.setColor(Color.BLUE);
+        g2.fillRect(20, 45, (int) ((Rogue.getLevel().getPlayer().mana/Rogue.getLevel().getPlayer().maxMana)*100), 20);
+        g2.setColor(Color.GREEN);
+        g2.fillRect(20, 65, 100*Player.xp/(10*Player.xplevels), 20);
+        g2.setColor(Color.WHITE);
+        g2.drawString("You are in dungeon: "+Level.numLevels, 20, 20);
+        g2.drawString("Health: "+(int) Rogue.getLevel().getPlayer().health,20,40);
+        g2.drawString("Mana: "+Rogue.getLevel().getPlayer().mana, 20, 60);
+        g2.drawString("You are Level: "+Player.xplevels, 20, 80);
+        g2.drawString("Max Attack: "+Rogue.getLevel().getPlayer().maxAtt, 20, 100);
+        g2.drawString("Defence: "+Rogue.getLevel().getPlayer().maxDefence, 20, 140);
+        g2.drawString("Kills: "+Player.kills+" Enemies", 20, 160);
+        g2.drawString("Gold: "+Player.gold, 20, 180);
     }
 }

@@ -105,22 +105,28 @@ public class RogueEntity {
         }
     }
     /**
-     * Take damage
-     * @param att 
+     * Take damage from
+     * @param e 
      */
-    public void damage(double att){
-        int td;
+    public void damage(RogueEntity e){
+        double td;
+        double ta;
         if(maxDefence>0){
             td = rand.nextInt((int) (maxDefence));
         }else{
-            td=0;
+            td = 0;
         }
-        if(td<att){
-            att-=td;
+        if(e.maxAtt>0){
+            ta = rand.nextInt((int) (e.maxAtt));
         }else{
-            att=0;
+            ta = e.maxAtt*10;
+            ta = rand.nextInt((int) ta);
+            ta /= 10;
         }
-        health-=att;
+        ta -= td;
+        if(ta>=0){
+            health-=ta;
+        }
     }
     /**
      * Updates Entity

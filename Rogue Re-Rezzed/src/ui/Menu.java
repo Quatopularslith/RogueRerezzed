@@ -2,8 +2,6 @@
 package ui;
 
 import art.LoadArt;
-import core.Rogue;
-import dungeon.Level;
 import input.ButtonInput;
 import input.KeyboardInput;
 import input.MButtonInput;
@@ -45,7 +43,7 @@ public class Menu extends JFrame{
      * Creates and handles the menus of the game
      */
     public Menu(){
-        super("Rogue Re-Rezzed (Proof of Concept v1.6.5)");
+        super("Rogue Re-Rezzed (Proof of Concept v1.8.2)");
         this.setSize(750, 750);
         this.setFocusable(true);
         this.setResizable(true);
@@ -122,11 +120,8 @@ public class Menu extends JFrame{
         omp.back.addActionListener(bi);
         omp.defaultKB.addActionListener(bi);
         omp.debug.addActionListener(bi);
-        omp.autoequip.addActionListener(bi);
         
         dmp.debugPass.addActionListener(bi);
-        
-        sm.jb.addActionListener(bi);
         
         int[] j = new int[rp.getSettings().length];
         char[] c = new char[j.length];

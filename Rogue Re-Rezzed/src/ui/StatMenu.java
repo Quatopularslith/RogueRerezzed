@@ -5,27 +5,25 @@ import core.Rogue;
 import javax.swing.JPanel;
 import dungeon.Level;
 import entity.player.Player;
+import input.MButton;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JButton;
 /**
  *
  * @author Quatopularslith
  */
 public class StatMenu extends JPanel{
-    JButton jb = new JButton("Return");
+    MButton mb;
     public StatMenu(){
-        this.setLayout(new FlowLayout());
+        mb = new MButton(750/2,500/2,(int) (0.266666666666666666666667*750),(int) (0.1*500),"Return",this);
     }
     @Override
     public void paint(Graphics g){
-        Rogue.mm.refresh();
         super.paint(g);
         Graphics2D g2=(Graphics2D) g;
         g2.setColor(Color.BLACK);
-        g2.fillRect(0, 0, 200, getHeight());
+        g2.fillRect(0, 0, getWidth(), getHeight());
         g2.setColor(Color.red);
         g2.drawString("YOU HAVE DIED", 10, 20);
         g2.setColor(Color.WHITE);
@@ -37,9 +35,10 @@ public class StatMenu extends JPanel{
         for(int i=0;i<Player.pinv.length;i++){
             g2.drawString(Player.pinv[i].name, 20, (i*20)+120);
         }
+        mb.setPos(getWidth()/2,getHeight()/2,(int) (0.266666666666666666666667*getWidth()),(int) (0.1*getHeight()));
+        mb.addListener(Rogue.mm.mbi);
+        g2.drawImage(mb.img, mb.x,mb.y, this);
         g2.dispose();
-        jb.setVisible(true);
-        this.add(jb);
     }
 }
 

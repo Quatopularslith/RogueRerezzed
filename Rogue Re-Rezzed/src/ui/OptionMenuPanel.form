@@ -40,7 +40,6 @@
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="autoequip" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="eatKB" alignment="2" min="-2" pref="100" max="-2" attributes="0"/>
                   <Component id="spellKB" alignment="2" min="-2" pref="100" max="-2" attributes="0"/>
                   <Component id="rightKB" alignment="2" min="-2" pref="100" max="-2" attributes="0"/>
@@ -122,9 +121,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="autoequip" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Component id="debug" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
           </Group>
@@ -286,14 +283,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="debugActionPerformed"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="autoequip">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Auto Equip"/>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>

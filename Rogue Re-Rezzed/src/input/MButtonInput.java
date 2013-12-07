@@ -8,9 +8,9 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
+import entity.item.Item;
 import entity.player.Player;
 import javax.swing.JPanel;
-import render.RenderPanel;
 import ui.GamePlay;
 
 /**
@@ -49,6 +49,21 @@ public class MButtonInput {
             GamePlay.pickup=null;
             Rogue.mm.gp.update();
             refresh(Rogue.mm.gp);
+        }else if(command.equalsIgnoreCase("Return")){
+            Rogue.mm.mmp.setVisible(true);
+            Rogue.mm.sm.setVisible(false);
+        }else if(Rogue.mm.gp!=null){
+            for(int i=0;i<Rogue.mm.gp.equip.length;i++){
+                if(command.equalsIgnoreCase("Drop"+i)){
+                    Player.pinv[i].drop();
+                    Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
+                    refresh(Rogue.mm.gp);
+                    Rogue.mm.gp.update();
+                }else if(command.equalsIgnoreCase("Equip"+i)){
+                    Player.pinv[i].equip=true;
+                    Rogue.mm.gp.update();
+                }
+            }
         }
     }
     private void refresh(JPanel p){

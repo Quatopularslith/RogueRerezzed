@@ -83,7 +83,7 @@ public class RogueHostileEntity extends RogueEntity{
 //        this.move(pathFind(this.l.getPlayer()));
         this.move(pointTowards(l.getPlayer()));
         if(doatt(l.getPlayer()) && maxAtt>0){
-            l.getPlayer().damage(rand.nextInt(Math.abs((int) maxAtt)));
+            l.getPlayer().damage(this);
         }
     }
     /**

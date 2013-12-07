@@ -2,12 +2,8 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
-import entity.item.Item;
-import entity.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
-import render.RenderPanel;
 import ui.DebugMenu;
 import ui.Menu;
 
@@ -95,45 +91,5 @@ public class ButtonInput implements ActionListener{
             Rogue.setLevel(new Level());
             Rogue.mm.gp.update();
         }
-        if(command.equalsIgnoreCase("Return")){
-            Rogue.mm.mmp.setVisible(true);
-            Rogue.mm.sm.setVisible(false);
-        }
-//        if(Rogue.mm.gp!=null){
-//            for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
-//                if(command.equalsIgnoreCase("Drop "+i)){
-//                    Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
-//                    Player.pinv[i].drop();
-//                    refresh(Rogue.mm.d.invp);
-//                    Rogue.mm.d.gp.update();
-//                }
-//            }
-//            for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
-//                if(command.equalsIgnoreCase("Equip "+i)){
-//                    Player.pinv[i].equip=true;
-//                    Rogue.mm.d.invp.update();
-//                    refresh(Rogue.mm.d.invp);
-//                    Rogue.mm.d.gp.update();
-//                }
-//            }
-//        }
-//        if(command.equalsIgnoreCase("pick up")){
-//            if(RenderPanel.pickup!=null){
-//                RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
-//                Player.pinv[Player.currinv]=RenderPanel.pickup;
-//                RenderPanel.pickup.death();
-//                Rogue.mm.d.gp.update();
-//            }
-//            refresh(Rogue.mm.d);
-//        }
-//        if(command.equalsIgnoreCase("leave it")){
-//            RenderPanel.pickup=null;
-//            Rogue.mm.d.gp.update();
-//            refresh(Rogue.mm.d);
-//        }
-    }
-    private void refresh(JPanel p){
-        p.setVisible(false);
-        p.setVisible(true);
     }
 }

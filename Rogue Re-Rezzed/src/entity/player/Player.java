@@ -102,15 +102,18 @@ public class Player extends RogueEntity{
             }
             pinv1=pinv;
         }
-        if((int) maxAtt<1){
-            maxAtt=1;
+        for (int j=0;j<l.getItems().size();j++) {
+            Item i = l.getItems().get(j);
+            if(i.x==this.x && i.y==this.y && !pinv[currinv].equals(i) && pinv[currinv]!=null){
+                GamePlay.pickup = i;
+            }
         }
         attack=false;
         if(Rogue.mm.ki.keyBind[0]){//up
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y-1){
-                    re.damage(rand.nextInt((int) maxAtt));
+                    re.damage(this);
                     if(re.health<=0){
                         mana++;
                         kills++;
@@ -123,7 +126,7 @@ public class Player extends RogueEntity{
             if(!attack){
                 for (int j=0;j<l.getItems().size();j++) {
                     Item i = l.getItems().get(j);
-                    if(i.x==this.x && i.y==this.y-1 && pinv[currinv]!=i && pinv[currinv]!=null){
+                    if(i.x==this.x && i.y==this.y-1 && !pinv[currinv].equals(i) && pinv[currinv]!=null){
                         GamePlay.pickup = i;
                     }
                 }
@@ -133,7 +136,7 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
-                    re.damage(rand.nextInt((int) maxAtt));
+                    re.damage(this);
                     if(re.health<=0){
                         mana++;
                         kills++;
@@ -146,7 +149,7 @@ public class Player extends RogueEntity{
             if(!attack){
                 for (int j=0;j<l.getItems().size();j++) {
                     Item i = l.getItems().get(j);
-                    if(i.x==this.x && i.y==this.y+1 && pinv[currinv]!=i && pinv[currinv]!=null){
+                    if(i.x==this.x && i.y==this.y+1 && !pinv[currinv].equals(i) && pinv[currinv]!=null){
                         GamePlay.pickup = i;
                     }
                 }
@@ -156,7 +159,7 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x+1 && re.y==this.y){
-                    re.damage(rand.nextInt((int) maxAtt));
+                    re.damage(this);
                     if(re.health<=0){
                         mana++;
                         kills++;
@@ -169,7 +172,7 @@ public class Player extends RogueEntity{
             if(!attack){
                 for (int j=0;j<l.getItems().size();j++) {
                     Item i = l.getItems().get(j);
-                    if(i.x==this.x+1 && i.y==this.y && pinv[currinv]!=i && pinv[currinv]!=null){
+                    if(i.x==this.x+1 && i.y==this.y && !pinv[currinv].equals(i) && pinv[currinv]!=null){
                         GamePlay.pickup = i;
                     }
                 }
@@ -179,7 +182,7 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x-1 && re.y==this.y){
-                    re.damage(rand.nextInt((int) maxAtt));
+                    re.damage(this);
                     if(re.health<=0){
                         mana++;
                         kills++;
@@ -192,7 +195,7 @@ public class Player extends RogueEntity{
             if(!attack){
                 for (int j=0;j<l.getItems().size();j++) {
                     Item i = l.getItems().get(j);
-                    if(i.x==this.x-1 && i.y==this.y && pinv[currinv]!=i && pinv[currinv]!=null){
+                    if(i.x==this.x-1 && i.y==this.y && !pinv[currinv].equals(i) && pinv[currinv]!=null){
                         GamePlay.pickup = i;
                     }
                 }
