@@ -1,5 +1,5 @@
 
-package render;
+package ui;
 
 import art.LoadArt;
 import core.Rogue;
@@ -15,27 +15,35 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.List;
 import javax.swing.JPanel;
+import render.Sprite;
 
 /**
- * This is what you see.
+ *
  * @author Torri
  */
-public class RenderPanel extends JPanel{
+public class GamePlay extends JPanel{
     private Level l = Rogue.getLevel();
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
-    Room[] room = l.getRooms();
+    Room[] room;
     public static Item pickup;
     public static Sprite fsp = new Sprite("DungeonFloor");
     public static Sprite dialogue = new Sprite("Dialogue",144);
-    private List<RogueEntity> current = l.getEntities();
+    private List<RogueEntity> current;
     MButton amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
     MButton dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
-    public RenderPanel(){
+    int moffx=0,moffy=0;
+    public static Sprite floorimg =new Sprite("DungeonFloor",8);
+    public static Sprite pimg =new Sprite("Player",8);
+    public static Sprite stimg =new Sprite("Stairway",8);
+    public GamePlay(){
         l=Rogue.getLevel();
+        if(l!=null){
+            room = l.getRooms();
+            current = l.getEntities();
+        }
         amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
         dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
-        this.setLayout(null);
     }
     /**
      * The core updater
@@ -43,10 +51,13 @@ public class RenderPanel extends JPanel{
     public void update(){
         l=Rogue.getLevel();
         l.getStairWay().turn();
+        room=l.getRooms();
+        current=l.getEntities();
         pickup=null;
         l.getPlayer().turn();
         if(pickup instanceof Gold){
             Player.gold+=pickup.id;
+            pickup.death();
             pickup=null;
         }
         for(int i=0;i<l.getEntities().size();i++){
@@ -58,14 +69,11 @@ public class RenderPanel extends JPanel{
                 }
             }
         }
-//        Rogue.mm.d.invp.update();
-//        Rogue.mm.d.s.update();
-//        Rogue.mm.d.mapp.update();
         repaint();
         if(Player.dead){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
-//            Rogue.mm.d.setVisible(false);
+            this.setVisible(false);
             Rogue.mm.sm.setVisible(true);
             Level.numLevels=0;
         }
@@ -73,6 +81,8 @@ public class RenderPanel extends JPanel{
     void setReletiveTo(RogueEntity e){
         offx=(getWidth()/2)-e.x*64;
         offy=(getHeight()/2)-e.y*64;
+        moffx=getWidth()/8+getWidth()-getWidth()/4-10-e.x*8;
+        moffy=(int) (10+(0.3515625*getHeight())/2-e.y*8);
     }
     /**
      * Paints the world
@@ -127,11 +137,28 @@ public class RenderPanel extends JPanel{
             g2.drawImage(dmb.img, dmb.x,dmb.y, this);
             amb.addListener(Rogue.mm.mbi);
             dmb.addListener(Rogue.mm.mbi);
-            g2.dispose();
         }else{
             amb.hide();
             dmb.hide();
         }
-        g2.dispose();
+        g2.setColor(Color.BLACK);
+        g2.fillRect(getWidth()-(int) (0.25*getWidth())-10, 10, (int) (0.25*getWidth()), (int) (0.3515625*getHeight()));
+        for (Room r1 : room) {
+            for (int[][] area0 : r1.area) {
+                for (int[] area1 : area0) {
+//                    System.out.println("Room spot: "+area1[0]*8);
+//                    System.out.println("Is less than: "+(getWidth()-(int) (0.25*getWidth())-10));
+                    if(area1[0]*8<=getWidth()-(int) (0.25*getWidth())-10 /*&& area1[0]*8>=getWidth()-10 */&& area1[1]*8<=10 /*&& area1[0]*8>=10+(int) (0.3515625*getHeight())*/){
+                        g2.drawImage(floorimg.i, area1[0]*8+moffx,area1[1]*8+moffy, this);
+                    }
+//                    g2.drawImage(floorimg.i, area1[0]*8+moffx,area1[1]*8+moffy, this);
+                }
+            }
+        }
+//        if(l.getStairWay().x*8>=getWidth()-(int) (0.25*getWidth())-10 && l.getStairWay().x*8<=getWidth()-10 && l.getStairWay().y*8>=10 && l.getStairWay().x*8<=10+(int) (0.3515625*getHeight())){
+//            g2.drawImage(stimg.i, l.getStairWay().x*8+moffx,l.getStairWay().y*8+moffy, this);
+//        }
+        g2.drawImage(stimg.i, l.getStairWay().x*8+moffx,l.getStairWay().y*8+moffy, this);
+        g2.drawImage(pimg.i,l.getPlayer().x*8+moffx,l.getPlayer().y*8+moffy,this);
     }
 }

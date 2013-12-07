@@ -110,10 +110,11 @@ public class RogueEntity {
      */
     public void damage(double att){
         int td;
-        if(maxDefence<0){
-            maxDefence=0;
+        if(maxDefence>0){
+            td = rand.nextInt((int) (maxDefence));
+        }else{
+            td=0;
         }
-        td = rand.nextInt((int) (maxDefence+1));
         if(td<att){
             att-=td;
         }else{

@@ -1,6 +1,8 @@
 
 package ui;
 
+import core.Rogue;
+import dungeon.Level;
 import input.ButtonInput;
 import input.KeyboardInput;
 import input.MButtonInput;
@@ -16,7 +18,7 @@ import util.RogueProperties;
 public class Menu extends JFrame{
     public MainMenuPanel mmp;
     public OptionMenuPanel omp;
-    public Display d;
+//    public Display d;
     public DebugMPassword dmp;
     public StatMenu sm;
     public DebugMenu dm;
@@ -27,10 +29,13 @@ public class Menu extends JFrame{
     public MouseInput mi;
     public MButtonInput mbi;
     
+    public GamePlay gp;
+    
     public static RogueProperties rp;
     public static int x,y,sx,sy;
     
     private final String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
+    private final String[] defkeys = {"87","83","68","65","81","69"};
     private final int[] propn;
     /**
      * Creates and handles the menus of the game
@@ -50,10 +55,23 @@ public class Menu extends JFrame{
         sy=getHeight();
         
         rp = new RogueProperties("RogueConfig.properties",props);
+        if(rp.getSettings()==null){
+            Menu.rp.setData(defkeys);
+            omp.fwdKB.setText("W");
+            omp.backKB.setText("S");
+            omp.rightKB.setText("D");
+            omp.leftKB.setText("A");
+            omp.spellKB.setText("Q");
+            omp.eatKB.setText("E");
+            ki.checkSettings(bi.defkeys);
+        }
         propn = new int[rp.getSettings().length];
         
         for(int i=0;i<rp.getSettings().length;i++){
             propn[i]=Integer.parseInt(rp.getSettings()[i]);
+            if(propn==null){
+                rp.addData(props[i], defkeys[i]);
+            }
         }
         
         bi=new ButtonInput();
@@ -73,6 +91,10 @@ public class Menu extends JFrame{
         sm.setVisible(false);
         load.setVisible(true);
         
+        gp = new GamePlay();
+        gp.setVisible(false);
+        gp.setSize(750,500);
+        
         load.setSize(getWidth(), getWidth());
         dmp.setSize(750, 500);
         omp.setSize(750, 500);
@@ -84,6 +106,7 @@ public class Menu extends JFrame{
         this.add(mmp);
         this.add(sm);
         this.add(load);
+        this.add(gp);
         
         this.addMouseListener(mi);
         this.addKeyListener(ki);
@@ -98,16 +121,6 @@ public class Menu extends JFrame{
         
         sm.jb.addActionListener(bi);
         
-        if(rp.getSettings()==null){
-            Menu.rp.setData(bi.defkeys);
-            omp.fwdKB.setText("W");
-            omp.backKB.setText("S");
-            omp.rightKB.setText("D");
-            omp.leftKB.setText("A");
-            omp.spellKB.setText("Q");
-            omp.eatKB.setText("E");
-            ki.checkSettings(bi.defkeys);
-        }
         int[] j = new int[rp.getSettings().length];
         char[] c = new char[j.length];
         for(int i=0;i<j.length;i++){

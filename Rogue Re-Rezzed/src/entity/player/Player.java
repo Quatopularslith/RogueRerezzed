@@ -26,6 +26,7 @@ public class Player extends RogueEntity{
     public static int xplevels;
     public static int rep;
     public static int gold;
+    private Item[] pinv1;
     public Player(Level l1){
         super(l1);
         if(pinv==null){
@@ -46,15 +47,16 @@ public class Player extends RogueEntity{
         mana=(int) (maxMana/1.5);
         maxhealth=100+(xplevels);
         health=(float) (maxhealth/1.5);
-        for (Item pinv1 : pinv) {
-            pinv1.update();
-            if (pinv1.equip == true) {
-                this.maxhealth += pinv1.stats[3];
-                this.maxMana += pinv1.stats[2];
-                this.maxDefence += pinv1.stats[1];
-                this.maxAtt += pinv1.stats[0];
+        for (Item inv : pinv) {
+            inv.update();
+            if (inv.equip == true) {
+                this.maxhealth += inv.stats[3];
+                this.maxMana += inv.stats[2];
+                this.maxDefence += inv.stats[1];
+                this.maxAtt += inv.stats[0];
             }
         }
+        pinv1=pinv;
         this.sp = new Sprite("Player");
         Room r = l1.getRoom(0);
         spawn(r);
@@ -71,32 +73,36 @@ public class Player extends RogueEntity{
         }else if(health<maxhealth){
             health+=0.1;
         }
+        if(xplevels==0) xplevels = 1;
         if(xp%(10*xplevels)==0 && xp>1){
             xp=0;
             xplevels++;
             health=maxhealth;
             mana=maxMana;
         }
-        maxAtt=2*xplevels;
-        maxMana=100+(xplevels);
-        maxhealth=100+(xplevels);
-        maxDefence=(xplevels);
-        boolean curr=false;
-        for (int i=0;i<pinv.length;i++) {
-            if(pinv[i]!=null){
-                if(pinv[i].name.equalsIgnoreCase("EMPTY") && !curr){
-                    currinv=i;
-                    curr=true;
-                }else if(pinv[i].equip==true){
-                    this.maxhealth+=pinv[i].stats[3];
-                    this.maxMana+=pinv[i].stats[2];
-                    this.maxDefence+=pinv[i].stats[1];
-                    this.maxAtt+=pinv[i].stats[0];
+        if(pinv1!=pinv){
+            maxAtt=2*xplevels;
+            maxMana=100+(xplevels);
+            maxhealth=100+(xplevels);
+            maxDefence=(xplevels);
+            boolean curr=false;
+            for (int i=0;i<pinv.length;i++) {
+                if(pinv[i]!=null){
+                    if(pinv[i].name.equalsIgnoreCase("EMPTY") && !curr){
+                        currinv=i;
+                        curr=true;
+                    }else if(pinv[i].equip==true){
+                        this.maxhealth+=pinv[i].stats[3];
+                        this.maxMana+=pinv[i].stats[2];
+                        this.maxDefence+=pinv[i].stats[1];
+                        this.maxAtt+=pinv[i].stats[0];
+                    }
                 }
             }
+            pinv1=pinv;
         }
-        if(maxDefence<0){
-            maxDefence=0;
+        if((int) maxAtt<1){
+            maxAtt=1;
         }
         l=Rogue.getLevel();
         for (int j=0;j<l.getItems().size();j++) {
@@ -127,9 +133,6 @@ public class Player extends RogueEntity{
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
-                    if((int) maxAtt<1){
-                        maxAtt=1;
-                    }
                     re.damage(rand.nextInt((int) maxAtt));
                     if(re.health<=0){
                         mana++;

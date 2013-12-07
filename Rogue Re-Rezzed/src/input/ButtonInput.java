@@ -2,7 +2,6 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
-import entity.item.Gold;
 import entity.item.Item;
 import entity.player.Player;
 import java.awt.event.ActionEvent;
@@ -28,23 +27,8 @@ public class ButtonInput implements ActionListener{
             }else{
                 Rogue.mm.mmp.setVisible(false);
                 Rogue.mm.omp.setVisible(false);
-                Rogue.mm.d.setVisible(true);
+                Rogue.mm.gp.setVisible(true);
             }
-        }
-        if(command.equalsIgnoreCase("New Game")){
-            Player.pinv = null;
-            Player.xplevels = 1;
-            Player.xp = 0;
-            Player.kills =0;
-            Rogue.setLevel(new Level(1));
-            Rogue.mm.d=new ui.Display();
-            Rogue.mm.add(Rogue.mm.d);
-            Rogue.mm.d.setSize(750, 500);
-            Rogue.mm.d.optionsD.addActionListener(this);
-            Rogue.mm.d.save.addActionListener(this);
-            Rogue.mm.mmp.setVisible(false);
-            Rogue.mm.omp.setVisible(false);
-            Rogue.mm.d.setVisible(true);
         }
         if(command.equalsIgnoreCase("Apply")){
             char[] inc = {Rogue.mm.omp.fwdKB.getText().toUpperCase().toCharArray()[0],
@@ -57,7 +41,6 @@ public class ButtonInput implements ActionListener{
             int[] in = new int[inc.length];
             for(int i=0;i<in.length;i++){
                 in[i]=(int) inc[i];
-                System.out.println(in[i]+":"+inc[i]);
             }
             String[] s = new String[in.length];
             for(int i=0;i<in.length;i++){
@@ -78,14 +61,14 @@ public class ButtonInput implements ActionListener{
         }
         if(command.equalsIgnoreCase("save and quit")){
             //TODO some save code
-            Rogue.mm.d.setVisible(false);
+            Rogue.mm.gp.setVisible(false);
             Rogue.mm.mmp.setVisible(true);
         }
         if(command.equalsIgnoreCase("settings")){
             MButtonInput.backtogame=true;
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);
-            Rogue.mm.d.setVisible(false);
+            Rogue.mm.gp.setVisible(false);
         }
         if(command.equalsIgnoreCase("Debug Menu")){
             Rogue.mm.omp.setVisible(false);
@@ -110,47 +93,44 @@ public class ButtonInput implements ActionListener{
         }
         if(command.equalsIgnoreCase("Generate")){
             Rogue.setLevel(new Level());
-            Rogue.mm.d.gp.update();
+            Rogue.mm.gp.update();
         }
         if(command.equalsIgnoreCase("Return")){
             Rogue.mm.mmp.setVisible(true);
             Rogue.mm.sm.setVisible(false);
         }
-        if(Rogue.mm.d!=null){
-            for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
-                if(command.equalsIgnoreCase("Drop "+i)){
-                    Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
-                    Player.pinv[i].drop();
-                    refresh(Rogue.mm.d.invp);
-                    Rogue.mm.d.gp.update();
-                }
-            }
-            for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
-                if(command.equalsIgnoreCase("Equip "+i)){
-                    Player.pinv[i].equip=true;
-                    Rogue.mm.d.invp.update();
-                    refresh(Rogue.mm.d.invp);
-                    Rogue.mm.d.gp.update();
-                }
-            }
-        }
-        if(command.equalsIgnoreCase("pick up")){
-            if(RenderPanel.pickup!=null){
-                RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
-                Player.pinv[Player.currinv]=RenderPanel.pickup;
-                RenderPanel.pickup.death();
-                Rogue.mm.d.gp.update();
-            }
-            refresh(Rogue.mm.d);
-        }
-        if(command.equalsIgnoreCase("leave it")){
-            RenderPanel.pickup=null;
-            Rogue.mm.d.gp.update();
-            refresh(Rogue.mm.d);
-        }
-        if(command.equalsIgnoreCase("Auto Equip")){
-        }
-        Rogue.mm.refresh();
+//        if(Rogue.mm.gp!=null){
+//            for(int i=0;i<Rogue.mm.d.invp.drop.length;i++){
+//                if(command.equalsIgnoreCase("Drop "+i)){
+//                    Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
+//                    Player.pinv[i].drop();
+//                    refresh(Rogue.mm.d.invp);
+//                    Rogue.mm.d.gp.update();
+//                }
+//            }
+//            for(int i=0;i<Rogue.mm.d.invp.equip.length;i++){
+//                if(command.equalsIgnoreCase("Equip "+i)){
+//                    Player.pinv[i].equip=true;
+//                    Rogue.mm.d.invp.update();
+//                    refresh(Rogue.mm.d.invp);
+//                    Rogue.mm.d.gp.update();
+//                }
+//            }
+//        }
+//        if(command.equalsIgnoreCase("pick up")){
+//            if(RenderPanel.pickup!=null){
+//                RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
+//                Player.pinv[Player.currinv]=RenderPanel.pickup;
+//                RenderPanel.pickup.death();
+//                Rogue.mm.d.gp.update();
+//            }
+//            refresh(Rogue.mm.d);
+//        }
+//        if(command.equalsIgnoreCase("leave it")){
+//            RenderPanel.pickup=null;
+//            Rogue.mm.d.gp.update();
+//            refresh(Rogue.mm.d);
+//        }
     }
     private void refresh(JPanel p){
         p.setVisible(false);

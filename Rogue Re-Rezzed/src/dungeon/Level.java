@@ -76,6 +76,7 @@ public class Level {
      */
     public Level(int sx,int sy,int lvl){
         Player.dead=false;
+        Player.xplevels=100;
         numLevels++;
         nument=0;
         int roomnum=0;
@@ -90,7 +91,6 @@ public class Level {
         }else if(renderlevel<16 && numLevels>3){
             renderlevel=16;
         }
-        renderlevel=48;
         RenderPanel.fsp = new Sprite("DungeonFloor");
         RenderPanel.dialogue = new Sprite("Dialogue",144);
         Map.img=new Sprite("DungeonFloor",8);
@@ -119,12 +119,14 @@ public class Level {
                 }
             }
         }
-                
+               
         MortuusTrabajos mt = new MortuusTrabajos(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(mt);
         
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
+        
+        Rogue.mm.gp.update();
     }
     /**
      * Gets Room Array

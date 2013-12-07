@@ -19,7 +19,6 @@ import render.RenderPanel;
 public class MButtonInput {
     public static boolean backtogame;
     public void clicked(String command){
-        System.out.println(command);
         if(command.equalsIgnoreCase("New Game")){
             Player.pinv = null;
             Player.xplevels = 1;
@@ -27,14 +26,9 @@ public class MButtonInput {
             Player.kills = 0;
             Level.numLevels=0;
             Rogue.setLevel(new Level(1));
-            Rogue.mm.d=new ui.Display();
-            Rogue.mm.add(Rogue.mm.d);
-            Rogue.mm.d.setSize(750, 500);
-            Rogue.mm.d.optionsD.addActionListener(Rogue.mm.bi);
-            Rogue.mm.d.save.addActionListener(Rogue.mm.bi);
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
-            Rogue.mm.d.setVisible(true);
+            Rogue.mm.gp.setVisible(true);
         }else if(command.equalsIgnoreCase("Options")){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);
@@ -46,13 +40,13 @@ public class MButtonInput {
                 RenderPanel.pickup.setParent(Rogue.getLevel().getPlayer());
                 Player.pinv[Player.currinv]=RenderPanel.pickup;
                 RenderPanel.pickup.death();
-                Rogue.mm.d.gp.update();
+                Rogue.mm.gp.update();
             }
-            refresh(Rogue.mm.d);
+            refresh(Rogue.mm.gp);
         }else if(command.equalsIgnoreCase("leave it")){
             RenderPanel.pickup=null;
-            Rogue.mm.d.gp.update();
-            refresh(Rogue.mm.d);
+            Rogue.mm.gp.update();
+            refresh(Rogue.mm.gp);
         }
     }
     private void refresh(JPanel p){

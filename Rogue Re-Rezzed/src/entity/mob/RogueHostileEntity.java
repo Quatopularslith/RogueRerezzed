@@ -123,7 +123,6 @@ public class RogueHostileEntity extends RogueEntity{
                 pdir=Direction.STOP;
             }
         }
-        System.out.println(pdir);
         return pdir;
     }
     public Direction pointTowards(RogueEntity e){

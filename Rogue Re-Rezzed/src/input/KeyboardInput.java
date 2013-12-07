@@ -53,7 +53,8 @@ public class KeyboardInput implements KeyListener{
             }
         }
         if(b && !Player.dead){
-            Rogue.mm.d.gp.update();
+//            Rogue.mm.d.gp.update();
+            Rogue.mm.gp.update();
         }
     }
     /**

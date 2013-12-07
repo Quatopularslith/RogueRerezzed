@@ -55,7 +55,6 @@ public class MButton {
     public void addListener(MButtonInput mbi1){
         visible=true;
         if(!isListened){
-            System.out.println(name+"Listener created on: "+parent.getClass().toString());
             mbi=mbi1;
             if(Rogue.mm!=null){
                 Rogue.mm.mi.mb.add(this);
