@@ -88,7 +88,6 @@ public class Level {
         }else if(renderlevel<16 && numLevels>3){
             renderlevel=16;
         }
-        renderlevel=48;
         GamePlay.fsp = new Sprite("DungeonFloor");
         GamePlay.dialogue = new Sprite("Dialogue",144);
         GamePlay.floorimg=new Sprite("DungeonFloor",8);

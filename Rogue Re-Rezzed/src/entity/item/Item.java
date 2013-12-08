@@ -95,7 +95,6 @@ public class Item extends RogueEntity{
         this.x=parent.x;
         this.y=parent.y;
         if(this.id!=0){
-            System.out.println(name+" was dropped at ("+x+","+y+") by "+parent.getClass().toString());
             l.addItem(this);
         }
     }

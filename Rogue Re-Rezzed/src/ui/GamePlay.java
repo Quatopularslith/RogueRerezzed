@@ -55,7 +55,7 @@ public class GamePlay extends JPanel{
             equip[i]=new MButton(750-(int) (0.25*750)+30,(int) (((i)*(0.032*500))+(int) (0.3515625*500)+74),50,10,"Equip",this);
             equip[i].setData(Integer.toString(i));
             drop[i]=new MButton(750-(int) (0.25*750)+60,(int) (((i)*(0.032*500))+(int) (0.3515625*500)+74),50,10,"Drop",this);
-            equip[i].setData(Integer.toString(i));
+            drop[i].setData(Integer.toString(i));
         }
     }
     /**
