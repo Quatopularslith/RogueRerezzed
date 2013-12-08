@@ -1,6 +1,5 @@
 package dungeon;
 
-import core.Rogue;
 import entity.RogueEntity;
 import entity.Stairway;
 import entity.item.Item;
@@ -10,10 +9,8 @@ import entity.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import render.RenderPanel;
 import render.Sprite;
 import ui.GamePlay;
-import ui.Map;
 
 /**
  * Handles everything having to do with spawning the world
@@ -91,6 +88,7 @@ public class Level {
         }else if(renderlevel<16 && numLevels>3){
             renderlevel=16;
         }
+        renderlevel=48;
         GamePlay.fsp = new Sprite("DungeonFloor");
         GamePlay.dialogue = new Sprite("Dialogue",144);
         GamePlay.floorimg=new Sprite("DungeonFloor",8);
@@ -126,6 +124,7 @@ public class Level {
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
         
+        p.updateStats();
     }
     /**
      * Gets Room Array

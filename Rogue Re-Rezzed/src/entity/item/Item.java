@@ -28,7 +28,7 @@ public class Item extends RogueEntity{
      * {Attack,Defense,Mana,Health}
      */
     public double[] stats = {0.0,0.0,0.0,0.0};
-    public Item(int id1,RogueEntity parent1,Level l1) {
+    public Item(int id1,RogueEntity parent1,int lvl,Level l1) {
         super(l1);
         health=1;
         maxhealth=1;
@@ -38,8 +38,9 @@ public class Item extends RogueEntity{
         modifierid=rand.nextInt(modifiers.length);
         int matid = (int) id/materials.length;
         int tyid = (id%3)+1;
+        if(tyid>type.length || matid>materials.length) return;
         if(id!=0){
-            name = "Lvl "+Level.numLevels+" "+modifiers[modifierid]+materials[matid]+type[tyid];
+            name = "Lvl "+lvl+" "+modifiers[modifierid]+materials[matid]+type[tyid];
             cursed = rand.nextBoolean();
             switch(tyid){
                 case 1:
@@ -65,19 +66,19 @@ public class Item extends RogueEntity{
             stats[3]*=matid+1;
             switch(modifierid){
                 case 1:
-                    stats[0]-=(0.4*(Level.numLevels+1));
+                    stats[0]-=(0.4*lvl);
                     break;
                 case 3:
-                    stats[1]-=(0.4*(Level.numLevels+1));
+                    stats[1]-=(0.4*lvl);
                     break;
                 case 5:
-                    stats[3]+=(0.4*(Level.numLevels+1));
+                    stats[3]+=(0.4*lvl);
                     break;
                 case 6:
-                    stats[2]+=(0.4*(Level.numLevels+1));
+                    stats[2]+=(0.4*lvl);
                     break;
                 case 7:
-                    stats[0]+=(0.4*(Level.numLevels+1));
+                    stats[0]+=(0.4*lvl);
                     break;
             }
         }else{
@@ -94,7 +95,7 @@ public class Item extends RogueEntity{
         this.x=parent.x;
         this.y=parent.y;
         if(this.id!=0){
-//            System.out.println(name+" was dropped at ("+x+","+y+") by "+parent.getClass().toString());
+            System.out.println(name+" was dropped at ("+x+","+y+") by "+parent.getClass().toString());
             l.addItem(this);
         }
     }

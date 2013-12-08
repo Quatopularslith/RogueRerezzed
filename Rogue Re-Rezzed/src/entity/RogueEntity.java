@@ -116,7 +116,7 @@ public class RogueEntity {
         }else{
             td = 0;
         }
-        if(e.maxAtt>0){
+        if((int) e.maxAtt>0){
             ta = rand.nextInt((int) (e.maxAtt));
         }else{
             ta = e.maxAtt*10;

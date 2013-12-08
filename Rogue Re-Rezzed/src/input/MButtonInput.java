@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package input;
 
@@ -20,7 +15,6 @@ import ui.GamePlay;
 public class MButtonInput {
     public static boolean backtogame;
     public void clicked(String command){
-        System.out.println(command);
         if(command.equalsIgnoreCase("New Game")){
             Player.pinv = null;
             Player.xplevels = 1;
@@ -32,13 +26,16 @@ public class MButtonInput {
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.gp.setVisible(true);
             Rogue.mm.gp.update();
-        }else if(command.equalsIgnoreCase("Options")){
+        }
+        if(command.equalsIgnoreCase("Options")){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);
             backtogame=false;
-        }else if(command.equalsIgnoreCase("Quit")){
+        }
+        if(command.equalsIgnoreCase("Quit")){
             Rogue.mm.dispose();
-        }else if(command.equalsIgnoreCase("pick up")){
+        }
+        if(command.equalsIgnoreCase("pick up")){
             if(GamePlay.pickup!=null){
                 GamePlay.pickup.setParent(Rogue.getLevel().getPlayer());
                 Player.pinv[Player.currinv]=GamePlay.pickup;
@@ -46,24 +43,27 @@ public class MButtonInput {
                 Rogue.mm.gp.update();
             }
             refresh(Rogue.mm.gp);
-        }else if(command.equalsIgnoreCase("leave it")){
+        }
+        if(command.equalsIgnoreCase("leave it")){
             GamePlay.pickup=null;
             Rogue.mm.gp.update();
             refresh(Rogue.mm.gp);
-        }else if(command.equalsIgnoreCase("Return")){
+        }
+        if(command.equalsIgnoreCase("Return")){
             Rogue.mm.mmp.setVisible(true);
             Rogue.mm.sm.setVisible(false);
-        }else if(Rogue.mm.gp!=null){
-            for(int i=0;i<Rogue.mm.gp.equip.length;i++){
-                if(command.equalsIgnoreCase("Drop"+i)){
-                    Player.pinv[i].drop();
-                    Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
-                    refresh(Rogue.mm.gp);
-                    Rogue.mm.gp.update();
-                }else if(command.equalsIgnoreCase("Equip"+i)){
-                    Player.pinv[i].equip=true;
-                    Rogue.mm.gp.update();
-                }
+        }
+        for(int i=0;i<Rogue.mm.gp.equip.length;i++){
+            if(command.equalsIgnoreCase("Drop"+i)){
+                Player.pinv[i].drop();
+                Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),0,Rogue.getLevel());
+                Rogue.getLevel().getPlayer().updateStats();
+                Rogue.mm.gp.update();
+            }
+            if(command.equalsIgnoreCase("Equip"+i)){
+                Player.pinv[i].equip=true;
+                Rogue.getLevel().getPlayer().updateStats();
+                Rogue.mm.gp.update();
             }
         }
     }

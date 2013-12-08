@@ -34,11 +34,13 @@ public class GamePlay extends JPanel{
     MButton amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
     MButton dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
     int moffx=0,moffy=0;
-    public static Sprite floorimg =new Sprite("DungeonFloor",8);
-    public static Sprite pimg =new Sprite("Player",8);
-    public static Sprite stimg =new Sprite("Stairway",8);
+    public static Sprite floorimg = new Sprite("DungeonFloor",8);
+    public static Sprite pimg = new Sprite("Player",8);
+    public static Sprite stimg = new Sprite("Stairway",8);
     public MButton[] equip = new MButton[10];
     public MButton[] drop = new MButton[10];
+    public MButton quit;
+    public MButton settings;
     public GamePlay(){
         l=Rogue.getLevel();
         if(l!=null){
@@ -138,7 +140,7 @@ public class GamePlay extends JPanel{
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
         //Pickup
         if(pickup==null){
-            pickup = new Item(0,Rogue.getLevel().getPlayer(),Rogue.getLevel());
+            pickup = new Item(0,Rogue.getLevel().getPlayer(),0,Rogue.getLevel());
         }
         if(pickup.name.equalsIgnoreCase("Empty")==false){
             amb.setParent(this);
@@ -162,16 +164,16 @@ public class GamePlay extends JPanel{
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
-                    if(area1[0]*8+moffx>=getWidth()-(getWidth()/4) && area1[0]*8+moffy<getWidth()-10){
-                        if((area1[1]*8+moffy)>=10 && area1[1]*8+moffy<10+(getHeight()*0.3515625)){
+                    if(area1[0]*8+moffx>getWidth()-(getWidth()/4)-8 && area1[0]*8+moffx<getWidth()-18){
+                        if((area1[1]*8+moffy)>10 && area1[1]*8+moffy<10+(getHeight()*0.3515625-10)){
                             g2.drawImage(floorimg.i, area1[0]*8+moffx,area1[1]*8+moffy, this);
                         }
                     }
                 }
             }
         }
-        if(l.getStairWay().x*8+moffx>getWidth()-(getWidth()/4) && l.getStairWay().x*8+moffy<=getWidth()-10){
-            if((l.getStairWay().y*8+moffy)>=10 && l.getStairWay().y*8+moffy<=10+(getHeight()*0.3515625)){
+        if(l.getStairWay().x*8+moffx>getWidth()-(getWidth()/4)-8 && l.getStairWay().x*8+moffx<getWidth()-18){
+            if((l.getStairWay().y*8+moffy)>10 && l.getStairWay().y*8+moffy<10+(getHeight()*0.3515625)){
                 g2.drawImage(stimg.i, l.getStairWay().x*8+moffx,l.getStairWay().y*8+moffy, this);
             }
         }
@@ -188,7 +190,7 @@ public class GamePlay extends JPanel{
                 equip[i].addListener(Rogue.mm.mbi);
                 drop[i].addListener(Rogue.mm.mbi);
                 equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0266666666666667*getWidth()),(int) (0.015*getHeight()));
-                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.0266666666666667*getWidth()*2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0266666666666667*getWidth()),(int) (0.015*getHeight()));
+                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.0266666666666667*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0266666666666667*getWidth()),(int) (0.015*getHeight()));
                 g2.drawImage(drop[i].img, drop[i].x,drop[i].y, this);
                 g2.drawImage(equip[i].img, equip[i].x,equip[i].y, this);
             }else{
@@ -198,21 +200,26 @@ public class GamePlay extends JPanel{
         }
         //Stats
         g2.setColor(Color.BLACK);
-        g2.fillRect(5, 5, 140, 200);
+        g2.fillRect(5, 5, 140, 170);
         g2.setColor(Color.RED);
-        g2.fillRect(20, 25, (int) ((Rogue.getLevel().getPlayer().health/Rogue.getLevel().getPlayer().maxhealth)*100), 20);
+        g2.fillRect(10, 25, (int) ((Rogue.getLevel().getPlayer().health/l.getPlayer().maxhealth)*100), 20);
         g2.setColor(Color.BLUE);
-        g2.fillRect(20, 45, (int) ((Rogue.getLevel().getPlayer().mana/Rogue.getLevel().getPlayer().maxMana)*100), 20);
+        g2.fillRect(10, 45, (int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100), 20);
         g2.setColor(Color.GREEN);
-        g2.fillRect(20, 65, 100*Player.xp/(10*Player.xplevels), 20);
+        g2.fillRect(10, 65, 100*Player.xp/(10*Player.xplevels), 20);
         g2.setColor(Color.WHITE);
-        g2.drawString("You are in dungeon: "+Level.numLevels, 20, 20);
-        g2.drawString("Health: "+(int) Rogue.getLevel().getPlayer().health,20,40);
-        g2.drawString("Mana: "+Rogue.getLevel().getPlayer().mana, 20, 60);
-        g2.drawString("You are Level: "+Player.xplevels, 20, 80);
-        g2.drawString("Max Attack: "+Rogue.getLevel().getPlayer().maxAtt, 20, 100);
-        g2.drawString("Defence: "+Rogue.getLevel().getPlayer().maxDefence, 20, 120);
-        g2.drawString("Kills: "+Player.kills+" Enemies", 20, 140);
-        g2.drawString("Gold: "+Player.gold, 20, 160);
+        g2.drawString("You are in dungeon: "+Level.numLevels, 10, 20);
+        g2.drawString("Health: "+(int) Rogue.getLevel().getPlayer().health,10,40);
+        g2.drawString("Mana: "+l.getPlayer().mana, 10, 60);
+        g2.drawString("You are Level: "+Player.xplevels, 10, 80);
+        g2.drawString("Max Attack: "+l.getPlayer().maxAtt, 10, 100);
+        g2.drawString("Defence: "+l.getPlayer().maxDefence, 10, 120);
+        g2.drawString("Kills: "+Player.kills+" Enemies", 10, 140);
+        g2.drawString("Gold: "+Player.gold, 10, 160);
+        //Exit
+//        quit.setPos(offx, offx, offx, offx);
+//        settings.setPos(offx, offx, offx, offx);
+//        quit.addListener(Rogue.mm.mbi);
+//        settings.addListener(Rogue.mm.mbi);
     }
 }

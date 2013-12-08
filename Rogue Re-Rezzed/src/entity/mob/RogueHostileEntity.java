@@ -71,8 +71,8 @@ public class RogueHostileEntity extends RogueEntity{
         if(lvl>Item.numid/3){
             lvl=Item.numid/3;
         }
-        inv[0] = new Item(rand.nextInt((lvl*3)+1),this,l);
-        inv[1] = new Gold(rand.nextInt(lvl),this,l);
+        inv[0] = new Item(rand.nextInt((lvl*3)+1),this,lvl,l);
+        inv[1] = new Gold(rand.nextInt(lvl+1),this,l);
         spawn(r);
         for (Item inv1 : inv) {
             inv1.update();
