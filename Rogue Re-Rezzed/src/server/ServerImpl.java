@@ -9,7 +9,7 @@ import javax.jws.*;
  */
 @WebService(endpointInterface="Server.Server")
 public class ServerImpl implements Server{
-    public Level l;
+    public static Level l = new Level(1);
     int currp;
     int maxp;
     ArrayList<ClientPlayer> players = new ArrayList<>();
