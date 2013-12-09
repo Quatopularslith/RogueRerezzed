@@ -75,6 +75,9 @@ public class Level {
     public Level(int sx,int sy,int lvl){
         Player.dead=false;
         numLevels++;
+        if(numLevels==0){
+            numLevels=1;
+        }
         nument=0;
         int roomnum=0;
         board=new boolean[2*sx][2*sy];
@@ -88,8 +91,9 @@ public class Level {
         }else if(renderlevel<16 && numLevels>3){
             renderlevel=16;
         }
+        renderlevel=48;
         GamePlay.fsp = new Sprite("DungeonFloor");
-        GamePlay.dialogue = new Sprite("Dialogue",144);
+        GamePlay.dialogue = new Sprite("Dialogue",256);
         GamePlay.floorimg=new Sprite("DungeonFloor",8);
         GamePlay.pimg=new Sprite("Player",8);
         GamePlay.stimg=new Sprite("Stairway",8);

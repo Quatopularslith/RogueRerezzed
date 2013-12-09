@@ -1,6 +1,7 @@
 
 package input;
 
+import core.Rogue;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -16,11 +17,6 @@ public class MouseInput implements MouseListener{
     public List<MButton> mb = new ArrayList<>();
     @Override
     public void mouseClicked(MouseEvent e) {
-    }
-    @Override
-    public void mousePressed(MouseEvent e) {
-        mx=e.getX();
-        my=e.getY();
         boolean b = false;
         for(int i=0;i<mb.size();i++){
             for(int j=0;j<mb.size();j++){
@@ -31,11 +27,18 @@ public class MouseInput implements MouseListener{
                 }
             }
             if(b) continue;
-            mb.get(i).update(mx, my);
+            if(mb.get(i).visible || mb.get(i).parent.isVisible()){
+                mb.get(i).update(mx+5, my-30);
+            }
         }
     }
     @Override
+    public void mousePressed(MouseEvent e) {
+    }
+    @Override
     public void mouseReleased(MouseEvent e) {
+        mx=e.getX();
+        my=e.getY();
     }
     @Override
     public void mouseEntered(MouseEvent e) {

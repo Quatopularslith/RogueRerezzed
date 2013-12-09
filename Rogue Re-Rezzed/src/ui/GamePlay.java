@@ -11,6 +11,7 @@ import entity.item.Item;
 import entity.player.Player;
 import input.MButton;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -39,8 +40,8 @@ public class GamePlay extends JPanel{
     public static Sprite stimg = new Sprite("Stairway",8);
     public MButton[] equip = new MButton[10];
     public MButton[] drop = new MButton[10];
-    public MButton quit;
-    public MButton settings;
+    public MButton quit = new MButton(650,460,100,30,"Quit",this);
+    public MButton settings  = new MButton(650,460,100,30,"Settings",this);
     public GamePlay(){
         l=Rogue.getLevel();
         if(l!=null){
@@ -57,6 +58,7 @@ public class GamePlay extends JPanel{
             drop[i]=new MButton(750-(int) (0.25*750)+60,(int) (((i)*(0.032*500))+(int) (0.3515625*500)+74),50,10,"Drop",this);
             drop[i].setData(Integer.toString(i));
         }
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
     }
     /**
      * The core updater
@@ -146,10 +148,10 @@ public class GamePlay extends JPanel{
             amb.setParent(this);
             dmb.setParent(this);
             g2.setColor(Color.BLACK);
-            g2.drawImage(dialogue.i, getWidth()/2-36, getHeight()/2-36, this);
-            g2.drawString(pickup.name, getWidth()/2-32,getHeight()/2-10);
-            amb.setPos(getWidth()/2-16,getHeight()/2,100,20);
-            dmb.setPos(getWidth()/2-16,getHeight()/2+32,100,20);
+            g2.drawImage(dialogue.i, getWidth()/2-96, getHeight()/2-96, this);
+            g2.drawString(pickup.name, getWidth()/2-48,getHeight()/2-10);
+            amb.setPos(getWidth()/2-24,getHeight()/2,100,20);
+            dmb.setPos(getWidth()/2-24,getHeight()/2+30,100,20);
             g2.drawImage(amb.img, amb.x,amb.y, this);
             g2.drawImage(dmb.img, dmb.x,dmb.y, this);
             amb.addListener(Rogue.mm.mbi);
@@ -189,8 +191,8 @@ public class GamePlay extends JPanel{
             if(Player.pinv[i].id>0){
                 equip[i].addListener(Rogue.mm.mbi);
                 drop[i].addListener(Rogue.mm.mbi);
-                equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0266666666666667*getWidth()),(int) (0.015*getHeight()));
-                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.0266666666666667*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0266666666666667*getWidth()),(int) (0.015*getHeight()));
+                equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0390625*getWidth()),12);
+                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.03590625*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0390625*getWidth()),12);
                 g2.drawImage(drop[i].img, drop[i].x,drop[i].y, this);
                 g2.drawImage(equip[i].img, equip[i].x,equip[i].y, this);
             }else{
@@ -217,9 +219,11 @@ public class GamePlay extends JPanel{
         g2.drawString("Kills: "+Player.kills+" Enemies", 10, 140);
         g2.drawString("Gold: "+Player.gold, 10, 160);
         //Exit
-//        quit.setPos(offx, offx, offx, offx);
-//        settings.setPos(offx, offx, offx, offx);
-//        quit.addListener(Rogue.mm.mbi);
-//        settings.addListener(Rogue.mm.mbi);
+        quit.setPos(getWidth()-(int) (0.1875*getWidth()), getHeight()-(int) (0.05859375*getHeight()), (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
+        settings.setPos(getWidth()-(int) (0.09375*getWidth()), getHeight()-(int) (0.05859375*getHeight()), (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
+        quit.addListener(Rogue.mm.mbi);
+        settings.addListener(Rogue.mm.mbi);
+        g2.drawImage(quit.img, quit.x, quit.y, this);
+        g2.drawImage(settings.img, settings.x, settings.y, this);
     }
 }

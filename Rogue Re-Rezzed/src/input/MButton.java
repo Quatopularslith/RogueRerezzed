@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -18,15 +19,15 @@ public class MButton {
     public BufferedImage img;
     public int x;
     public int y;
-    private boolean visible = true;
+    public boolean visible = true;
     private boolean isListened = false;
     private final LoadArt la = new LoadArt();
     private MButtonInput mbi;
     private int sx;
     private int sy;
-    private final String name;
+    public final String name;
     private String data;
-    private Component parent;
+    public Component parent;
     /**
      * Makes a MButton
      * @param x1 top left corner
@@ -64,9 +65,9 @@ public class MButton {
         }
     }
     public void update(int mx,int my){
-        if(mx>x+parent.getX() && mx<x+sx+parent.getX() && my>y+parent.getY()+30 && my<y+sy+parent.getY()+30 && parent.isVisible() && visible){
-            if(data!=null) mbi.clicked(name+data);
-            if(data==null) mbi.clicked(name);
+        if(mx>x+8 && mx<x+sx && my>y && my<y+sy && parent.isVisible() && visible){
+            if(data!=null) mbi.clicked(name+data,parent);
+            if(data==null) mbi.clicked(name,parent);
         }
     }
     public void setPos(int x1,int y1,int sx1,int sy1){

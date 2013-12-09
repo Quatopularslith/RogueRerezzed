@@ -55,17 +55,6 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.omp.eatKB.setText("E");
             Rogue.mm.ki.checkSettings(defkeys);
         }
-        if(command.equalsIgnoreCase("save and quit")){
-            //TODO some save code
-            Rogue.mm.gp.setVisible(false);
-            Rogue.mm.mmp.setVisible(true);
-        }
-        if(command.equalsIgnoreCase("settings")){
-            MButtonInput.backtogame=true;
-            Rogue.mm.mmp.setVisible(false);
-            Rogue.mm.omp.setVisible(true);
-            Rogue.mm.gp.setVisible(false);
-        }
         if(command.equalsIgnoreCase("Debug Menu")){
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.dmp.setVisible(true);
