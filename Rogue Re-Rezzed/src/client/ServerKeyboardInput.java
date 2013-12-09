@@ -1,5 +1,5 @@
 
-package input;
+package client;
 
 import core.Rogue;
 import entity.player.Player;
@@ -7,10 +7,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * This gets and keeps information from the keyboard
+ *
  * @author Torri
  */
-public class KeyboardInput implements KeyListener{
+public class ServerKeyboardInput implements KeyListener{
     private final boolean[] keys = new boolean[1000];
     private int[] keyn = new int[6];
     public boolean[] keyBind = new boolean[6];
@@ -19,7 +19,7 @@ public class KeyboardInput implements KeyListener{
      * Sets up a keyboard input listener
      * @param keybinds 
      */
-    public KeyboardInput(int[] keybinds){
+    public ServerKeyboardInput(int[] keybinds){
         keyn=keybinds;
         for(boolean k: keys){
             k=false;
@@ -42,19 +42,11 @@ public class KeyboardInput implements KeyListener{
         }
     }
     /**
-     * makes the game tick
+     * Sends info to the server
      */
     private void turn(){
         b = false;
-        for(boolean kb:keyBind){
-            if(kb){
-                b=true;
-                break;
-            }
-        }
-        if(b && !Player.dead){
-            Rogue.mm.gp.update();
-        }
+        
     }
     /**
      * Receives when key is typed
