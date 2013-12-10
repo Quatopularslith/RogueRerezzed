@@ -12,6 +12,7 @@ import entity.player.Player;
 import input.MButton;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -129,17 +130,21 @@ public class GamePlay extends JPanel{
         for (int i=0;i<current.size();i++) {
             if(current.get(i)!=null){
                 g2.setColor(Color.RED);
-                g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-10, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
+                g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-15, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
                 g2.setColor(Color.WHITE);
-                g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*64+offx+3, current.get(i).y*64+offy+4);
+                g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*64+offx+3, current.get(i).y*64+offy);
                 g2.drawImage(current.get(i).sp.i, current.get(i).x*64+offx, current.get(i).y*64+offy, this);
+                g2.setColor(Color.ORANGE);
+                g2.drawString(Integer.toString(current.get(i).lvl), current.get(i).x*64+offx+59, current.get(i).y*64+offy+53);
             }
         }
         g2.setColor(Color.RED);
-        g2.fillRect(l.getPlayer().x*64+offx+2, l.getPlayer().y*64+offy-10, (int) ((l.getPlayer().health/l.getPlayer().maxhealth)*61), 20);
+        g2.fillRect(l.getPlayer().x*64+offx+2, l.getPlayer().y*64+offy-15, (int) ((l.getPlayer().health/l.getPlayer().maxhealth)*61), 20);
         g2.setColor(Color.WHITE);
-        g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy+4);
+        g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
+        g2.setColor(Color.ORANGE);
+        g2.drawString(Integer.toString(Player.xplevels), l.getPlayer().x*64+offx+59, l.getPlayer().y*64+offy+53);
         //Pickup
         if(pickup==null){
             pickup = new Item(0,Rogue.getLevel().getPlayer(),0,Rogue.getLevel());
@@ -191,8 +196,8 @@ public class GamePlay extends JPanel{
             if(Player.pinv[i].id>0){
                 equip[i].addListener(Rogue.mm.mbi);
                 drop[i].addListener(Rogue.mm.mbi);
-                equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0390625*getWidth()),12);
-                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.03590625*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.0390625*getWidth()),12);
+                equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
+                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
                 g2.drawImage(drop[i].img, drop[i].x,drop[i].y, this);
                 g2.drawImage(equip[i].img, equip[i].x,equip[i].y, this);
             }else{
@@ -208,7 +213,7 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.BLUE);
         g2.fillRect(10, 45, (int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100), 20);
         g2.setColor(Color.GREEN);
-        g2.fillRect(10, 65, 100*Player.xp/(10*Player.xplevels), 20);
+        g2.fillRect(10, 65, (int) (100*Player.xp/(10*Player.xplevels)), 20);
         g2.setColor(Color.WHITE);
         g2.drawString("You are in dungeon: "+Level.numLevels, 10, 20);
         g2.drawString("Health: "+(int) Rogue.getLevel().getPlayer().health,10,40);
@@ -218,7 +223,7 @@ public class GamePlay extends JPanel{
         g2.drawString("Defence: "+l.getPlayer().maxDefence, 10, 120);
         g2.drawString("Kills: "+Player.kills+" Enemies", 10, 140);
         g2.drawString("Gold: "+Player.gold, 10, 160);
-        //Exit
+        //Buttons
         quit.setPos(getWidth()-(int) (0.1875*getWidth()), getHeight()-(int) (0.05859375*getHeight()), (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
         settings.setPos(getWidth()-(int) (0.09375*getWidth()), getHeight()-(int) (0.05859375*getHeight()), (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
         quit.addListener(Rogue.mm.mbi);

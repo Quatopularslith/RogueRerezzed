@@ -23,7 +23,7 @@ public class Player extends RogueEntity{
     boolean attack = false;
     public static int currinv = 0;
     public static Item[] pinv;
-    public static int xp;
+    public static double xp;
     public static int xplevels;
     public static int rep;
     public static int gold;
@@ -41,14 +41,10 @@ public class Player extends RogueEntity{
                 break;
             }
         }
-        maxDefence=(xplevels);
-        maxAtt=2*xplevels;
-        maxMana=100+(xplevels);
-        mana=(int) (maxMana/1.5);
-        maxhealth=100+(xplevels);
-        health=(float) (maxhealth/1.5);
         updateStats();
-        this.sp = new Sprite("Player");
+        mana=(int) (maxMana/1.5);
+        health=(float) (maxhealth/1.5);
+        sp = new Sprite("Player");
         Room r = l1.getRoom(0);
         spawn(r);
     }
@@ -62,7 +58,7 @@ public class Player extends RogueEntity{
         if(health<=0){
             dead=true;
         }else if(health<maxhealth){
-            health+=0.1;
+            health+=0.1*xplevels;
         }
         if(xplevels==0) xplevels = 1;
         if(xp%(10*xplevels)==0 && xp>1){
@@ -97,7 +93,7 @@ public class Player extends RogueEntity{
                     if(re.health<=0){
                         mana++;
                         kills++;
-                        xp++;
+                        xp+=(re.lvl/xplevels);
                         re.death();
                     }
                     attack=true;
@@ -120,7 +116,7 @@ public class Player extends RogueEntity{
                     if(re.health<=0){
                         mana++;
                         kills++;
-                        xp++;
+                        xp+=(re.lvl/xplevels);
                         re.death();
                     }
                     attack=true;
@@ -143,7 +139,7 @@ public class Player extends RogueEntity{
                     if(re.health<=0){
                         mana++;
                         kills++;
-                        xp++;
+                        xp+=(re.lvl/xplevels);
                         re.death();
                     }
                     attack=true;
@@ -166,7 +162,7 @@ public class Player extends RogueEntity{
                     if(re.health<=0){
                         mana++;
                         kills++;
-                        xp++;
+                        xp+=(re.lvl/xplevels);
                         re.death();
                     }
                     attack=true;
@@ -186,7 +182,7 @@ public class Player extends RogueEntity{
     public void updateStats(){
         maxAtt=2*xplevels;
         maxMana=100+(xplevels);
-        maxhealth=100+(xplevels);
+        maxhealth=100+2*(xplevels-1);
         maxDefence=(xplevels);
         boolean curr=false;
         for (int i=0;i<pinv.length;i++) {

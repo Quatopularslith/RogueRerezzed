@@ -14,6 +14,7 @@ public class RogueEntity {
     public int x=0,y=0,uuid=0;
     public float health=0;
     public int maxhealth=0;
+    public int lvl=0;
     public Item[] inv;
     public Sprite sp = new Sprite("Bag");
     public Random rand = new Random();
@@ -109,19 +110,19 @@ public class RogueEntity {
      * @param e 
      */
     public void damage(RogueEntity e){
-        double td;
-        double ta;
-        if(maxDefence>0){
-            td = rand.nextInt((int) (maxDefence));
-        }else{
-            td = 0;
-        }
-        if((int) e.maxAtt>0){
-            ta = rand.nextInt((int) (e.maxAtt));
-        }else{
-            ta = e.maxAtt*10;
+        double td = e.maxDefence*10;
+        double ta = e.maxAtt*10;
+        if(ta>0){
             ta = rand.nextInt((int) ta);
             ta /= 10;
+        }else{
+            ta=0;
+        }
+        if(td>0){
+            td = rand.nextInt((int) td);
+            td /= 10;
+        }else{
+            td=0;
         }
         ta -= td;
         if(ta>=0){

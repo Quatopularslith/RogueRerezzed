@@ -77,7 +77,6 @@ public class MButton {
         sy=sy1;
         img = new BufferedImage(sx,sy, BufferedImage.TYPE_INT_ARGB);
         img = la.createBufferedImage("Button.png", sx, sy);
-        isListened=false;
         Graphics2D g = img.createGraphics();
         g.setColor(Color.BLUE);
         g.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,sy/2));

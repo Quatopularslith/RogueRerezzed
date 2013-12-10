@@ -78,7 +78,6 @@ public class Level {
         if(numLevels==0){
             numLevels=1;
         }
-        Player.xplevels=100;
         nument=0;
         int roomnum=0;
         board=new boolean[2*sx][2*sy];
@@ -127,6 +126,9 @@ public class Level {
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
         
+        for (Item pinv1 : Player.pinv) {
+            pinv1.setParent(p);
+        }
         p.updateStats();
     }
     /**

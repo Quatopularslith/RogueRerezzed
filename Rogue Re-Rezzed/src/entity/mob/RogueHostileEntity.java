@@ -38,6 +38,7 @@ public class RogueHostileEntity extends RogueEntity{
         followdist=followdist1;
         l=l1;
         maxDefence=0;
+        this.lvl=lvl;
         switch(op0){
             case ADD:
                 health=hmod+(lvl);
@@ -82,7 +83,7 @@ public class RogueHostileEntity extends RogueEntity{
     }
     @Override
     public void turn(){
-//        this.move(pathFind(this.l.getPlayer()));
+//        this.move(pathFind(l.getPlayer()));
         this.move(pointTowards(l.getPlayer()));
         if(doatt(l.getPlayer()) && maxAtt>0){
             l.getPlayer().damage(this);
