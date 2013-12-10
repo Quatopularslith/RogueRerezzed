@@ -83,8 +83,8 @@ public class RogueHostileEntity extends RogueEntity{
     }
     @Override
     public void turn(){
-//        this.move(pathFind(l.getPlayer()));
-        this.move(pointTowards(l.getPlayer()));
+//        move(pathFind(l.getPlayer()));
+        move(pointTowards(l.getPlayer()));
         if(doatt(l.getPlayer()) && maxAtt>0){
             l.getPlayer().damage(this);
         }

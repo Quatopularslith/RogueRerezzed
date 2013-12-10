@@ -100,9 +100,11 @@ public class RogueEntity {
             dx=0;
             dy=0;
         }
-        if(l.board[dx+x][dy+y]==true){
-            x+=dx;
-            y+=dy;
+        if(dx+x>=0 && dy+y>=0){
+            if(l.board[dx+x][dy+y]==true){
+                x+=dx;
+                y+=dy;
+            }
         }
     }
     /**
