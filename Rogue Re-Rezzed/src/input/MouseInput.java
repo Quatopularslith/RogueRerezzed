@@ -17,7 +17,6 @@ public class MouseInput implements MouseListener{
     public List<MButton> mb = new ArrayList<>();
     @Override
     public void mouseClicked(MouseEvent e) {
-        
     }
     @Override
     public void mousePressed(MouseEvent e) {

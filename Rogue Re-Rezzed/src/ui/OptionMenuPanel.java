@@ -8,7 +8,7 @@ package ui;
 
 /**
  *
- * @author 1001503
+ * @author Mnenmenth
  */
 public class OptionMenuPanel extends javax.swing.JPanel {
 

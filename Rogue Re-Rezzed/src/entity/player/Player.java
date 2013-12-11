@@ -8,6 +8,7 @@ import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
 import entity.mob.RogueHostileEntity;
+import entity.npc.Trader;
 import render.Sprite;
 import ui.GamePlay;
 
@@ -43,7 +44,7 @@ public class Player extends RogueEntity{
         }
         updateStats();
         mana=(int) (maxMana/1.5);
-        health=(float) (maxhealth/1.5);
+        health=(float) (maxhealth);
         sp = new Sprite("Player");
         Room r = l1.getRoom(0);
         spawn(r);
@@ -88,6 +89,10 @@ public class Player extends RogueEntity{
         if(Rogue.mm.ki.keyBind[0]){//up
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
+                if(re instanceof Trader  && re.x==this.x && re.y==this.y-1){
+                    Trader t = (Trader) re;
+                    t.action();
+                }
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y-1){
                     re.damage(this);
                     if(re.health<=0){
@@ -111,6 +116,10 @@ public class Player extends RogueEntity{
         }else if(Rogue.mm.ki.keyBind[1]){//down
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
+                if(re instanceof Trader  && re.x==this.x && re.y==this.y+1){
+                    Trader t = (Trader) re;
+                    t.action();
+                }
                 if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
                     re.damage(this);
                     if(re.health<=0){
@@ -134,6 +143,10 @@ public class Player extends RogueEntity{
         }else if(Rogue.mm.ki.keyBind[2]){//right
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
+                if(re instanceof Trader  && re.x==this.x+1 && re.y==this.y){
+                    Trader t = (Trader) re;
+                    t.action();
+                }
                 if(re instanceof RogueHostileEntity && re.x==this.x+1 && re.y==this.y){
                     re.damage(this);
                     if(re.health<=0){
@@ -157,6 +170,10 @@ public class Player extends RogueEntity{
         }else if(Rogue.mm.ki.keyBind[3]){//left
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
+                if(re instanceof Trader  && re.x==this.x-1 && re.y==this.y){
+                    Trader t = (Trader) re;
+                    t.action();
+                }
                 if(re instanceof RogueHostileEntity && re.x==this.x-1 && re.y==this.y){
                     re.damage(this);
                     if(re.health<=0){

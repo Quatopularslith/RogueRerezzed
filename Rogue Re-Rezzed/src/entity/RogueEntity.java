@@ -1,5 +1,6 @@
 package entity;
 
+import art.LoadArt;
 import dungeon.Level;
 import dungeon.Room;
 import entity.item.Item;
@@ -19,6 +20,7 @@ public class RogueEntity {
     public Sprite sp = new Sprite("Bag");
     public Random rand = new Random();
     public Level l;
+    public LoadArt la = new LoadArt();
     public RogueEntity(Level l1){
         l=l1;
     }

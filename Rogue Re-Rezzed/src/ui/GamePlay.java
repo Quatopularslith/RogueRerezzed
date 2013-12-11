@@ -8,6 +8,7 @@ import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
+import entity.npc.Trader;
 import entity.player.Player;
 import input.MButton;
 import java.awt.Color;
@@ -16,6 +17,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.List;
 import javax.swing.JPanel;
 import render.Sprite;
@@ -43,6 +45,8 @@ public class GamePlay extends JPanel{
     public MButton[] drop = new MButton[10];
     public MButton quit = new MButton(650,460,100,30,"Quit",this);
     public MButton settings  = new MButton(650,460,100,30,"Settings",this);
+    private boolean trade;
+    private Image tradeimg;
     public GamePlay(){
         l=Rogue.getLevel();
         if(l!=null){
@@ -136,6 +140,11 @@ public class GamePlay extends JPanel{
                 g2.drawImage(current.get(i).sp.i, current.get(i).x*64+offx, current.get(i).y*64+offy, this);
                 g2.setColor(Color.ORANGE);
                 g2.drawString(Integer.toString(current.get(i).lvl), current.get(i).x*64+offx+59, current.get(i).y*64+offy+53);
+                if(current.get(i) instanceof Trader){
+                    Trader t = (Trader) current.get(i);
+                    trade=t.trade;
+                    tradeimg=t.img;
+                }
             }
         }
         g2.setColor(Color.RED);
@@ -164,6 +173,10 @@ public class GamePlay extends JPanel{
         }else{
             amb.hide();
             dmb.hide();
+        }
+        //Trade
+        if(trade){
+            g2.drawImage(tradeimg, getWidth()/2-96, getHeight()/2-96, this);
         }
         //Map
         g2.setColor(Color.BLACK);

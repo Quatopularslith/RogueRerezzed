@@ -46,8 +46,7 @@ public class Item extends RogueEntity{
             switch(tyid){
                 case 1:
                     tyname=ItemType.SWORD;
-                    stats[0]=0.99;
-                    stats[1]=0.01;
+                    stats[0]=1;
                     mod=0;
                     break;
                 case 2:
@@ -58,8 +57,7 @@ public class Item extends RogueEntity{
                     break;
                 case 3:
                     tyname=ItemType.SHEILD;
-                    stats[0]=0.01;
-                    stats[1]=0.99;
+                    stats[1]=1;
                     mod=1;
                     break;
                 default:
