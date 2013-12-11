@@ -26,7 +26,13 @@ public class RogueProperties {
         this.props=props;
         out = new String[props.length];
         try {
-            rp.createNewFile();
+            if(rp.createNewFile()){
+                for (String prop : props) {
+                    if(prop==null){
+                        p.setProperty(prop, "0");
+                    }
+                }
+            }
             try (FileInputStream inStream = new FileInputStream(rp)) {
                 p = new Properties();
                 p.load(inStream);
@@ -36,6 +42,7 @@ public class RogueProperties {
                     }
                 }
             }
+            save();
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
@@ -51,7 +58,11 @@ public class RogueProperties {
         this.props=props;
         out = new String[props.length];
         try {
-            rp.createNewFile();
+            if(rp.createNewFile()){
+                for (String prop : props) {
+                    p.setProperty(prop, "0");
+                }
+            }
             try (FileInputStream inStream = new FileInputStream(rp)) {
                 p = new Properties();
                 p.load(inStream);
@@ -135,6 +146,7 @@ public class RogueProperties {
         } catch (Exception ex) {
             ex.printStackTrace(System.err);
         }
+        save();
         return out;
     }
     /**
@@ -142,8 +154,8 @@ public class RogueProperties {
      */
     private void save(){
         try {
-            try (FileOutputStream out = new FileOutputStream(rp)) {
-                p.store(out,"Properties settings");
+            try (FileOutputStream outs = new FileOutputStream(rp)) {
+                p.store(outs,"Properties settings");
             }
         } catch (IOException ex) {
             ex.printStackTrace(System.err);

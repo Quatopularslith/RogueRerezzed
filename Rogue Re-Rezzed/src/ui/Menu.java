@@ -20,7 +20,6 @@ public class Menu extends JFrame{
     
     public MainMenuPanel mmp;
     public OptionMenuPanel omp;
-//    public Display d;
     public DebugMPassword dmp;
     public StatMenu sm;
     public DebugMenu dm;
@@ -38,7 +37,7 @@ public class Menu extends JFrame{
     
     private final String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
     private final String[] defkeys = {"87","83","68","65","81","69"};
-    private final int[] propn;
+    private int[] propn = {87,83,68,65,81,69};
     /**
      * Creates and handles the menus of the game
      */
@@ -59,9 +58,21 @@ public class Menu extends JFrame{
         sx=getWidth();
         sy=getHeight();
         
+        omp = new OptionMenuPanel();
+        mmp = new MainMenuPanel();
+        dmp = new DebugMPassword();
+        sm = new StatMenu();
+        load = new Loading();
+        
+        bi=new ButtonInput();
+        ki=new KeyboardInput(propn);
+        mi=new MouseInput();
+        mbi=new MButtonInput();
+        
         rp = new RogueProperties("RogueConfig.properties",props);
-        if(rp.getSettings()==null){
-            Menu.rp.setData(defkeys);
+        if(rp.getSettings()[0].equals("0")){
+            System.out.println("first run");
+            rp.setData(defkeys);
             omp.fwdKB.setText("W");
             omp.backKB.setText("S");
             omp.rightKB.setText("D");
@@ -74,21 +85,7 @@ public class Menu extends JFrame{
         
         for(int i=0;i<rp.getSettings().length;i++){
             propn[i]=Integer.parseInt(rp.getSettings()[i]);
-            if(propn==null){
-                rp.addData(props[i], defkeys[i]);
-            }
         }
-        
-        bi=new ButtonInput();
-        ki=new KeyboardInput(propn);
-        mi=new MouseInput();
-        mbi=new MButtonInput();
-        
-        omp = new OptionMenuPanel();
-        mmp = new MainMenuPanel();
-        dmp = new DebugMPassword();
-        sm = new StatMenu();
-        load = new Loading();
         
         dmp.setVisible(false);
         omp.setVisible(false);
