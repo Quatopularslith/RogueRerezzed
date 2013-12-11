@@ -5,7 +5,8 @@ import dungeon.Level;
 import dungeon.Room;
 import entity.Direction;
 import entity.item.Item;
-import java.awt.Image;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import render.Sprite;
 
 /**
@@ -15,7 +16,7 @@ import render.Sprite;
 public class Trader extends RogueNPC{
     private final String[] dialogue = {"Hello Adventurer!","Looking for something?","Need a hand?","Hey dawg whaddup?","Hello Stranger!","Mortuus Trabajos owning you? I got what you need!"};
     private int[] prices;
-    public Image img;
+    public BufferedImage img = new BufferedImage(256,256,BufferedImage.TYPE_4BYTE_ABGR);
     public boolean trade;
     public Trader(Room r,Level l1) {
         super(l1);
@@ -30,15 +31,17 @@ public class Trader extends RogueNPC{
             prices[i]=inv[i].id+inv[i].lvl;
         }
         int say = rand.nextInt(dialogue.length);
-        img=(new Sprite("Dialogue",256).i);
-        int width = img.getGraphics().getFontMetrics().stringWidth(dialogue[say]);
-        img.getGraphics().drawString(dialogue[say], 256/2-width/2, 20);
+        img=la.createBufferedImage("Dialogue"+Level.renderlevel+".png", 256, 256);
+        Graphics g = img.getGraphics();
+        int width = g.getFontMetrics().stringWidth(dialogue[say]);
+        g.drawString(dialogue[say], 256/2-width/2, 20);
         width = img.getGraphics().getFontMetrics().stringWidth("Here is what I have:");
-        img.getGraphics().drawString("Here is what I have:", 256/2-width/2, 40);
+        g.drawString("Here is what I have:", 256/2-width/2, 40);
         for(int i=0;i<inv.length;i++){
             width = img.getGraphics().getFontMetrics().stringWidth(inv[i]+" for "+prices[i]+" gold");
-            img.getGraphics().drawString(inv[i]+" for "+prices[i]+" gold", 256/2-width/2, (i*20)+60);
+            g.drawString(inv[i]+" for "+prices[i]+" gold", 256/2-width/2, (i*20)+60);
         }
+        g.dispose();
         trade=false;
     }
     @Override
