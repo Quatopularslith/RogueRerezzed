@@ -47,7 +47,6 @@ public class Trader extends RogueNPC{
     @Override
     public void action(){
         GamePlay.trade=true;
-        System.out.println(GamePlay.trade);
     }
     @Override
     public void turn(){
@@ -75,7 +74,6 @@ public class Trader extends RogueNPC{
         }else{
             pdir=Direction.STOP;
         }
-//        System.out.println(((x-e.x)^2)+((y-e.y)^2));
         if(distTo(l.getPlayer())>2){
             GamePlay.trade=false;
         }

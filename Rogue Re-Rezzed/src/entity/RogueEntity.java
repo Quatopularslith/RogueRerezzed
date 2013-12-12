@@ -143,7 +143,6 @@ public class RogueEntity {
         if(ta>=0){
             health-=ta;
         }
-        System.out.println(ta);
     }
     /**
      * Updates Entity
