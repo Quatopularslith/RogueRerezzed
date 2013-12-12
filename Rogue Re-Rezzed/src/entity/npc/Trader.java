@@ -1,7 +1,6 @@
 
 package entity.npc;
 
-import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.Direction;
@@ -76,7 +75,7 @@ public class Trader extends RogueNPC{
         }else{
             pdir=Direction.STOP;
         }
-        System.out.println(((x-e.x)^2)+((y-e.y)^2));
+//        System.out.println(((x-e.x)^2)+((y-e.y)^2));
         if(distTo(l.getPlayer())>2){
             GamePlay.trade=false;
         }
