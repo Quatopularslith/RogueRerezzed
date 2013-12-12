@@ -3,13 +3,15 @@ package ui;
 
 import art.LoadArt;
 import core.Rogue;
+import dungeon.Level;
+import entity.player.Player;
 import input.MButton;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
 /**
- * 
+ * Just like Soren's Door
  * @author Mnenmenth
  */
 public class MainMenuPanel extends javax.swing.JPanel{
@@ -22,6 +24,8 @@ public class MainMenuPanel extends javax.swing.JPanel{
     MButton quit = new MButton(getWidth()/2-100,270,200,50,"Quit",this);
     public MainMenuPanel(){
         this.setVisible(true);
+        Rogue.setLevel(new Level(1));
+        Player.xplevels=1000;
         this.repaint();
     }
     @Override

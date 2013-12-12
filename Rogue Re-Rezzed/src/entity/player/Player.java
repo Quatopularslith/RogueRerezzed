@@ -67,6 +67,7 @@ public class Player extends RogueEntity{
             xplevels++;
             health=maxhealth;
             mana=maxMana;
+            updateStats();
         }
         for(int i=0;i<pinv.length;i++){
             if(pinv[i].name.equalsIgnoreCase("Empty")){
