@@ -1,10 +1,12 @@
 
 package entity.npc;
 
+import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.Direction;
 import entity.item.Item;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import ui.GamePlay;
@@ -26,26 +28,26 @@ public class Trader extends RogueNPC{
         health=maxhealth;
         inv=new Item[3];
         for(int i=0;i<inv.length;i++){
-            inv[i]=new Item(rand.nextInt(Item.numid),this,rand.nextInt(lvl),l1);
+            inv[i]=new Item(rand.nextInt(Item.numid),this,rand.nextInt((lvl)*10),l1);
             prices[i]=inv[i].id+inv[i].lvl;
         }
         int say = rand.nextInt(dialogue.length);
         img=la.createBufferedImage("Dialogue"+Level.renderlevel+".png", 256, 256);
         Graphics2D g = img.createGraphics();
         int width = g.getFontMetrics().stringWidth(dialogue[say]);
+        g.setColor(Color.BLACK);
         g.drawString(dialogue[say], 256/2-width/2, 20);
         width = g.getFontMetrics().stringWidth("Here is what I have:");
         g.drawString("Here is what I have:", 256/2-width/2, 40);
         for(int i=0;i<inv.length;i++){
-            width = g.getFontMetrics().stringWidth(inv[i]+" for "+prices[i]+" gold");
-            g.drawString(inv[i]+" for "+prices[i]+" gold", 256/2-width/2, (i*20)+60);
+            width = g.getFontMetrics().stringWidth(inv[i].name+" for "+prices[i]+" gold");
+            g.drawString(inv[i].name+" for "+prices[i]+" gold", 256/2-width/2, (i*20)+60);
         }
         g.dispose();
     }
     @Override
     public void action(){
         GamePlay.trade=true;
-        System.out.println("TRADE");
     }
     @Override
     public void turn(){

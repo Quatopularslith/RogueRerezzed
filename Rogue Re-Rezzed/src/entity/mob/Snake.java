@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package entity.mob;
 
@@ -16,6 +11,6 @@ import util.Operation;
  */
 public class Snake extends RogueHostileEntity{
     public Snake(int lvl,Room r,Level l1){
-        super(lvl,r,l1,"Snake",Operation.MULT,5,Operation.ADD,5,10);
+        super(lvl,r,l1,"Snake",Operation.MULT,5,Operation.ADD,1,10);
     }
 }

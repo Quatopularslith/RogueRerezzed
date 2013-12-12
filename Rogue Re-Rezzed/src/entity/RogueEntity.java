@@ -171,6 +171,6 @@ public class RogueEntity {
      * @return
      */
     public double distTo(RogueEntity e){
-        return Math.sqrt(((e.x-x)^2)+((e.y-y)^2));
+        return Math.sqrt(((x-e.x)^2)+((y-e.y)^2));
     }
 }

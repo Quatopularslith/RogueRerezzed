@@ -79,7 +79,6 @@ public class Level {
         if(numLevels==0){
             numLevels=1;
         }
-        Player.xplevels=1000;
         nument=0;
         int roomnum=0;
         board=new boolean[2*sx][2*sy];

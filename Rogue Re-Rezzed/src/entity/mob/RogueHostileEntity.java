@@ -205,7 +205,7 @@ public class RogueHostileEntity extends RogueEntity{
      * @return 
      */
     public boolean doatt(RogueEntity e){
-        return distTo(l.getPlayer())==1;
+        return (e.x-x<=1 && e.x-x>=-1) && (e.y-y<=1 && e.y-y>=-1);
     }
     @Override
     public void death(){
