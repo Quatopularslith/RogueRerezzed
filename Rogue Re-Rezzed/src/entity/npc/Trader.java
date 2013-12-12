@@ -5,9 +5,9 @@ import dungeon.Level;
 import dungeon.Room;
 import entity.Direction;
 import entity.item.Item;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import render.Sprite;
+import ui.GamePlay;
 
 /**
  *
@@ -15,9 +15,8 @@ import render.Sprite;
  */
 public class Trader extends RogueNPC{
     private final String[] dialogue = {"Hello Adventurer!","Looking for something?","Need a hand?","Hey dawg whaddup?","Hello Stranger!","Mortuus Trabajos owning you? I got what you need!"};
-    private int[] prices;
+    private final int[] prices;
     public BufferedImage img = new BufferedImage(256,256,BufferedImage.TYPE_4BYTE_ABGR);
-    public boolean trade;
     public Trader(Room r,Level l1) {
         super(l1);
         this.prices = new int[3];
@@ -32,25 +31,24 @@ public class Trader extends RogueNPC{
         }
         int say = rand.nextInt(dialogue.length);
         img=la.createBufferedImage("Dialogue"+Level.renderlevel+".png", 256, 256);
-        Graphics g = img.getGraphics();
+        Graphics2D g = img.createGraphics();
         int width = g.getFontMetrics().stringWidth(dialogue[say]);
         g.drawString(dialogue[say], 256/2-width/2, 20);
-        width = img.getGraphics().getFontMetrics().stringWidth("Here is what I have:");
+        width = g.getFontMetrics().stringWidth("Here is what I have:");
         g.drawString("Here is what I have:", 256/2-width/2, 40);
         for(int i=0;i<inv.length;i++){
-            width = img.getGraphics().getFontMetrics().stringWidth(inv[i]+" for "+prices[i]+" gold");
+            width = g.getFontMetrics().stringWidth(inv[i]+" for "+prices[i]+" gold");
             g.drawString(inv[i]+" for "+prices[i]+" gold", 256/2-width/2, (i*20)+60);
         }
         g.dispose();
-        trade=false;
     }
     @Override
     public void action(){
-        trade=true;
+        GamePlay.trade=true;
+        System.out.println("TRADE");
     }
     @Override
     public void turn(){
-        trade=false;
         Direction pdir;
         boolean b = rand.nextBoolean();
         int d = rand.nextInt(3);
@@ -74,6 +72,9 @@ public class Trader extends RogueNPC{
             }
         }else{
             pdir=Direction.STOP;
+        }
+        if(distTo(l.getPlayer())>1){
+            GamePlay.trade=false;
         }
         move(pdir);
     }

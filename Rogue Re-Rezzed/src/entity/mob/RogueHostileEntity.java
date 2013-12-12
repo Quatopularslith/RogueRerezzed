@@ -20,7 +20,6 @@ import util.Vector2i;
  */
 public class RogueHostileEntity extends RogueEntity{
     public int followdist;
-    private Direction last=Direction.DOWN;
     /**
      * creates new entity
      * @param lvl
@@ -206,12 +205,7 @@ public class RogueHostileEntity extends RogueEntity{
      * @return 
      */
     public boolean doatt(RogueEntity e){
-        int dx = Math.abs(x-e.x);
-        int dy = Math.abs(y-e.y);
-        boolean bx = dx==1 || dx==0;
-        boolean by = dy==1 || dy==0;
-        boolean out = (bx && by);
-        return out;
+        return distTo(l.getPlayer())==1;
     }
     @Override
     public void death(){

@@ -13,7 +13,6 @@ import entity.player.Player;
 import input.MButton;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -45,7 +44,7 @@ public class GamePlay extends JPanel{
     public MButton[] drop = new MButton[10];
     public MButton quit = new MButton(650,460,100,30,"Quit",this);
     public MButton settings  = new MButton(650,460,100,30,"Settings",this);
-    private boolean trade;
+    public static boolean trade;
     private Image tradeimg;
     public GamePlay(){
         l=Rogue.getLevel();
@@ -142,7 +141,6 @@ public class GamePlay extends JPanel{
                 g2.drawString(Integer.toString(current.get(i).lvl), current.get(i).x*64+offx+59, current.get(i).y*64+offy+53);
                 if(current.get(i) instanceof Trader){
                     Trader t = (Trader) current.get(i);
-                    trade=t.trade;
                     tradeimg=t.img;
                 }
             }
