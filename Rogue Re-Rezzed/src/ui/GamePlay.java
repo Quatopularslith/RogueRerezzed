@@ -89,9 +89,6 @@ public class GamePlay extends JPanel{
                 }
             }
         }
-        if(trade){
-            trade=false;
-        }
         repaint();
         if(Player.dead){
             Rogue.mm.mmp.setVisible(false);
