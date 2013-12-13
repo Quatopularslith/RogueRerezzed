@@ -23,8 +23,13 @@ public class Astar {
     private static final Comparator<Node> nodeSort = new Comparator<Node>(){
         @Override
         public int compare(Node n0,Node n1){
-            if(n1.fCost<n0.fCost) return +1;
-            if(n1.fCost>n0.fCost) return -1;
+            if(n1.fCost<n0.fCost){
+                return -1;
+            }else if(n1.fCost>n0.fCost){
+                return +1;
+            }else{
+                System.out.println("0.o");
+            }
             return 0;
         }
     };
@@ -33,6 +38,7 @@ public class Astar {
         List<Node> closedList = new ArrayList<>();
         Node current = new Node(start,null,0,getDist(start,goal));
         openList.add(current);
+        System.out.println("GO A*, GO!");
         while(openList.size()>0){
             Collections.sort(openList, nodeSort);
             current = openList.get(0);
@@ -44,6 +50,7 @@ public class Astar {
                 }
                 openList.clear();
                 closedList.clear();
+                System.out.println("Great Finish Guys!");
                 return path;
             }
             openList.remove(current);
@@ -55,13 +62,14 @@ public class Astar {
                 xi = (i%3)-1;
                 yi = (i/3)-1;
                 if(x+xi<0 || y+yi<0) continue;
-                if(Rogue.getLevel().board[x+xi][y+yi]) continue;
+                if(x+xi>Rogue.getLevel().board.length || y+yi>Rogue.getLevel().board.length) continue;
+                if(!Rogue.getLevel().board[x+xi][y+yi]) continue;
                 a = new Vector2i(x+xi,y+yi);
                 gCost = current.gCost + getDist(current.tile,a);
                 hCost = getDist(a,goal);
                 node = new Node(a,current, gCost, hCost);
-                if(vecInList(closedList,a) /*&& gCost>=current.gCost*/) continue;
-                if(!vecInList(openList,a) /*|| gCost<current.gCost*/) openList.add(node);
+                if(vecInList(closedList,a) && gCost>=current.gCost) continue;
+                if(!vecInList(openList,a) || gCost<current.gCost) openList.add(node);
             }
         }
         closedList.clear();

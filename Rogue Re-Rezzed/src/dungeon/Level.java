@@ -124,7 +124,8 @@ public class Level {
         MortuusTrabajos mt = new MortuusTrabajos(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(mt);
         
-        Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
+//        Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
+        Quatopularslith qt = new Quatopularslith(lvl,this.rooms[0],this);
         this.addEntity(qt);
         
         Trader t = new Trader(this.rooms[rand.nextInt(rooms.length)],this);
