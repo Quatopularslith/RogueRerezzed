@@ -1,12 +1,16 @@
 package dungeon;
 
+import art.LoadArt;
+import core.Rogue;
 import entity.RogueEntity;
 import entity.Stairway;
 import entity.item.Item;
 import entity.mob.MortuusTrabajos;
 import entity.mob.Quatopularslith;
 import entity.npc.Trader;
+import entity.npc.Warrior;
 import entity.player.Player;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -26,6 +30,7 @@ public class Level {
     private static int rows=10,cols=10;
     private Stairway st;
     private int nument=0;
+    private LoadArt la = new LoadArt();
     /**
      * multiple of 16
      */
@@ -74,6 +79,8 @@ public class Level {
      * @param lvl the level of difficulty
      */
     public Level(int sx,int sy,int lvl){
+        Image s = la.createBufferedImage("Quatopularslith"+renderlevel+".png", 64, 64);
+        Rogue.mm.setIconImage(s);
         Player.dead=false;
         numLevels++;
         if(numLevels==0){
@@ -124,16 +131,15 @@ public class Level {
         MortuusTrabajos mt = new MortuusTrabajos(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(mt);
         
-//        Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
-        Quatopularslith qt = new Quatopularslith(lvl,this.rooms[0],this);
+        Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
         
         Trader t = new Trader(this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(t);
         
-        for (Item pinv1 : Player.pinv) {
-            pinv1.setParent(p);
-        }
+        Warrior w = new Warrior(this);
+        this.addEntity(w);
+        
         p.updateStats();
     }
     /**

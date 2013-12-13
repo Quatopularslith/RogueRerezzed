@@ -23,14 +23,11 @@ public class Astar {
     private static final Comparator<Node> nodeSort = new Comparator<Node>(){
         @Override
         public int compare(Node n0,Node n1){
-            if(n1.fCost<n0.fCost){
+            if(n1.fCost<=n0.fCost){
                 return -1;
-            }else if(n1.fCost>n0.fCost){
-                return +1;
             }else{
-                System.out.println("0.o");
+                return +1;
             }
-            return 0;
         }
     };
     public static List<Node> findPath(Vector2i start,Vector2i goal){
@@ -38,9 +35,13 @@ public class Astar {
         List<Node> closedList = new ArrayList<>();
         Node current = new Node(start,null,0,getDist(start,goal));
         openList.add(current);
-        System.out.println("GO A*, GO!");
+        System.out.println("A*, I choose you!");
         while(openList.size()>0){
-            Collections.sort(openList, nodeSort);
+            try{
+                Collections.sort(openList, nodeSort);
+            }catch(Exception ex){
+                return null;
+            }
             current = openList.get(0);
             if(current.tile.equals(goal)){
                 List<Node> path = new ArrayList<>();

@@ -59,15 +59,15 @@ public class Player extends RogueEntity{
         if(health<=0){
             dead=true;
         }else if(health<maxhealth){
-            health+=0.1*xplevels;
+            health+=0.5*xplevels;
         }
         if(xplevels==0) xplevels = 1;
         if(xp%(10*xplevels)==0 && xp>1){
+            updateStats();
             xp=0;
             xplevels++;
             health=maxhealth;
             mana=maxMana;
-            updateStats();
         }
         for(int i=0;i<pinv.length;i++){
             if(pinv[i].name.equalsIgnoreCase("Empty")){
@@ -205,6 +205,7 @@ public class Player extends RogueEntity{
         boolean curr=false;
         for (int i=0;i<pinv.length;i++) {
             if(pinv[i]!=null){
+                pinv[i].setParent(this);
                 if(pinv[i].name.equalsIgnoreCase("EMPTY") && !curr){
                     currinv=i;
                     curr=true;

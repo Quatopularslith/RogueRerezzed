@@ -205,8 +205,7 @@ public class RogueHostileEntity extends RogueEntity{
      * @return 
      */
     public boolean doatt(RogueEntity e){
-//        return (e.x-x<=1 && e.x-x>=-1) && (e.y-y<=1 && e.y-y>=-1);
-        return ((e.x-x)==0 && (e.y-y)>=-1 && (e.y-y)<=1) || ((e.y-y)==0 && (e.x-x)>=-1 && (e.x-x)<=1);
+        return distTo(e)<=1;
     }
     @Override
     public void death(){
