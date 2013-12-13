@@ -1,6 +1,7 @@
 
 package entity;
 
+import core.Rogue;
 import dungeon.Room;
 import java.util.Random;
 
@@ -8,14 +9,17 @@ import java.util.Random;
  *
  * @author Torri
  */
-public class Spawner {
+public class Spawner {      
+    
     /**
      * spawns stuff
      * @param am
      * @param lvl
      * @param r 
      */
+
     public static void spawner(int am,int lvl,Room r){
+
         RogueEntity e = new RogueEntity(r.l);
         Random rand = new Random();
         int type;

@@ -2,6 +2,7 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
+import entity.RogueEntity;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import ui.DebugMenu;
@@ -63,6 +64,7 @@ public class ButtonInput implements ActionListener{
             String pass = ui.DebugMPassword.dmpass.getText();
             if(pass.equalsIgnoreCase("JigglyMuffin")){
                 Rogue.mm.dm = new DebugMenu();
+                Rogue.mm.dm.chooseEntitySpawnBtn.addActionListener(this);
                 Rogue.mm.dmp.setVisible(false);
                 Rogue.mm.omp.setVisible(true);
             }else{
@@ -71,10 +73,60 @@ public class ButtonInput implements ActionListener{
             }
         }
         if(command.equalsIgnoreCase("Spawn Entity")){
-            Rogue.mm.dm.chooseEntitySpawn.getSelectedItem();
+            int item;
+            item = Rogue.mm.dm.chooseEntitySpawn.getSelectedIndex();
+
+            RogueEntity e1 = new RogueEntity(Rogue.getLevel());
+            switch(item){
+                case 0:
+                    e1 = new entity.mob.Snake(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
+                    e1.x=Rogue.getLevel().getPlayer().x+1;
+                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    break;
+                case 1:
+                    e1 = new entity.mob.Bandit(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
+                    e1.x=Rogue.getLevel().getPlayer().x+1;
+                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    break;
+                case 2:
+                    e1 = new entity.mob.Fish(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
+                    e1.x=Rogue.getLevel().getPlayer().x+1;
+                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    break;
+                case 3:
+                    e1 = new entity.mob.MortuusTrabajos(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
+                    e1.x=Rogue.getLevel().getPlayer().x+1;
+                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    break;
+                case 4:                    
+                    e1 = new entity.mob.Quatopularslith(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
+                    e1.x=Rogue.getLevel().getPlayer().x+1;
+                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    break;
+                case 5:
+                    e1 = new entity.mob.Goblin(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
+                    e1.x=Rogue.getLevel().getPlayer().x+1;
+                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    break;
+                case 6:
+                    e1 = new entity.npc.Trader(Rogue.getLevel().getRoom(0), Rogue.getLevel());
+                    e1.x=Rogue.getLevel().getPlayer().x+1;
+                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    break;
+//                case 7:
+//                    e1 = new entity.npc.Warrior(Rogue.getLevel().getRoom(0), Rogue.getLevel());
+//                    e1.x=Rogue.getLevel().getPlayer().x+1;
+//                    e1.y=Rogue.getLevel().getPlayer().y+1;
+//                    break;
+            }
+            System.out.println(item);
+            Rogue.getLevel().addEntity(e1);
+            Rogue.mm.gp.update();
         }
         if(command.equalsIgnoreCase("Spawn Item")){
-            Rogue.mm.dm.chooseItemSpawn.getSelectedItem();
+            int item;
+            item = Rogue.mm.dm.chooseItemSpawn.getSelectedIndex();
+            
         }
         if(command.equalsIgnoreCase("Generate")){
             Rogue.setLevel(new Level());
