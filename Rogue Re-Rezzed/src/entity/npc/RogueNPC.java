@@ -2,6 +2,7 @@
 package entity.npc;
 
 import dungeon.Level;
+import dungeon.Room;
 import entity.Direction;
 import entity.RogueEntity;
 import render.Sprite;
@@ -16,13 +17,14 @@ public class RogueNPC extends RogueEntity{
      * Creates NPC
      * @param l1 
      */
-    public RogueNPC(Level l1) {
+    public RogueNPC(Room r,Level l1) {
         super(l1);
+        spawn(r);
         sp=new Sprite("Player");
+        health=100;
+        lvl=Level.numLevels;
     }
-    public void action(){
-        
-    }
+    public void action(){}
     @Override
     public void turn(){
         Direction pdir;

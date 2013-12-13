@@ -2,6 +2,7 @@
 package entity.npc;
 
 import dungeon.Level;
+import dungeon.Room;
 import entity.Direction;
 import entity.RogueEntity;
 
@@ -11,12 +12,21 @@ import entity.RogueEntity;
  */
 public class Warrior extends RogueNPC{
     RogueEntity follow;
-    public Warrior(Level l1) {
-        super(l1);
+    public Warrior(Room r,Level l1) {
+        super(r,l1);
+        maxAtt=10;
+        maxhealth=1;
+        health=1;
     }
     @Override
     public void turn(){
         for(RogueEntity re : l.getEntities()){
+            if(re==null || re.equals(this)){
+                continue;
+            }
+            if(follow==null){
+                follow=re;
+            }
             if(distTo(re)<distTo(follow)){
                 follow=re;
             }
@@ -27,5 +37,8 @@ public class Warrior extends RogueNPC{
         if(y<follow.y)pdir = Direction.DOWN;
         if(y>follow.y)pdir =Direction.UP;
         move(pdir);
+        if(distTo(follow)<=1){
+            follow.damage(this);
+        }
     }
 }

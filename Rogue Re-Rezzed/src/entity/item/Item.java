@@ -114,6 +114,7 @@ public class Item extends RogueEntity{
     public void setParent(RogueEntity e){
         parent=e;
         l=e.l;
+        sp = new Sprite("Bag",16);
     }
     @Override
     public void death(){

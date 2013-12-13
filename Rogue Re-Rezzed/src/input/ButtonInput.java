@@ -65,6 +65,8 @@ public class ButtonInput implements ActionListener{
             if(pass.equalsIgnoreCase("JigglyMuffin")){
                 Rogue.mm.dm = new DebugMenu();
                 Rogue.mm.dm.chooseEntitySpawnBtn.addActionListener(this);
+                Rogue.mm.dm.chooseItemSpawnBtn.addActionListener(this);
+                Rogue.mm.dm.chooseLvlBtn.addActionListener(this);
                 Rogue.mm.dmp.setVisible(false);
                 Rogue.mm.omp.setVisible(true);
             }else{
@@ -113,13 +115,12 @@ public class ButtonInput implements ActionListener{
                     e1.x=Rogue.getLevel().getPlayer().x+1;
                     e1.y=Rogue.getLevel().getPlayer().y+1;
                     break;
-//                case 7:
-//                    e1 = new entity.npc.Warrior(Rogue.getLevel().getRoom(0), Rogue.getLevel());
-//                    e1.x=Rogue.getLevel().getPlayer().x+1;
-//                    e1.y=Rogue.getLevel().getPlayer().y+1;
-//                    break;
+                case 7:
+                    e1 = new entity.npc.Warrior(Rogue.getLevel().getRoom(0), Rogue.getLevel());
+                    e1.x=Rogue.getLevel().getPlayer().x+1;
+                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    break;
             }
-            System.out.println(item);
             Rogue.getLevel().addEntity(e1);
             Rogue.mm.gp.update();
         }

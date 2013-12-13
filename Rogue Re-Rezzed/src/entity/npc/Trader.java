@@ -19,9 +19,8 @@ public class Trader extends RogueNPC{
     private final int[] prices;
     public BufferedImage img = new BufferedImage(256,256,BufferedImage.TYPE_4BYTE_ABGR);
     public Trader(Room r,Level l1) {
-        super(l1);
+        super(r,l1);
         this.prices = new int[3];
-        spawn(r);
         lvl=Level.numLevels;
         maxhealth=10000;
         health=maxhealth;
