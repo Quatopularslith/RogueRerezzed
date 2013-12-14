@@ -35,6 +35,7 @@ public class MButtonInput {
             backtogame=false;
         }
         if(command.equalsIgnoreCase("Quit") && parent==Rogue.mm.mmp){
+            if(Rogue.mm.dm!=null) Rogue.mm.dm.dispose();
             Rogue.mm.dispose();
         }
         //Navigation Buttons
@@ -64,6 +65,12 @@ public class MButtonInput {
             Rogue.mm.gp.update();
             refresh(Rogue.mm.gp);
         }
+        //Trade
+        for(int i=0;i<3;i++){
+            if(command.equalsIgnoreCase("Trade"+i)){
+                
+            }
+        }
         //Inventory
         for(int i=0;i<Rogue.mm.gp.equip.length;i++){
             if(command.equalsIgnoreCase("Drop"+i) && parent==Rogue.mm.gp){
@@ -73,6 +80,7 @@ public class MButtonInput {
                 Rogue.mm.gp.update();
             }
             if(command.equalsIgnoreCase("Equip"+i) && parent==Rogue.mm.gp){
+                if(Player.pinv[i].equip) continue;
                 Player.pinv[i].equip=true;
                 Rogue.getLevel().getPlayer().updateStats();
                 Rogue.mm.gp.update();

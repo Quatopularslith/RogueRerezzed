@@ -17,6 +17,7 @@ import ui.GamePlay;
 public class Trader extends RogueNPC{
     private final String[] dialogue = {"Hello Adventurer!","Looking for something?","Need a hand?","Hey dawg whaddup?","Hello Stranger!","Mortuus Trabajos owning you? I got what you need!"};
     private final int[] prices;
+    public int[][] buttons = new int[3][2];
     public BufferedImage img = new BufferedImage(256,256,BufferedImage.TYPE_4BYTE_ABGR);
     public Trader(Room r,Level l1) {
         super(r,l1);
@@ -40,6 +41,8 @@ public class Trader extends RogueNPC{
         for(int i=0;i<inv.length;i++){
             width = g.getFontMetrics().stringWidth(inv[i].name+" for "+prices[i]+" gold");
             g.drawString(inv[i].name+" for "+prices[i]+" gold", 256/2-width/2, (i*20)+60);
+            buttons[i][0]=256/2-width/2+2;
+            buttons[i][1]=(i*20)+60;
         }
         g.dispose();
     }

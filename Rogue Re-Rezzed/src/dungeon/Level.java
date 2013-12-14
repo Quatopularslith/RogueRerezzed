@@ -135,13 +135,13 @@ public class Level {
         this.addEntity(qt);
         
         Trader t = new Trader(this.rooms[rand.nextInt(rooms.length)],this);
+//        Trader t = new Trader(this.rooms[0],this);
         this.addEntity(t);
         
         Warrior w = new Warrior(this.rooms[rand.nextInt(rooms.length)], this);
         this.addEntity(w);
         
         p.updateStats();
-        System.out.println(numLevels);
     }
     /**
      * Gets Room Array

@@ -44,8 +44,9 @@ public class GamePlay extends JPanel{
     public MButton[] drop = new MButton[10];
     public MButton quit = new MButton(650,460,100,30,"Quit",this);
     public MButton settings  = new MButton(650,460,100,30,"Settings",this);
+    public MButton[] tradeMB = new MButton[3];
     public static boolean trade;
-    private Image tradeimg;
+    public Trader currTrade;
     public GamePlay(){
         l=Rogue.getLevel();
         if(l!=null){
@@ -61,6 +62,11 @@ public class GamePlay extends JPanel{
             equip[i].setData(Integer.toString(i));
             drop[i]=new MButton(750-(int) (0.25*750)+60,(int) (((i)*(0.032*500))+(int) (0.3515625*500)+74),50,10,"Drop",this);
             drop[i].setData(Integer.toString(i));
+        }
+        for(int i=0;i<3;i++){
+            tradeMB[i]=new MButton(5,5,50,10,"Trade",this);
+            tradeMB[i].setData(Integer.toString(i));
+            tradeMB[i].hide();
         }
         this.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
     }
@@ -142,7 +148,11 @@ public class GamePlay extends JPanel{
                 g2.drawString(Integer.toString(current.get(i).lvl), current.get(i).x*64+offx+59, current.get(i).y*64+offy+53);
                 if(current.get(i) instanceof Trader){
                     Trader t = (Trader) current.get(i);
-                    tradeimg=t.img;
+                    if(trade){
+                        currTrade=t;
+                    }else{
+                        currTrade=null;
+                    }
                 }
             }
         }
@@ -157,7 +167,7 @@ public class GamePlay extends JPanel{
         if(pickup==null){
             pickup = new Item(0,Rogue.getLevel().getPlayer(),0,Rogue.getLevel());
         }
-        if(pickup.name.equalsIgnoreCase("Empty")==false){
+        if(!pickup.name.equalsIgnoreCase("Empty")){
             amb.setParent(this);
             dmb.setParent(this);
             g2.setColor(Color.BLACK);
@@ -175,7 +185,12 @@ public class GamePlay extends JPanel{
         }
         //Trade
         if(trade){
-            g2.drawImage(tradeimg, getWidth()/2-96, getHeight()/2-96, this);
+            g2.drawImage(currTrade.img, getWidth()/2-96, getHeight()/2-96, this);
+//            for(int i=0;i<tradeMB.length;i++){
+//                tradeMB[i].setPos(currTrade.buttons[i][0]+getWidth()/2-96, currTrade.buttons[i][1]+getHeight()/2-96, 100, 12);
+//                tradeMB[i].addListener(Rogue.mm.mbi);
+//                g2.drawImage(tradeMB[i].img, tradeMB[i].x,tradeMB[i].y, this);
+//            }
         }
         //Map
         g2.setColor(Color.BLACK);
