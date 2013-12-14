@@ -95,7 +95,6 @@ public class GamePlay extends JPanel{
             Rogue.mm.omp.setVisible(false);
             this.setVisible(false);
             Rogue.mm.sm.setVisible(true);
-            Level.numLevels=0;
         }
     }
     void setReletiveTo(RogueEntity e){
@@ -122,6 +121,7 @@ public class GamePlay extends JPanel{
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
+                    if(area1[0]*64+offx<=-64 || area1[0]*64+offx>=getWidth() || area1[1]*64+offy<=-64 || area1[1]>=getHeight()) continue;
                     g2.drawImage(fsp.i, area1[0]*64+offx,area1[1]*64+offy, this);
                 }
             }
@@ -132,6 +132,7 @@ public class GamePlay extends JPanel{
         }
         for (int i=0;i<current.size();i++) {
             if(current.get(i)!=null){
+                if(current.get(i).x*64+offx<=-64 || current.get(i).x*64+offx>=getWidth() || current.get(i).y*64+offy<=-64 || current.get(i).y>=getHeight()) continue;
                 g2.setColor(Color.RED);
                 g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-15, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
                 g2.setColor(Color.WHITE);

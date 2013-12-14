@@ -3,6 +3,8 @@ package input;
 import core.Rogue;
 import dungeon.Level;
 import entity.RogueEntity;
+import entity.item.Item;
+import entity.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import ui.DebugMenu;
@@ -127,7 +129,19 @@ public class ButtonInput implements ActionListener{
         if(command.equalsIgnoreCase("Spawn Item")){
             int item;
             item = Rogue.mm.dm.chooseItemSpawn.getSelectedIndex();
-            
+            switch(item){
+                case 0:
+                    Player.pinv[Player.currinv]=new Item(3,Rogue.getLevel().getPlayer(),10,Rogue.getLevel());
+                    break;
+                case 1:
+                    Player.pinv[Player.currinv]=new Item(1,Rogue.getLevel().getPlayer(),10,Rogue.getLevel());
+                    break;
+                case 2:
+                    Player.pinv[Player.currinv]=new Item(2,Rogue.getLevel().getPlayer(),10,Rogue.getLevel());
+                    break;
+            }
+            Rogue.getLevel().getPlayer().updateStats();
+            Rogue.mm.gp.update();
         }
         if(command.equalsIgnoreCase("Generate")){
             Rogue.setLevel(new Level());

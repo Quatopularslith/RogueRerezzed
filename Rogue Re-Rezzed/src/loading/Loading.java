@@ -61,7 +61,7 @@ public class Loading extends JPanel{
             g2.draw(new Ellipse2D.Double(((0-r)*Math.sin(newTheta))+cX, (r*Math.cos(newTheta))+cY, nr, nr));
         }
         g2.setColor(Color.RED);
-        g2.drawString("Quotopulularslith", scx-10, scy);
+        g2.drawString("Quatopulularslith", scx-10, scy);
         g2.drawString("Studios",scx+15,scy+15);
         g2.dispose();
     }

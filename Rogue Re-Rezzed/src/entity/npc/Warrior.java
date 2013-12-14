@@ -3,8 +3,9 @@ package entity.npc;
 
 import dungeon.Level;
 import dungeon.Room;
-import entity.Direction;
+import util.Direction;
 import entity.RogueEntity;
+import entity.mob.RogueHostileEntity;
 
 /**
  *
@@ -21,10 +22,13 @@ public class Warrior extends RogueNPC{
     @Override
     public void turn(){
         for(RogueEntity re : l.getEntities()){
-            if(re==null || re.equals(this)){
+            if(re==null || re.equals(this) || !(re instanceof RogueHostileEntity)){
                 continue;
             }
             if(follow==null){
+                follow=re;
+            }
+            if(follow.health<=0){
                 follow=re;
             }
             if(distTo(re)<distTo(follow)){

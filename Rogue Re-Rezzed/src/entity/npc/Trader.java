@@ -3,7 +3,7 @@ package entity.npc;
 
 import dungeon.Level;
 import dungeon.Room;
-import entity.Direction;
+import util.Direction;
 import entity.item.Item;
 import java.awt.Color;
 import java.awt.Graphics2D;

@@ -3,7 +3,7 @@ package entity.player;
 import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
-import entity.Direction;
+import util.Direction;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
@@ -59,7 +59,7 @@ public class Player extends RogueEntity{
         if(health<=0){
             dead=true;
         }else if(health<maxhealth){
-            health+=0.5*xplevels;
+            health+=0.1*xplevels;
         }
         if(xplevels==0) xplevels = 1;
         if(xp%(10*xplevels)==0 && xp>1){

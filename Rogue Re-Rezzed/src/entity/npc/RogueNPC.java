@@ -3,7 +3,7 @@ package entity.npc;
 
 import dungeon.Level;
 import dungeon.Room;
-import entity.Direction;
+import util.Direction;
 import entity.RogueEntity;
 import render.Sprite;
 

@@ -24,23 +24,27 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="212" max="32767" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="268" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="215" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="chooseEntitySpawnBtn" max="32767" attributes="0"/>
-                  <Component id="chooseEntitySpawn" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <EmptySpace pref="217" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="chooseItemSpawn" min="-2" max="-2" attributes="0"/>
-                  <Component id="chooseItemSpawnBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="83" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace pref="8" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="chooseEntitySpawnBtn" max="32767" attributes="0"/>
+                          <Component id="chooseEntitySpawn" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="chooseItemSpawn" min="-2" max="-2" attributes="0"/>
+                          <Component id="chooseItemSpawnBtn" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="9" max="32767" attributes="0"/>
+                      <Component id="chooseLvlBtn" min="-2" pref="96" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="chooseLvlBtn" min="-2" pref="96" max="-2" attributes="0"/>
               <EmptySpace pref="180" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -48,7 +52,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="118" max="32767" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -61,7 +65,7 @@
                   <Component id="chooseLvlBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="chooseItemSpawnBtn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="291" max="32767" attributes="0"/>
+              <EmptySpace pref="184" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -113,12 +117,10 @@
     <Component class="javax.swing.JComboBox" name="chooseItemSpawn">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Broken Stick"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Sword"/>
             <StringItem index="1" value="Axe"/>
-            <StringItem index="2" value="Magical Axe"/>
-            <StringItem index="3" value="Pickaxe"/>
-            <StringItem index="4" value="Magical Pickaxe"/>
+            <StringItem index="2" value="Sheild"/>
           </StringArray>
         </Property>
       </Properties>

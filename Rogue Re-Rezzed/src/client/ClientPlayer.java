@@ -4,7 +4,7 @@ package client;
 import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
-import entity.Direction;
+import util.Direction;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;

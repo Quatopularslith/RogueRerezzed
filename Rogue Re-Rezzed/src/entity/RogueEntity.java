@@ -1,5 +1,6 @@
 package entity;
 
+import util.Direction;
 import art.LoadArt;
 import dungeon.Level;
 import dungeon.Room;

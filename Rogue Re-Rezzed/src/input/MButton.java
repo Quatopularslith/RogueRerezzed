@@ -68,6 +68,8 @@ public class MButton {
         if(mx>x+8 && mx<x+sx && my>y && my<y+sy && parent.isVisible() && visible){
             if(data!=null) mbi.clicked(name+data,parent);
             if(data==null) mbi.clicked(name,parent);
+        }else{
+            return;
         }
     }
     public void setPos(int x1,int y1,int sx1,int sy1){
