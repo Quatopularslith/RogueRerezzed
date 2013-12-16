@@ -4,11 +4,22 @@ package core;
  * @author Torri
  */
 public class GameLoop{
-    static GameThread gt = new GameThread();
+    static Thread t = null;
+    static GameThread gt = null;
     public static void start(){
-        gt.start();
+        gt = new GameThread();
+        gt.running=true;
+        t=new Thread(gt);
+        t.start();
     }
     public static void pause(){
-        gt.running=false;
+        if(t!=null){
+            try {
+                gt.running=false;
+                t.join();
+            } catch (InterruptedException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
     }
 }

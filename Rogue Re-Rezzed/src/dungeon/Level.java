@@ -1,6 +1,7 @@
 package dungeon;
 
 import art.LoadArt;
+import core.GameLoop;
 import core.Rogue;
 import entity.RogueEntity;
 import entity.Stairway;
@@ -89,6 +90,7 @@ public class Level {
         if(lvl==0){
             lvl=1;
         }
+        GameLoop.pause();
         mode=mode1;
         type=type1;
         nument=0;
@@ -169,6 +171,10 @@ public class Level {
         Warrior w = new Warrior(this.rooms[rand.nextInt(rooms.length)], this);
         this.addEntity(w);
         
+        //Non-turn-based
+        if(type1==LevelType.EVOLVED){
+            GameLoop.start();
+        }
         //Favicon
         Image s = la.createBufferedImage("Quatopularslith"+renderlevel+".png", 64, 64);
         Rogue.mm.setIconImage(s);

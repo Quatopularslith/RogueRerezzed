@@ -1,8 +1,8 @@
 
 package input;
 
+import core.GameLoop;
 import core.Rogue;
-import dungeon.Level;
 import dungeon.LevelMode;
 import dungeon.LevelType;
 import entity.item.Item;
@@ -19,12 +19,8 @@ public class MButtonInput {
     public void clicked(String command,Component parent){
         //Main Menu Code
         if(command.equalsIgnoreCase("New Game") && parent==Rogue.mm.mmp){
-            Rogue.numLevels=0;
-            Rogue.setLevel(LevelMode.STORY,LevelType.TURN,0);
             Rogue.mm.mmp.setVisible(false);
-            Rogue.mm.omp.setVisible(false);
-            Rogue.mm.gp.setVisible(true);
-            Rogue.mm.gp.update();
+            Rogue.mm.ngp.setVisible(true);
             return;
         }
         if(command.equalsIgnoreCase("Options") && parent==Rogue.mm.mmp){
@@ -34,9 +30,29 @@ public class MButtonInput {
             return;
         }
         if(command.equalsIgnoreCase("Quit") && parent==Rogue.mm.mmp){
+            GameLoop.pause();
             if(Rogue.mm.dm!=null) Rogue.mm.dm.dispose();
             Rogue.mm.dispose();
             return;
+        }
+        //New Game Panel
+        if(command.equalsIgnoreCase("Turn-Based Story mode")){
+            Rogue.resetLevels();
+            Rogue.setLevel(LevelMode.STORY, LevelType.TURN, 0);
+            Rogue.mm.ngp.setVisible(false);
+            Rogue.mm.gp.setVisible(true);
+            Rogue.mm.gp.update();
+        }
+        if(command.equalsIgnoreCase("Evolved Story mode")){
+            Rogue.resetLevels();
+            Rogue.setLevel(LevelMode.STORY, LevelType.EVOLVED, 0);
+            Rogue.mm.ngp.setVisible(false);
+            Rogue.mm.gp.setVisible(true);
+            Rogue.mm.gp.update();
+        }
+        if(command.equalsIgnoreCase("Back")){
+            Rogue.mm.ngp.setVisible(false);
+            Rogue.mm.mmp.setVisible(true);
         }
         //Navigation Buttons
         if(command.equalsIgnoreCase("quit") && parent==Rogue.mm.gp){

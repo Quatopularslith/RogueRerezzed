@@ -9,6 +9,7 @@ import input.MouseInput;
 import java.awt.Image;
 import javax.swing.JFrame;
 import loading.Loading;
+import music.LoadMusic;
 import util.RogueProperties;
 
 /**
@@ -24,6 +25,7 @@ public class Menu extends JFrame{
     public StatMenu sm;
     public DebugMenu dm;
     public Loading load;
+    public NewGamePanel ngp;
     
     public KeyboardInput ki;
     public ButtonInput bi;
@@ -50,6 +52,8 @@ public class Menu extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        LoadMusic.playSound("Souls_of_Nephilims_-_01_-_Act_I_Melancolique_Masquerade.mp3");
+        
         Image ico = la.createBufferedImage("Quatopularslith16.png", 16, 16);
         this.setIconImage(ico);
         
@@ -63,6 +67,7 @@ public class Menu extends JFrame{
         dmp = new DebugMPassword();
         sm = new StatMenu();
         load = new Loading();
+        ngp = new NewGamePanel();
         
         bi=new ButtonInput();
         ki=new KeyboardInput(propn);
@@ -91,6 +96,7 @@ public class Menu extends JFrame{
         omp.setVisible(false);
         mmp.setVisible(false);
         sm.setVisible(false);
+        ngp.setVisible(false);
         load.setVisible(true);
         
         gp = new GamePlay();
@@ -102,6 +108,7 @@ public class Menu extends JFrame{
         omp.setSize(750, 500);
         mmp.setSize(750, 500);
         sm.setSize(750, 500);
+        ngp.setSize(750, 500);
         
         this.add(dmp);
         this.add(omp);
@@ -109,6 +116,7 @@ public class Menu extends JFrame{
         this.add(sm);
         this.add(load);
         this.add(gp);
+        this.add(ngp);
         
         this.addMouseListener(mi);
         this.addKeyListener(ki);

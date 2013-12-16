@@ -3,7 +3,7 @@ package core;
 /**
  * @author Torri
  */
-public class GameThread extends Thread implements Runnable{
+public class GameThread implements Runnable{
     boolean running = true;
     GameTick g = new GameTick();
     @Override
@@ -11,7 +11,7 @@ public class GameThread extends Thread implements Runnable{
         while(running){
             g.tick();
             try{
-                Thread.sleep(30);
+                Thread.sleep(150);
             }catch(InterruptedException e){
                 System.err.println(e.toString());
             }

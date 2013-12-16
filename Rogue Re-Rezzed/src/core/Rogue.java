@@ -12,8 +12,9 @@ import java.util.ArrayList;
  */
 public class Rogue {
     public static Menu mm;
-    private static ArrayList<Level> levels = new ArrayList<>();
-    public static int numLevels=1;
+    private static final ArrayList<Level> levels = new ArrayList<>();
+    private static Level l;
+    public static int numLevels=0;
     /**
      * @param args the command line arguments
      */
@@ -21,13 +22,13 @@ public class Rogue {
         mm = new Menu();
     }
     public static Level setLevel(LevelMode mode1,LevelType type1,int render1){
-        levels.add(new Level(numLevels,mode1,type1,render1));
         numLevels++;
-        System.out.println(numLevels);
-        return levels.get(levels.size());
+        l=new Level(numLevels,mode1,type1,render1);
+        levels.add(l);
+        return l;
     }
     public static Level getCurrentLevel(){
-        return levels.get(levels.size());
+        return l;
     }
     public static Level getLastLevel(){
         Level l1;
@@ -40,6 +41,6 @@ public class Rogue {
     }
     public static void resetLevels(){
         levels.clear();
-        numLevels=1;
+        numLevels=0;
     }
 }
