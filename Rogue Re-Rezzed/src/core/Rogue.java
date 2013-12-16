@@ -2,6 +2,8 @@ package core;
 
 import ui.Menu;
 import dungeon.Level;
+import dungeon.LevelMode;
+import dungeon.LevelType;
 import java.util.ArrayList;
 //http://semver.org/
 /**
@@ -10,7 +12,6 @@ import java.util.ArrayList;
  */
 public class Rogue {
     public static Menu mm;
-    private static Level l;
     private static ArrayList<Level> levels = new ArrayList<>();
     public static int numLevels=1;
     /**
@@ -19,14 +20,14 @@ public class Rogue {
     public static void main(String[] args) {
         mm = new Menu();
     }
-    public static Level setLevel(Level l1){
-        l=l1;
-        levels.add(l1);
-        numLevels=levels.size()+1;
-        return l;
+    public static Level setLevel(LevelMode mode1,LevelType type1,int render1){
+        levels.add(new Level(numLevels,mode1,type1,render1));
+        numLevels++;
+        System.out.println(numLevels);
+        return levels.get(levels.size());
     }
     public static Level getCurrentLevel(){
-        return l;
+        return levels.get(levels.size());
     }
     public static Level getLastLevel(){
         Level l1;
@@ -39,7 +40,6 @@ public class Rogue {
     }
     public static void resetLevels(){
         levels.clear();
-        numLevels=0;
-        l=null;
+        numLevels=1;
     }
 }

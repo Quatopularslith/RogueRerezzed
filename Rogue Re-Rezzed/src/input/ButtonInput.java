@@ -147,7 +147,7 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.gp.update();
         }
         if(command.equalsIgnoreCase("Generate")){
-            Rogue.setLevel(new Level());
+            Rogue.setLevel(Rogue.getCurrentLevel().getMode(),Rogue.getCurrentLevel().getType(),Level.renderlevel);
             Rogue.mm.gp.update();
         }
     }

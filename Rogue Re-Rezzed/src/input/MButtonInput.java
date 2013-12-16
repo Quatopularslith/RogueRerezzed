@@ -3,6 +3,8 @@ package input;
 
 import core.Rogue;
 import dungeon.Level;
+import dungeon.LevelMode;
+import dungeon.LevelType;
 import entity.item.Item;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -18,7 +20,7 @@ public class MButtonInput {
         //Main Menu Code
         if(command.equalsIgnoreCase("New Game") && parent==Rogue.mm.mmp){
             Rogue.numLevels=0;
-            Rogue.setLevel(new Level());
+            Rogue.setLevel(LevelMode.STORY,LevelType.TURN,0);
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.gp.setVisible(true);

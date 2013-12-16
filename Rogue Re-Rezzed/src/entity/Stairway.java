@@ -25,7 +25,7 @@ public class Stairway extends RogueEntity{
     @Override
     public void turn(){
         if(l.getPlayer().x==x&&l.getPlayer().y==y){
-            Rogue.setLevel(new Level());
+            Rogue.setLevel(Rogue.getCurrentLevel().getMode(),Rogue.getCurrentLevel().getType(),Level.renderlevel);
         }
     }
     @Override

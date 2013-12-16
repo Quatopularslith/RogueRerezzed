@@ -31,6 +31,8 @@ public class Level {
     private Stairway st;
     private int nument=0;
     private final LoadArt la = new LoadArt();
+    private LevelMode mode;
+    private LevelType type;
     /**
      * multiple of 16
      */
@@ -47,7 +49,6 @@ public class Level {
      * Maximum Rooms
      */
     public int numRooms;
-    private final LevelType type;
     /**
      * Creates a level
      */
@@ -80,11 +81,16 @@ public class Level {
      * @param sx the X size of the new Level
      * @param sy the Y size of the new Level
      * @param lvl the level of difficulty
-     * @param mode
-     * @param type
-     * @param render
+     * @param mode1
+     * @param type1
+     * @param render1
      */
-    public Level(int sx,int sy,int lvl,LevelMode mode,LevelType type,int render){
+    public Level(int sx,int sy,int lvl,LevelMode mode1,LevelType type1,int render1){
+        if(lvl==0){
+            lvl=1;
+        }
+        mode=mode1;
+        type=type1;
         nument=0;
         int roomnum=0;
         board=new boolean[2*sx][2*sy];
@@ -93,7 +99,7 @@ public class Level {
         numRooms=(rows)*(cols);
         rooms=new Room[numRooms+3];
         //Mode Selection
-        if(mode==LevelMode.STORY){
+        if(mode1==LevelMode.STORY){
             renderlevel=Math.round(Rogue.numLevels/5)*16;
             if(renderlevel>48){
                 renderlevel=48;
@@ -101,9 +107,9 @@ public class Level {
                 renderlevel=16;
             }
         }else{
-            renderlevel=render;
+            renderlevel=render1;
         }
-        Rogue.mm.ki.turn = type != LevelType.EVOLVED;
+        Rogue.mm.ki.turn = type1 != LevelType.EVOLVED;
         //Sprite Change
         GamePlay.fsp = new Sprite("DungeonFloor");
         GamePlay.dialogue = new Sprite("Dialogue",256);
@@ -166,7 +172,6 @@ public class Level {
         //Favicon
         Image s = la.createBufferedImage("Quatopularslith"+renderlevel+".png", 64, 64);
         Rogue.mm.setIconImage(s);
-        this.type = type;
     }
     /**
      * Gets Room Array
@@ -247,5 +252,19 @@ public class Level {
      */
     public void removeItem(Item i){
         items.remove(i);
+    }
+    /**
+     * Gets mode of Level
+     * @return 
+     */
+    public LevelMode getMode(){
+        return mode;
+    }
+    /**
+     * Gets type of level
+     * @return 
+     */
+    public LevelType getType(){
+        return type;
     }
 }
