@@ -117,25 +117,17 @@ public class RogueEntity {
     public void damage(RogueEntity e){
         double td = e.maxDefence*10;
         double ta = e.maxAtt*10;
-        if(ta>0){
+        if(ta!=0){
             ta = rand.nextInt((int) ta);
             ta /= 10;
         }else{
             ta=0;
         }
-        if(ta<1){
-            ta=e.maxAtt;
-            ta = rand.nextInt((int) ta);
-        }
-        if(td>0){
+        if(td!=0){
             td = rand.nextInt((int) td);
             td /= 10;
         }else{
             td=0;
-        }
-        if(td<1){
-            td=e.maxAtt;
-            td = rand.nextInt((int) td);
         }
         ta -= td;
         if(ta<0){

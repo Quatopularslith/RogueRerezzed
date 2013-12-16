@@ -1,11 +1,9 @@
-package server;
-
-import core.Rogue;
+package core;
 
 /**
  * @author Torri
  */
-public class ServerTick {
+public class GameTick {
     private static long ticknum = 0;
     public void tick(){
         ticknum++;

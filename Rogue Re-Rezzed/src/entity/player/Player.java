@@ -9,7 +9,6 @@ import entity.item.Gold;
 import entity.item.Item;
 import entity.mob.RogueHostileEntity;
 import entity.npc.RogueNPC;
-import entity.npc.Trader;
 import render.Sprite;
 import ui.GamePlay;
 
@@ -18,17 +17,17 @@ import ui.GamePlay;
  * @author Torri
  */
 public class Player extends RogueEntity{
-    public static boolean dead=false;
-    public int maxMana;//mana=magic points
-    public double mana;
-    public static int kills;
-    boolean attack = false;
-    public static int currinv = 0;
-    public static Item[] pinv;
-    public static double xp;
-    public static int xplevels;
-    public static int rep;
-    public static int gold;
+    public boolean dead=false;
+    public int maxMana=100;//mana=magic points
+    public double mana=50;
+    public int kills=0;
+    boolean attack=false;
+    public int currinv=0;
+    public Item[] pinv;
+    public double xp=0;
+    public int xplevels=1;
+    public int rep=0;
+    public int gold=0;
     public Player(Level l1){
         super(l1);
         if(pinv==null){
@@ -39,13 +38,14 @@ public class Player extends RogueEntity{
         }
         for(int k=0;k<pinv.length;k++){
             if(pinv[k].name.equalsIgnoreCase("empty")){
-                Player.currinv=k;
+                currinv=k;
                 break;
             }
         }
-        updateStats();
+        maxhealth=100;
         mana=(int) (maxMana/1.5);
         health=(float) (maxhealth);
+        updateStats();
         sp = new Sprite("Player");
         Room r = l1.getRoom(0);
         spawn(r);
@@ -56,7 +56,7 @@ public class Player extends RogueEntity{
     }
     @Override
     public void turn(){
-        l=Rogue.getLevel();
+        l=Rogue.getCurrentLevel();
         if(health<=0){
             dead=true;
         }else if(health<maxhealth){

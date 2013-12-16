@@ -1,6 +1,7 @@
 
 package entity.npc;
 
+import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import util.Direction;
@@ -22,7 +23,7 @@ public class RogueNPC extends RogueEntity{
         spawn(r);
         sp=new Sprite("Player");
         health=100;
-        lvl=Level.numLevels;
+        lvl=Rogue.numLevels;
     }
     public void action(){}
     @Override

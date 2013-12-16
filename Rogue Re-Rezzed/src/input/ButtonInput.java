@@ -80,50 +80,50 @@ public class ButtonInput implements ActionListener{
             int item;
             item = Rogue.mm.dm.chooseEntitySpawn.getSelectedIndex();
 
-            RogueEntity e1 = new RogueEntity(Rogue.getLevel());
+            RogueEntity e1 = new RogueEntity(Rogue.getCurrentLevel());
             switch(item){
                 case 0:
-                    e1 = new entity.mob.Snake(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
-                    e1.x=Rogue.getLevel().getPlayer().x+1;
-                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    e1 = new entity.mob.Snake(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
+                    e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 1:
-                    e1 = new entity.mob.Bandit(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
-                    e1.x=Rogue.getLevel().getPlayer().x+1;
-                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    e1 = new entity.mob.Bandit(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
+                    e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 2:
-                    e1 = new entity.mob.Fish(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
-                    e1.x=Rogue.getLevel().getPlayer().x+1;
-                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    e1 = new entity.mob.Fish(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
+                    e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 3:
-                    e1 = new entity.mob.MortuusTrabajos(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
-                    e1.x=Rogue.getLevel().getPlayer().x+1;
-                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    e1 = new entity.mob.MortuusTrabajos(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
+                    e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 4:                    
-                    e1 = new entity.mob.Quatopularslith(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
-                    e1.x=Rogue.getLevel().getPlayer().x+1;
-                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    e1 = new entity.mob.Quatopularslith(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
+                    e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 5:
-                    e1 = new entity.mob.Goblin(1, Rogue.getLevel().getRoom(0), Rogue.getLevel());
-                    e1.x=Rogue.getLevel().getPlayer().x+1;
-                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    e1 = new entity.mob.Goblin(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
+                    e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 6:
-                    e1 = new entity.npc.Trader(Rogue.getLevel().getRoom(0), Rogue.getLevel());
-                    e1.x=Rogue.getLevel().getPlayer().x+1;
-                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    e1 = new entity.npc.Trader(Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
+                    e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 7:
-                    e1 = new entity.npc.Warrior(Rogue.getLevel().getRoom(0), Rogue.getLevel());
-                    e1.x=Rogue.getLevel().getPlayer().x+1;
-                    e1.y=Rogue.getLevel().getPlayer().y+1;
+                    e1 = new entity.npc.Warrior(Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
+                    e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
             }
-            Rogue.getLevel().addEntity(e1);
+            Rogue.getCurrentLevel().addEntity(e1);
             Rogue.mm.gp.update();
         }
         if(command.equalsIgnoreCase("Spawn Item")){
@@ -131,16 +131,19 @@ public class ButtonInput implements ActionListener{
             item = Rogue.mm.dm.chooseItemSpawn.getSelectedIndex();
             switch(item){
                 case 0:
-                    Player.pinv[Player.currinv]=new Item(3,Rogue.getLevel().getPlayer(),10,Rogue.getLevel());
+                    Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=new Item(3,Rogue.getCurrentLevel().getPlayer(),10,Rogue.getCurrentLevel());
                     break;
                 case 1:
-                    Player.pinv[Player.currinv]=new Item(1,Rogue.getLevel().getPlayer(),10,Rogue.getLevel());
+                    Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=new Item(1,Rogue.getCurrentLevel().getPlayer(),10,Rogue.getCurrentLevel());
                     break;
                 case 2:
-                    Player.pinv[Player.currinv]=new Item(2,Rogue.getLevel().getPlayer(),10,Rogue.getLevel());
+                    Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=new Item(2,Rogue.getCurrentLevel().getPlayer(),10,Rogue.getCurrentLevel());
+                    break;
+                case 3:
+                    Rogue.getCurrentLevel().getPlayer().gold++;
                     break;
             }
-            Rogue.getLevel().getPlayer().updateStats();
+            Rogue.getCurrentLevel().getPlayer().updateStats();
             Rogue.mm.gp.update();
         }
         if(command.equalsIgnoreCase("Generate")){

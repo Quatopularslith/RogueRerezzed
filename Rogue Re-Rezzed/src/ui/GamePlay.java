@@ -9,14 +9,12 @@ import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
 import entity.npc.Trader;
-import entity.player.Player;
 import input.MButton;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.util.List;
 import javax.swing.JPanel;
 import render.Sprite;
@@ -26,7 +24,7 @@ import render.Sprite;
  * @author Torri
  */
 public class GamePlay extends JPanel{
-    private Level l = Rogue.getLevel();
+    private Level l = Rogue.getCurrentLevel();
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
     Room[] room;
@@ -45,13 +43,13 @@ public class GamePlay extends JPanel{
     public MButton quit = new MButton(650,460,100,30,"Quit",this);
     public MButton settings  = new MButton(650,460,100,30,"Settings",this);
     public MButton[] tradeMB = new MButton[3];
-    public static boolean trade;
     public Trader currTrade;
     public GamePlay(){
-        l=Rogue.getLevel();
+        l=Rogue.getCurrentLevel();
         if(l!=null){
             room = l.getRooms();
             current = l.getEntities();
+            currTrade = new Trader(l.getRoom(0),l);
         }
         amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
         dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
@@ -74,7 +72,7 @@ public class GamePlay extends JPanel{
      * The core updater
      */
     public void update(){
-        l=Rogue.getLevel();
+        l=Rogue.getCurrentLevel();
         if(l==null) return;
         l.getStairWay().turn();
         room=l.getRooms();
@@ -82,7 +80,7 @@ public class GamePlay extends JPanel{
         pickup=null;
         l.getPlayer().turn();
         if(pickup instanceof Gold){
-            Player.gold+=pickup.id;
+            Rogue.getCurrentLevel().getPlayer().gold+=pickup.id;
             pickup.death();
             pickup=null;
         }
@@ -96,7 +94,7 @@ public class GamePlay extends JPanel{
             }
         }
         repaint();
-        if(Player.dead){
+        if(Rogue.getCurrentLevel().getPlayer().dead){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
             this.setVisible(false);
@@ -148,7 +146,7 @@ public class GamePlay extends JPanel{
                 g2.drawString(Integer.toString(current.get(i).lvl), current.get(i).x*64+offx+59, current.get(i).y*64+offy+53);
                 if(current.get(i) instanceof Trader){
                     Trader t = (Trader) current.get(i);
-                    if(trade){
+                    if(t.trade){
                         currTrade=t;
                     }else{
                         currTrade=null;
@@ -162,10 +160,10 @@ public class GamePlay extends JPanel{
         g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
         g2.setColor(Color.ORANGE);
-        g2.drawString(Integer.toString(Player.xplevels), l.getPlayer().x*64+offx+59, l.getPlayer().y*64+offy+53);
+        g2.drawString(Integer.toString(Rogue.getCurrentLevel().getPlayer().xplevels), l.getPlayer().x*64+offx+59, l.getPlayer().y*64+offy+53);
         //Pickup
         if(pickup==null){
-            pickup = new Item(0,Rogue.getLevel().getPlayer(),0,Rogue.getLevel());
+            pickup = new Item(0,Rogue.getCurrentLevel().getPlayer(),0,Rogue.getCurrentLevel());
         }
         if(!pickup.name.equalsIgnoreCase("Empty")){
             amb.setParent(this);
@@ -184,13 +182,15 @@ public class GamePlay extends JPanel{
             dmb.hide();
         }
         //Trade
-        if(trade){
-            g2.drawImage(currTrade.img, getWidth()/2-96, getHeight()/2-96, this);
-//            for(int i=0;i<tradeMB.length;i++){
-//                tradeMB[i].setPos(currTrade.buttons[i][0]+getWidth()/2-96, currTrade.buttons[i][1]+getHeight()/2-96, 100, 12);
-//                tradeMB[i].addListener(Rogue.mm.mbi);
-//                g2.drawImage(tradeMB[i].img, tradeMB[i].x,tradeMB[i].y, this);
-//            }
+        if(currTrade!=null){
+            if(currTrade.trade){
+                g2.drawImage(currTrade.img, getWidth()/2-96, getHeight()/2-96, this);
+                for(int i=0;i<tradeMB.length;i++){
+                    tradeMB[i].setPos(currTrade.buttons[i][0]+getWidth()/2-96, currTrade.buttons[i][1]+getHeight()/2-96, 50, 20);
+                    tradeMB[i].addListener(Rogue.mm.mbi);
+                    g2.drawImage(tradeMB[i].img, tradeMB[i].x,tradeMB[i].y, this);
+                }
+            }
         }
         //Map
         g2.setColor(Color.BLACK);
@@ -216,11 +216,11 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.BLACK);
         g2.fillRect(getWidth()-(int) (0.25*getWidth())-10, (int) (0.3515625*getHeight())+64, (int) (0.25*getWidth()), (int) (0.3515625*getHeight()));
         g2.setColor(Color.WHITE);
-        for(int i=0;i<Player.pinv.length;i++){
-            g2.drawString(Player.pinv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
+        for(int i=0;i<Rogue.getCurrentLevel().getPlayer().pinv.length;i++){
+            g2.drawString(Rogue.getCurrentLevel().getPlayer().pinv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
             FontMetrics fm = g2.getFontMetrics(g2.getFont());
-            int width = fm.stringWidth(Player.pinv[i].name);
-            if(Player.pinv[i].id>0){
+            int width = fm.stringWidth(Rogue.getCurrentLevel().getPlayer().pinv[i].name);
+            if(Rogue.getCurrentLevel().getPlayer().pinv[i].id>0){
                 equip[i].addListener(Rogue.mm.mbi);
                 drop[i].addListener(Rogue.mm.mbi);
                 equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
@@ -236,20 +236,20 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.BLACK);
         g2.fillRect(5, 5, 140, 170);
         g2.setColor(Color.RED);
-        g2.fillRect(10, 25, (int) ((Rogue.getLevel().getPlayer().health/l.getPlayer().maxhealth)*100), 20);
+        g2.fillRect(10, 25, (int) ((Rogue.getCurrentLevel().getPlayer().health/l.getPlayer().maxhealth)*100), 20);
         g2.setColor(Color.BLUE);
         g2.fillRect(10, 45, (int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100), 20);
         g2.setColor(Color.GREEN);
-        g2.fillRect(10, 65, (int) (100*Player.xp/(10*Player.xplevels)), 20);
+        g2.fillRect(10, 65, (int) (100*Rogue.getCurrentLevel().getPlayer().xp/(10*Rogue.getCurrentLevel().getPlayer().xplevels)), 20);
         g2.setColor(Color.WHITE);
-        g2.drawString("You are in dungeon: "+Level.numLevels, 10, 20);
-        g2.drawString("Health: "+(int) Rogue.getLevel().getPlayer().health,10,40);
+        g2.drawString("You are in dungeon: "+Rogue.numLevels, 10, 20);
+        g2.drawString("Health: "+(int) Rogue.getCurrentLevel().getPlayer().health,10,40);
         g2.drawString("Mana: "+l.getPlayer().mana, 10, 60);
-        g2.drawString("You are Level: "+Player.xplevels, 10, 80);
+        g2.drawString("You are Level: "+Rogue.getCurrentLevel().getPlayer().xplevels, 10, 80);
         g2.drawString("Max Attack: "+l.getPlayer().maxAtt, 10, 100);
         g2.drawString("Defence: "+l.getPlayer().maxDefence, 10, 120);
-        g2.drawString("Kills: "+Player.kills+" Enemies", 10, 140);
-        g2.drawString("Gold: "+Player.gold, 10, 160);
+        g2.drawString("Kills: "+Rogue.getCurrentLevel().getPlayer().kills+" Enemies", 10, 140);
+        g2.drawString("Gold: "+Rogue.getCurrentLevel().getPlayer().gold, 10, 160);
         //Buttons
         quit.setPos(getWidth()-(int) (0.1875*getWidth()), getHeight()-(int) (0.05859375*getHeight()), (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
         settings.setPos(getWidth()-(int) (0.09375*getWidth()), getHeight()-(int) (0.05859375*getHeight()), (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));

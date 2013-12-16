@@ -1,11 +1,11 @@
-package server;
+package core;
 
 /**
  * @author Torri
  */
-public class ServerThread extends Thread implements Runnable{
+public class GameThread extends Thread implements Runnable{
     boolean running = true;
-    ServerTick g = new ServerTick();
+    GameTick g = new GameTick();
     @Override
     public void run(){
         while(running){

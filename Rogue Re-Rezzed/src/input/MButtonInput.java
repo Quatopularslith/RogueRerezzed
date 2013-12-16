@@ -4,7 +4,6 @@ package input;
 import core.Rogue;
 import dungeon.Level;
 import entity.item.Item;
-import entity.player.Player;
 import java.awt.Component;
 import javax.swing.JPanel;
 import ui.GamePlay;
@@ -18,78 +17,92 @@ public class MButtonInput {
     public void clicked(String command,Component parent){
         //Main Menu Code
         if(command.equalsIgnoreCase("New Game") && parent==Rogue.mm.mmp){
-            Player.pinv = null;
-            Player.xplevels = 1;
-            Player.xp = 0;
-            Player.kills = 0;
-            Level.numLevels=0;
-            Rogue.setLevel(new Level(1));
+            Rogue.numLevels=0;
+            Rogue.setLevel(new Level());
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
             Rogue.mm.gp.setVisible(true);
             Rogue.mm.gp.update();
+            return;
         }
         if(command.equalsIgnoreCase("Options") && parent==Rogue.mm.mmp){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);
             backtogame=false;
+            return;
         }
         if(command.equalsIgnoreCase("Quit") && parent==Rogue.mm.mmp){
             if(Rogue.mm.dm!=null) Rogue.mm.dm.dispose();
             Rogue.mm.dispose();
+            return;
         }
         //Navigation Buttons
         if(command.equalsIgnoreCase("quit") && parent==Rogue.mm.gp){
             //TODO some save code
             Rogue.mm.gp.setVisible(false);
             Rogue.mm.mmp.setVisible(true);
+            return;
         }
         if(command.equalsIgnoreCase("settings") && parent==Rogue.mm.gp){
             backtogame=true;
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(true);
             Rogue.mm.gp.setVisible(false);
+            return;
         }
         //Pickup Dialogue
         if(command.equalsIgnoreCase("pick up") && parent==Rogue.mm.gp){
-            if(GamePlay.pickup!=null){
-                GamePlay.pickup.setParent(Rogue.getLevel().getPlayer());
-                Player.pinv[Player.currinv]=GamePlay.pickup;
+            if(GamePlay.pickup!=null && Rogue.getCurrentLevel().getPlayer().currinv!=Rogue.getCurrentLevel().getPlayer().pinv.length){
+                GamePlay.pickup.setParent(Rogue.getCurrentLevel().getPlayer());
+                Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=GamePlay.pickup;
+                Rogue.getCurrentLevel().getPlayer().updateStats();
                 GamePlay.pickup.death();
                 Rogue.mm.gp.update();
             }
             refresh(Rogue.mm.gp);
+            return;
         }
         if(command.equalsIgnoreCase("leave it") && parent==Rogue.mm.gp){
             GamePlay.pickup=null;
             Rogue.mm.gp.update();
             refresh(Rogue.mm.gp);
-        }
-        //Trade
-        for(int i=0;i<3;i++){
-            if(command.equalsIgnoreCase("Trade"+i)){
-                
-            }
+            return;
         }
         //Inventory
         for(int i=0;i<Rogue.mm.gp.equip.length;i++){
             if(command.equalsIgnoreCase("Drop"+i) && parent==Rogue.mm.gp){
-                Player.pinv[i].drop();
-                Player.pinv[i]=new Item(0,Rogue.getLevel().getPlayer(),0,Rogue.getLevel());
-                Rogue.getLevel().getPlayer().updateStats();
+                Rogue.getCurrentLevel().getPlayer().pinv[i].drop();
+                Rogue.getCurrentLevel().getPlayer().pinv[i]=new Item(0,Rogue.getCurrentLevel().getPlayer(),0,Rogue.getCurrentLevel());
+                Rogue.getCurrentLevel().getPlayer().updateStats();
                 Rogue.mm.gp.update();
+                return;
             }
             if(command.equalsIgnoreCase("Equip"+i) && parent==Rogue.mm.gp){
-                if(Player.pinv[i].equip) continue;
-                Player.pinv[i].equip=true;
-                Rogue.getLevel().getPlayer().updateStats();
+                if(Rogue.getCurrentLevel().getPlayer().pinv[i].equip) continue;
+                Rogue.getCurrentLevel().getPlayer().pinv[i].equip=true;
+                Rogue.getCurrentLevel().getPlayer().updateStats();
                 Rogue.mm.gp.update();
+                return;
             }
         }
         //Stat Menu
         if(command.equalsIgnoreCase("Return") && parent==Rogue.mm.sm){
+            Rogue.resetLevels();
             Rogue.mm.mmp.setVisible(true);
             Rogue.mm.sm.setVisible(false);
+            return;
+        }
+        //Trading
+        for(int i=0;i<Rogue.mm.gp.tradeMB.length;i++){
+            if(command.equalsIgnoreCase("Trade"+i) && parent==Rogue.mm.gp){
+                if(Rogue.getCurrentLevel().getPlayer().gold>=Rogue.mm.gp.currTrade.prices[i] && Rogue.getCurrentLevel().getPlayer().currinv!=Rogue.getCurrentLevel().getPlayer().pinv.length){
+                    Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=Rogue.mm.gp.currTrade.inv[i];
+                    Rogue.mm.gp.currTrade.inv[i]=new Item(0,null,0,Rogue.getCurrentLevel());
+                    Rogue.getCurrentLevel().getPlayer().updateStats();
+                    Rogue.mm.gp.update();
+                }
+                return;
+            }
         }
     }
     private void refresh(JPanel p){

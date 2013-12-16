@@ -63,8 +63,8 @@ public class Astar {
                 xi = (i%3)-1;
                 yi = (i/3)-1;
                 if(x+xi<0 || y+yi<0) continue;
-                if(x+xi>Rogue.getLevel().board.length || y+yi>Rogue.getLevel().board.length) continue;
-                if(!Rogue.getLevel().board[x+xi][y+yi]) continue;
+                if(x+xi>Rogue.getCurrentLevel().board.length || y+yi>Rogue.getCurrentLevel().board.length) continue;
+                if(!Rogue.getCurrentLevel().board[x+xi][y+yi]) continue;
                 a = new Vector2i(x+xi,y+yi);
                 gCost = current.gCost + getDist(current.tile,a);
                 hCost = getDist(a,goal);

@@ -1,7 +1,5 @@
 package server;
-import client.ClientPlayer;
 import dungeon.Level;
-import java.util.ArrayList;
 import javax.jws.*;
 /**
  * 
@@ -9,10 +7,9 @@ import javax.jws.*;
  */
 @WebService(endpointInterface="Server.Server")
 public class ServerImpl implements Server{
-    public static Level l = new Level(1);
+    public static Level l = new Level();
     int currp;
     int maxp;
-    ArrayList<ClientPlayer> players = new ArrayList<>();
     public ServerImpl(int maxp){
         currp=0;
         System.out.println("Started Server with "+maxp+" Maximum Players");

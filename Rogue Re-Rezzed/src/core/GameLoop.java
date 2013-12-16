@@ -1,10 +1,10 @@
-package server;
+package core;
 
 /**
  * @author Torri
  */
-public class ServerLoop{
-    static ServerThread gt = new ServerThread();
+public class GameLoop{
+    static GameThread gt = new GameThread();
     public static void start(){
         gt.start();
     }

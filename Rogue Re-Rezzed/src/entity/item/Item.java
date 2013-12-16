@@ -1,6 +1,7 @@
 
 package entity.item;
 
+import core.Rogue;
 import dungeon.Level;
 import entity.RogueEntity;
 import render.Sprite;
@@ -94,6 +95,7 @@ public class Item extends RogueEntity{
                 ind=0;
             }
         }
+        if(parent==null) parent=new RogueEntity(Rogue.getCurrentLevel());
         this.x=parent.x;
         this.y=parent.y;
     }

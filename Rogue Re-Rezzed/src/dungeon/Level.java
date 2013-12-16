@@ -30,7 +30,7 @@ public class Level {
     private static int rows=10,cols=10;
     private Stairway st;
     private int nument=0;
-    private LoadArt la = new LoadArt();
+    private final LoadArt la = new LoadArt();
     /**
      * multiple of 16
      */
@@ -40,10 +40,6 @@ public class Level {
      */
     public boolean[][] board;
     /**
-     * Number of levels
-     */
-    public static int numLevels;
-    /**
      * Maximum Room size
      */
     public int maxRoomSX=0,maxRoomSY=0;
@@ -51,41 +47,44 @@ public class Level {
      * Maximum Rooms
      */
     public int numRooms;
+    private final LevelType type;
     /**
      * Creates a level
      */
     public Level(){
-        this(100,100,numLevels);
+        this(100,100,Rogue.numLevels,LevelMode.STORY,LevelType.TURN,0);
     }
     /**
      * Creates a level
-     * @param lvl level of difficulty
+     * @param lvl
+     * @param mode * @param lvl level of difficulty
+     * @param type
+     * @param render
      */
-    public Level(int lvl){
-        this(100,100,lvl);
+    public Level(int lvl,LevelMode mode,LevelType type,int render){
+        this(100,100,lvl,mode,type,render);
     }
     /**
      * Creates a level
      * @param sx the X size of the new Level
-     * @param sy the Y size of the new Level
+     * @param sy the Y
+     * @param mode
+     * @param type
+     * @param render
      */
-    public Level(int sx, int sy){
-        this(sx,sy,numLevels);
+    public Level(int sx, int sy,LevelMode mode,LevelType type,int render){
+        this(sx,sy,Rogue.numLevels,mode,type,render);
     }
     /**
      * Creates a level
      * @param sx the X size of the new Level
      * @param sy the Y size of the new Level
      * @param lvl the level of difficulty
+     * @param mode
+     * @param type
+     * @param render
      */
-    public Level(int sx,int sy,int lvl){
-        Image s = la.createBufferedImage("Quatopularslith"+renderlevel+".png", 64, 64);
-        Rogue.mm.setIconImage(s);
-        Player.dead=false;
-        numLevels++;
-        if(numLevels==0){
-            numLevels=1;
-        }
+    public Level(int sx,int sy,int lvl,LevelMode mode,LevelType type,int render){
         nument=0;
         int roomnum=0;
         board=new boolean[2*sx][2*sy];
@@ -93,28 +92,51 @@ public class Level {
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
         rooms=new Room[numRooms+3];
-        renderlevel=Math.round(numLevels/5)*16;
-        if(renderlevel>48){
-            renderlevel=48;
-        }else if(renderlevel<16 && numLevels>3){
-            renderlevel=16;
+        //Mode Selection
+        if(mode==LevelMode.STORY){
+            renderlevel=Math.round(Rogue.numLevels/5)*16;
+            if(renderlevel>48){
+                renderlevel=48;
+            }else if(renderlevel<16 && Rogue.numLevels>3){
+                renderlevel=16;
+            }
+        }else{
+            renderlevel=render;
         }
+        Rogue.mm.ki.turn = type != LevelType.EVOLVED;
+        //Sprite Change
         GamePlay.fsp = new Sprite("DungeonFloor");
         GamePlay.dialogue = new Sprite("Dialogue",256);
         GamePlay.floorimg=new Sprite("DungeonFloor",8);
         GamePlay.pimg=new Sprite("Player",8);
         GamePlay.stimg=new Sprite("Stairway",8);
+        //Roomgen
         for(int x=0;x<sx;x+=maxRoomSX){
             for(int y=0;y<sy;y+=maxRoomSY){
                 rooms[roomnum]=new Room(x,y,maxRoomSX,maxRoomSY,lvl,this);
                 roomnum++;
             }
         }
+        //Stariway
         st = new Stairway(this);
+        //Safety Rooms
         rooms[roomnum]=new Room(rooms[0].area[0][0][0]-2,rooms[0].area[0][0][1]-2,sx,3,lvl,this);
         rooms[roomnum+1]=new Room(0,rooms[st.room].area[0][0][1],sx,3,lvl,this);
         rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],0,3,sy,lvl,this);
+        //Player
         p=new Player(this);
+        if(Rogue.getLastLevel()!=null){
+            p.currinv=Rogue.getLastLevel().getPlayer().currinv;
+            p.pinv=Rogue.getLastLevel().getPlayer().pinv;
+            p.gold=Rogue.getLastLevel().getPlayer().gold;
+            p.health=Rogue.getLastLevel().getPlayer().health;
+            p.xplevels=Rogue.getLastLevel().getPlayer().xplevels;
+            p.xp=Rogue.getLastLevel().getPlayer().xp;
+            p.mana=Rogue.getLastLevel().getPlayer().mana;
+            p.rep=Rogue.getLastLevel().getPlayer().rep;
+        }
+        p.updateStats();
+        //Board
         for(boolean[] b1:board){
             for(boolean b:b1){
                 b=false;
@@ -127,21 +149,24 @@ public class Level {
                 }
             }
         }
-               
+        //Bosses
         MortuusTrabajos mt = new MortuusTrabajos(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(mt);
         
         Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
         this.addEntity(qt);
         
+        //NPCs
         Trader t = new Trader(this.rooms[rand.nextInt(rooms.length)],this);
-//        Trader t = new Trader(this.rooms[0],this);
         this.addEntity(t);
         
         Warrior w = new Warrior(this.rooms[rand.nextInt(rooms.length)], this);
         this.addEntity(w);
         
-        p.updateStats();
+        //Favicon
+        Image s = la.createBufferedImage("Quatopularslith"+renderlevel+".png", 64, 64);
+        Rogue.mm.setIconImage(s);
+        this.type = type;
     }
     /**
      * Gets Room Array

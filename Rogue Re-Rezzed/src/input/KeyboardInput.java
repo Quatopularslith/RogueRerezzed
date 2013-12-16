@@ -2,7 +2,6 @@
 package input;
 
 import core.Rogue;
-import entity.player.Player;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -14,7 +13,7 @@ public class KeyboardInput implements KeyListener{
     private final boolean[] keys = new boolean[1000];
     private int[] keyn = new int[6];
     public boolean[] keyBind = new boolean[6];
-    public static boolean b;
+    public boolean turn=true;
     /**
      * Sets up a keyboard input listener
      * @param keybinds 
@@ -45,15 +44,18 @@ public class KeyboardInput implements KeyListener{
      * makes the game tick
      */
     private void turn(){
+        boolean b;
         b = false;
-        for(boolean kb:keyBind){
-            if(kb){
-                b=true;
-                break;
+        if(turn){
+            for(boolean kb:keyBind){
+                if(kb){
+                    b=true;
+                    break;
+                }
             }
-        }
-        if(b && !Player.dead){
-            Rogue.mm.gp.update();
+            if(b && !Rogue.getCurrentLevel().getPlayer().dead){
+                Rogue.mm.gp.update();
+            }
         }
     }
     /**

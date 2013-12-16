@@ -47,7 +47,7 @@ public class DebugMenu extends javax.swing.JFrame {
 
         chooseEntitySpawnBtn.setText("Spawn Entity");
 
-        chooseItemSpawn.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sword", "Axe", "Sheild" }));
+        chooseItemSpawn.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sword", "Axe", "Sheild", "Gold" }));
 
         chooseItemSpawnBtn.setText("Spawn Item");
 
