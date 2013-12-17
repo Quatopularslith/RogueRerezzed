@@ -142,8 +142,6 @@ public class Level {
             p.xp=Rogue.getLastLevel().getPlayer().xp;
             p.mana=Rogue.getLastLevel().getPlayer().mana;
             p.rep=Rogue.getLastLevel().getPlayer().rep;
-        }else{
-            p.xplevels=1000;
         }
         p.updateStats();
         //Board
