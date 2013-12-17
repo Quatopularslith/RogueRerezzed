@@ -4,9 +4,9 @@ package entity.npc;
 import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
-import util.Direction;
 import entity.RogueEntity;
 import render.Sprite;
+import util.Direction;
 
 /**
  * Master for all new NPCs

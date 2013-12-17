@@ -1,7 +1,6 @@
 
 package entity;
 
-import core.Rogue;
 import dungeon.Room;
 import java.util.Random;
 

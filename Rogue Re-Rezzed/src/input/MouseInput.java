@@ -14,26 +14,23 @@ public class MouseInput implements MouseListener{
     public int mx;
     public int my;
     public List<MButton> mb = new ArrayList<>();
+    boolean go=false;
     @Override
     public void mouseClicked(MouseEvent e) {
-    }
-    @Override
-    public void mousePressed(MouseEvent e) {
-        mx=e.getX();
-        my=e.getY();
+        mx=e.getX()+5;
+        my=e.getY()-30;
         for(int i=0;i<mb.size();i++){
-            if(mb.get(i).visible || mb.get(i).parent.isVisible()){
-                mb.get(i).update(mx+5, my-30);
+            if(mb.get(i).visible && mb.get(i).parent.isVisible()){
+                mb.get(i).update(mx, my);
             }
         }
     }
     @Override
-    public void mouseReleased(MouseEvent e) {
-    }
+    public void mousePressed(MouseEvent e) {}
     @Override
-    public void mouseEntered(MouseEvent e) {
-    }
+    public void mouseReleased(MouseEvent e) {}
     @Override
-    public void mouseExited(MouseEvent e) {
-    }
+    public void mouseEntered(MouseEvent e) {}
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }

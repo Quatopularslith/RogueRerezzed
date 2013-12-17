@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
-import javax.swing.*;
+import javax.swing.JPanel;
 public class Loading extends JPanel{
     double n = .875;
     int r, arrs = 201;

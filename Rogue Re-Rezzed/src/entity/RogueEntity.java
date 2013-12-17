@@ -1,12 +1,12 @@
 package entity;
 
-import util.Direction;
 import art.LoadArt;
 import dungeon.Level;
 import dungeon.Room;
 import entity.item.Item;
 import java.util.Random;
 import render.Sprite;
+import util.Direction;
 
 /**
  * @author Torri

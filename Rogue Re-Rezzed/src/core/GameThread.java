@@ -11,7 +11,7 @@ public class GameThread implements Runnable{
         while(running){
             g.tick();
             try{
-                Thread.sleep(150);
+                Thread.sleep(100);
             }catch(InterruptedException e){
                 System.err.println(e.toString());
             }

@@ -3,9 +3,9 @@ package entity.npc;
 
 import dungeon.Level;
 import dungeon.Room;
-import util.Direction;
 import entity.RogueEntity;
 import entity.mob.RogueHostileEntity;
+import util.Direction;
 
 /**
  *

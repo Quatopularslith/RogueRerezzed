@@ -87,10 +87,10 @@ public class Level {
      * @param render1
      */
     public Level(int sx,int sy,int lvl,LevelMode mode1,LevelType type1,int render1){
+        GameLoop.pause();
         if(lvl==0){
             lvl=1;
         }
-        GameLoop.pause();
         mode=mode1;
         type=type1;
         nument=0;
@@ -142,6 +142,8 @@ public class Level {
             p.xp=Rogue.getLastLevel().getPlayer().xp;
             p.mana=Rogue.getLastLevel().getPlayer().mana;
             p.rep=Rogue.getLastLevel().getPlayer().rep;
+        }else{
+            p.xplevels=1000;
         }
         p.updateStats();
         //Board
@@ -170,10 +172,11 @@ public class Level {
         
         Warrior w = new Warrior(this.rooms[rand.nextInt(rooms.length)], this);
         this.addEntity(w);
-        
         //Non-turn-based
         if(type1==LevelType.EVOLVED){
             GameLoop.start();
+        }else{
+            GameLoop.pause();
         }
         //Favicon
         Image s = la.createBufferedImage("Quatopularslith"+renderlevel+".png", 64, 64);

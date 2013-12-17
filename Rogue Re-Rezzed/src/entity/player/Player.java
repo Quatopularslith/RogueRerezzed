@@ -3,7 +3,6 @@ package entity.player;
 import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
-import util.Direction;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
@@ -11,6 +10,7 @@ import entity.mob.RogueHostileEntity;
 import entity.npc.RogueNPC;
 import render.Sprite;
 import ui.GamePlay;
+import util.Direction;
 
 /**
  * Hello! This is you!
@@ -115,7 +115,8 @@ public class Player extends RogueEntity{
                 }
                 this.move(Direction.UP);
             }
-        }else if(Rogue.mm.ki.keyBind[1]){//down
+        }
+        if(Rogue.mm.ki.keyBind[1]){//down
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueNPC  && re.x==this.x && re.y==this.y+1){
@@ -142,7 +143,8 @@ public class Player extends RogueEntity{
                 }
                 this.move(Direction.DOWN);
             }
-        }else if(Rogue.mm.ki.keyBind[2]){//right
+        }
+        if(Rogue.mm.ki.keyBind[2]){//right
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueNPC  && re.x==this.x+1 && re.y==this.y){
@@ -169,7 +171,8 @@ public class Player extends RogueEntity{
                 }
                 this.move(Direction.RIGHT);
             }
-        }else if(Rogue.mm.ki.keyBind[3]){//left
+        }
+        if(Rogue.mm.ki.keyBind[3]){//left
             for(int i=0;i<l.getEntities().size();i++){
                 RogueEntity re = l.getEntities().get(i);
                 if(re instanceof RogueNPC  && re.x==this.x-1 && re.y==this.y){

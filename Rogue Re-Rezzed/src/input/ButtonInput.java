@@ -4,7 +4,6 @@ import core.Rogue;
 import dungeon.Level;
 import entity.RogueEntity;
 import entity.item.Item;
-import entity.player.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import ui.DebugMenu;

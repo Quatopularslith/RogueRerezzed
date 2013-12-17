@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 /**
- * Just like Soren's Door
+ * 
  * @author Mnenmenth
  */
 public class MainMenuPanel extends javax.swing.JPanel{

@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class NewGamePanel extends JPanel{
     double[] bypos = {0.3,0.42,0.54};
-    double[] size = {0.26666666666666667,0.1};
+    double[] size = {0.4375,0.1};
     LoadArt la = new LoadArt();
     Image img = la.createImage("MainMenu.png", "MMP", 750, 500);
     MButton turnStory = new MButton(getWidth()/2-100,150,200,50,"Turn-Based Story mode",this);
@@ -35,9 +35,9 @@ public class NewGamePanel extends JPanel{
             back.setParent(this);
             img = la.createImage("MainMenu.png","MMP",Rogue.mm.getWidth(), Rogue.mm.getHeight());
             this.setSize(Rogue.mm.getWidth(), Rogue.mm.getHeight());
-            turnStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            evolvedStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            back.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
+            turnStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
+            evolvedStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
+            back.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             turnStory.addListener(Rogue.mm.mbi);
             evolvedStory.addListener(Rogue.mm.mbi);
             back.addListener(Rogue.mm.mbi);

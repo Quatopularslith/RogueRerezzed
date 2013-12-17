@@ -4,11 +4,11 @@ package entity.npc;
 import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
-import util.Direction;
 import entity.item.Item;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import util.Direction;
 
 /**
  *
@@ -48,21 +48,6 @@ public class Trader extends RogueNPC{
     }
     @Override
     public void action(){
-        int say = rand.nextInt(dialogue.length);
-        img=la.createBufferedImage("Dialogue"+Level.renderlevel+".png", 256, 256);
-        Graphics2D g = img.createGraphics();
-        int width = g.getFontMetrics().stringWidth(dialogue[say]);
-        g.setColor(Color.BLACK);
-        g.drawString(dialogue[say], 256/2-width/2, 40);
-        width = g.getFontMetrics().stringWidth("Here is what I have:");
-        g.drawString("Here is what I have:", 256/2-width/2, 60);
-        for(int i=0;i<inv.length;i++){
-            prices[i]=inv[i].id+inv[i].lvl;
-            g.drawString(inv[i].name+" for "+prices[i]+" gold", 0, (i*30)+80);
-            buttons[i][0]=2;
-            buttons[i][1]=(i*30)+80;
-        }
-        g.dispose();
         trade=true;
     }
     @Override
@@ -92,23 +77,25 @@ public class Trader extends RogueNPC{
             pdir=Direction.STOP;
         }
         if(distTo(l.getPlayer())>1){
-            int say = rand.nextInt(dialogue.length);
-            img=la.createBufferedImage("Dialogue"+Level.renderlevel+".png", 256, 256);
-            Graphics2D g = img.createGraphics();
-            int width = g.getFontMetrics().stringWidth(dialogue[say]);
-            g.setColor(Color.BLACK);
-            g.drawString(dialogue[say], 256/2-width/2, 40);
-            width = g.getFontMetrics().stringWidth("Here is what I have:");
-            g.drawString("Here is what I have:", 256/2-width/2, 60);
-            for(int i=0;i<inv.length;i++){
-                prices[i]=inv[i].id+inv[i].lvl;
-                g.drawString(inv[i].name+" for "+prices[i]+" gold", 0, (i*30)+80);
-                buttons[i][0]=2;
-                buttons[i][1]=(i*30)+80;
-            }
-            g.dispose();
             trade=false;
         }
         move(pdir);
+    }
+    public void refreshTrade(){
+        int say = rand.nextInt(dialogue.length);
+        img=la.createBufferedImage("Dialogue"+Level.renderlevel+".png", 256, 256);
+        Graphics2D g = img.createGraphics();
+        int width = g.getFontMetrics().stringWidth(dialogue[say]);
+        g.setColor(Color.BLACK);
+        g.drawString(dialogue[say], 256/2-width/2, 40);
+        width = g.getFontMetrics().stringWidth("Here is what I have:");
+        g.drawString("Here is what I have:", 256/2-width/2, 60);
+        for(int i=0;i<inv.length;i++){
+            prices[i]=inv[i].id+inv[i].lvl;
+            g.drawString(inv[i].name+" for "+prices[i]+" gold", 0, (i*30)+80);
+            buttons[i][0]=2;
+            buttons[i][1]=(i*30)+80;
+        }
+        g.dispose();
     }
 }

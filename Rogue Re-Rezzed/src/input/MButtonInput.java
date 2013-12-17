@@ -17,6 +17,7 @@ import ui.GamePlay;
 public class MButtonInput {
     public static boolean backtogame;
     public void clicked(String command,Component parent){
+//        System.out.println(command+" @ "+parent.getClass().toString());
         //Main Menu Code
         if(command.equalsIgnoreCase("New Game") && parent==Rogue.mm.mmp){
             Rogue.mm.mmp.setVisible(false);
@@ -36,21 +37,23 @@ public class MButtonInput {
             return;
         }
         //New Game Panel
-        if(command.equalsIgnoreCase("Turn-Based Story mode")){
+        if(command.equalsIgnoreCase("Turn-Based Story mode") && parent==Rogue.mm.ngp){
             Rogue.resetLevels();
             Rogue.setLevel(LevelMode.STORY, LevelType.TURN, 0);
             Rogue.mm.ngp.setVisible(false);
             Rogue.mm.gp.setVisible(true);
             Rogue.mm.gp.update();
+            return;
         }
-        if(command.equalsIgnoreCase("Evolved Story mode")){
+        if(command.equalsIgnoreCase("Evolved Story mode") && parent==Rogue.mm.ngp){
             Rogue.resetLevels();
             Rogue.setLevel(LevelMode.STORY, LevelType.EVOLVED, 0);
             Rogue.mm.ngp.setVisible(false);
             Rogue.mm.gp.setVisible(true);
             Rogue.mm.gp.update();
+            return;
         }
-        if(command.equalsIgnoreCase("Back")){
+        if(command.equalsIgnoreCase("Back") && parent==Rogue.mm.ngp){
             Rogue.mm.ngp.setVisible(false);
             Rogue.mm.mmp.setVisible(true);
         }
@@ -64,8 +67,8 @@ public class MButtonInput {
         if(command.equalsIgnoreCase("settings") && parent==Rogue.mm.gp){
             backtogame=true;
             Rogue.mm.mmp.setVisible(false);
-            Rogue.mm.omp.setVisible(true);
             Rogue.mm.gp.setVisible(false);
+            Rogue.mm.omp.setVisible(true);
             return;
         }
         //Pickup Dialogue
@@ -106,8 +109,9 @@ public class MButtonInput {
         //Stat Menu
         if(command.equalsIgnoreCase("Return") && parent==Rogue.mm.sm){
             Rogue.resetLevels();
-            Rogue.mm.mmp.setVisible(true);
+            if(!Rogue.mm.sm.isVisible()) return;
             Rogue.mm.sm.setVisible(false);
+            Rogue.mm.mmp.setVisible(true);
             return;
         }
         //Trading
@@ -119,6 +123,7 @@ public class MButtonInput {
                     Rogue.getCurrentLevel().getPlayer().updateStats();
                     Rogue.mm.gp.update();
                 }
+                Rogue.mm.gp.currTrade.refreshTrade();
                 return;
             }
         }

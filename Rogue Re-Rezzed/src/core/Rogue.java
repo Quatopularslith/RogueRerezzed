@@ -1,10 +1,10 @@
 package core;
 
-import ui.Menu;
 import dungeon.Level;
 import dungeon.LevelMode;
 import dungeon.LevelType;
 import java.util.ArrayList;
+import ui.Menu;
 //http://semver.org/
 /**
  * This makes it all go!

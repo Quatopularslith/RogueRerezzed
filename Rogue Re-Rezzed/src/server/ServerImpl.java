@@ -1,6 +1,6 @@
 package server;
 import dungeon.Level;
-import javax.jws.*;
+import javax.jws.WebService;
 /**
  * 
  * @author Torri

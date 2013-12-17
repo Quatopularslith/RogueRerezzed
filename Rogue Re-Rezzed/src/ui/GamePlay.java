@@ -97,7 +97,7 @@ public class GamePlay extends JPanel{
         if(Rogue.getCurrentLevel().getPlayer().dead){
             Rogue.mm.mmp.setVisible(false);
             Rogue.mm.omp.setVisible(false);
-            this.setVisible(false);
+            setVisible(false);
             Rogue.mm.sm.setVisible(true);
         }
     }
@@ -252,8 +252,8 @@ public class GamePlay extends JPanel{
         g2.drawString("Kills: "+Rogue.getCurrentLevel().getPlayer().kills+" Enemies", 10, 140);
         g2.drawString("Gold: "+Rogue.getCurrentLevel().getPlayer().gold, 10, 160);
         //Buttons
-        quit.setPos(getWidth()-(int) (0.1875*getWidth()), getHeight()-(int) (0.05859375*getHeight())-30, (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
-        settings.setPos(getWidth()-(int) (0.09375*getWidth()), getHeight()-(int) (0.05859375*getHeight())-30, (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
+        quit.setPos(getWidth()-(int) (0.1875*getWidth()), getHeight()-(int) (0.05859375*getHeight())-50, (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
+        settings.setPos(getWidth()-(int) (0.09375*getWidth()), getHeight()-(int) (0.05859375*getHeight())-50, (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
         quit.addListener(Rogue.mm.mbi);
         settings.addListener(Rogue.mm.mbi);
         g2.drawImage(quit.img, quit.x, quit.y, this);
