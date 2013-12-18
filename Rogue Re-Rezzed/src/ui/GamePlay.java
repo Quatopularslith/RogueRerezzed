@@ -8,6 +8,7 @@ import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
+import entity.npc.RogueNPC;
 import entity.npc.Trader;
 import input.MButton;
 import java.awt.Color;
@@ -117,6 +118,7 @@ public class GamePlay extends JPanel{
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
         setSize(Rogue.mm.getWidth(),Rogue.mm.getHeight());
+        FontMetrics fm = g2.getFontMetrics();
         //Main Graphic
         if(l==null) return;
         setReletiveTo(l.getPlayer());
@@ -124,6 +126,7 @@ public class GamePlay extends JPanel{
         g2.fillRect(0, 0, getWidth(), getHeight());
         room = l.getRooms();
         current = l.getEntities();
+        //Floors
         for (Room r1 : room) {
             for (int[][] area0 : r1.area) {
                 for (int[] area1 : area0) {
@@ -133,18 +136,26 @@ public class GamePlay extends JPanel{
             }
         }
         g2.drawImage(l.getStairWay().sp.i, l.getStairWay().x*64+offx,l.getStairWay().y*64+offy, this);
+        //Items
         for(Item i:l.getItems()){
             g2.drawImage(i.sp.i, i.x*64+offx+i.ofx,i.y*64+offy+i.ofy, this);
         }
+        //Entities
         for (int i=0;i<current.size();i++) {
             if(current.get(i)!=null){
+                g2.setColor(Color.BLACK);
+                g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-15, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
                 if(current.get(i).x*64+offx<=-64 || current.get(i).x*64+offx>=getWidth() || current.get(i).y*64+offy<=-64 || current.get(i).y>=getHeight()) continue;
                 g2.setColor(Color.RED);
                 g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-15, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
                 g2.setColor(Color.WHITE);
-                g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*64+offx+3, current.get(i).y*64+offy);
+                if(current.get(i) instanceof RogueNPC){
+                    g2.drawString(current.get(i).name, current.get(i).x*64+offx+3, current.get(i).y*64+offy);
+                }else{
+                    g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*64+offx-15+fm.stringWidth("Health:"+(int)current.get(i).health)/2, current.get(i).y*64+offy);
+                }
                 g2.drawImage(current.get(i).sp.i, current.get(i).x*64+offx, current.get(i).y*64+offy, this);
-                g2.setColor(Color.ORANGE);
+                g2.setColor(Color.GREEN);
                 g2.drawString(Integer.toString(current.get(i).lvl), current.get(i).x*64+offx+59, current.get(i).y*64+offy+53);
                 if(current.get(i) instanceof Trader){
                     Trader t = (Trader) current.get(i);
@@ -156,10 +167,13 @@ public class GamePlay extends JPanel{
                 }
             }
         }
+        //Player
+        g2.setColor(Color.BLACK);
+        g2.fillRect(l.getPlayer().x*64+offx+2, l.getPlayer().y*64+offy-15, 61, 20);
         g2.setColor(Color.RED);
         g2.fillRect(l.getPlayer().x*64+offx+2, l.getPlayer().y*64+offy-15, (int) ((l.getPlayer().health/l.getPlayer().maxhealth)*61), 20);
         g2.setColor(Color.WHITE);
-        g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx+3, l.getPlayer().y*64+offy);
+        g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx-15+fm.stringWidth("Health:"+(int)l.getPlayer().health)/2, l.getPlayer().y*64+offy);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
         g2.setColor(Color.ORANGE);
         g2.drawString(Integer.toString(Rogue.getCurrentLevel().getPlayer().xplevels), l.getPlayer().x*64+offx+59, l.getPlayer().y*64+offy+53);
@@ -220,7 +234,6 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.WHITE);
         for(int i=0;i<Rogue.getCurrentLevel().getPlayer().pinv.length;i++){
             g2.drawString(Rogue.getCurrentLevel().getPlayer().pinv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
-            FontMetrics fm = g2.getFontMetrics(g2.getFont());
             int width = fm.stringWidth(Rogue.getCurrentLevel().getPlayer().pinv[i].name);
             if(Rogue.getCurrentLevel().getPlayer().pinv[i].id>0){
                 equip[i].addListener(Rogue.mm.mbi,this);
@@ -262,7 +275,7 @@ public class GamePlay extends JPanel{
         //Pause Screen
         if(Rogue.mm.ki.pause){
             g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,40));
-            FontMetrics fm = g2.getFontMetrics();
+            fm = g2.getFontMetrics();
             g2.setColor(Color.BLUE);
             g2.drawString("PAUSED", getWidth()/2-fm.stringWidth("PAUSED")/2, getHeight()/2);
         }

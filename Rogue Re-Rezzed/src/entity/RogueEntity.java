@@ -22,6 +22,7 @@ public class RogueEntity {
     public Random rand = new Random();
     public Level l;
     public LoadArt la = new LoadArt();
+    public String name;
     public RogueEntity(Level l1){
         l=l1;
     }

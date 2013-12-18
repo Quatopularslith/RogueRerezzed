@@ -44,6 +44,7 @@ public class Trader extends RogueNPC{
             buttons[i][0]=2;
             buttons[i][1]=(i*30)+80;
         }
+        name="Trader";
         g.dispose();
     }
     @Override

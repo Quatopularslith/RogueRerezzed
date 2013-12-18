@@ -15,9 +15,10 @@ public class Warrior extends RogueNPC{
     RogueEntity follow;
     public Warrior(Room r,Level l1) {
         super(r,l1);
-        maxAtt=10;
-        maxhealth=1;
-        health=1;
+        maxAtt=lvl*5;
+        maxhealth=lvl;
+        health=lvl;
+        name="Warrior";
     }
     @Override
     public void turn(){
