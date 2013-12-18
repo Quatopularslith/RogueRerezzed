@@ -27,6 +27,7 @@ public class Level {
     private final ArrayList<RogueEntity> re =new ArrayList<>();
     private final ArrayList<Item> items = new ArrayList<>();
     private Room[] rooms;
+    private ArrayList<Player> pl = new ArrayList<>();
     private Player p;
     private static int rows=10,cols=10;
     private Stairway st;
@@ -142,6 +143,9 @@ public class Level {
             p.xp=Rogue.getLastLevel().getPlayer().xp;
             p.mana=Rogue.getLastLevel().getPlayer().mana;
             p.rep=Rogue.getLastLevel().getPlayer().rep;
+            p.kills=Rogue.getLastLevel().getPlayer().kills;
+        }else{
+            p.xplevels=100000;
         }
         p.updateStats();
         //Board

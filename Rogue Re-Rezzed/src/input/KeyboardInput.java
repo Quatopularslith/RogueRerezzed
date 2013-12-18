@@ -1,6 +1,7 @@
 
 package input;
 
+import core.GameLoop;
 import core.Rogue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,6 +15,7 @@ public class KeyboardInput implements KeyListener{
     private int[] keyn = new int[6];
     public boolean[] keyBind = new boolean[6];
     public boolean turn=true;
+    public boolean pause = false;
     /**
      * Sets up a keyboard input listener
      * @param keybinds 
@@ -73,6 +75,13 @@ public class KeyboardInput implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()]=true;
+        if(e.getKeyCode()==32 && pause && !turn){
+            GameLoop.start();
+            pause=false;
+        }else if(e.getKeyCode()==32 && !pause && !turn){
+            pause=true;
+            GameLoop.pause();
+        }
         for(int i=0;i<keyBind.length;i++){
             keyBind[i]=keys[keyn[i]];
         }

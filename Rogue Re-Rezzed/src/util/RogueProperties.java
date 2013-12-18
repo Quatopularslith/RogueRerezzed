@@ -23,6 +23,7 @@ public class RogueProperties {
      */
     public RogueProperties(String dir,String[] props){
         rp=new File(dir);
+        rp.mkdirs();
         this.props=props;
         out = new String[props.length];
         try {

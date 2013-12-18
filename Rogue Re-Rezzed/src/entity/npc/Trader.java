@@ -15,7 +15,7 @@ import util.Direction;
  * @author Creatorri
  */
 public class Trader extends RogueNPC{
-    private final String[] dialogue = {"Hello Adventurer!","Looking for something?","Need a hand?","Hey dawg whaddup?","Hello Stranger!","Mortuus Trabajos owning you? I got what you need!"};
+    private final String[] dialogue = {"Hello Adventurer!","Looking for something?","Need a hand?","Hey dawg whaddup?","Hello Stranger!","Mortuus Trabajos owning you?","You saw the crystal? LOL its NYI"};
     public final int[] prices;
     public int[][] buttons = new int[3][2];
     public BufferedImage img = new BufferedImage(256,256,BufferedImage.TYPE_4BYTE_ABGR);

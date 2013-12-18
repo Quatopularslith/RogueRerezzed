@@ -12,6 +12,7 @@ import entity.npc.Trader;
 import input.MButton;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -241,7 +242,7 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.BLUE);
         g2.fillRect(10, 45, (int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100), 20);
         g2.setColor(Color.GREEN);
-        g2.fillRect(10, 65, (int) (100*Rogue.getCurrentLevel().getPlayer().xp/(10*Rogue.getCurrentLevel().getPlayer().xplevels)), 20);
+        g2.fillRect(10, 65, (int) (140*Rogue.getCurrentLevel().getPlayer().xp/(10*Rogue.getCurrentLevel().getPlayer().xplevels)), 20);
         g2.setColor(Color.WHITE);
         g2.drawString("You are in dungeon: "+Rogue.numLevels, 10, 20);
         g2.drawString("Health: "+(int) Rogue.getCurrentLevel().getPlayer().health,10,40);
@@ -258,5 +259,11 @@ public class GamePlay extends JPanel{
         settings.addListener(Rogue.mm.mbi);
         g2.drawImage(quit.img, quit.x, quit.y, this);
         g2.drawImage(settings.img, settings.x, settings.y, this);
+        //Pause Screen
+        if(Rogue.mm.ki.pause){
+            g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,40));
+            g2.setColor(Color.RED);
+            g2.drawString("PAUSED", getWidth()/2, getHeight()/2);
+        }
     }
 }

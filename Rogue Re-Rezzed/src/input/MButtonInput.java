@@ -118,6 +118,8 @@ public class MButtonInput {
         for(int i=0;i<Rogue.mm.gp.tradeMB.length;i++){
             if(command.equalsIgnoreCase("Trade"+i) && parent==Rogue.mm.gp){
                 if(Rogue.getCurrentLevel().getPlayer().gold>=Rogue.mm.gp.currTrade.prices[i] && Rogue.getCurrentLevel().getPlayer().currinv!=Rogue.getCurrentLevel().getPlayer().pinv.length){
+                    Rogue.getCurrentLevel().getPlayer().gold-=Rogue.mm.gp.currTrade.prices[i];
+                    Rogue.getCurrentLevel().getPlayer().rep++;
                     Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=Rogue.mm.gp.currTrade.inv[i];
                     Rogue.mm.gp.currTrade.inv[i]=new Item(0,null,0,Rogue.getCurrentLevel());
                     Rogue.getCurrentLevel().getPlayer().updateStats();
