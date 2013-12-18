@@ -20,9 +20,7 @@ public class MouseInput implements MouseListener{
         mx=e.getX()+5;
         my=e.getY()-30;
         for(int i=0;i<mb.size();i++){
-            if(mb.get(i).visible && mb.get(i).parent.isVisible()){
-                mb.get(i).update(mx, my);
-            }
+            if(mb.get(i).update(mx, my)) break;
         }
     }
     @Override

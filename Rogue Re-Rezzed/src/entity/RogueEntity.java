@@ -146,9 +146,6 @@ public class RogueEntity {
         }else if(health<maxhealth){
             health++;
         }
-        for (Item inv1 : inv) {
-            inv1.update();
-        }
     }
     /**
      * What to do when this entity dies

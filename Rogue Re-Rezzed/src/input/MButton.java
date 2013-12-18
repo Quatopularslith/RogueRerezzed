@@ -53,8 +53,9 @@ public class MButton {
         g.drawString(name, sx/2-width/2, sy/2+sy/4);
         g.dispose();
     }
-    public void addListener(MButtonInput mbi1){
+    public void addListener(MButtonInput mbi1, Component parent1){
         visible=true;
+        parent = parent1;
         if(!isListened){
             mbi=mbi1;
             if(Rogue.mm!=null){
@@ -63,11 +64,13 @@ public class MButton {
             isListened=true;
         }
     }
-    public void update(int mx,int my){
-        if(mx>x+8 && mx<x+sx && my>y && my<y+sy && parent.isVisible() && visible){
+    public boolean update(int mx,int my){
+        boolean go = (mx>x+8 && mx<x+sx && my>y && my<y+sy && parent.isVisible() && visible);
+        if(go){
             if(data!=null) mbi.clicked(name+data,parent);
             if(data==null) mbi.clicked(name,parent);
         }
+        return (go);
     }
     public void setPos(int x1,int y1,int sx1,int sy1){
         x=x1;

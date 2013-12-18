@@ -38,9 +38,9 @@ public class NewGamePanel extends JPanel{
             turnStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             evolvedStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             back.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            turnStory.addListener(Rogue.mm.mbi);
-            evolvedStory.addListener(Rogue.mm.mbi);
-            back.addListener(Rogue.mm.mbi);
+            turnStory.addListener(Rogue.mm.mbi,this);
+            evolvedStory.addListener(Rogue.mm.mbi,this);
+            back.addListener(Rogue.mm.mbi,this);
         }
         g2.drawImage(img, 0,0, this);
         g2.drawImage(turnStory.img, turnStory.x, turnStory.y, this);

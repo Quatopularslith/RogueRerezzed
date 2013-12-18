@@ -106,10 +106,6 @@ public class Item extends RogueEntity{
             l.addItem(this);
         }
     }
-    public void update(){
-        this.x=parent.x;
-        this.y=parent.y;
-    }
     public RogueEntity getParent(){
         return parent;
     }

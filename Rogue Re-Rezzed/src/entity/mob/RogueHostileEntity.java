@@ -76,9 +76,6 @@ public class RogueHostileEntity extends RogueEntity{
             inv[1] = new Gold(rand.nextInt(lvl+1),this,l);
         }
         spawn(r);
-        for (Item inv1 : inv) {
-            inv1.update();
-        }
     }
     @Override
     public void turn(){

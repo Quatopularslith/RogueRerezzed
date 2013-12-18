@@ -177,8 +177,8 @@ public class GamePlay extends JPanel{
             dmb.setPos(getWidth()/2-24,getHeight()/2+30,100,20);
             g2.drawImage(amb.img, amb.x,amb.y, this);
             g2.drawImage(dmb.img, dmb.x,dmb.y, this);
-            amb.addListener(Rogue.mm.mbi);
-            dmb.addListener(Rogue.mm.mbi);
+            amb.addListener(Rogue.mm.mbi,this);
+            dmb.addListener(Rogue.mm.mbi,this);
         }else{
             amb.hide();
             dmb.hide();
@@ -189,7 +189,7 @@ public class GamePlay extends JPanel{
                 g2.drawImage(currTrade.img, getWidth()/2-96, getHeight()/2-96, this);
                 for(int i=0;i<tradeMB.length;i++){
                     tradeMB[i].setPos(currTrade.buttons[i][0]+getWidth()/2-96, currTrade.buttons[i][1]+getHeight()/2-96, 50, 20);
-                    tradeMB[i].addListener(Rogue.mm.mbi);
+                    tradeMB[i].addListener(Rogue.mm.mbi,this);
                     g2.drawImage(tradeMB[i].img, tradeMB[i].x,tradeMB[i].y, this);
                 }
             }
@@ -223,8 +223,8 @@ public class GamePlay extends JPanel{
             FontMetrics fm = g2.getFontMetrics(g2.getFont());
             int width = fm.stringWidth(Rogue.getCurrentLevel().getPlayer().pinv[i].name);
             if(Rogue.getCurrentLevel().getPlayer().pinv[i].id>0){
-                equip[i].addListener(Rogue.mm.mbi);
-                drop[i].addListener(Rogue.mm.mbi);
+                equip[i].addListener(Rogue.mm.mbi,this);
+                drop[i].addListener(Rogue.mm.mbi,this);
                 equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
                 drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
                 g2.drawImage(drop[i].img, drop[i].x,drop[i].y, this);
@@ -255,15 +255,16 @@ public class GamePlay extends JPanel{
         //Buttons
         quit.setPos(getWidth()-(int) (0.1875*getWidth()), getHeight()-(int) (0.05859375*getHeight())-50, (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
         settings.setPos(getWidth()-(int) (0.09375*getWidth()), getHeight()-(int) (0.05859375*getHeight())-50, (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
-        quit.addListener(Rogue.mm.mbi);
-        settings.addListener(Rogue.mm.mbi);
+        quit.addListener(Rogue.mm.mbi,this);
+        settings.addListener(Rogue.mm.mbi,this);
         g2.drawImage(quit.img, quit.x, quit.y, this);
         g2.drawImage(settings.img, settings.x, settings.y, this);
         //Pause Screen
         if(Rogue.mm.ki.pause){
             g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,40));
-            g2.setColor(Color.RED);
-            g2.drawString("PAUSED", getWidth()/2, getHeight()/2);
+            FontMetrics fm = g2.getFontMetrics();
+            g2.setColor(Color.BLUE);
+            g2.drawString("PAUSED", getWidth()/2-fm.stringWidth("PAUSED")/2, getHeight()/2);
         }
     }
 }

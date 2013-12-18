@@ -6,15 +6,13 @@ package core;
 public class GameThread implements Runnable{
     boolean running = true;
     GameTick g = new GameTick();
+    long start = System.currentTimeMillis();
+    long now;
     @Override
     public void run(){
         while(running){
-            g.tick();
-            try{
-                Thread.sleep(100);
-            }catch(InterruptedException e){
-                System.err.println(e.toString());
-            }
+            now=System.currentTimeMillis()-start;
+            if(now%300==0) g.tick();
         }
     }
 }
