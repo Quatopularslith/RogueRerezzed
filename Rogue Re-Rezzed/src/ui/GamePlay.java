@@ -176,7 +176,7 @@ public class GamePlay extends JPanel{
         g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx-23+fm.stringWidth("Health:"+(int)l.getPlayer().health)/2, l.getPlayer().y*64+offy);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
         g2.setColor(Color.GREEN);
-        g2.drawString(Integer.toString(Rogue.getCurrentLevel().getPlayer().xplevels), l.getPlayer().x*64+offx+59, l.getPlayer().y*64+offy+53);
+        g2.drawString(Integer.toString(Rogue.getCurrentLevel().getPlayer().lvl), l.getPlayer().x*64+offx+59, l.getPlayer().y*64+offy+53);
         //Pickup
         if(pickup==null){
             pickup = new Item(0,Rogue.getCurrentLevel().getPlayer(),0,Rogue.getCurrentLevel());
@@ -232,10 +232,10 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.BLACK);
         g2.fillRect(getWidth()-(int) (0.25*getWidth())-10, (int) (0.3515625*getHeight())+64, (int) (0.25*getWidth()), (int) (0.3515625*getHeight()));
         g2.setColor(Color.WHITE);
-        for(int i=0;i<Rogue.getCurrentLevel().getPlayer().pinv.length;i++){
-            g2.drawString(Rogue.getCurrentLevel().getPlayer().pinv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
-            int width = fm.stringWidth(Rogue.getCurrentLevel().getPlayer().pinv[i].name);
-            if(Rogue.getCurrentLevel().getPlayer().pinv[i].id>0){
+        for(int i=0;i<Rogue.getCurrentLevel().getPlayer().inv.length;i++){
+            g2.drawString(Rogue.getCurrentLevel().getPlayer().inv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
+            int width = fm.stringWidth(Rogue.getCurrentLevel().getPlayer().inv[i].name);
+            if(Rogue.getCurrentLevel().getPlayer().inv[i].id>0){
                 equip[i].addListener(Rogue.mm.mbi,this);
                 drop[i].addListener(Rogue.mm.mbi,this);
                 equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
@@ -255,12 +255,12 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.BLUE);
         g2.fillRect(10, 45, (int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100), 20);
         g2.setColor(Color.GREEN);
-        g2.fillRect(10, 65, (int) (140*Rogue.getCurrentLevel().getPlayer().xp/(10*Rogue.getCurrentLevel().getPlayer().xplevels)), 20);
+        g2.fillRect(10, 65, (int) (140*Rogue.getCurrentLevel().getPlayer().xp/(10*Rogue.getCurrentLevel().getPlayer().lvl)), 20);
         g2.setColor(Color.WHITE);
         g2.drawString("You are in dungeon: "+Rogue.numLevels, 10, 20);
         g2.drawString("Health: "+(int) Rogue.getCurrentLevel().getPlayer().health,10,40);
         g2.drawString("Mana: "+l.getPlayer().mana, 10, 60);
-        g2.drawString("You are Level: "+Rogue.getCurrentLevel().getPlayer().xplevels, 10, 80);
+        g2.drawString("You are Level: "+Rogue.getCurrentLevel().getPlayer().lvl, 10, 80);
         g2.drawString("Max Attack: "+l.getPlayer().maxAtt, 10, 100);
         g2.drawString("Defence: "+l.getPlayer().maxDefence, 10, 120);
         g2.drawString("Kills: "+Rogue.getCurrentLevel().getPlayer().kills+" Enemies", 10, 140);

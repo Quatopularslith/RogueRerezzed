@@ -23,21 +23,20 @@ public class Player extends RogueEntity{
     public int kills=0;
     boolean attack=false;
     public int currinv=0;
-    public Item[] pinv;
     public double xp=0;
-    public int xplevels=1;
     public int rep=0;
     public int gold=0;
     public Player(Level l1){
         super(l1);
-        if(pinv==null){
-            pinv = new Item[10];
-            for(int i=0;i<pinv.length;i++){
-                pinv[i]=new Item(0,this,0,l);
+        lvl=1;
+        if(inv==null){
+            inv = new Item[10];
+            for(int i=0;i<inv.length;i++){
+                inv[i]=new Item(0,this,0,l);
             }
         }
-        for(int k=0;k<pinv.length;k++){
-            if(pinv[k].name.equalsIgnoreCase("empty")){
+        for(int k=0;k<inv.length;k++){
+            if(inv[k].name.equalsIgnoreCase("empty")){
                 currinv=k;
                 break;
             }
@@ -60,25 +59,25 @@ public class Player extends RogueEntity{
         if(health<=0){
             dead=true;
         }else if(health<maxhealth){
-            health+=0.1*xplevels;
+            health+=0.1*lvl;
         }
-        if(xplevels==0) xplevels = 1;
-        if(xp%(10*xplevels)==0 && xp>1){
+        if(lvl==0) lvl = 1;
+        if(xp%(10*lvl)==0 && xp>1){
             updateStats();
             xp=0;
-            xplevels++;
+            lvl++;
             health=maxhealth;
             mana=maxMana;
         }
-        for(int i=0;i<pinv.length;i++){
-            if(pinv[i].name.equalsIgnoreCase("Empty")){
+        for(int i=0;i<inv.length;i++){
+            if(inv[i].name.equalsIgnoreCase("Empty")){
                 currinv=i;
                 break;
             }
         }
         for (int j=0;j<l.getItems().size();j++) {
             Item i = l.getItems().get(j);
-            if(i.x==this.x && i.y==this.y && i.id!=0 && pinv[currinv]!=null){
+            if(i.x==this.x && i.y==this.y && i.id!=0 && inv[currinv]!=null){
                 if(i instanceof Gold){
                     gold+=i.id;
                     i.death();
@@ -100,7 +99,7 @@ public class Player extends RogueEntity{
                     if(re.health<=0){
                         mana++;
                         kills++;
-                        xp+=(re.lvl/xplevels);
+                        xp+=(re.lvl/lvl);
                         re.death();
                     }
                     attack=true;
@@ -109,7 +108,7 @@ public class Player extends RogueEntity{
             if(!attack){
                 for (int j=0;j<l.getItems().size();j++) {
                     Item i = l.getItems().get(j);
-                    if(i.x==this.x && i.y==this.y-1 && !pinv[currinv].equals(i) && pinv[currinv]!=null){
+                    if(i.x==this.x && i.y==this.y-1 && !inv[currinv].equals(i) && inv[currinv]!=null){
                         GamePlay.pickup = i;
                     }
                 }
@@ -128,7 +127,7 @@ public class Player extends RogueEntity{
                     if(re.health<=0){
                         mana++;
                         kills++;
-                        xp+=(re.lvl/xplevels);
+                        xp+=(re.lvl/lvl);
                         re.death();
                     }
                     attack=true;
@@ -137,7 +136,7 @@ public class Player extends RogueEntity{
             if(!attack){
                 for (int j=0;j<l.getItems().size();j++) {
                     Item i = l.getItems().get(j);
-                    if(i.x==this.x && i.y==this.y+1 && !pinv[currinv].equals(i) && pinv[currinv]!=null){
+                    if(i.x==this.x && i.y==this.y+1 && !inv[currinv].equals(i) && inv[currinv]!=null){
                         GamePlay.pickup = i;
                     }
                 }
@@ -156,7 +155,7 @@ public class Player extends RogueEntity{
                     if(re.health<=0){
                         mana++;
                         kills++;
-                        xp+=(re.lvl/xplevels);
+                        xp+=(re.lvl/lvl);
                         re.death();
                     }
                     attack=true;
@@ -165,7 +164,7 @@ public class Player extends RogueEntity{
             if(!attack){
                 for (int j=0;j<l.getItems().size();j++) {
                     Item i = l.getItems().get(j);
-                    if(i.x==this.x+1 && i.y==this.y && !pinv[currinv].equals(i) && pinv[currinv]!=null){
+                    if(i.x==this.x+1 && i.y==this.y && !inv[currinv].equals(i) && inv[currinv]!=null){
                         GamePlay.pickup = i;
                     }
                 }
@@ -184,7 +183,7 @@ public class Player extends RogueEntity{
                     if(re.health<=0){
                         mana++;
                         kills++;
-                        xp+=(re.lvl/xplevels);
+                        xp+=(re.lvl/lvl);
                         re.death();
                     }
                     attack=true;
@@ -193,7 +192,7 @@ public class Player extends RogueEntity{
             if(!attack){
                 for (int j=0;j<l.getItems().size();j++) {
                     Item i = l.getItems().get(j);
-                    if(i.x==this.x-1 && i.y==this.y && !pinv[currinv].equals(i) && pinv[currinv]!=null){
+                    if(i.x==this.x-1 && i.y==this.y && !inv[currinv].equals(i) && inv[currinv]!=null){
                         GamePlay.pickup = i;
                     }
                 }
@@ -202,22 +201,22 @@ public class Player extends RogueEntity{
         }
     }
     public void updateStats(){
-        maxAtt=2*xplevels;
-        maxMana=100+(xplevels);
-        maxhealth=100+2*(xplevels-1);
-        maxDefence=(xplevels);
+        maxAtt=2*lvl;
+        maxMana=100+(lvl);
+        maxhealth=100+2*(lvl-1);
+        maxDefence=(lvl);
         boolean curr=false;
-        for (int i=0;i<pinv.length;i++) {
-            if(pinv[i]!=null){
-                pinv[i].setParent(this);
-                if(pinv[i].name.equalsIgnoreCase("EMPTY") && !curr){
+        for (int i=0;i<inv.length;i++) {
+            if(inv[i]!=null){
+                inv[i].setParent(this);
+                if(inv[i].name.equalsIgnoreCase("EMPTY") && !curr){
                     currinv=i;
                     curr=true;
-                }else if(pinv[i].equip==true){
-                    maxhealth+=pinv[i].stats[3];
-                    maxMana+=pinv[i].stats[2];
-                    maxDefence+=pinv[i].stats[1];
-                    maxAtt+=pinv[i].stats[0];
+                }else if(inv[i].equip==true){
+                    maxhealth+=inv[i].stats[3];
+                    maxMana+=inv[i].stats[2];
+                    maxDefence+=inv[i].stats[1];
+                    maxAtt+=inv[i].stats[0];
                 }
             }
         }

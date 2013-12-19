@@ -130,13 +130,13 @@ public class ButtonInput implements ActionListener{
             item = Rogue.mm.dm.chooseItemSpawn.getSelectedIndex();
             switch(item){
                 case 0:
-                    Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=new Item(3,Rogue.getCurrentLevel().getPlayer(),10,Rogue.getCurrentLevel());
+                    Rogue.getCurrentLevel().getPlayer().inv[Rogue.getCurrentLevel().getPlayer().currinv]=new Item(3,Rogue.getCurrentLevel().getPlayer(),10,Rogue.getCurrentLevel());
                     break;
                 case 1:
-                    Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=new Item(1,Rogue.getCurrentLevel().getPlayer(),10,Rogue.getCurrentLevel());
+                    Rogue.getCurrentLevel().getPlayer().inv[Rogue.getCurrentLevel().getPlayer().currinv]=new Item(1,Rogue.getCurrentLevel().getPlayer(),10,Rogue.getCurrentLevel());
                     break;
                 case 2:
-                    Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=new Item(2,Rogue.getCurrentLevel().getPlayer(),10,Rogue.getCurrentLevel());
+                    Rogue.getCurrentLevel().getPlayer().inv[Rogue.getCurrentLevel().getPlayer().currinv]=new Item(2,Rogue.getCurrentLevel().getPlayer(),10,Rogue.getCurrentLevel());
                     break;
                 case 3:
                     Rogue.getCurrentLevel().getPlayer().gold++;

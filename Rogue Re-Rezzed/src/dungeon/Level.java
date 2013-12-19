@@ -136,10 +136,10 @@ public class Level {
         p=new Player(this);
         if(Rogue.getLastLevel()!=null){
             p.currinv=Rogue.getLastLevel().getPlayer().currinv;
-            p.pinv=Rogue.getLastLevel().getPlayer().pinv;
+            p.inv=Rogue.getLastLevel().getPlayer().inv;
             p.gold=Rogue.getLastLevel().getPlayer().gold;
             p.health=Rogue.getLastLevel().getPlayer().health;
-            p.xplevels=Rogue.getLastLevel().getPlayer().xplevels;
+            p.lvl=Rogue.getLastLevel().getPlayer().lvl;
             p.xp=Rogue.getLastLevel().getPlayer().xp;
             p.mana=Rogue.getLastLevel().getPlayer().mana;
             p.rep=Rogue.getLastLevel().getPlayer().rep;

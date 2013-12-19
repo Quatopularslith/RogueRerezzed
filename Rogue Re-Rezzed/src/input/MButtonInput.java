@@ -73,9 +73,9 @@ public class MButtonInput {
         }
         //Pickup Dialogue
         if(command.equalsIgnoreCase("pick up") && parent==Rogue.mm.gp){
-            if(GamePlay.pickup!=null && Rogue.getCurrentLevel().getPlayer().currinv!=Rogue.getCurrentLevel().getPlayer().pinv.length){
+            if(GamePlay.pickup!=null && Rogue.getCurrentLevel().getPlayer().currinv!=Rogue.getCurrentLevel().getPlayer().inv.length){
                 GamePlay.pickup.setParent(Rogue.getCurrentLevel().getPlayer());
-                Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=GamePlay.pickup;
+                Rogue.getCurrentLevel().getPlayer().inv[Rogue.getCurrentLevel().getPlayer().currinv]=GamePlay.pickup;
                 Rogue.getCurrentLevel().getPlayer().updateStats();
                 GamePlay.pickup.death();
                 Rogue.mm.gp.update();
@@ -92,15 +92,15 @@ public class MButtonInput {
         //Inventory
         for(int i=0;i<Rogue.mm.gp.equip.length;i++){
             if(command.equalsIgnoreCase("Drop"+i) && parent==Rogue.mm.gp){
-                Rogue.getCurrentLevel().getPlayer().pinv[i].drop();
-                Rogue.getCurrentLevel().getPlayer().pinv[i]=new Item(0,Rogue.getCurrentLevel().getPlayer(),0,Rogue.getCurrentLevel());
+                Rogue.getCurrentLevel().getPlayer().inv[i].drop();
+                Rogue.getCurrentLevel().getPlayer().inv[i]=new Item(0,Rogue.getCurrentLevel().getPlayer(),0,Rogue.getCurrentLevel());
                 Rogue.getCurrentLevel().getPlayer().updateStats();
                 Rogue.mm.gp.update();
                 return;
             }
             if(command.equalsIgnoreCase("Equip"+i) && parent==Rogue.mm.gp){
-                if(Rogue.getCurrentLevel().getPlayer().pinv[i].equip) continue;
-                Rogue.getCurrentLevel().getPlayer().pinv[i].equip=true;
+                if(Rogue.getCurrentLevel().getPlayer().inv[i].equip) continue;
+                Rogue.getCurrentLevel().getPlayer().inv[i].equip=true;
                 Rogue.getCurrentLevel().getPlayer().updateStats();
                 Rogue.mm.gp.update();
                 return;
@@ -117,10 +117,10 @@ public class MButtonInput {
         //Trading
         for(int i=0;i<Rogue.mm.gp.tradeMB.length;i++){
             if(command.equalsIgnoreCase("Trade"+i) && parent==Rogue.mm.gp){
-                if(Rogue.getCurrentLevel().getPlayer().gold>=Rogue.mm.gp.currTrade.prices[i] && Rogue.getCurrentLevel().getPlayer().currinv!=Rogue.getCurrentLevel().getPlayer().pinv.length){
+                if(Rogue.getCurrentLevel().getPlayer().gold>=Rogue.mm.gp.currTrade.prices[i] && Rogue.getCurrentLevel().getPlayer().currinv!=Rogue.getCurrentLevel().getPlayer().inv.length){
                     Rogue.getCurrentLevel().getPlayer().gold-=Rogue.mm.gp.currTrade.prices[i];
                     Rogue.getCurrentLevel().getPlayer().rep++;
-                    Rogue.getCurrentLevel().getPlayer().pinv[Rogue.getCurrentLevel().getPlayer().currinv]=Rogue.mm.gp.currTrade.inv[i];
+                    Rogue.getCurrentLevel().getPlayer().inv[Rogue.getCurrentLevel().getPlayer().currinv]=Rogue.mm.gp.currTrade.inv[i];
                     Rogue.mm.gp.currTrade.inv[i]=new Item(0,null,0,Rogue.getCurrentLevel());
                     Rogue.getCurrentLevel().getPlayer().updateStats();
                     Rogue.mm.gp.update();
