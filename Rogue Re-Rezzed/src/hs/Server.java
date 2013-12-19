@@ -11,4 +11,5 @@ import javax.jws.soap.SOAPBinding.Style;
 public interface Server {
     @WebMethod void highScore(int numLevel);
     @WebMethod int getHighScore();
+    @WebMethod boolean connect();
 }

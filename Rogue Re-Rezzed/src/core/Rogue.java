@@ -3,8 +3,6 @@ package core;
 import dungeon.Level;
 import dungeon.LevelMode;
 import dungeon.LevelType;
-import hs.ServerPublisher;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.namespace.QName;
@@ -24,7 +22,7 @@ public class Rogue {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        ServerPublisher.go();
+        
         mm = new Menu();
     }
     public static Level setLevel(LevelMode mode1,LevelType type1,int render1){
@@ -47,11 +45,33 @@ public class Rogue {
     }
     public static void resetLevels(){
         try {
-            URL url = new URL("http://199.231.178.196:5335/HighScore?wsdl");
+            System.out.println("Attempting Outdoor Connection...");
+            URL url = new URL("http://eyeris.zapto.org:3000/HighScore?wsdl");
             QName qname = new QName("http://hs/","ServerImplService");
             Service s = Service.create(url, qname);
             hs.Server s1 = s.getPort(hs.Server.class);
-            s1.highScore(numLevels);
+            System.out.println(s1.connect());
+            if(s1.connect()){
+                System.out.println("Success");
+                s1.highScore(numLevels);
+            }else{
+                System.out.println("Outdoor Failed. Attempting LAN connection...");
+                url = new URL("http://192.168.1.35:3000/HighScore?wsdl");
+                qname = new QName("http://hs/","ServerImplService");
+                s = Service.create(url, qname);
+                s1 = s.getPort(hs.Server.class);
+                if(s1.connect()){
+                    System.out.println("Success");
+                    s1.highScore(numLevels);
+                }else{
+                    System.out.println("LAN Failed. Attempting Local Host connection...");
+                    url = new URL("http://127.0.0.1:3000/HighScore?wsdl");
+                    qname = new QName("http://hs/","ServerImplService");
+                    s = Service.create(url, qname);
+                    s1 = s.getPort(hs.Server.class);
+                    s1.highScore(numLevels);
+                }
+            }
         } catch (Exception ex) {}
         levels.clear();
         numLevels=0;
