@@ -3,7 +3,12 @@ package core;
 import dungeon.Level;
 import dungeon.LevelMode;
 import dungeon.LevelType;
+import hs.ServerPublisher;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 import ui.Menu;
 //http://semver.org/
 /**
@@ -19,6 +24,7 @@ public class Rogue {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+//        ServerPublisher.go();
         mm = new Menu();
     }
     public static Level setLevel(LevelMode mode1,LevelType type1,int render1){
@@ -40,6 +46,13 @@ public class Rogue {
         return l1;
     }
     public static void resetLevels(){
+        try {
+            URL url = new URL("http://127.0.0.1:5335/HighScore?wsdl");
+            QName qname = new QName("http://hs/","ServerImplService");
+            Service s = Service.create(url, qname);
+            hs.Server s1 = s.getPort(hs.Server.class);
+            s1.highScore(numLevels);
+        } catch (Exception ex) {}
         levels.clear();
         numLevels=0;
     }

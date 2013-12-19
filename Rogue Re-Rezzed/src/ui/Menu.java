@@ -73,7 +73,6 @@ public class Menu extends JFrame{
         
         rp = new RogueProperties("RogueConfig.properties",props);
         if(rp.getSettings()[0].equals("0")){
-            System.out.println("first run");
             rp.setData(defkeys);
             omp.fwdKB.setText("W");
             omp.backKB.setText("S");

@@ -5,7 +5,7 @@ import javax.jws.WebService;
  * 
  * @author Torri
  */
-@WebService(endpointInterface="Server.Server")
+@WebService(endpointInterface="server.Server")
 public class ServerImpl implements Server{
     public static Level l = new Level();
     int currp;
