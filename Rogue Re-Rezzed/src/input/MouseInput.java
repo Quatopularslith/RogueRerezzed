@@ -16,15 +16,15 @@ public class MouseInput implements MouseListener{
     public List<MButton> mb = new ArrayList<>();
     boolean go=false;
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {}
+    @Override
+    public void mousePressed(MouseEvent e) {
         mx=e.getX()+5;
         my=e.getY()-30;
         for(int i=0;i<mb.size();i++){
             if(mb.get(i).update(mx, my)) break;
         }
     }
-    @Override
-    public void mousePressed(MouseEvent e) {}
     @Override
     public void mouseReleased(MouseEvent e) {}
     @Override
