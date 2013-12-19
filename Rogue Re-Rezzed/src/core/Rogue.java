@@ -47,7 +47,7 @@ public class Rogue {
     }
     public static void resetLevels(){
         try {
-            URL url = new URL("http://127.0.0.1:5335/HighScore?wsdl");
+            URL url = new URL("http://199.231.178.196:5335/HighScore?wsdl");
             QName qname = new QName("http://hs/","ServerImplService");
             Service s = Service.create(url, qname);
             hs.Server s1 = s.getPort(hs.Server.class);
