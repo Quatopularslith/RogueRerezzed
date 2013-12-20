@@ -109,6 +109,7 @@ public class MButtonInput {
         //Stat Menu
         if(command.equalsIgnoreCase("Return") && parent==Rogue.mm.sm){
             Rogue.resetLevels();
+            GameLoop.pause();
             if(!Rogue.mm.sm.isVisible()) return;
             Rogue.mm.sm.setVisible(false);
             Rogue.mm.mmp.setVisible(true);
@@ -128,6 +129,14 @@ public class MButtonInput {
                 Rogue.mm.gp.currTrade.refreshTrade();
                 return;
             }
+        }
+        //Hire
+        if(command.equalsIgnoreCase("Hire")){
+            if(Rogue.getCurrentLevel().getPlayer().gold>=Rogue.mm.gp.w.cost){
+                Rogue.mm.gp.w.hire=true;
+                Rogue.mm.gp.w.refreshHire();
+            }
+            return;
         }
     }
     private void refresh(JPanel p){

@@ -10,6 +10,7 @@ import entity.item.Gold;
 import entity.item.Item;
 import entity.npc.RogueNPC;
 import entity.npc.Trader;
+import entity.npc.Warrior;
 import input.MButton;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -46,6 +47,8 @@ public class GamePlay extends JPanel{
     public MButton settings  = new MButton(650,460,100,30,"Settings",this);
     public MButton[] tradeMB = new MButton[3];
     public Trader currTrade;
+    public Warrior w;
+    public MButton hire = new MButton(650,460,100,30,"Hire",this);
     public GamePlay(){
         l=Rogue.getCurrentLevel();
         if(l!=null){
@@ -165,6 +168,14 @@ public class GamePlay extends JPanel{
                         currTrade=null;
                     }
                 }
+                if(current.get(i) instanceof Warrior){
+                    Warrior w1 = (Warrior) current.get(i);
+                    if(w1.hireD){
+                        w = w1;
+                    }else{
+                        w = null;
+                    }
+                }
             }
         }
         //Player
@@ -206,6 +217,15 @@ public class GamePlay extends JPanel{
                     tradeMB[i].addListener(Rogue.mm.mbi,this);
                     g2.drawImage(tradeMB[i].img, tradeMB[i].x,tradeMB[i].y, this);
                 }
+            }
+        }
+        //Hire
+        if(w!=null){
+            if(w.hireD){
+                g2.drawImage(w.img, getWidth()/2-96, getHeight()/2-96, this);
+                hire.setPos(w.buttons[0]+getWidth()/2-96, w.buttons[1]+getHeight()/2-96, 50, 20);
+                hire.addListener(Rogue.mm.mbi, this);
+                g2.drawImage(hire.img, hire.x, hire.y, this);
             }
         }
         //Map
