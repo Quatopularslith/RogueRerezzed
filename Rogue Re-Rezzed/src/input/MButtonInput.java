@@ -17,7 +17,6 @@ import ui.GamePlay;
 public class MButtonInput {
     public static boolean backtogame;
     public void clicked(String command,Component parent){
-//        System.out.println(command+" @ "+parent.getClass().toString());
         //Main Menu Code
         if(command.equalsIgnoreCase("New Game") && parent==Rogue.mm.mmp){
             Rogue.mm.mmp.setVisible(false);
@@ -32,6 +31,7 @@ public class MButtonInput {
         }
         if(command.equalsIgnoreCase("Quit") && parent==Rogue.mm.mmp){
             GameLoop.pause();
+            Rogue.resetLevels();
             if(Rogue.mm.dm!=null) Rogue.mm.dm.dispose();
             Rogue.mm.dispose();
             return;
@@ -60,6 +60,7 @@ public class MButtonInput {
         //Navigation Buttons
         if(command.equalsIgnoreCase("quit") && parent==Rogue.mm.gp){
             //TODO some save code
+            Rogue.resetLevels();
             Rogue.mm.gp.setVisible(false);
             Rogue.mm.mmp.setVisible(true);
             return;
@@ -108,7 +109,6 @@ public class MButtonInput {
         }
         //Stat Menu
         if(command.equalsIgnoreCase("Return") && parent==Rogue.mm.sm){
-            Rogue.resetLevels();
             GameLoop.pause();
             if(!Rogue.mm.sm.isVisible()) return;
             Rogue.mm.sm.setVisible(false);
