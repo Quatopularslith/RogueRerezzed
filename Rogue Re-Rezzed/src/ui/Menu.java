@@ -2,6 +2,7 @@
 package ui;
 
 import art.LoadArt;
+import audio.LoadAudio;
 import input.ButtonInput;
 import input.KeyboardInput;
 import input.MButtonInput;
@@ -17,6 +18,7 @@ import util.RogueProperties;
  */
 public class Menu extends JFrame{
     public LoadArt la = new LoadArt();
+    public LoadAudio a = new LoadAudio();
     
     public MainMenuPanel mmp;
     public OptionMenuPanel omp;
@@ -43,7 +45,7 @@ public class Menu extends JFrame{
      * Creates and handles the menus of the game
      */
     public Menu(){
-        super("Rogue Re-Rezzed (ALPHA PR v1.0.2)");
+        super("Rogue Re-Rezzed (ALPHA R v1.1.2)");
         this.setSize(750, 750);
         this.setFocusable(true);
         this.setResizable(true);
@@ -130,6 +132,8 @@ public class Menu extends JFrame{
             j[i]=Integer.valueOf(rp.getSettings()[i]);
             c[i]=(char) j[i];
         }
+        
+        a.playSound("Rogue.wav");
         
         omp.fwdKB.setText(String.valueOf(c[0]));
         omp.backKB.setText(String.valueOf(c[1]));

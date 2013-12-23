@@ -44,29 +44,29 @@ public class Rogue {
         return l1;
     }
     public static void resetLevels(){
-        try {
-            URL url = new URL("http://127.0.0.1:3000/HighScore?wsdl");
-            QName qname = new QName("http://hs/","ServerImplService");
-            Service s = Service.create(url, qname);
-            hs.Server s1 = s.getPort(hs.Server.class);
-            s1.highScore(numLevels);
-        } catch (Exception ex) {
-            try {
-                URL url = new URL("http://192.168.1.35:3000/HighScore?wsdl");
-                QName qname = new QName("http://hs/","ServerImplService");
-                Service s = Service.create(url, qname);
-                hs.Server s1 = s.getPort(hs.Server.class);
-                s1.highScore(numLevels);
-            } catch (Exception ex1) {
-                try {
-                    URL url = new URL("http://eyeris.zapto.org:3000/HighScore?wsdl");
-                    QName qname = new QName("http://hs/","ServerImplService");
-                    Service s = Service.create(url, qname);
-                    hs.Server s1 = s.getPort(hs.Server.class);
-                    s1.highScore(numLevels);
-                } catch (Exception ex2) {}
-            }
-        }
+//        try {
+//            URL url = new URL("http://127.0.0.1:3000/HighScore?wsdl");
+//            QName qname = new QName("http://hs/","ServerImplService");
+//            Service s = Service.create(url, qname);
+//            hs.Server s1 = s.getPort(hs.Server.class);
+//            s1.highScore(numLevels);
+//        } catch (Exception ex) {
+//            try {
+//                URL url = new URL("http://192.168.1.35:3000/HighScore?wsdl");
+//                QName qname = new QName("http://hs/","ServerImplService");
+//                Service s = Service.create(url, qname);
+//                hs.Server s1 = s.getPort(hs.Server.class);
+//                s1.highScore(numLevels);
+//            } catch (Exception ex1) {
+//                try {
+//                    URL url = new URL("http://eyeris.zapto.org:3000/HighScore?wsdl");
+//                    QName qname = new QName("http://hs/","ServerImplService");
+//                    Service s = Service.create(url, qname);
+//                    hs.Server s1 = s.getPort(hs.Server.class);
+//                    s1.highScore(numLevels);
+//                } catch (Exception ex2) {}
+//            }
+//        }
         levels.clear();
         numLevels=0;
     }
