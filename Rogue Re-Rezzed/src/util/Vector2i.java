@@ -53,6 +53,11 @@ public class Vector2i {
         Vector2i vec = (Vector2i) object;
         return vec.getX()==getX() && vec.getY()==getY();
     }
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
     public RogueEntity getEntity(){
         RogueEntity re = new RogueEntity(new Level());
         re.x=x;

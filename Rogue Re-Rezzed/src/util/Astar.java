@@ -12,25 +12,23 @@ import java.util.List;
  * @author Torri
  */
 public class Astar {
-    private static int x;
-    private static int y;
-    private static int xi;
-    private static int yi;
-    private static Vector2i a;
-    private static double gCost;
-    private static double hCost;
-    private static Node node;
-    private static final Comparator<Node> nodeSort = new Comparator<Node>(){
+    private int x;
+    private int y;
+    private int xi;
+    private int yi;
+    private Vector2i a;
+    private double gCost;
+    private double hCost;
+    private Node node;
+    private final Comparator<Node> nodeSort = new Comparator<Node>(){
         @Override
         public int compare(Node n0,Node n1){
-            if(n1.fCost<=n0.fCost){
-                return -1;
-            }else{
-                return +1;
-            }
+            if(n1.fCost<n0.fCost) return -1;
+            if(n1.fCost>n0.fCost) return +1;
+            return 0;
         }
     };
-    public static List<Node> findPath(Vector2i start,Vector2i goal){
+    public List<Node> findPath(Vector2i start,Vector2i goal){
         List<Node> openList = new ArrayList<>();
         List<Node> closedList = new ArrayList<>();
         Node current = new Node(start,null,0,getDist(start,goal));

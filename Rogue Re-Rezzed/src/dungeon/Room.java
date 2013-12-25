@@ -32,7 +32,7 @@ public class Room {
                 area[x][y][1]=y+y1;
             }
         }
-        if(lvl<(sizeX*sizeY)/4) Spawner.spawner(rand.nextInt(lvl+1),lvl,this);
-        if(lvl>(sizeX*sizeY)/4) Spawner.spawner(rand.nextInt((sizeX*sizeY)/4),lvl,this);
+//        if(lvl<(sizeX*sizeY)/4) Spawner.spawner(rand.nextInt(lvl+1),lvl,this);
+//        if(lvl>(sizeX*sizeY)/4) Spawner.spawner(rand.nextInt((sizeX*sizeY)/4),lvl,this);
     }
 }
