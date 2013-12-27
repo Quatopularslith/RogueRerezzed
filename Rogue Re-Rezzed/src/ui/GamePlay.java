@@ -152,7 +152,7 @@ public class GamePlay extends JPanel{
                 g2.setColor(Color.RED);
                 g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-15, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
                 g2.setColor(Color.WHITE);
-                g2.drawString(current.get(i).name+" ("+current.get(i).health+"/"+current.get(i).maxhealth+")", current.get(i).x*64+offx+3, current.get(i).y*64+offy);
+                g2.drawString(current.get(i).name+" ("+(int) current.get(i).health+"/"+(int) current.get(i).maxhealth+")", current.get(i).x*64+offx+3, current.get(i).y*64+offy);
                 g2.drawImage(current.get(i).sp.i, current.get(i).x*64+offx, current.get(i).y*64+offy, this);
                 g2.setColor(Color.GREEN);
                 g2.drawString(Integer.toString(current.get(i).lvl), current.get(i).x*64+offx+59, current.get(i).y*64+offy+53);

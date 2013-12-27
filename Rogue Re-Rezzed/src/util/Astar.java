@@ -33,13 +33,9 @@ public class Astar {
         List<Node> closedList = new ArrayList<>();
         Node current = new Node(start,null,0,getDist(start,goal));
         openList.add(current);
-        System.out.println("A*, I choose you!");
         while(openList.size()>0){
-            try{
-                Collections.sort(openList, nodeSort);
-            }catch(Exception ex){
-                return null;
-            }
+            Collections.sort(openList, nodeSort);
+            if(openList.size()>200) return null;
             current = openList.get(0);
             if(current.tile.equals(goal)){
                 List<Node> path = new ArrayList<>();
@@ -49,7 +45,6 @@ public class Astar {
                 }
                 openList.clear();
                 closedList.clear();
-                System.out.println("Great Finish Guys!");
                 return path;
             }
             openList.remove(current);
@@ -59,30 +54,29 @@ public class Astar {
                 x = current.tile.getX();
                 y = current.tile.getY();
                 xi = (i%3)-1;
-                yi = (i/3)-1;
+                yi = (i%3)-1;
                 if(x+xi<0 || y+yi<0) continue;
-                if(x+xi>Rogue.getCurrentLevel().board.length || y+yi>Rogue.getCurrentLevel().board.length) continue;
-                if(!Rogue.getCurrentLevel().board[x+xi][y+yi]) continue;
+                if(x+xi>=Rogue.getCurrentLevel().board.length || y+yi>=Rogue.getCurrentLevel().board.length || !Rogue.getCurrentLevel().board[x+xi][y+yi]) continue;
                 a = new Vector2i(x+xi,y+yi);
                 gCost = current.gCost + getDist(current.tile,a);
                 hCost = getDist(a,goal);
                 node = new Node(a,current, gCost, hCost);
-                if(vecInList(closedList,a) && gCost>=current.gCost) continue;
-                if(!vecInList(openList,a) || gCost<current.gCost) openList.add(node);
+//                if(vecInList(closedList,a) && gCost>=current.gCost) continue;
+                if(!vecInList(openList,a) && gCost<current.gCost) openList.add(node);
             }
         }
         closedList.clear();
         return null;
     }
-    private static boolean vecInList(List<Node> list, Vector2i v){
+    private boolean vecInList(List<Node> list, Vector2i v){
         for(Node n:list){
             if(n.tile.equals(v)) return true;
         }
         return false;
     }
-    private static double getDist(Vector2i v1,Vector2i v2){
+    private double getDist(Vector2i v1,Vector2i v2){
         double dx = v1.getX()-v2.getY();
         double dy = v1.getY()-v2.getY();
-        return Math.sqrt((dx*dx)+(dy+dy));
+        return Math.sqrt((dx*dx)+(dy*dy));
     }
 }

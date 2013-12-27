@@ -9,7 +9,11 @@ import entity.player.Player;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.List;
+import util.Astar;
 import util.Direction;
+import util.Node;
+import util.Vector2i;
 
 /**
  *
@@ -29,7 +33,7 @@ public class Warrior extends RogueNPC{
         maxhealth=lvl;
         health=lvl;
         name="Warrior";
-        cost=lvl*15;
+        cost=lvl*rand.nextInt(15)+1;
         refreshHire();
     }
     @Override
@@ -52,13 +56,14 @@ public class Warrior extends RogueNPC{
             hireD=false;
         }
         if(hire) follow=l.getPlayer();
-        Direction pdir=Direction.STOP;
-        if(x<follow.x)pdir = Direction.RIGHT;
-        if(x>follow.x)pdir = Direction.LEFT;
-        if(y<follow.y)pdir = Direction.DOWN;
-        if(y>follow.y)pdir =Direction.UP;
-        move(pdir);
-        if (!(follow instanceof Player)) {
+//        Direction pdir=Direction.STOP;
+//        if(x<follow.x)pdir = Direction.RIGHT;
+//        if(x>follow.x)pdir = Direction.LEFT;
+//        if(y<follow.y)pdir = Direction.DOWN;
+//        if(y>follow.y)pdir =Direction.UP;
+//        move(pdir);
+        move(pathFind(follow));
+        if (!(follow instanceof Player) && distTo(follow)<=1) {
             follow.damage(this);
         }else{
             for(RogueEntity re : l.getEntities()){
@@ -84,5 +89,52 @@ public class Warrior extends RogueNPC{
         buttons[0]=2;
         buttons[1]=100;
         g.dispose();
+    }
+    public Direction pathFind(RogueEntity e){
+        Direction out;
+        Astar a = new Astar();
+        List<Node> path = a.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y));
+        if(path==null){
+            System.out.println("Failure.");
+            boolean b = rand.nextBoolean();
+            int d = rand.nextInt(3);
+            if(b){
+                switch (d){
+                    case 0:
+                        out=Direction.UP;
+                        break;
+                    case 1:
+                        out=Direction.DOWN;
+                        break;
+                    case 2:
+                        out=Direction.LEFT;
+                        break;
+                    case 3:
+                        out=Direction.RIGHT;
+                        break;
+                    default:
+                        out=Direction.STOP;
+                        break;
+                }
+            }else{
+                out=Direction.STOP;
+            }
+        }else{
+            System.out.println("Success! In "+path.size()+" easy steps!");
+            try{
+                out = pointTowards(path.get(1));
+            }catch(Exception exc){
+                out = pointTowards(path.get(0));
+            }
+        }
+        return out;
+    }
+    public Direction pointTowards(Node e){
+        Direction pdir=Direction.STOP;
+        if(x<e.tile.getX())pdir = Direction.RIGHT;
+        if(x>=e.tile.getX())pdir = Direction.LEFT;
+        if(y<e.tile.getY())pdir = Direction.DOWN;
+        if(y>=e.tile.getY())pdir =Direction.UP;
+        return pdir;
     }
 }
