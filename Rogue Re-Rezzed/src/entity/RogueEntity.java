@@ -15,7 +15,7 @@ public class RogueEntity {
     public double maxAtt=0,maxDefence=0;
     public int x=0,y=0,uuid=0;
     public float health=0;
-    public int maxhealth=0;
+    public float maxhealth=0;
     public int lvl=0;
     public Item[] inv;
     public Sprite sp = new Sprite("Bag");

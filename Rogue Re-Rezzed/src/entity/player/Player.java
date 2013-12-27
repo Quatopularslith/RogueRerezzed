@@ -41,6 +41,7 @@ public class Player extends RogueEntity{
                 break;
             }
         }
+        name="Player";
         maxhealth=100;
         mana=(int) (maxMana/1.5);
         health=(float) (maxhealth);
@@ -87,118 +88,6 @@ public class Player extends RogueEntity{
             }
         }
         attack=false;
-        if(Rogue.mm.ki.keyBind[0]){//up
-            for(int i=0;i<l.getEntities().size();i++){
-                RogueEntity re = l.getEntities().get(i);
-                if(re instanceof RogueNPC  && re.x==this.x && re.y==this.y-1){
-                    RogueNPC t = (RogueNPC) re;
-                    t.action();
-                }
-                if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y-1){
-                    re.damage(this);
-                    if(re.health<=0){
-                        mana++;
-                        kills++;
-                        xp+=(re.lvl/lvl);
-                        re.death();
-                    }
-                    attack=true;
-                }
-            }
-            if(!attack){
-                for (int j=0;j<l.getItems().size();j++) {
-                    Item i = l.getItems().get(j);
-                    if(i.x==this.x && i.y==this.y-1 && !inv[currinv].equals(i) && inv[currinv]!=null){
-                        GamePlay.pickup = i;
-                    }
-                }
-                this.move(Direction.UP);
-            }
-        }
-        if(Rogue.mm.ki.keyBind[1]){//down
-            for(int i=0;i<l.getEntities().size();i++){
-                RogueEntity re = l.getEntities().get(i);
-                if(re instanceof RogueNPC  && re.x==this.x && re.y==this.y+1){
-                    RogueNPC t = (RogueNPC) re;
-                    t.action();
-                }
-                if(re instanceof RogueHostileEntity && re.x==this.x && re.y==this.y+1){
-                    re.damage(this);
-                    if(re.health<=0){
-                        mana++;
-                        kills++;
-                        xp+=(re.lvl/lvl);
-                        re.death();
-                    }
-                    attack=true;
-                }
-            }
-            if(!attack){
-                for (int j=0;j<l.getItems().size();j++) {
-                    Item i = l.getItems().get(j);
-                    if(i.x==this.x && i.y==this.y+1 && !inv[currinv].equals(i) && inv[currinv]!=null){
-                        GamePlay.pickup = i;
-                    }
-                }
-                this.move(Direction.DOWN);
-            }
-        }
-        if(Rogue.mm.ki.keyBind[2]){//right
-            for(int i=0;i<l.getEntities().size();i++){
-                RogueEntity re = l.getEntities().get(i);
-                if(re instanceof RogueNPC  && re.x==this.x+1 && re.y==this.y){
-                    RogueNPC t = (RogueNPC) re;
-                    t.action();
-                }
-                if(re instanceof RogueHostileEntity && re.x==this.x+1 && re.y==this.y){
-                    re.damage(this);
-                    if(re.health<=0){
-                        mana++;
-                        kills++;
-                        xp+=(re.lvl/lvl);
-                        re.death();
-                    }
-                    attack=true;
-                }
-            }
-            if(!attack){
-                for (int j=0;j<l.getItems().size();j++) {
-                    Item i = l.getItems().get(j);
-                    if(i.x==this.x+1 && i.y==this.y && !inv[currinv].equals(i) && inv[currinv]!=null){
-                        GamePlay.pickup = i;
-                    }
-                }
-                this.move(Direction.RIGHT);
-            }
-        }
-        if(Rogue.mm.ki.keyBind[3]){//left
-            for(int i=0;i<l.getEntities().size();i++){
-                RogueEntity re = l.getEntities().get(i);
-                if(re instanceof RogueNPC  && re.x==this.x-1 && re.y==this.y){
-                    RogueNPC t = (RogueNPC) re;
-                    t.action();
-                }
-                if(re instanceof RogueHostileEntity && re.x==this.x-1 && re.y==this.y){
-                    re.damage(this);
-                    if(re.health<=0){
-                        mana++;
-                        kills++;
-                        xp+=(re.lvl/lvl);
-                        re.death();
-                    }
-                    attack=true;
-                }
-            }
-            if(!attack){
-                for (int j=0;j<l.getItems().size();j++) {
-                    Item i = l.getItems().get(j);
-                    if(i.x==this.x-1 && i.y==this.y && !inv[currinv].equals(i) && inv[currinv]!=null){
-                        GamePlay.pickup = i;
-                    }
-                }
-                this.move(Direction.LEFT);
-            }
-        }
     }
     public void updateStats(){
         maxAtt=2*lvl;
@@ -218,6 +107,65 @@ public class Player extends RogueEntity{
                     maxDefence+=inv[i].stats[1];
                     maxAtt+=inv[i].stats[0];
                 }
+            }
+        }
+    }
+    @Override
+    public void move(Direction d){
+        int dx=0;
+        int dy=0;
+        switch(d){
+            case UP:
+                dy--;
+                break;
+            case DOWN:
+                dy++;
+                break;
+            case LEFT:
+                dx--;
+                break;
+            case RIGHT:
+                dx++;
+                break;
+            default:
+                return;
+        }
+        for(int i=0;i<l.getEntities().size();i++){
+            RogueEntity re = l.getEntities().get(i);
+            if(re instanceof RogueNPC  && re.x==this.x+dx && re.y==this.y+dy){
+                RogueNPC t = (RogueNPC) re;
+                t.action();
+            }
+            if(re instanceof RogueHostileEntity && re.x==this.x+dx && re.y==this.y+dy){
+                re.damage(this);
+                if(re.health<=0){
+                    mana++;
+                    kills++;
+                    xp+=(re.lvl/lvl);
+                    re.death();
+                }
+                attack=true;
+            }
+        }
+        if(!attack){
+            for (int j=0;j<l.getItems().size();j++) {
+                Item i = l.getItems().get(j);
+                if(i.x==this.x+dx && i.y==this.y+dy && !inv[currinv].equals(i) && inv[currinv]!=null){
+                    GamePlay.pickup = i;
+                }
+            }
+        }
+        for(RogueEntity re:l.getEntities()){
+            if(re != null){
+                if(re.x==x+dx && re.y==y+dy){
+                    return;
+                }
+            }
+        }
+        if(dx+x>=0 && dy+y>=0){
+            if(l.board[dx+x][dy+y]==true){
+                x+=dx;
+                y+=dy;
             }
         }
     }

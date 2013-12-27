@@ -22,22 +22,27 @@ public class RogueHostileEntity extends RogueEntity{
     public int followdist;
     /**
      * creates new entity
-     * @param lvl
+     * @param lvl1
      * @param r
      * @param l1 
-     * @param name 
+     * @param name1 
      * @param op0 operation for health
      * @param attmod attack modifier
      * @param op1 operation for attack
      * @param hmod health modifier
      * @param followdist1 follow distance
      */
-    public RogueHostileEntity(int lvl,Room r,Level l1,String name,Operation op0,int hmod,Operation op1,int attmod,int followdist1) {
+    public RogueHostileEntity(int lvl1,Room r,Level l1,String name1,Operation op0,int hmod,Operation op1,int attmod,int followdist1) {
         super(l1);
         followdist=followdist1;
         l=l1;
         maxDefence=0;
-        this.lvl=lvl;
+        this.lvl=lvl1;
+        if(name1==null){
+            name=this.getClass().toString();
+        }else{
+            name=name1;
+        }
         switch(op0){
             case ADD:
                 health=hmod+(lvl);
@@ -65,7 +70,7 @@ public class RogueHostileEntity extends RogueEntity{
             case DIV:
                 maxAtt=attmod/(lvl);
         }
-        this.maxhealth=(int) this.health;
+        this.maxhealth=this.health;
         sp = new Sprite(name);
         inv = new Item[2];
         if(lvl>Item.numid/3){
@@ -79,8 +84,8 @@ public class RogueHostileEntity extends RogueEntity{
     }
     @Override
     public void turn(){
-        move(pathFind(l.getPlayer()));
-//        move(pointTowards(l.getPlayer()));
+//        move(pathFind(l.getPlayer()));
+        move(pointTowards(l.getPlayer()));
         if(doatt(l.getPlayer()) && maxAtt>0){
             l.getPlayer().damage(this);
         }
@@ -145,7 +150,7 @@ public class RogueHostileEntity extends RogueEntity{
             Astar a = new Astar();
             List<Node> path = a.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y));
             if(path==null) return Direction.STOP;
-            out = pointTowards(path.get(path.size()-1));
+            out = pointTowards(path.get(1));
         }else{
             boolean b = rand.nextBoolean();
             int d = rand.nextInt(3);

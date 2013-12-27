@@ -27,9 +27,11 @@ public class ServerImpl implements Server{
     public int joinGame() throws ServerFullException{
         if(currp+1>maxp){
             throw new ServerFullException();
+        }else if(currp==maxp){
+            l=new Level();
         }else{
             currp++;
         }
-        return maxp;
+        return currp;
     }
 }

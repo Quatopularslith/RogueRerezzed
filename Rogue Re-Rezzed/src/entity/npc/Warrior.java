@@ -5,6 +5,7 @@ import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
 import entity.mob.RogueHostileEntity;
+import entity.player.Player;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -57,8 +58,14 @@ public class Warrior extends RogueNPC{
         if(y<follow.y)pdir = Direction.DOWN;
         if(y>follow.y)pdir =Direction.UP;
         move(pdir);
-        if(distTo(follow)<=1){
+        if (!(follow instanceof Player)) {
             follow.damage(this);
+        }else{
+            for(RogueEntity re : l.getEntities()){
+                if(re instanceof RogueHostileEntity && distTo(re)<=1){
+                    re.damage(this);
+                }
+            }
         }
     }
     @Override

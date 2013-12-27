@@ -5,6 +5,7 @@ import core.GameLoop;
 import core.Rogue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import util.Direction;
 
 /**
  * This gets and keeps information from the keyboard
@@ -13,9 +14,11 @@ import java.awt.event.KeyListener;
 public class KeyboardInput implements KeyListener{
     private final boolean[] keys = new boolean[1000];
     private int[] keyn = new int[6];
+    private final Direction[] dirs = {Direction.UP,Direction.DOWN,Direction.RIGHT,Direction.LEFT,Direction.STOP,Direction.STOP};
     public boolean[] keyBind = new boolean[6];
     public boolean turn=true;
     public boolean pause = false;
+    public boolean connected = false;
     /**
      * Sets up a keyboard input listener
      * @param keybinds 
@@ -48,16 +51,19 @@ public class KeyboardInput implements KeyListener{
     private void turn(){
         boolean b;
         b = false;
-        if(turn){
-            for(boolean kb:keyBind){
-                if(kb){
-                    b=true;
-                    break;
-                }
+        for(int i=0;i<keyBind.length;i++){
+            if(keyBind[i]){
+                b=true;
+                Rogue.getCurrentLevel().getPlayer().move(dirs[i]);
+                break;
             }
+        }
+        if(turn && !connected){
             if(b && !Rogue.getCurrentLevel().getPlayer().dead){
                 Rogue.mm.gp.update();
             }
+        }else if(connected){
+            
         }
     }
     /**

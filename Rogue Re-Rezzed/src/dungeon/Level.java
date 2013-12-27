@@ -13,6 +13,7 @@ import entity.npc.Warrior;
 import entity.player.Player;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import render.Sprite;
@@ -28,7 +29,6 @@ public class Level {
     private final ArrayList<Item> items = new ArrayList<>();
     private Room[] rooms;
     private ArrayList<Player> pl = new ArrayList<>();
-    private Player p;
     private static int rows=10,cols=10;
     private Stairway st;
     private int nument=0;
@@ -133,7 +133,7 @@ public class Level {
         rooms[roomnum+1]=new Room(0,rooms[st.room].area[0][0][1],sx,3,lvl,this);
         rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],0,3,sy,lvl,this);
         //Player
-        p=new Player(this);
+        Player p=new Player(this);
         if(Rogue.getLastLevel()!=null){
             p.currinv=Rogue.getLastLevel().getPlayer().currinv;
             p.inv=Rogue.getLastLevel().getPlayer().inv;
@@ -144,10 +144,9 @@ public class Level {
             p.mana=Rogue.getLastLevel().getPlayer().mana;
             p.rep=Rogue.getLastLevel().getPlayer().rep;
             p.kills=Rogue.getLastLevel().getPlayer().kills;
-        }else{
-            p.lvl=1000;
         }
         p.updateStats();
+        pl.add(p);
         //Board
         for(boolean[] b1:board){
             for(boolean b:b1){
@@ -234,7 +233,7 @@ public class Level {
      * @return player
      */
     public Player getPlayer(){
-        return p;
+        return pl.get(0);
     }
     /**
      * gets current set of stairs
@@ -277,5 +276,14 @@ public class Level {
      */
     public LevelType getType(){
         return type;
+    }
+    public void addPlayer(Player p){
+        pl.add(p);
+    }
+    public void addPlayers(Player[] p){
+        pl.addAll(Arrays.asList(p));
+    }
+    public Player[] getPlayers(){
+        return (Player[]) pl.toArray();
     }
 }

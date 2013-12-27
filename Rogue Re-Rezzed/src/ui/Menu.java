@@ -133,7 +133,7 @@ public class Menu extends JFrame{
             c[i]=(char) j[i];
         }
         
-        a.playSound("Rogue.wav");
+//        a.playSound("Rogue.flac");
         
         omp.fwdKB.setText(String.valueOf(c[0]));
         omp.backKB.setText(String.valueOf(c[1]));

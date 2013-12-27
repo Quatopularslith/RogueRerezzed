@@ -152,11 +152,7 @@ public class GamePlay extends JPanel{
                 g2.setColor(Color.RED);
                 g2.fillRect(current.get(i).x*64+offx+2, current.get(i).y*64+offy-15, (int) ((current.get(i).health/current.get(i).maxhealth)*61), 20);
                 g2.setColor(Color.WHITE);
-                if(current.get(i) instanceof RogueNPC){
-                    g2.drawString(current.get(i).name, current.get(i).x*64+offx+3, current.get(i).y*64+offy);
-                }else{
-                    g2.drawString("Health:"+(int)current.get(i).health, current.get(i).x*64+offx-23+fm.stringWidth("Health:"+(int)current.get(i).health)/2, current.get(i).y*64+offy);
-                }
+                g2.drawString(current.get(i).name+" ("+current.get(i).health+"/"+current.get(i).maxhealth+")", current.get(i).x*64+offx+3, current.get(i).y*64+offy);
                 g2.drawImage(current.get(i).sp.i, current.get(i).x*64+offx, current.get(i).y*64+offy, this);
                 g2.setColor(Color.GREEN);
                 g2.drawString(Integer.toString(current.get(i).lvl), current.get(i).x*64+offx+59, current.get(i).y*64+offy+53);
@@ -179,12 +175,6 @@ public class GamePlay extends JPanel{
             }
         }
         //Player
-        g2.setColor(Color.BLACK);
-        g2.fillRect(l.getPlayer().x*64+offx+2, l.getPlayer().y*64+offy-15, 61, 20);
-        g2.setColor(Color.RED);
-        g2.fillRect(l.getPlayer().x*64+offx+2, l.getPlayer().y*64+offy-15, (int) ((l.getPlayer().health/l.getPlayer().maxhealth)*61), 20);
-        g2.setColor(Color.WHITE);
-        g2.drawString("Health:"+(int)l.getPlayer().health, l.getPlayer().x*64+offx-23+fm.stringWidth("Health:"+(int)l.getPlayer().health)/2, l.getPlayer().y*64+offy);
         g2.drawImage(l.getPlayer().sp.i,l.getPlayer().x*64+offx,l.getPlayer().y*64+offy,this);
         g2.setColor(Color.GREEN);
         g2.drawString(Integer.toString(Rogue.getCurrentLevel().getPlayer().lvl), l.getPlayer().x*64+offx+59, l.getPlayer().y*64+offy+53);
@@ -296,7 +286,7 @@ public class GamePlay extends JPanel{
         if(Rogue.mm.ki.pause){
             g2.setFont(new Font(Font.SANS_SERIF,Font.BOLD,40));
             fm = g2.getFontMetrics();
-            g2.setColor(Color.BLUE);
+            g2.setColor(Color.RED);
             g2.drawString("PAUSED", getWidth()/2-fm.stringWidth("PAUSED")/2, getHeight()/2);
         }
     }

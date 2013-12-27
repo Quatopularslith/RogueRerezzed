@@ -43,6 +43,10 @@ public class Rogue {
         }
         return l1;
     }
+    public static void setLevel(Level l1){
+        l=l1;
+        levels.add(l);
+    }
     public static void resetLevels(){
 //        try {
 //            URL url = new URL("http://127.0.0.1:3000/HighScore?wsdl");
