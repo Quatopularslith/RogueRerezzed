@@ -63,7 +63,7 @@ public class Player extends RogueEntity{
             health+=0.1*lvl;
         }
         if(lvl==0) lvl = 1;
-        if(xp%(10*lvl)==0 && xp>1){
+        if(xp/(10*lvl)==1 && xp>1){
             updateStats();
             xp=0;
             lvl++;

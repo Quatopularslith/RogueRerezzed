@@ -5,18 +5,20 @@ package core;
  */
 public class GameThread implements Runnable{
     boolean running = true;
-    GameTick g = new GameTick();
     long start = System.currentTimeMillis();
+    long now;
     @Override
     public void run(){
         while(running){
-//            if((System.currentTimeMillis()-start)%150==0){
-//                g.tick();
-//            }
-            try{
-                Thread.sleep(150);
-                g.tick();
-            }catch (Exception e){}
+            now = System.currentTimeMillis();
+            if((now-start)%100==0){
+                tick();
+            }
+        }
+    }
+    private void tick(){
+        if(Rogue.getCurrentLevel()!=null && Rogue.mm!=null){
+            Rogue.mm.gp.update();
         }
     }
 }
