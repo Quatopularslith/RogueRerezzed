@@ -56,13 +56,13 @@ public class Warrior extends RogueNPC{
             hireD=false;
         }
         if(hire) follow=l.getPlayer();
-//        Direction pdir=Direction.STOP;
-//        if(x<follow.x)pdir = Direction.RIGHT;
-//        if(x>follow.x)pdir = Direction.LEFT;
-//        if(y<follow.y)pdir = Direction.DOWN;
-//        if(y>follow.y)pdir =Direction.UP;
-//        move(pdir);
-        move(pathFind(follow));
+        Direction pdir=Direction.STOP;
+        if(x<follow.x)pdir = Direction.RIGHT;
+        if(x>follow.x)pdir = Direction.LEFT;
+        if(y<follow.y)pdir = Direction.DOWN;
+        if(y>follow.y)pdir =Direction.UP;
+        move(pdir);
+//        move(pathFind(follow));
         if (!(follow instanceof Player) && distTo(follow)<=1) {
             follow.damage(this);
         }else{

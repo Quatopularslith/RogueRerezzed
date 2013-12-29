@@ -12,7 +12,7 @@ import java.util.Properties;
  * @author Torri
  */
 public class RogueProperties {
-        private final File rp;
+    private final File rp;
     private Properties p;
     private final String[] props;
     private final String[] out;
