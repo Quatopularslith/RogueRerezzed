@@ -52,11 +52,15 @@ public class Rogue {
     public static void resetLevels(){
         if(numLevels>hs) hs=numLevels;
         if(numLevels>0) n+=numLevels;
-        if(numLevels>0) d++;
+        if(numLevels>0) d+=1;
         levels.clear();
         numLevels=0;
     }
     public static void sendStats(){
+        System.out.println("Stats:");
+        System.out.println("n="+n);
+        System.out.println("d="+d);
+        System.out.println("hs="+hs);
         try {
             URL url = new URL("http://eyeris.zapto.org:3000/HighScore?wsdl");
             QName qname = new QName("http://hs/","ServerImplService");
