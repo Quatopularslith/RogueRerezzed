@@ -57,6 +57,7 @@ public class Rogue {
         numLevels=0;
     }
     public static void sendStats(){
+        resetLevels();
         System.out.println("Stats:");
         System.out.println("n="+n);
         System.out.println("d="+d);
