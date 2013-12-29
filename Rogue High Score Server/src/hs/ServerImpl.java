@@ -28,12 +28,6 @@ public class ServerImpl implements Server{
         if(numLevel>highscore){
             highscore=numLevel;
             System.out.println("HIGHSCORE: "+highscore);
-        } else if(numLevel>avg){
-            System.out.println("Better than average: "+numLevel);
-        } else if(numLevel<avg){
-            System.out.println("Worse than average: "+numLevel);
-        } else if(numLevel==avg){
-            System.out.println("Exactly average");
         }
         System.out.println("-------------");
     }
@@ -52,12 +46,6 @@ public class ServerImpl implements Server{
         if(hs>highscore){
             highscore=hs;
             System.out.println("HIGHSCORE: "+highscore);
-        } else if(hs>avg){
-            System.out.println("Better than average: "+hs);
-        } else if(hs<avg){
-            System.out.println("Worse than average: "+hs);
-        } else if(hs==avg){
-            System.out.println("Exactly average");
         }
         dispStats();
         saveStats();
