@@ -18,11 +18,13 @@ public class Rogue {
     private static final ArrayList<Level> levels = new ArrayList<>();
     private static Level l;
     public static int numLevels=0;
+    private static int highscore=0;
+    private static int n=0;
+    private static int d=0;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
         mm = new Menu();
     }
     public static Level setLevel(LevelMode mode1,LevelType type1,int render1){
@@ -48,30 +50,40 @@ public class Rogue {
         levels.add(l);
     }
     public static void resetLevels(){
-//        try {
-//            URL url = new URL("http://127.0.0.1:3000/HighScore?wsdl");
-//            QName qname = new QName("http://hs/","ServerImplService");
-//            Service s = Service.create(url, qname);
-//            hs.Server s1 = s.getPort(hs.Server.class);
-//            s1.highScore(numLevels);
-//        } catch (Exception ex) {
-//            try {
-//                URL url = new URL("http://192.168.1.35:3000/HighScore?wsdl");
-//                QName qname = new QName("http://hs/","ServerImplService");
-//                Service s = Service.create(url, qname);
-//                hs.Server s1 = s.getPort(hs.Server.class);
-//                s1.highScore(numLevels);
-//            } catch (Exception ex1) {
-//                try {
-//                    URL url = new URL("http://eyeris.zapto.org:3000/HighScore?wsdl");
-//                    QName qname = new QName("http://hs/","ServerImplService");
-//                    Service s = Service.create(url, qname);
-//                    hs.Server s1 = s.getPort(hs.Server.class);
-//                    s1.highScore(numLevels);
-//                } catch (Exception ex2) {}
-//            }
-//        }
+        if(numLevels>highscore) highscore=numLevels;
+        if(numLevels>0) n+=numLevels;
+        if(numLevels>0) d++;
         levels.clear();
         numLevels=0;
+    }
+    public static void sendStats(){
+        new Thread("Stats"){
+            @Override
+            public void run(){
+                try {
+                    URL url = new URL("http://eyeris.zapto.org:3000/HighScore?wsdl");
+                    QName qname = new QName("http://hs/","ServerImplService");
+                    Service s = Service.create(url, qname);
+                    hs.Server s1 = s.getPort(hs.Server.class);
+                    s1.highScore(numLevels);
+                } catch (Exception ex) {
+                    try {
+                        URL url = new URL("http://192.168.1.35:3000/HighScore?wsdl");
+                        QName qname = new QName("http://hs/","ServerImplService");
+                        Service s = Service.create(url, qname);
+                        hs.Server s1 = s.getPort(hs.Server.class);
+                        s1.highScore(numLevels);
+                    } catch (Exception ex1) {
+                        try {
+                            URL url = new URL("http://127.0.0.1:3000/HighScore?wsdl");
+                            QName qname = new QName("http://hs/","ServerImplService");
+                            Service s = Service.create(url, qname);
+                            hs.Server s1 = s.getPort(hs.Server.class);
+                            s1.highScore(numLevels);
+                        } catch (Exception ex2) {}
+                    }
+                }
+            }
+        }.start();
     }
 }

@@ -31,7 +31,7 @@ public class MButtonInput {
         }
         if(command.equalsIgnoreCase("Quit") && parent==Rogue.mm.mmp){
             GameLoop.pause();
-            Rogue.resetLevels();
+            Rogue.sendStats();
             if(Rogue.mm.dm!=null) Rogue.mm.dm.dispose();
             Rogue.mm.dispose();
             return;
