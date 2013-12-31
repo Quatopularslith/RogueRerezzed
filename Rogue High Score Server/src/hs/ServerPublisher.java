@@ -9,11 +9,11 @@ import javax.xml.ws.Endpoint;
 public class ServerPublisher {
     public static void go(){
         try{
-            URL whatismyip = new URL("http://checkip.amazonaws.com");
-            BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
-            String ip = in.readLine();
+//            URL whatismyip = new URL("http://checkip.amazonaws.com");
+//            BufferedReader in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
+//            String ip = in.readLine();
             ServerImpl si = new ServerImpl();
-            System.out.println(ip);
+//            System.out.println(ip);
             Endpoint.publish("http://127.0.0.1/HighScore", si);
         } catch(Exception e){
             System.err.println(e.toString());
