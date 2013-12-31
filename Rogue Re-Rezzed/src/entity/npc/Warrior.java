@@ -29,6 +29,7 @@ public class Warrior extends RogueNPC{
     public boolean hire = false;
     public Warrior(Room r,Level l1) {
         super(r,l1);
+        lvl=l1.lvl;
         maxAtt=lvl*5;
         maxhealth=lvl;
         health=lvl;
@@ -93,7 +94,7 @@ public class Warrior extends RogueNPC{
     public Direction pathFind(RogueEntity e){
         Direction out;
         Astar a = new Astar();
-        List<Node> path = a.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y));
+        List<Node> path = a.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y),l);
         if(path==null){
             System.out.println("Failure.");
             boolean b = rand.nextBoolean();

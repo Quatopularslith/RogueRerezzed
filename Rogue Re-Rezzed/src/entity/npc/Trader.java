@@ -23,7 +23,7 @@ public class Trader extends RogueNPC{
     public Trader(Room r,Level l1) {
         super(r,l1);
         this.prices = new int[3];
-        lvl=Rogue.numLevels;
+        lvl=l1.lvl;
         maxhealth=10000;
         health=maxhealth;
         inv=new Item[3];

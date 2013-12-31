@@ -10,6 +10,7 @@ import input.MouseInput;
 import java.awt.Image;
 import javax.swing.JFrame;
 import loading.Loading;
+import mainMenu.MainMenuPanel;
 import util.RogueProperties;
 
 /**
@@ -61,17 +62,17 @@ public class Menu extends JFrame{
         sx=getWidth();
         sy=getHeight();
         
-        omp = new OptionMenuPanel();
-        mmp = new MainMenuPanel();
-        dmp = new DebugMPassword();
-        sm = new StatMenu();
-        load = new Loading();
-        ngp = new NewGamePanel();
-        
         bi=new ButtonInput();
         ki=new KeyboardInput(propn);
         mi=new MouseInput();
         mbi=new MButtonInput();
+        
+        load = new Loading();
+        omp = new OptionMenuPanel();
+        mmp = new MainMenuPanel();
+        dmp = new DebugMPassword();
+        sm = new StatMenu();
+        ngp = new NewGamePanel();
         
         rp = new RogueProperties("RogueConfig.properties",props);
         if(rp.getSettings()[0].equals("0")){

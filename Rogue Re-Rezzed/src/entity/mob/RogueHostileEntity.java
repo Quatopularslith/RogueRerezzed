@@ -148,7 +148,7 @@ public class RogueHostileEntity extends RogueEntity{
         Direction out = Direction.STOP;
         if(distTo(e)<=followdist){
             Astar a = new Astar();
-            List<Node> path = a.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y));
+            List<Node> path = a.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y),l);
             if(path==null) return Direction.STOP;
             out = pointTowards(path.get(1));
         }else{

@@ -2,6 +2,7 @@
 package util;
 
 import core.Rogue;
+import dungeon.Level;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,7 +29,7 @@ public class Astar {
             return 0;
         }
     };
-    public List<Node> findPath(Vector2i start,Vector2i goal){
+    public List<Node> findPath(Vector2i start,Vector2i goal,Level l){
         List<Node> openList = new ArrayList<>();
         List<Node> closedList = new ArrayList<>();
         Node current = new Node(start,null,0,getDist(start,goal));
@@ -56,7 +57,7 @@ public class Astar {
                 xi = (i%3)-1;
                 yi = (i%3)-1;
                 if(x+xi<0 || y+yi<0) continue;
-                if(x+xi>=Rogue.getCurrentLevel().board.length || y+yi>=Rogue.getCurrentLevel().board.length || !Rogue.getCurrentLevel().board[x+xi][y+yi]) continue;
+                if(x+xi>=l.board.length || y+yi>=l.board.length || !l.board[x+xi][y+yi]) continue;
                 a = new Vector2i(x+xi,y+yi);
                 gCost = current.gCost + getDist(current.tile,a);
                 hCost = getDist(a,goal);

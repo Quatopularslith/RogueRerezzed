@@ -58,7 +58,6 @@ public class Player extends RogueEntity{
     }
     @Override
     public void turn(){
-        l=Rogue.getCurrentLevel();
         if(health<=0){
             dead=true;
         }else if(health<maxhealth){

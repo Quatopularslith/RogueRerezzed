@@ -264,7 +264,6 @@ public class GamePlay extends JPanel{
         g2.fillRect(10, 25, (int) ((Rogue.getCurrentLevel().getPlayer().health/l.getPlayer().maxhealth)*100), 20);
         g2.setColor(Color.BLUE);
         g2.fillRect(10, 45, (int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100)-9, 20);
-        System.out.println((int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100)-9);
         g2.setColor(Color.GREEN);
         g2.fillRect(10, 65, (int) (100*Rogue.getCurrentLevel().getPlayer().xp/(10*Rogue.getCurrentLevel().getPlayer().lvl)), 20);
         g2.setColor(Color.WHITE);

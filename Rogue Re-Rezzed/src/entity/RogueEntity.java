@@ -158,6 +158,8 @@ public class RogueEntity {
      * @param r
      */
     public void spawn(Room r){
+        if(r==null) l.removeEntity(this);
+        if(r==null) return;
         x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][0];
         y=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1];
         for(RogueEntity e:l.getEntities()){

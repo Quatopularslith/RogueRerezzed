@@ -3,6 +3,8 @@ package core;
 import dungeon.Level;
 import dungeon.LevelMode;
 import dungeon.LevelType;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.xml.namespace.QName;
