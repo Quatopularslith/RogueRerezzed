@@ -6,10 +6,10 @@ import javax.jws.soap.SOAPBinding.Style;
 /**
  * @author Torri
  */
-@WebService
+@WebService()
 @SOAPBinding(style=Style.RPC)
 public interface Server {
-    @WebMethod void highScore(int numLevel);
-    @WebMethod void addStats(int n,int d,int hs);
-    @WebMethod int getHighScore();
+    @WebMethod() void highScore(int numLevel);
+    @WebMethod() void addStats(int n,int d,int hs);
+    @WebMethod() int getHighScore();
 }
