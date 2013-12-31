@@ -126,12 +126,6 @@ public class Level {
                 roomnum++;
             }
         }
-        //Stariway
-        st = new Stairway(this);
-        //Safety Rooms
-        rooms[roomnum]=new Room(rooms[0].area[0][0][0]-2,rooms[0].area[0][0][1]-2,sx,3,lvl,this);
-        rooms[roomnum+1]=new Room(0,rooms[st.room].area[0][0][1],sx,3,lvl,this);
-        rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],0,3,sy,lvl,this);
         //Player
         Player p=new Player(this);
         if(Rogue.getLastLevel()!=null){
@@ -147,6 +141,12 @@ public class Level {
         }
         p.updateStats();
         pl.add(p);
+        //Stariway
+        st = new Stairway(this);
+        //Safety Rooms
+        rooms[roomnum]=new Room(rooms[p.roomnum].area[0][0][0]-2,rooms[p.roomnum].area[0][0][1]-2,sx,3,lvl,this);
+        rooms[roomnum+1]=new Room(0,rooms[st.room].area[0][0][1],sx,3,lvl,this);
+        rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],0,3,sy,lvl,this);
         //Board
         for(boolean[] b1:board){
             for(boolean b:b1){

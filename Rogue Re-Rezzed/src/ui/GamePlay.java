@@ -263,13 +263,14 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.RED);
         g2.fillRect(10, 25, (int) ((Rogue.getCurrentLevel().getPlayer().health/l.getPlayer().maxhealth)*100), 20);
         g2.setColor(Color.BLUE);
-        g2.fillRect(10, 45, (int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100), 20);
+        g2.fillRect(10, 45, (int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100)-9, 20);
+        System.out.println((int) ((l.getPlayer().mana/l.getPlayer().maxMana)*100)-9);
         g2.setColor(Color.GREEN);
-        g2.fillRect(10, 65, (int) (140*Rogue.getCurrentLevel().getPlayer().xp/(10*Rogue.getCurrentLevel().getPlayer().lvl)), 20);
+        g2.fillRect(10, 65, (int) (100*Rogue.getCurrentLevel().getPlayer().xp/(10*Rogue.getCurrentLevel().getPlayer().lvl)), 20);
         g2.setColor(Color.WHITE);
         g2.drawString("You are in dungeon: "+Rogue.numLevels, 10, 20);
         g2.drawString("Health: "+(int) Rogue.getCurrentLevel().getPlayer().health,10,40);
-        g2.drawString("Mana: "+l.getPlayer().mana, 10, 60);
+        g2.drawString("Mana: "+(int) l.getPlayer().mana, 10, 60);
         g2.drawString("You are Level: "+Rogue.getCurrentLevel().getPlayer().lvl, 10, 80);
         g2.drawString("Max Attack: "+l.getPlayer().maxAtt, 10, 100);
         g2.drawString("Defence: "+l.getPlayer().maxDefence, 10, 120);

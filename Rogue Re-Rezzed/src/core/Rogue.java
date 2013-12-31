@@ -89,6 +89,5 @@ public class Rogue {
                 }
             }
         }
-        System.out.println("Sent");
     }
 }

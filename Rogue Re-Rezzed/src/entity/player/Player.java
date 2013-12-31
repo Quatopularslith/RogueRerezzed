@@ -26,6 +26,7 @@ public class Player extends RogueEntity{
     public double xp=0;
     public int rep=0;
     public int gold=0;
+    public int roomnum;
     public Player(Level l1){
         super(l1);
         lvl=1;
@@ -43,11 +44,12 @@ public class Player extends RogueEntity{
         }
         name="Player";
         maxhealth=100;
-        mana=(int) (maxMana/1.5);
-        health=(float) (maxhealth);
         updateStats();
+        mana=maxMana/2;
+        health=maxhealth;
         sp = new Sprite("Player");
-        Room r = l1.getRoom(0);
+        roomnum = rand.nextInt(l1.getRooms().length);
+        Room r = l1.getRoom(roomnum);
         spawn(r);
     }
     @Override
@@ -61,6 +63,9 @@ public class Player extends RogueEntity{
             dead=true;
         }else if(health<maxhealth){
             health+=0.1*lvl;
+        }
+        if(mana<maxMana){
+            mana+=0.1*lvl;
         }
         if(lvl==0) lvl = 1;
         if(xp/(10*lvl)==1 && xp>1){
@@ -91,9 +96,9 @@ public class Player extends RogueEntity{
     }
     public void updateStats(){
         maxAtt=2*lvl;
-        maxMana=100+(lvl);
+        maxMana=lvl;
         maxhealth=100+2*(lvl-1);
-        maxDefence=(lvl);
+        maxDefence=lvl;
         boolean curr=false;
         for (int i=0;i<inv.length;i++) {
             if(inv[i]!=null){
@@ -139,7 +144,6 @@ public class Player extends RogueEntity{
             if(re instanceof RogueHostileEntity && re.x==this.x+dx && re.y==this.y+dy){
                 re.damage(this);
                 if(re.health<=0){
-                    mana++;
                     kills++;
                     xp+=(re.lvl/lvl);
                     re.death();
