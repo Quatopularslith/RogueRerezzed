@@ -6,6 +6,7 @@ import dungeon.Room;
 import entity.item.Item;
 import java.util.Random;
 import render.Sprite;
+import util.AI;
 import util.Direction;
 
 /**
@@ -23,6 +24,7 @@ public class RogueEntity {
     public Level l;
     public LoadArt la = new LoadArt();
     public String name;
+    public AI ai;
     public RogueEntity(Level l1){
         l=l1;
     }

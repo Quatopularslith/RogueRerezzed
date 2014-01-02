@@ -29,21 +29,23 @@ public class Astar {
             return 0;
         }
     };
-    public List<Node> findPath(Vector2i start,Vector2i goal,Level l){
+    public List<Node> findPath(Vector2i start,Vector2i goal,Level l,int followrange){
         List<Node> openList = new ArrayList<>();
         List<Node> closedList = new ArrayList<>();
         Node current = new Node(start,null,0,getDist(start,goal));
         openList.add(current);
-        while(openList.size()>0){
+        do{
             Collections.sort(openList, nodeSort);
-            if(openList.size()>200) return null;
+            if(openList.size()>followrange) return null;
             current = openList.get(0);
             if(current.tile.equals(goal)){
                 List<Node> path = new ArrayList<>();
+                path.add(current);
                 while(current.parent!=null){
-                    path.add(current);
                     current = current.parent;
+                    path.add(current);
                 }
+                System.out.println("Found You!");
                 openList.clear();
                 closedList.clear();
                 return path;
@@ -62,10 +64,11 @@ public class Astar {
                 gCost = current.gCost + getDist(current.tile,a);
                 hCost = getDist(a,goal);
                 node = new Node(a,current, gCost, hCost);
-//                if(vecInList(closedList,a) && gCost>=current.gCost) continue;
-                if(!vecInList(openList,a) && gCost<current.gCost) openList.add(node);
+                if(vecInList(closedList,a) && gCost>=current.gCost) continue;
+                if(!vecInList(openList,a) || gCost<current.gCost) openList.add(node);
             }
-        }
+        }while(openList.size()>0);
+        System.out.println(openList.size());
         closedList.clear();
         return null;
     }

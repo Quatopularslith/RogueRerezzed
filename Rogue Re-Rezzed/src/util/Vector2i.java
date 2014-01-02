@@ -58,10 +58,4 @@ public class Vector2i {
         int hash = 7;
         return hash;
     }
-    public RogueEntity getEntity(){
-        RogueEntity re = new RogueEntity(new Level());
-        re.x=x;
-        re.y=y;
-        return re;
-    }
 }

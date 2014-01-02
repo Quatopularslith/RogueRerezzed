@@ -6,13 +6,10 @@ import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
-import java.util.List;
 import render.Sprite;
-import util.Astar;
+import util.AI;
 import util.Direction;
-import util.Node;
 import util.Operation;
-import util.Vector2i;
 
 /**
  * Parent class for all monsters
@@ -37,6 +34,7 @@ public class RogueHostileEntity extends RogueEntity{
         followdist=followdist1;
         l=l1;
         maxDefence=0;
+        ai=new AI(this,followdist);
         this.lvl=lvl1;
         if(name1==null){
             name=this.getClass().toString();
@@ -84,99 +82,10 @@ public class RogueHostileEntity extends RogueEntity{
     }
     @Override
     public void turn(){
-//        move(pathFind(l.getPlayer()));
-        move(pointTowards(l.getPlayer()));
+        move(ai.pointTowards(l.getPlayer()));
         if(doatt(l.getPlayer()) && maxAtt>0){
             l.getPlayer().damage(this);
         }
-    }
-    /**
-     * basic tracer AI
-     * @param e
-     * @return 
-     */
-    public Direction pointTowards(Node e){
-        Direction pdir=Direction.STOP;
-        if(distTo(e.tile.getEntity())<followdist){
-            if(x<e.tile.getX())pdir = Direction.LEFT;
-            if(x>=e.tile.getX())pdir = Direction.RIGHT;
-            if(y<e.tile.getY())pdir = Direction.DOWN;
-            if(y>=e.tile.getY())pdir =Direction.UP;
-        }
-        return pdir;
-    }
-    public Direction pointTowards(RogueEntity e){
-        Direction pdir=Direction.STOP;
-        if(distTo(e)<followdist){
-            if(x<e.x)pdir = Direction.RIGHT;
-            if(x>e.x)pdir = Direction.LEFT;
-            if(y<e.y)pdir = Direction.DOWN;
-            if(y>e.y)pdir =Direction.UP;
-        }else{
-            boolean b = rand.nextBoolean();
-            int d = rand.nextInt(3);
-            if(b){
-                switch (d){
-                    case 0:
-                        pdir=Direction.UP;
-                        break;
-                    case 1:
-                        pdir=Direction.DOWN;
-                        break;
-                    case 2:
-                        pdir=Direction.LEFT;
-                        break;
-                    case 3:
-                        pdir=Direction.RIGHT;
-                        break;
-                    default:
-                        pdir=Direction.STOP;
-                        break;
-                }
-            }else{
-                pdir=Direction.STOP;
-            }
-        }
-        return pdir;
-    }
-    /**
-     * FINALY A*
-     * @param e 
-     * @return  
-     */
-    public Direction pathFind(RogueEntity e){
-        Direction out = Direction.STOP;
-        if(distTo(e)<=followdist){
-            Astar a = new Astar();
-            List<Node> path = a.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y),l);
-            if(path==null) return Direction.STOP;
-            out = pointTowards(path.get(1));
-        }else{
-            boolean b = rand.nextBoolean();
-            int d = rand.nextInt(3);
-            if(b){
-                switch (d){
-                    case 0:
-                        out=Direction.UP;
-                        break;
-                    case 1:
-                        out=Direction.DOWN;
-                        break;
-                    case 2:
-                        out=Direction.LEFT;
-                        break;
-                    case 3:
-                        out=Direction.RIGHT;
-                        break;
-                    default:
-                        out=Direction.STOP;
-                        break;
-                }
-            }else{
-                out=Direction.STOP;
-            }
-        }
-        return out;
     }
     /**
      * asks if it can attack
