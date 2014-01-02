@@ -36,7 +36,6 @@ public class Loading extends JPanel{
             if(Rogue.mm!=null){
                 LoadLoop.pause();
                 Rogue.mm.mmp.setVisible(true);
-                Rogue.mm.mmp.go();
                 if(Rogue.mm.getWidth()==750 && Rogue.mm.getHeight()==750)Rogue.mm.setSize(750, 500);
             }
         }

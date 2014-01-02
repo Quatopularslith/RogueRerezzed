@@ -101,7 +101,7 @@ public class Level {
         maxRoomSX=(sx/rows);
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
-        rooms=new Room[numRooms+3];
+        rooms=new Room[numRooms+4];
         //Mode Selection
         if(mode1==LevelMode.STORY){
             renderlevel=Math.round(Rogue.numLevels/5)*16;
@@ -146,9 +146,11 @@ public class Level {
         //Stariway
         st = new Stairway(this);
         //Safety Rooms
-        rooms[roomnum]=new Room(rooms[p.roomnum].area[0][0][0]-2,rooms[p.roomnum].area[0][0][1]-2,sx,3,lvl,this);
-        rooms[roomnum+1]=new Room(0,rooms[st.room].area[0][0][1],sx,3,lvl,this);
-        rooms[roomnum+2]=new Room(rooms[st.room].area[0][0][0],0,3,sy,lvl,this);
+        System.out.println(p);
+        rooms[roomnum]=new Room(0,rooms[p.roomnum].area[0][0][1]-2,sx,3,lvl,this);
+        rooms[roomnum+1]=new Room(rooms[p.roomnum].area[0][0][0]-2,0,sy,3,lvl,this);
+        rooms[roomnum+2]=new Room(0,rooms[st.room].area[0][0][1],sx,3,lvl,this);
+        rooms[roomnum+3]=new Room(rooms[st.room].area[0][0][0],0,3,sy,lvl,this);
         //Board
         for(boolean[] b1:board){
             for(boolean b:b1){
@@ -158,7 +160,7 @@ public class Level {
         for(Room r:rooms){
             for(int[][] a:r.area){
                 for(int[] a1:a){
-                    if(a1[0]>board.length || a1[1]>board[0].length) continue;
+                    if(a1[0]>=board.length || a1[1]>=board[0].length) continue;
                     board[a1[0]][a1[1]]=true;
                 }
             }

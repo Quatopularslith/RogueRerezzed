@@ -28,47 +28,6 @@ public class RogueEntity {
     }
     /**
      * Moves Entity
-     * @param d Integer representing the angle of which to move
-     *        0
-     *        | 
-     * 270----|---- 90
-     *        |
-     *       180
-     */
-    public void move(int d){
-        int dx=0;
-        int dy=0;
-        if(d>360){
-            dx=0;
-            dy=0;
-        }else if(d<=45 || d>315){//up
-            dy--;
-        }else if(d<=135 && d>45){//right
-            dx++;
-        }else if(d<=225 && d>135){//down
-            dy++;
-        }else if(d>=225 && d<=315){//left
-            dx--;
-        }
-        for(RogueEntity re:l.getEntities()){
-            if(re != null){
-                if(re.x==x+dx && re.y==y+dy){
-                    dx=0;
-                    dy=0;
-                }
-            }
-        }
-        if(l.getPlayer().x==x+dx && l.getPlayer().y==y+dy){
-            dx=0;
-            dy=0;
-        }
-        if(l.board[dx+x][dy+y]==true){
-            x+=dx;
-            y+=dy;
-        }
-    }
-    /**
-     * Moves Entity
      * @param d Direction
      */
     public void move(Direction d){
@@ -94,16 +53,11 @@ public class RogueEntity {
         }
         for(RogueEntity re:l.getEntities()){
             if(re != null){
-                if(re.x==x+dx && re.y==y+dy){
-                    dx=0;
-                    dy=0;
-                }
+                if(re.x==x+dx && re.y==y+dy) return;
             }
         }
-        if(l.getPlayer().x==x+dx && l.getPlayer().y==y+dy){
-            dx=0;
-            dy=0;
-        }
+        if(l.getPlayer().x==x+dx && l.getPlayer().y==y+dy) return;
+        if(dx+x>=l.board.length || dy+y>=l.board[0].length) return;
         if(dx+x>=0 && dy+y>=0){
             if(l.board[dx+x][dy+y]==true){
                 x+=dx;

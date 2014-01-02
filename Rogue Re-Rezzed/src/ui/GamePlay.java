@@ -100,8 +100,6 @@ public class GamePlay extends JPanel{
         }
         repaint();
         if(Rogue.getCurrentLevel().getPlayer().dead){
-            Rogue.mm.mmp.setVisible(false);
-            Rogue.mm.omp.setVisible(false);
             setVisible(false);
             Rogue.mm.sm.setVisible(true);
         }

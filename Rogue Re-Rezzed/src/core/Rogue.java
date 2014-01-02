@@ -60,36 +60,36 @@ public class Rogue {
     }
     public static void sendStats(){
         resetLevels();
-        System.out.println("Stats:");
-        System.out.println("n="+n);
-        System.out.println("d="+d);
-        System.out.println("hs="+hs);
-        try {
-            URL url = new URL("http://eyeris.zapto.org:3000/HighScore?wsdl");
-            QName qname = new QName("http://hs/","ServerImplService");
-            Service s = Service.create(url, qname);
-            hs.Server s1 = s.getPort(hs.Server.class);
-            s1.addStats(n,d,hs);
-        } catch (Exception ex) {
-            try {
-                System.out.println("not by inet");
-                URL url = new URL("http://192.168.1.35:3000/HighScore?wsdl");
-                QName qname = new QName("http://hs/","ServerImplService");
-                Service s = Service.create(url, qname);
-                hs.Server s1 = s.getPort(hs.Server.class);
-                s1.addStats(n,d,hs);
-            } catch (Exception ex1) {
-                try {
-                    System.out.println("not by lan");
-                    URL url = new URL("http://127.0.0.1:3000/HighScore?wsdl");
-                    QName qname = new QName("http://hs/","ServerImplService");
-                    Service s = Service.create(url, qname);
-                    hs.Server s1 = s.getPort(hs.Server.class);
-                    s1.addStats(n,d,hs);
-                } catch (Exception ex2) {
-                    System.out.println("not by localhost");
-                }
-            }
-        }
+//        System.out.println("Stats:");
+//        System.out.println("n="+n);
+//        System.out.println("d="+d);
+//        System.out.println("hs="+hs);
+//        try {
+//            URL url = new URL("http://eyeris.zapto.org:3000/HighScore?wsdl");
+//            QName qname = new QName("http://hs/","ServerImplService");
+//            Service s = Service.create(url, qname);
+//            hs.Server s1 = s.getPort(hs.Server.class);
+//            s1.addStats(n,d,hs);
+//        } catch (Exception ex) {
+//            try {
+//                System.out.println("not by inet");
+//                URL url = new URL("http://192.168.1.35:3000/HighScore?wsdl");
+//                QName qname = new QName("http://hs/","ServerImplService");
+//                Service s = Service.create(url, qname);
+//                hs.Server s1 = s.getPort(hs.Server.class);
+//                s1.addStats(n,d,hs);
+//            } catch (Exception ex1) {
+//                try {
+//                    System.out.println("not by lan");
+//                    URL url = new URL("http://127.0.0.1:3000/HighScore?wsdl");
+//                    QName qname = new QName("http://hs/","ServerImplService");
+//                    Service s = Service.create(url, qname);
+//                    hs.Server s1 = s.getPort(hs.Server.class);
+//                    s1.addStats(n,d,hs);
+//                } catch (Exception ex2) {
+//                    System.out.println("not by localhost");
+//                }
+//            }
+//        }
     }
 }

@@ -10,7 +10,6 @@ import input.MouseInput;
 import java.awt.Image;
 import javax.swing.JFrame;
 import loading.Loading;
-import mainMenu.MainMenuPanel;
 import util.RogueProperties;
 
 /**

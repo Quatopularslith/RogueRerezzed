@@ -21,7 +21,7 @@ public class RogueNPC extends RogueEntity{
     public RogueNPC(Room r,Level l1) {
         super(l1);
         spawn(r);
-        sp=new Sprite("Player");
+        sp=new Sprite("npc");
         health=100;
         lvl=Rogue.numLevels;
     }
