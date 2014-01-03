@@ -14,7 +14,7 @@ import ui.Menu;
  * @author Torri &  Mnenmenth
  */
 public class ButtonInput implements ActionListener{
-    public final String[] defkeys = {"87","83","68","65","81","69"};//wsdaqe
+    public final String[] defkeys = {"87","83","68","65","69","32"};//wsdae 
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
@@ -53,8 +53,8 @@ public class ButtonInput implements ActionListener{
             Rogue.mm.omp.backKB.setText("S");
             Rogue.mm.omp.rightKB.setText("D");
             Rogue.mm.omp.leftKB.setText("A");
-            Rogue.mm.omp.spellKB.setText("Q");
-            Rogue.mm.omp.eatKB.setText("E");
+            Rogue.mm.omp.spellKB.setText("e");
+            Rogue.mm.omp.eatKB.setText(" ");
             Rogue.mm.ki.checkSettings(defkeys);
         }
         if(command.equalsIgnoreCase("Debug Menu")){

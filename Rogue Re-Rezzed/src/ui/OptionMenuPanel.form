@@ -166,7 +166,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Use Spell Keybind"/>
+        <Property name="text" type="java.lang.String" value="Skip Keybind"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -174,7 +174,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Hobo Std" size="18" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Eat Food Keybind"/>
+        <Property name="text" type="java.lang.String" value="Pause Keybind"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="fwdKB">

@@ -64,10 +64,10 @@ public class OptionMenuPanel extends javax.swing.JPanel {
         jLabel4.setText("Right Directional Keybind");
 
         jLabel5.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
-        jLabel5.setText("Use Spell Keybind");
+        jLabel5.setText("Skip Keybind");
 
         jLabel6.setFont(new java.awt.Font("Hobo Std", 0, 18)); // NOI18N
-        jLabel6.setText("Eat Food Keybind");
+        jLabel6.setText("Pause Keybind");
 
         fwdKB.setFont(new java.awt.Font("Hobo Std", 0, 14)); // NOI18N
 
