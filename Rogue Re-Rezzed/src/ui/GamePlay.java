@@ -8,7 +8,6 @@ import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
-import entity.npc.RogueNPC;
 import entity.npc.Trader;
 import entity.npc.Warrior;
 import input.MButton;
@@ -21,6 +20,9 @@ import java.awt.Graphics2D;
 import java.util.List;
 import javax.swing.JPanel;
 import render.Sprite;
+import util.Astar;
+import util.Node;
+import util.Vector2i;
 
 /**
  *

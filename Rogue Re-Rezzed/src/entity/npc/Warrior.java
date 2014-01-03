@@ -11,10 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import util.AI;
-import util.Astar;
-import util.Direction;
 import util.Node;
-import util.Vector2i;
 
 /**
  *
@@ -28,6 +25,8 @@ public class Warrior extends RogueNPC{
     public int buttons[] = new int[2];
     public boolean hireD = false;
     public boolean hire = false;
+    int numturns=0;
+    List<Node> path;
     public Warrior(Room r,Level l1) {
         super(r,l1);
         lvl=l1.lvl;
@@ -40,6 +39,7 @@ public class Warrior extends RogueNPC{
     }
     @Override
     public void turn(){
+        numturns++;
         for(RogueEntity re : l.getEntities()){
             if(re==null || re.equals(this) || !(re instanceof RogueHostileEntity)){
                 continue;
@@ -58,8 +58,10 @@ public class Warrior extends RogueNPC{
             hireD=false;
         }
         if(hire) follow=l.getPlayer();
-        ai=new AI(this,1000);
-        move(ai.pathFind(follow));
+        if(numturns%4==0){
+            ai=new AI(this,200);
+            move(ai.pathFind(follow));
+        }
         if (!(follow instanceof Player) && distTo(follow)<=1) {
             follow.damage(this);
         }else{

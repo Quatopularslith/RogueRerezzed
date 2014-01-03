@@ -8,7 +8,6 @@ import entity.item.Gold;
 import entity.item.Item;
 import render.Sprite;
 import util.AI;
-import util.Direction;
 import util.Operation;
 
 /**
@@ -82,18 +81,11 @@ public class RogueHostileEntity extends RogueEntity{
     }
     @Override
     public void turn(){
-        move(ai.pointTowards(l.getPlayer()));
-        if(doatt(l.getPlayer()) && maxAtt>0){
+        ai=new AI(this,followdist);
+        if(distTo(l.getPlayer())<=1 && maxAtt>0){
             l.getPlayer().damage(this);
         }
-    }
-    /**
-     * asks if it can attack
-     * @param e
-     * @return 
-     */
-    public boolean doatt(RogueEntity e){
-        return distTo(e)<=1;
+        move(ai.pointTowards(l.getPlayer()));
     }
     @Override
     public void death(){

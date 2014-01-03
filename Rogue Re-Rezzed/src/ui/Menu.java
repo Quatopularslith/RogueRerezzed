@@ -38,8 +38,8 @@ public class Menu extends JFrame{
     public static RogueProperties rp;
     public static int x,y,sx,sy;
     
-    private final String[] props = {"fwdKB","backKB","rightKB","leftKB","spellKB","eatKB"};
-    private final String[] defkeys = {"87","83","68","65","81","69"};
+    private final String[] props = {"fwdKB","backKB","rightKB","leftKB","skipKB","pKB"};
+    private final String[] defkeys = {"87","83","68","65","69","32"};
     private int[] propn = {87,83,68,65,81,69};
     /**
      * Creates and handles the menus of the game

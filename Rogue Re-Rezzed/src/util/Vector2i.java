@@ -1,8 +1,5 @@
 package util;
 
-import dungeon.Level;
-import entity.RogueEntity;
-
 /**
  * Part of A*
  * @author Torri

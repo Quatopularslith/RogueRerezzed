@@ -16,9 +16,13 @@ public class AI {
     private final Random rand = new Random();
     public AI(RogueEntity body,int follow){
         parent=body;
-        followdist=follow;
         x=body.x;
         y=body.y;
+        if(follow>200){
+            followdist=200;
+        }else{
+            followdist=follow;
+        }
     }
     /**
      * basic tracer AI
@@ -94,7 +98,7 @@ public class AI {
                     out=Direction.STOP;
                 }
             }else{
-                out = pointTowards(path.get(path.size()-1));
+                out = pointTowards(path.get(path.size()-2));
             }
         }else{
             boolean b = rand.nextBoolean();
@@ -129,11 +133,17 @@ public class AI {
      * @return 
      */
     private Direction pointTowards(Node e){
-        Direction pdir=Direction.STOP;
-        if(x<e.tile.getX())pdir = Direction.RIGHT;
-        if(x>e.tile.getX())pdir = Direction.LEFT;
-        if(y<e.tile.getY())pdir = Direction.DOWN;
-        if(y>e.tile.getY())pdir =Direction.UP;
+        Direction pdir = Direction.STOP;
+        if(x<e.tile.getX()){
+            pdir = Direction.RIGHT;
+        }else if(x>e.tile.getX()){
+            pdir = Direction.LEFT;
+        }
+        if(y<e.tile.getY()){
+            pdir = Direction.DOWN;
+        }else if(y>e.tile.getY()){
+            pdir =Direction.UP;
+        }
         return pdir;
     }
 }
