@@ -140,8 +140,6 @@ public class Level {
             p.mana=Rogue.getLastLevel().getPlayer().mana;
             p.rep=Rogue.getLastLevel().getPlayer().rep;
             p.kills=Rogue.getLastLevel().getPlayer().kills;
-        }else{
-            p.lvl=100;
         }
         p.updateStats();
         pl.add(p);
