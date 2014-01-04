@@ -146,6 +146,8 @@ public class Level {
         //Stariway
         st = new Stairway(this);
         //Safety Rooms
+        System.out.println(p);
+        System.out.println(p.roomnum);
         rooms[roomnum] = new Room(0,rooms[p.roomnum].area[0][0][1]-2,sx,3,lvl,this);
         rooms[roomnum+1] = new Room(rooms[p.roomnum].area[0][0][0]-2,0,sy,3,lvl,this);
         rooms[roomnum+2] = new Room(0,rooms[st.room].area[0][0][1],sx,3,lvl,this);

@@ -18,8 +18,8 @@ public class AI {
         parent=body;
         x=body.x;
         y=body.y;
-        if(follow>200){
-            followdist=200;
+        if(follow>150){
+            followdist=150;
         }else{
             followdist=follow;
         }
