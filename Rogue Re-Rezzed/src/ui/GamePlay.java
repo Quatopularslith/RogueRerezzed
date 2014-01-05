@@ -20,9 +20,6 @@ import java.awt.Graphics2D;
 import java.util.List;
 import javax.swing.JPanel;
 import render.Sprite;
-import util.Astar;
-import util.Node;
-import util.Vector2i;
 
 /**
  *

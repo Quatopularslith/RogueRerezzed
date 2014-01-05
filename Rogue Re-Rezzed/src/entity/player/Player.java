@@ -48,7 +48,7 @@ public class Player extends RogueEntity{
         mana=maxMana/2;
         health=maxhealth;
         sp = new Sprite("Player");
-        roomnum = rand.nextInt(l1.getRooms().length);
+        roomnum = rand.nextInt(l1.getRooms().length-1);
         Room r = l1.getRoom(roomnum);
         spawn(r);
     }
