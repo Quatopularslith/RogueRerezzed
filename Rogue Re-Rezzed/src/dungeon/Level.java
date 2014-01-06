@@ -107,12 +107,13 @@ public class Level {
         rooms=new Room[numRooms+4];
         //Mode Selection
         if(mode1==LevelMode.STORY){
-            renderlevel=Math.round(Rogue.numLevels/5)*16;
+            renderlevel=16*Rogue.numLevels;
+//            renderlevel=Math.round(Rogue.numLevels/5)*16;
             if(renderlevel>48){
                 renderlevel=48;
-            }else if(renderlevel<16 && Rogue.numLevels>3){
+            }/*else if(renderlevel<16 && Rogue.numLevels>3){
                 renderlevel=16;
-            }
+            }*/
         }else{
             renderlevel=render1;
         }
@@ -187,7 +188,7 @@ public class Level {
             GameLoop.pause();
         }
         //Favicon
-        Image s = la.createBufferedImage("Quatopularslith"+renderlevel+".png", 64, 64);
+        Image s = (new Sprite(SpriteSheet.QUATOPULARSLITH)).i;
         if(Rogue.mm!=null) Rogue.mm.setIconImage(s);
     }
     /**

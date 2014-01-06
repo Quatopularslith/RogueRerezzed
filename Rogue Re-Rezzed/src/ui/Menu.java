@@ -10,6 +10,8 @@ import input.MouseInput;
 import java.awt.Image;
 import javax.swing.JFrame;
 import loading.Loading;
+import render.Sprite;
+import render.SpriteSheet;
 import util.RogueProperties;
 
 /**
@@ -53,7 +55,7 @@ public class Menu extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        Image ico = la.createBufferedImage("Quatopularslith16.png", 16, 16);
+        Image ico = (new Sprite(SpriteSheet.QUATOPULARSLITH,64)).i;
         this.setIconImage(ico);
         
         x=getX();

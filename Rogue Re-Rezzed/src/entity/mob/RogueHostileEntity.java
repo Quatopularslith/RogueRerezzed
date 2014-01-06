@@ -69,7 +69,7 @@ public class RogueHostileEntity extends RogueEntity{
                 maxAtt=attmod/(lvl);
         }
         this.maxhealth=this.health;
-        sp = new Sprite(SpriteSheet.valueOf(name));
+        sp = new Sprite(SpriteSheet.valueOf(name.toUpperCase()));
         inv = new Item[2];
         if(lvl>Item.numid/3){
             inv[0] = new Item(rand.nextInt((Item.numid)+1),this,lvl,l);

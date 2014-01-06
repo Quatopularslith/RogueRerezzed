@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.List;
+import render.Sprite;
+import render.SpriteSheet;
 import util.AI;
 import util.Node;
 
@@ -79,7 +81,7 @@ public class Warrior extends RogueNPC{
     public void refreshHire(){
         if(hire) cost=0;
         int say = rand.nextInt(dialogue.length);
-        img=la.createBufferedImage("Dialogue"+Level.renderlevel+".png", 256, 256);
+        img=(new Sprite(SpriteSheet.DIALOGUE,256)).i;
         Graphics2D g = img.createGraphics();
         int width = g.getFontMetrics().stringWidth(dialogue[say]);
         g.setColor(Color.BLACK);

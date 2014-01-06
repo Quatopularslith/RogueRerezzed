@@ -20,7 +20,7 @@ public class RogueEntity {
     public float maxhealth=0;
     public int lvl=0;
     public Item[] inv;
-    public Sprite sp = new Sprite(SpriteSheet.BAG);
+    public Sprite sp;
     public Random rand = new Random();
     public Level l;
     public LoadArt la = new LoadArt();

@@ -1,8 +1,8 @@
 package render;
 
 import art.LoadArt;
+import core.Rogue;
 import dungeon.Level;
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
@@ -15,14 +15,20 @@ public class Sprite {
     /**
      * Sprite image
      */
-    public BufferedImage i;
+    public BufferedImage i = new BufferedImage(64,64,BufferedImage.TYPE_INT_ARGB);
     public String dir;
     /**
      * Creates a sprite
      * @param s
      */
     public Sprite(SpriteSheet s){
-        String imdir = "spritesheet"+Level.renderlevel;
+        int renderlevel=Math.round(Rogue.numLevels/5)*16;
+        if(renderlevel>48){
+            renderlevel=48;
+        }else if(renderlevel<16 && Rogue.numLevels>3){
+            renderlevel=16;
+        }
+        String imdir = "spritesheet"+renderlevel+".png";
         BufferedImage spritesheet = (new LoadArt()).createBufferedImage(imdir);
         int sx = spritesheet.getWidth()/4;
         int sy = spritesheet.getHeight()/3;
@@ -81,15 +87,24 @@ public class Sprite {
                 y=2;
                 break;
             default:
-                x=0;
+                x=2;
                 y=0;
                 break;
         }
-        i = spritesheet.getSubimage(x*sx, y*sy, sx, sy);
-        if(s==SpriteSheet.NPC) i = colorImage(i);
+        BufferedImage temp = spritesheet.getSubimage(x*sx, y*sy, sx, sy);
+        if(s==SpriteSheet.NPC) temp = colorImage(temp);
+        i.createGraphics().drawImage(temp.getScaledInstance(64, 64, Image.SCALE_SMOOTH), 0,0, null);
+        i.createGraphics().dispose();
     }
     public Sprite(SpriteSheet s, int size){
-        String imdir = "spritesheet"+Level.renderlevel;
+        int renderlevel=Math.round(Rogue.numLevels/5)*16;
+        if(renderlevel>48){
+            renderlevel=48;
+        }else if(renderlevel<16 && Rogue.numLevels>3){
+            renderlevel=16;
+        }
+        i = new BufferedImage(size,size,BufferedImage.TYPE_INT_ARGB);
+        String imdir = "spritesheet"+renderlevel+".png";
         BufferedImage spritesheet = (new LoadArt()).createBufferedImage(imdir);
         int sx = spritesheet.getWidth()/4;
         int sy = spritesheet.getHeight()/3;
@@ -152,9 +167,9 @@ public class Sprite {
                 y=0;
                 break;
         }
-        BufferedImage temp = spritesheet.getSubimage(x, y, sx, sy);
+        BufferedImage temp = spritesheet.getSubimage(x*sx, y*sy, sx, sy);
         if(s==SpriteSheet.NPC) temp = colorImage(temp);
-        i.createGraphics().drawImage(temp.getScaledInstance(sx, sy, Image.SCALE_SMOOTH), 0,0, null);
+        i.createGraphics().drawImage(temp.getScaledInstance(size, size, Image.SCALE_SMOOTH), 0,0, null);
         i.createGraphics().dispose();
     }
     private BufferedImage colorImage(BufferedImage image){

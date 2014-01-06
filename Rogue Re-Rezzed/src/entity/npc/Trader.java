@@ -1,13 +1,14 @@
 
 package entity.npc;
 
-import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.item.Item;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import render.Sprite;
+import render.SpriteSheet;
 import util.Direction;
 
 /**
@@ -32,7 +33,7 @@ public class Trader extends RogueNPC{
             prices[i]=inv[i].id+inv[i].lvl;
         }
         int say = rand.nextInt(dialogue.length);
-        img=la.createBufferedImage("Dialogue"+Level.renderlevel+".png", 256, 256);
+        img=(new Sprite(SpriteSheet.DIALOGUE,256)).i;
         Graphics2D g = img.createGraphics();
         int width = g.getFontMetrics().stringWidth(dialogue[say]);
         g.setColor(Color.BLACK);
@@ -84,7 +85,7 @@ public class Trader extends RogueNPC{
     }
     public void refreshTrade(){
         int say = rand.nextInt(dialogue.length);
-        img=la.createBufferedImage("Dialogue"+Level.renderlevel+".png", 256, 256);
+        img=(new Sprite(SpriteSheet.DIALOGUE,256)).i;
         Graphics2D g = img.createGraphics();
         int width = g.getFontMetrics().stringWidth(dialogue[say]);
         g.setColor(Color.BLACK);
