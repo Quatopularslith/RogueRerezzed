@@ -2,7 +2,6 @@ package render;
 
 import art.LoadArt;
 import core.Rogue;
-import dungeon.Level;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
@@ -22,13 +21,7 @@ public class Sprite {
      * @param s
      */
     public Sprite(SpriteSheet s){
-        int renderlevel=Math.round(Rogue.numLevels/5)*16;
-        if(renderlevel>48){
-            renderlevel=48;
-        }else if(renderlevel<16 && Rogue.numLevels>3){
-            renderlevel=16;
-        }
-        String imdir = "spritesheet"+renderlevel+".png";
+        String imdir = "spritesheet"+Rogue.renderlevel+".png";
         BufferedImage spritesheet = (new LoadArt()).createBufferedImage(imdir);
         int sx = spritesheet.getWidth()/4;
         int sy = spritesheet.getHeight()/3;
@@ -97,14 +90,8 @@ public class Sprite {
         i.createGraphics().dispose();
     }
     public Sprite(SpriteSheet s, int size){
-        int renderlevel=Math.round(Rogue.numLevels/5)*16;
-        if(renderlevel>48){
-            renderlevel=48;
-        }else if(renderlevel<16 && Rogue.numLevels>3){
-            renderlevel=16;
-        }
         i = new BufferedImage(size,size,BufferedImage.TYPE_INT_ARGB);
-        String imdir = "spritesheet"+renderlevel+".png";
+        String imdir = "spritesheet"+Rogue.renderlevel+".png";
         BufferedImage spritesheet = (new LoadArt()).createBufferedImage(imdir);
         int sx = spritesheet.getWidth()/4;
         int sy = spritesheet.getHeight()/3;

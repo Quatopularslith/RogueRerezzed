@@ -14,7 +14,8 @@ public class Rogue {
     public static Menu mm;
     private static final ArrayList<Level> levels = new ArrayList<>();
     private static Level l;
-    public static int numLevels=100;
+    public static int numLevels=1;
+    public static int renderlevel=0;
     private static int hs=0;
     private static int n=0;
     private static int d=0;
@@ -28,6 +29,7 @@ public class Rogue {
         numLevels++;
         l=new Level(numLevels,mode1,type1,render1);
         levels.add(l);
+        renderlevel=l.renderlevel;
         return l;
     }
     public static Level getCurrentLevel(){
@@ -43,6 +45,8 @@ public class Rogue {
         return l1;
     }
     public static void setLevel(Level l1){
+        numLevels++;
+        renderlevel=l1.renderlevel;
         l=l1;
         levels.add(l);
     }
