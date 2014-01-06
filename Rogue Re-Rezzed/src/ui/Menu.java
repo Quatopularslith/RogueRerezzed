@@ -110,6 +110,8 @@ public class Menu extends JFrame{
         sm.setSize(750, 500);
         ngp.setSize(750, 500);
         
+        mmp.refresh();
+        
         this.add(dmp);
         this.add(omp);
         this.add(mmp);

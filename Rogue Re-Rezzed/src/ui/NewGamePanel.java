@@ -23,29 +23,31 @@ public class NewGamePanel extends JPanel{
     MButton back = new MButton(getWidth()/2-100,270,200,50,"Back",this);
     public NewGamePanel(){
         this.setVisible(true);
-        this.repaint();
     }
     @Override
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
-        if(img.getWidth(this)!=Rogue.mm.getHeight() && img.getWidth(this)!=Rogue.mm.getWidth()){
-            turnStory.setParent(this);
-            evolvedStory.setParent(this);
-            back.setParent(this);
-            img = la.createBufferedImage("MainMenu.png",Rogue.mm.getWidth(), Rogue.mm.getHeight());
-            this.setSize(Rogue.mm.getWidth(), Rogue.mm.getHeight());
-            turnStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            evolvedStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            back.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            turnStory.addListener(Rogue.mm.mbi,this);
-            evolvedStory.addListener(Rogue.mm.mbi,this);
-            back.addListener(Rogue.mm.mbi,this);
-        }
+        refresh();
         g2.drawImage(img, 0,0, this);
         g2.drawImage(turnStory.img, turnStory.x, turnStory.y, this);
         g2.drawImage(evolvedStory.img, evolvedStory.x, evolvedStory.y, this);
         g2.drawImage(back.img, back.x, back.y, this);
         g2.dispose();
+    }
+    public void refresh(){
+        if(Rogue.mm==null) return;
+        turnStory.setParent(this);
+        evolvedStory.setParent(this);
+        back.setParent(this);
+        img = la.createBufferedImage("MainMenu.png",Rogue.mm.getWidth(), Rogue.mm.getHeight());
+        this.setSize(Rogue.mm.getWidth(), Rogue.mm.getHeight());
+        turnStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
+        evolvedStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
+        back.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
+        turnStory.addListener(Rogue.mm.mbi,this);
+        evolvedStory.addListener(Rogue.mm.mbi,this);
+        back.addListener(Rogue.mm.mbi,this);
+        this.repaint();
     }
 }
