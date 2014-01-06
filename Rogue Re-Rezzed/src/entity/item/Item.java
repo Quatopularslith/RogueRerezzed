@@ -5,6 +5,7 @@ import core.Rogue;
 import dungeon.Level;
 import entity.RogueEntity;
 import render.Sprite;
+import render.SpriteSheet;
 
 
 /**
@@ -35,7 +36,7 @@ public class Item extends RogueEntity{
         maxhealth=1;
         parent=parent1;
         id=id1;
-        sp=new Sprite("Bag",16);
+        sp=new Sprite(SpriteSheet.BAG,16);
         modifierid=rand.nextInt(modifiers.length);
         int matid = (int) id/materials.length;
         int tyid = (id%3)+1;
@@ -111,7 +112,7 @@ public class Item extends RogueEntity{
     public void setParent(RogueEntity e){
         parent=e;
         l=e.l;
-        sp = new Sprite("Bag",16);
+        sp = new Sprite(SpriteSheet.BAG,16);
     }
     @Override
     public void death(){

@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import render.Sprite;
+import render.SpriteSheet;
 import ui.GamePlay;
 
 /**
@@ -118,11 +119,11 @@ public class Level {
         this.lvl=lvl;
         if(Rogue.mm != null) Rogue.mm.ki.turn = type1 != LevelType.EVOLVED;
         //Sprite Change
-        GamePlay.fsp = new Sprite("DungeonFloor");
-        GamePlay.dialogue = new Sprite("Dialogue",256);
-        GamePlay.floorimg=new Sprite("DungeonFloor",8);
-        GamePlay.pimg=new Sprite("Player",8);
-        GamePlay.stimg=new Sprite("Stairway",8);
+        GamePlay.fsp = new Sprite(SpriteSheet.FLOOR);
+        GamePlay.dialogue = new Sprite(SpriteSheet.DIALOGUE,256);
+        GamePlay.floorimg=new Sprite(SpriteSheet.FLOOR,8);
+        GamePlay.pimg=new Sprite(SpriteSheet.PLAYER,8);
+        GamePlay.stimg=new Sprite(SpriteSheet.STAIRWAY,8);
         //Roomgen
         for(int x=0;x<sx;x+=maxRoomSX){
             for(int y=0;y<sy;y+=maxRoomSY){

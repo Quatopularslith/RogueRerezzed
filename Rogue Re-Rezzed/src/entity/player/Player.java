@@ -1,6 +1,5 @@
 package entity.player;
 
-import core.Rogue;
 import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
@@ -9,6 +8,7 @@ import entity.item.Item;
 import entity.mob.RogueHostileEntity;
 import entity.npc.RogueNPC;
 import render.Sprite;
+import render.SpriteSheet;
 import ui.GamePlay;
 import util.Direction;
 
@@ -47,7 +47,7 @@ public class Player extends RogueEntity{
         updateStats();
         mana=maxMana/2;
         health=maxhealth;
-        sp = new Sprite("Player");
+        sp = new Sprite(SpriteSheet.PLAYER);
         roomnum = rand.nextInt(l1.getRooms().length-1);
         Room r = l1.getRoom(roomnum);
         spawn(r);

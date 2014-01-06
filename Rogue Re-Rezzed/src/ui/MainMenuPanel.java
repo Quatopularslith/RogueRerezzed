@@ -6,7 +6,7 @@ import core.Rogue;
 import input.MButton;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 /**
  * 
@@ -19,7 +19,7 @@ public class MainMenuPanel extends javax.swing.JPanel{
     public int numlevels=1;
     int offx,offy,moffx,moffy;
     int sx,sy;
-    Image img = la.createImage("MainMenu.png", "MMP", 750, 500);
+    BufferedImage img;
     MButton newGame = new MButton(getWidth()/2-100,150,200,50,"New Game",this);
     MButton options = new MButton(getWidth()/2-100,210,200,50,"Options",this);
     MButton quit = new MButton(getWidth()/2-100,270,200,50,"Quit",this);
@@ -36,7 +36,7 @@ public class MainMenuPanel extends javax.swing.JPanel{
             quit.setParent(this);
             sy=Rogue.mm.getHeight();
             sx=Rogue.mm.getWidth();
-            img = la.createImage("MainMenu.png","MMP",Rogue.mm.getWidth(), Rogue.mm.getHeight());
+            img = la.createBufferedImage("MainMenu.png",Rogue.mm.getWidth(), Rogue.mm.getHeight());
             this.setSize(Rogue.mm.getWidth(), Rogue.mm.getHeight());
             newGame.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             options.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));

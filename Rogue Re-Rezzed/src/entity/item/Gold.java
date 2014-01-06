@@ -4,6 +4,7 @@ package entity.item;
 import dungeon.Level;
 import entity.RogueEntity;
 import render.Sprite;
+import render.SpriteSheet;
 
 /**
  *
@@ -16,6 +17,6 @@ public class Gold extends Item{
         for(double d:stats){
             d=0.0;
         }
-        this.sp=new Sprite("Gold",8);
+        this.sp=new Sprite(SpriteSheet.GOLD,8);
     }
 }

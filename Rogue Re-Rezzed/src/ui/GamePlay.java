@@ -20,6 +20,7 @@ import java.awt.Graphics2D;
 import java.util.List;
 import javax.swing.JPanel;
 import render.Sprite;
+import render.SpriteSheet;
 
 /**
  *
@@ -31,15 +32,15 @@ public class GamePlay extends JPanel{
     LoadArt la = new LoadArt();
     Room[] room;
     public static Item pickup;
-    public static Sprite fsp = new Sprite("DungeonFloor");
-    public static Sprite dialogue = new Sprite("Dialogue",144);
+    public static Sprite fsp = new Sprite(SpriteSheet.FLOOR);
+    public static Sprite dialogue = new Sprite(SpriteSheet.DIALOGUE,144);
     private List<RogueEntity> current;
     MButton amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
     MButton dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
     int moffx=0,moffy=0;
-    public static Sprite floorimg = new Sprite("DungeonFloor",8);
-    public static Sprite pimg = new Sprite("Player",8);
-    public static Sprite stimg = new Sprite("Stairway",8);
+    public static Sprite floorimg = new Sprite(SpriteSheet.FLOOR,8);
+    public static Sprite pimg = new Sprite(SpriteSheet.PLAYER,8);
+    public static Sprite stimg = new Sprite(SpriteSheet.STAIRWAY,8);
     public MButton[] equip = new MButton[10];
     public MButton[] drop = new MButton[10];
     public MButton quit = new MButton(650,460,100,30,"Quit",this);

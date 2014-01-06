@@ -6,6 +6,7 @@ import dungeon.Room;
 import entity.item.Item;
 import java.util.Random;
 import render.Sprite;
+import render.SpriteSheet;
 import util.AI;
 import util.Direction;
 
@@ -19,7 +20,7 @@ public class RogueEntity {
     public float maxhealth=0;
     public int lvl=0;
     public Item[] inv;
-    public Sprite sp = new Sprite("Bag");
+    public Sprite sp = new Sprite(SpriteSheet.BAG);
     public Random rand = new Random();
     public Level l;
     public LoadArt la = new LoadArt();

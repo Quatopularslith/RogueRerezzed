@@ -20,7 +20,7 @@ public class OptionMenuPanel1 extends JPanel{
     public int numlevels=1;
     int offx,offy,moffx,moffy;
     int sx=0,sy=0;
-    Image img = la.createImage("MainMenu.png", "MMP", 750, 500);
+    Image img = la.createBufferedImage("MainMenu.png", 750, 500);
     MButton fmb = new MButton(getWidth()/2-100,150,200,50,"Forward keybind",this);
     MButton bmb = new MButton(getWidth()/2-100,210,200,50,"Backward keybind",this);
     MButton lmb = new MButton(getWidth()/2-100,270,200,50,"Left Keybind",this);
@@ -40,7 +40,7 @@ public class OptionMenuPanel1 extends JPanel{
             lmb.setParent(this);
             sy=Rogue.mm.getHeight();
             sx=Rogue.mm.getWidth();
-            img = la.createImage("MainMenu.png","MMP",Rogue.mm.getWidth(), Rogue.mm.getHeight());
+            img = la.createBufferedImage("MainMenu.png",Rogue.mm.getWidth(), Rogue.mm.getHeight());
             this.setSize(Rogue.mm.getWidth(), Rogue.mm.getHeight());
             fmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             bmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));

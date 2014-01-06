@@ -6,6 +6,7 @@ import dungeon.Level;
 import dungeon.Room;
 import entity.RogueEntity;
 import render.Sprite;
+import render.SpriteSheet;
 import util.Direction;
 
 /**
@@ -16,12 +17,13 @@ public class RogueNPC extends RogueEntity{
     public boolean hostile;
     /**
      * Creates NPC
+     * @param r
      * @param l1 
      */
     public RogueNPC(Room r,Level l1) {
         super(l1);
         spawn(r);
-        sp=new Sprite("npc");
+        sp=new Sprite(SpriteSheet.PLAYER);
         health=100;
         lvl=Rogue.numLevels;
     }
