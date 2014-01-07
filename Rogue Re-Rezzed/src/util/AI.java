@@ -45,13 +45,13 @@ public class AI {
                         pdir=Direction.UP;
                         break;
                     case 1:
-                        pdir=Direction.DOWN;
+                        pdir=Direction.RIGHT;
                         break;
                     case 2:
                         pdir=Direction.LEFT;
                         break;
                     case 3:
-                        pdir=Direction.RIGHT;
+                        pdir=Direction.DOWN;
                         break;
                     default:
                         pdir=Direction.STOP;
@@ -60,6 +60,7 @@ public class AI {
             }else{
                 pdir=Direction.STOP;
             }
+            System.out.println(pdir);
         }
         return pdir;
     }

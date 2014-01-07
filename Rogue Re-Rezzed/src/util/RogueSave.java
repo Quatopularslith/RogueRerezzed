@@ -19,14 +19,18 @@ public class RogueSave {
     private final File rs;
     private final File r;
     private Properties p;
+    private final String sep = File.separator;
     public RogueSave(dungeon.Level l){
-        rs=new File("Player.txt");
-        r=new File("Rooms.txt");
+        File path = new File("RogueRerezzed");
+        path.mkdirs();
+        rs=new File("RogueRerezzed"+sep+"Player.txt");
+        r=new File("RogueRerezzed"+sep+"Rooms.txt");
         String[] s = new String[10];
         for(int i=0;i<s.length;i++){
             s[i]="inv"+i+"x";
         }
-        String[] playerprops = {"x", "y", "xp", "xplevels", "mana", "kills", "health", "gold", "rep"};
+        String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold", "rep"};
+        String[] playersets = {l.getPlayer().x,l.getPlayer().y,l.getPlayer().xp,l.getPlayer().lvl,l.getPlayer().mana,l.getPlayer().kills,l.getPlayer().gold};
         try {
             if(rs.createNewFile()){
                 for (String prop : playerprops) {
@@ -48,6 +52,4 @@ public class RogueSave {
             ex.printStackTrace(System.err);
         }
     }
-    }
-    
-
+}
