@@ -60,7 +60,6 @@ public class AI {
             }else{
                 pdir=Direction.STOP;
             }
-            System.out.println(pdir);
         }
         return pdir;
     }

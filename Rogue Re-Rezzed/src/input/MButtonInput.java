@@ -3,12 +3,14 @@ package input;
 
 import core.GameLoop;
 import core.Rogue;
+import dungeon.Level;
 import dungeon.LevelMode;
 import dungeon.LevelType;
 import entity.item.Item;
 import java.awt.Component;
 import javax.swing.JPanel;
 import ui.GamePlay;
+import util.RogueSave;
 
 /**
  * listener for MButtons
@@ -43,6 +45,9 @@ public class MButtonInput {
             if(command.equalsIgnoreCase("Turn-Based Story mode")){
                 Rogue.resetLevels();
                 Rogue.setLevel(LevelMode.STORY, LevelType.TURN, 0);
+//                RogueSave rs = new RogueSave(0);
+//                Level load = rs.loadLevel();
+//                if(load!=null) Rogue.setLevel(load);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
                 Rogue.mm.gp.update();
@@ -66,6 +71,8 @@ public class MButtonInput {
             //Navigation Buttons
             if(command.equalsIgnoreCase("quit")){
                 //TODO some save code
+                RogueSave rs = new RogueSave(0);
+                rs.saveLevel(Rogue.getCurrentLevel());
                 Rogue.resetLevels();
                 Rogue.mm.gp.setVisible(false);
                 Rogue.mm.mmp.setVisible(true);

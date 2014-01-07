@@ -30,7 +30,6 @@ public class GamePlay extends JPanel{
     private Level l = Rogue.getCurrentLevel();
     private int offx=0,offy=0;
     LoadArt la = new LoadArt();
-    Room[] room;
     public static Item pickup;
     public static Sprite fsp = new Sprite(SpriteSheet.FLOOR);
     public static Sprite dialogue = new Sprite(SpriteSheet.DIALOGUE,144);
@@ -52,7 +51,6 @@ public class GamePlay extends JPanel{
     public GamePlay(){
         l=Rogue.getCurrentLevel();
         if(l!=null){
-            room = l.getRooms();
             current = l.getEntities();
             currTrade = new Trader(l.getRoom(0),l);
         }
@@ -80,7 +78,6 @@ public class GamePlay extends JPanel{
         l=Rogue.getCurrentLevel();
         if(l==null) return;
         l.getStairWay().turn();
-        room=l.getRooms();
         current=l.getEntities();
         pickup=null;
         l.getPlayer().turn();
@@ -125,15 +122,11 @@ public class GamePlay extends JPanel{
         setReletiveTo(l.getPlayer());
         g2.setColor(Color.BLACK);
         g2.fillRect(0, 0, getWidth(), getHeight());
-        room = l.getRooms();
         current = l.getEntities();
         //Floors
-        for (Room r1 : room) {
-            for (int[][] area0 : r1.area) {
-                for (int[] area1 : area0) {
-                    if(area1[0]*64+offx<=-64 || area1[0]*64+offx>=getWidth() || area1[1]*64+offy<=-64 || area1[1]>=getHeight()) continue;
-                    g2.drawImage(fsp.i, area1[0]*64+offx,area1[1]*64+offy, this);
-                }
+        for(int xx=0;xx<l.board.length;xx++){
+            for(int yy=0;yy<l.board[xx].length;yy++){
+                if(l.board[xx][yy] && !(xx*64+offx<=-64 || xx*64+offx>=getWidth() || yy*64+offy<=-64 || yy>=getHeight())) g2.drawImage(fsp.i, xx*64+offx,yy*64+offy, this);
             }
         }
         g2.drawImage(l.getStairWay().sp.i, l.getStairWay().x*64+offx,l.getStairWay().y*64+offy, this);
@@ -219,15 +212,11 @@ public class GamePlay extends JPanel{
         //Map
         g2.setColor(Color.BLACK);
         g2.fillRect(getWidth()-(int) (0.25*getWidth())-10, 10, (int) (0.25*getWidth()), (int) (0.3515625*getHeight()));
-        for (Room r1 : room) {
-            for (int[][] area0 : r1.area) {
-                for (int[] area1 : area0) {
-                    if(area1[0]*8+moffx>getWidth()-(getWidth()/4)-8 && area1[0]*8+moffx<getWidth()-18){
-                        if((area1[1]*8+moffy)>10 && area1[1]*8+moffy<10+(getHeight()*0.3515625-10)){
-                            g2.drawImage(floorimg.i, area1[0]*8+moffx,area1[1]*8+moffy, this);
-                        }
-                    }
-                }
+        for(int xx=0;xx<l.board.length;xx++){
+            for(int yy=0;yy<l.board[xx].length;yy++){
+                if(!(xx*8+moffx>getWidth()-(getWidth()/4)-8 && xx*8+moffx<getWidth()-18)) continue;
+                if(!(yy*8+moffy>10 && yy*8+moffy<10+(getHeight()*0.3515625-10))) continue;
+                if(l.board[xx][yy]) g2.drawImage(floorimg.i, xx*8+moffx,yy*8+moffy, this);
             }
         }
         if(l.getStairWay().x*8+moffx>getWidth()-(getWidth()/4)-8 && l.getStairWay().x*8+moffx<getWidth()-18){

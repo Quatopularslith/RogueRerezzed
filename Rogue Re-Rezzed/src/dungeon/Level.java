@@ -293,4 +293,8 @@ public class Level {
     public Player[] getPlayers(){
         return (Player[]) pl.toArray();
     }
+    public void setPlayer(Player p){
+        p.l = this;
+        pl.set(0, p);
+    }
 }

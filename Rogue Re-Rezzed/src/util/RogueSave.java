@@ -5,10 +5,16 @@
  */
 
 package util;
+import dungeon.Level;
+import entity.player.Player;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -16,37 +22,115 @@ import java.util.Properties;
  * @author Mnenmenth
  */
 public class RogueSave {
-    private final File rs;
-    private final File r;
+    private File rs;
+    private File r;
     private Properties p;
     private final String sep = File.separator;
-    public RogueSave(dungeon.Level l){
-        File path = new File("RogueRerezzed");
-        path.mkdirs();
-        rs=new File("RogueRerezzed"+sep+"Player.txt");
-        r=new File("RogueRerezzed"+sep+"Rooms.txt");
-        String[] s = new String[10];
-        for(int i=0;i<s.length;i++){
-            s[i]="inv"+i+"x";
-        }
-        String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold", "rep"};
-        String[] playersets = {l.getPlayer().x,l.getPlayer().y,l.getPlayer().xp,l.getPlayer().lvl,l.getPlayer().mana,l.getPlayer().kills,l.getPlayer().gold};
-        try {
-            if(rs.createNewFile()){
-                for (String prop : playerprops) {
-                    if(prop==null){
-                        p.setProperty(prop, "0");
+    private final int savenum;
+    private final String paths;
+    private final String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold","numd"};
+    public RogueSave(int savenum){
+        this.savenum=savenum;
+        paths="RogueRerezzed"+sep+"Saves"+sep+"save"+savenum;
+    }
+    public void saveLevel(final Level l){
+        new Thread(){
+            @Override
+            public void run(){
+                File path = new File(paths);
+                path.mkdirs();
+                rs=new File(paths+sep+"Player.txt");
+                r=new File(paths+sep+"Rooms.txt");
+                String[] s = new String[10];
+                for(int i=0;i<s.length;i++){
+                    s[i]="inv"+i+"x";
+                }
+                String[] playersets = {l.getPlayer().x+"",l.getPlayer().y+"",l.getPlayer().xp+"",l.getPlayer().lvl+"",l.getPlayer().mana+"",l.getPlayer().kills+"",l.getPlayer().health+"",l.getPlayer().gold+"",l.lvl+""};
+                try {
+                    rs.createNewFile();
+                    p = new Properties();
+                    for (int i=0;i<playerprops.length;i++) {
+                        p.setProperty(playerprops[i], playersets[i]);
                     }
+                    save(rs);
+                } catch (IOException ex) {
+                    ex.printStackTrace(System.err);
+                }
+                try {
+                    r.createNewFile();
+                    try (FileOutputStream outStream = new FileOutputStream(r)) {
+                        String data = "";
+                        for (boolean[] board : l.board) {
+                            for (int y = 0; y < board.length; y++) {
+                                data += board[y] ? 1 : 0;
+                                data += " ";
+                            }
+                        }
+                        outStream.write(data.getBytes());
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace(System.err);
                 }
             }
-            try (FileInputStream inStream = new FileInputStream(rs)) {
-                p = new Properties();
-                p.load(inStream);
-                for (String prop : playerprops) {
-                    if (p.getProperty(prop) == null) {
-                        p.setProperty(prop, "0");
-                    }
+        }.start();
+    }
+    public Level loadLevel(){
+        System.out.println("Loading....");
+        rs=new File(paths+sep+"Player.txt");
+        r=new File(paths+sep+"Rooms.txt");
+        Level out = new Level();
+        boolean[][] b;
+        List<String> arr=new ArrayList<>();
+        String[] split;
+        try {
+            rs.createNewFile();
+            r.createNewFile();
+            arr=Files.readAllLines(r.toPath(), StandardCharsets.UTF_8);
+        } catch (IOException ex) {
+            return null;
+        }
+        split=arr.get(0).split(" ");
+        System.out.println("Split done");
+        b = new boolean[out.board.length][out.board[0].length];
+        for(int i=0;i<out.board.length;i++){
+            for(int j=0;j<out.board[0].length;j++){
+                b[i][j]=split[j].equals("1");
+            }
+        }
+        System.out.println("World Loaded");
+        out.board=b;
+        Player play = new Player(out);
+        String[] s = new String[playerprops.length];
+        try(FileInputStream inStream = new FileInputStream(rs)){
+            p = new Properties();
+            p.load(inStream);
+            for(int k=0;k<playerprops.length;k++){
+                if (p.getProperty(playerprops[k]) == null) {
+                    p.setProperty(playerprops[k], "0");
                 }
+                s[k]=p.getProperty(playerprops[k]);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace(System.err);
+        }
+        play.x=Integer.parseInt(s[0]);
+        play.y=Integer.parseInt(s[1]);
+        play.xp=Double.parseDouble(s[2]);
+        play.lvl=Integer.parseInt(s[3]);
+        play.mana=Double.parseDouble(s[2]);
+        play.kills=Integer.parseInt(s[5]);
+        play.health=Float.parseFloat(s[6]);
+        play.gold=Integer.parseInt(s[7]);
+        out.lvl=Integer.parseInt(s[8]);
+        System.out.println("Player Played");
+        out.setPlayer(play);
+        System.out.println("Done");
+        return out;
+    }
+    private void save(File s){
+        try {
+            try (FileOutputStream outs = new FileOutputStream(s)) {
+                p.store(outs,"Properties settings");
             }
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
