@@ -196,8 +196,9 @@ public class Level {
     }
     public void rePopulate(int area){
         re.clear();
-        if(lvl<=area/4) Spawner.spawner(rand.nextInt(lvl+1),lvl,this);
-        if(lvl>area/4) Spawner.spawner(rand.nextInt(area/4),lvl,this);
+        int mult = rows*cols;
+        if(lvl*mult<=area/4) Spawner.spawner(rand.nextInt(lvl*mult-1)+1,lvl,this);
+        if(lvl*mult>area/4) Spawner.spawner(rand.nextInt(area/4),lvl,this);
         //Bosses
         MortuusTrabajos mt = new MortuusTrabajos(lvl,this);
         this.addEntity(mt);
