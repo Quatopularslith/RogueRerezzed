@@ -6,6 +6,8 @@
 
 package util;
 import dungeon.Level;
+import dungeon.LevelMode;
+import dungeon.LevelType;
 import entity.player.Player;
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,8 +40,8 @@ public class RogueSave {
             public void run(){
                 File path = new File(paths);
                 path.mkdirs();
-                rs=new File(paths+sep+"Player.txt");
-                r=new File(paths+sep+"Rooms.txt");
+                rs=new File(paths+sep+"Level.txt");
+                r=new File(paths+sep+"World.txt");
                 String[] s = new String[10];
                 for(int i=0;i<s.length;i++){
                     s[i]="inv"+i+"x";
@@ -64,6 +66,7 @@ public class RogueSave {
                                 data += bo ? 1 : 0;
                                 data += " ";
                             }
+                            data+="\n";
                             outStream.write(data.getBytes());
                             data="";
                         }
@@ -76,9 +79,9 @@ public class RogueSave {
         }.start();
     }
     public Level loadLevel(){
-        System.out.println("Loading....");
-        rs=new File(paths+sep+"Player.txt");
-        r=new File(paths+sep+"Rooms.txt");
+        System.out.println("Loading Save "+paths);
+        rs=new File(paths+sep+"Level.txt");
+        r=new File(paths+sep+"World.txt");
         Level out = new Level();
         boolean[][] b;
         List<String> arr=new ArrayList<>();
@@ -90,8 +93,6 @@ public class RogueSave {
         } catch (IOException ex) {
             return null;
         }
-        split=arr.get(0).split(" ");
-        System.out.println("Split done");
         b = new boolean[out.board.length][out.board[0].length];
         for(boolean[] ba:b){
             for(boolean bb:ba){
@@ -99,37 +100,35 @@ public class RogueSave {
             }
         }
         for(int i=0;i<out.board.length;i++){
+            split=arr.get(i).split(" ");
             for(int j=0;j<out.board[0].length;j++){
                 b[i][j]=split[j].equals("1");
             }
         }
-        System.out.println("World Loaded");
-        out.board=b;
-        Player play = new Player(out);
         String[] s = new String[playerprops.length];
         try(FileInputStream inStream = new FileInputStream(rs)){
             p = new Properties();
             p.load(inStream);
             for(int k=0;k<playerprops.length;k++){
-                if (p.getProperty(playerprops[k]) == null) {
-                    p.setProperty(playerprops[k], "0");
-                }
                 s[k]=p.getProperty(playerprops[k]);
             }
         } catch (Exception ex) {
             ex.printStackTrace(System.err);
         }
+        out.lvl=Integer.parseInt(s[8]);
+        out.generateLevel(100, 100, out.lvl, LevelMode.STORY, LevelType.TURN, 0);
+        Player play = new Player(out);
         play.x=Integer.parseInt(s[0]);
         play.y=Integer.parseInt(s[1]);
         play.xp=Double.parseDouble(s[2]);
         play.lvl=Integer.parseInt(s[3]);
-        play.mana=Double.parseDouble(s[2]);
+        play.mana=Double.parseDouble(s[4]);
         play.kills=Integer.parseInt(s[5]);
         play.health=Float.parseFloat(s[6]);
         play.gold=Integer.parseInt(s[7]);
-        out.lvl=Integer.parseInt(s[8]);
-        System.out.println("Player Played");
+        play.updateStats();
         out.setPlayer(play);
+        out.board=b;
         System.out.println("Done");
         return out;
     }

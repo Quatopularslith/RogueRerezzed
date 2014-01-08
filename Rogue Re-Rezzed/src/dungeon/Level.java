@@ -116,6 +116,7 @@ public class Level {
         }else{
             renderlevel=render1;
         }
+        Rogue.renderlevel=renderlevel;
         this.lvl=lvl;
         if(Rogue.mm != null) Rogue.mm.ki.turn = type1 != LevelType.EVOLVED;
         //Sprite Change

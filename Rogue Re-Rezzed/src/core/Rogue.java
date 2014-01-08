@@ -29,7 +29,6 @@ public class Rogue {
         numLevels++;
         l=new Level(numLevels,mode1,type1,render1);
         levels.add(l);
-        renderlevel=l.renderlevel;
         return l;
     }
     public static Level getCurrentLevel(){
@@ -46,7 +45,6 @@ public class Rogue {
     }
     public static void setLevel(Level l1){
         numLevels++;
-        renderlevel=l1.renderlevel;
         l=l1;
         levels.add(l);
     }
