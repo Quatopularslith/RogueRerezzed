@@ -26,14 +26,13 @@ public class RogueSave {
     private File r;
     private Properties p;
     private final String sep = File.separator;
-    private final int savenum;
     private final String paths;
     private final String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold","numd"};
     public RogueSave(int savenum){
-        this.savenum=savenum;
         paths="RogueRerezzed"+sep+"Saves"+sep+"save"+savenum;
     }
     public void saveLevel(final Level l){
+        System.out.println("saving...");
         new Thread(){
             @Override
             public void run(){
@@ -61,16 +60,18 @@ public class RogueSave {
                     try (FileOutputStream outStream = new FileOutputStream(r)) {
                         String data = "";
                         for (boolean[] board : l.board) {
-                            for (int y = 0; y < board.length; y++) {
-                                data += board[y] ? 1 : 0;
+                            for (boolean bo : board) {
+                                data += bo ? 1 : 0;
                                 data += " ";
                             }
+                            outStream.write(data.getBytes());
+                            data="";
                         }
-                        outStream.write(data.getBytes());
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace(System.err);
                 }
+                System.out.println("saved");
             }
         }.start();
     }
@@ -92,6 +93,11 @@ public class RogueSave {
         split=arr.get(0).split(" ");
         System.out.println("Split done");
         b = new boolean[out.board.length][out.board[0].length];
+        for(boolean[] ba:b){
+            for(boolean bb:ba){
+                bb=true;
+            }
+        }
         for(int i=0;i<out.board.length;i++){
             for(int j=0;j<out.board[0].length;j++){
                 b[i][j]=split[j].equals("1");

@@ -133,6 +133,9 @@ public class Level {
         }
         //Player
         Player p=new Player(this);
+        while(rooms[p.roomnum]==null){
+            p=new Player(this);
+        }
         if(Rogue.getLastLevel()!=null){
             p.currinv=Rogue.getLastLevel().getPlayer().currinv;
             p.inv=Rogue.getLastLevel().getPlayer().inv;

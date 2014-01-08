@@ -22,7 +22,8 @@ public class RogueProperties {
      * @param props 
      */
     public RogueProperties(String dir,String[] props){
-        rp=new File(dir);
+        (new File("RogueRerezzed")).mkdirs();
+        rp=new File("RogueRerezzed"+File.separator+dir);
         this.props=props;
         out = new String[props.length];
         try {

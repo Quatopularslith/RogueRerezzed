@@ -44,10 +44,11 @@ public class MButtonInput {
         if(parent==Rogue.mm.ngp){
             if(command.equalsIgnoreCase("Turn-Based Story mode")){
                 Rogue.resetLevels();
-                Rogue.setLevel(LevelMode.STORY, LevelType.TURN, 0);
-//                RogueSave rs = new RogueSave(0);
-//                Level load = rs.loadLevel();
-//                if(load!=null) Rogue.setLevel(load);
+//                Rogue.setLevel(LevelMode.STORY, LevelType.TURN, 0);
+                RogueSave rs = new RogueSave(0);
+                Level load = rs.loadLevel();
+                if(load!=null) Rogue.setLevel(load);
+                if(load==null) Rogue.setLevel(LevelMode.STORY, LevelType.TURN, 0);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
                 Rogue.mm.gp.update();
