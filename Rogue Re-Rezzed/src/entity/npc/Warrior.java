@@ -2,7 +2,6 @@
 package entity.npc;
 
 import dungeon.Level;
-import dungeon.Room;
 import entity.RogueEntity;
 import entity.mob.RogueHostileEntity;
 import entity.player.Player;
@@ -29,8 +28,8 @@ public class Warrior extends RogueNPC{
     public boolean hire = false;
     int numturns=0;
     List<Node> path;
-    public Warrior(Room r,Level l1) {
-        super(r,l1);
+    public Warrior(Level l1) {
+        super(l1);
         lvl=l1.lvl;
         maxAtt=lvl*5;
         maxhealth=lvl;

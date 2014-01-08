@@ -17,7 +17,7 @@ public class Stairway extends RogueEntity{
         super(l1);
         numlevel=Rogue.numLevels;
         room = rand.nextInt(l1.numRooms-2);
-        this.spawn(l1.getRoom(room));
+        this.spawn(l);
         this.sp = new Sprite(SpriteSheet.STAIRWAY);
     }
     @Override

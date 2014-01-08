@@ -2,7 +2,6 @@
 package entity.mob;
 
 import dungeon.Level;
-import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
@@ -20,7 +19,6 @@ public class RogueHostileEntity extends RogueEntity{
     /**
      * creates new entity
      * @param lvl1
-     * @param r
      * @param l1 
      * @param name1 
      * @param op0 operation for health
@@ -29,7 +27,7 @@ public class RogueHostileEntity extends RogueEntity{
      * @param hmod health modifier
      * @param followdist1 follow distance
      */
-    public RogueHostileEntity(int lvl1,Room r,Level l1,String name1,Operation op0,int hmod,Operation op1,int attmod,int followdist1) {
+    public RogueHostileEntity(int lvl1,Level l1,String name1,Operation op0,int hmod,Operation op1,int attmod,int followdist1) {
         super(l1);
         followdist=followdist1;
         l=l1;
@@ -78,7 +76,7 @@ public class RogueHostileEntity extends RogueEntity{
             inv[0] = new Item(rand.nextInt((lvl*3)+1),this,lvl,l);
             inv[1] = new Gold(rand.nextInt(lvl+1),this,l);
         }
-        spawn(r);
+        spawn(l);
     }
     @Override
     public void turn(){

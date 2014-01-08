@@ -2,7 +2,6 @@
 package entity.npc;
 
 import dungeon.Level;
-import dungeon.Room;
 import entity.item.Item;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -21,8 +20,8 @@ public class Trader extends RogueNPC{
     public int[][] buttons = new int[3][2];
     public BufferedImage img = new BufferedImage(256,256,BufferedImage.TYPE_4BYTE_ABGR);
     public boolean trade=false;
-    public Trader(Room r,Level l1) {
-        super(r,l1);
+    public Trader(Level l1) {
+        super(l1);
         this.prices = new int[3];
         lvl=l1.lvl;
         maxhealth=10000;

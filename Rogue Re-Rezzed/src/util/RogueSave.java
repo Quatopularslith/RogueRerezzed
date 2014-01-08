@@ -129,6 +129,7 @@ public class RogueSave {
         play.updateStats();
         out.setPlayer(play);
         out.board=b;
+        out.rePopulate();
         System.out.println("Done");
         return out;
     }

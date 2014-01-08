@@ -1,7 +1,6 @@
 package entity.player;
 
 import dungeon.Level;
-import dungeon.Room;
 import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
@@ -26,7 +25,6 @@ public class Player extends RogueEntity{
     public double xp=0;
     public int rep=0;
     public int gold=0;
-    public int roomnum;
     public Player(Level l1){
         super(l1);
         lvl=1;
@@ -48,9 +46,7 @@ public class Player extends RogueEntity{
         mana=maxMana/2;
         health=maxhealth;
         sp = new Sprite(SpriteSheet.PLAYER);
-        roomnum = rand.nextInt(l1.getRooms().length-1);
-        Room r = l1.getRoom(roomnum);
-        spawn(r);
+        spawn(l);
     }
     @Override
     public void death(){

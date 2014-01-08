@@ -4,6 +4,7 @@ import art.LoadArt;
 import core.GameLoop;
 import core.Rogue;
 import entity.RogueEntity;
+import entity.Spawner;
 import entity.Stairway;
 import entity.item.Item;
 import entity.mob.MortuusTrabajos;
@@ -28,9 +29,8 @@ public class Level {
     protected final Random rand = new Random();
     protected final ArrayList<RogueEntity> re =new ArrayList<>();
     protected final ArrayList<Item> items = new ArrayList<>();
-    protected Room[] rooms;
     protected ArrayList<Player> pl = new ArrayList<>();
-    protected static int rows=10,cols=10;
+    protected static int rows=10,cols=20;
     protected Stairway st;
     protected int nument=0;
     protected final LoadArt la = new LoadArt();
@@ -99,12 +99,10 @@ public class Level {
         mode=mode1;
         type=type1;
         nument=0;
-        int roomnum=0;
-        board=new boolean[2*sx][2*sy];
+        board=new boolean[sx][sy];
         maxRoomSX=(sx/rows);
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
-        rooms=new Room[numRooms+4];
         //Mode Selection
         if(mode1==LevelMode.STORY){
             renderlevel=Math.round(lvl/5)*16;
@@ -126,17 +124,9 @@ public class Level {
         GamePlay.pimg=new Sprite(SpriteSheet.PLAYER,8);
         GamePlay.stimg=new Sprite(SpriteSheet.STAIRWAY,8);
         //Roomgen
-        for(int x=0;x<sx;x+=maxRoomSX){
-            for(int y=0;y<sy;y+=maxRoomSY){
-                rooms[roomnum]=new Room(x,y,maxRoomSX,maxRoomSY,lvl,this);
-                roomnum++;
-            }
-        }
+        int area = generateRooms(sx,sy);
         //Player
         Player p=new Player(this);
-        while(rooms[p.roomnum]==null){
-            p=new Player(this);
-        }
         if(Rogue.getLastLevel()!=null){
             p.currinv=Rogue.getLastLevel().getPlayer().currinv;
             p.inv=Rogue.getLastLevel().getPlayer().inv;
@@ -153,37 +143,24 @@ public class Level {
         //Stariway
         st = new Stairway(this);
         //Safety Rooms
-        rooms[roomnum] = new Room(0,rooms[p.roomnum].area[0][0][1]-2,sx,3,lvl,this);
-        rooms[roomnum+1] = new Room(rooms[p.roomnum].area[0][0][0]-2,0,sy,3,lvl,this);
-        rooms[roomnum+2] = new Room(0,rooms[st.room].area[0][0][1],sx,3,lvl,this);
-        rooms[roomnum+3] = new Room(rooms[st.room].area[0][0][0],0,3,sy,lvl,this);
-        //Board
-        for(boolean[] b1:board){
-            for(boolean b:b1){
-                b=false;
-            }
+        for(int i=0;i<board.length;i++){
+            board[p.x][i]=true;
+            if(p.x<board.length) board[p.x+1][i]=true;
+            if(p.x<board.length) board[p.x+2][i]=true;
+            board[i][p.y]=true;
+            if(p.y<board[0].length) board[i][p.y+1]=true;
+            if(p.y<board[0].length) board[i][p.y+2]=true;
         }
-        for(Room r:rooms){
-            for(int[][] a:r.area){
-                for(int[] a1:a){
-                    if(a1[0]>=board.length || a1[1]>=board[0].length) continue;
-                    board[a1[0]][a1[1]]=true;
-                }
-            }
+        for(int i=0;i<board.length;i++){
+            board[st.x][i]=true;
+            if(st.x<board.length) board[st.x+1][i]=true;
+            if(st.x<board.length) board[st.x+2][i]=true;
+            board[i][st.y]=true;
+            if(st.y<board[0].length) board[i][st.y+1]=true;
+            if(st.y<board[0].length) board[i][st.y+2]=true;
         }
-        //Bosses
-        MortuusTrabajos mt = new MortuusTrabajos(lvl,this.rooms[rand.nextInt(rooms.length)],this);
-        this.addEntity(mt);
-        
-        Quatopularslith qt = new Quatopularslith(lvl,this.rooms[rand.nextInt(rooms.length)],this);
-        this.addEntity(qt);
-        
-        //NPCs
-        Trader t = new Trader(this.rooms[rand.nextInt(rooms.length)],this);
-        this.addEntity(t);
-        
-        Warrior w = new Warrior(this.rooms[rand.nextInt(rooms.length)], this);
-        this.addEntity(w);
+        //population
+        rePopulate(area);
         //Non-turn-based
         if(type1==LevelType.EVOLVED){
             GameLoop.start();
@@ -194,20 +171,68 @@ public class Level {
         Image s = (new Sprite(SpriteSheet.QUATOPULARSLITH)).i;
         if(Rogue.mm!=null) Rogue.mm.setIconImage(s);
     }
-    /**
-     * Gets Room Array
-     * @return current Rooms array
-     */
-    public Room[] getRooms(){
-        return rooms;
+    public int generateRooms(int sx,int sy){
+        int out=0;
+        for(boolean[] b1:board){
+            for(boolean b:b1){
+                b=false;
+            }
+        }
+        int rx,ry;
+        for(int x=0;x<sx;x+=maxRoomSX){
+            for(int y=0;y<sy;y+=maxRoomSY){
+                rx=rand.nextInt(maxRoomSX)+1+x;
+                ry=rand.nextInt(maxRoomSY)+1+y;
+                for(int xx=0;xx<maxRoomSX;xx++){
+                    for(int yy=0;yy<maxRoomSY;yy++){
+                        if(xx+rx>=board.length || yy+ry>=board[0].length) continue;
+                        board[xx+rx][yy+ry]=true;
+                        out++;
+                    }
+                }
+            }
+        }
+        return out;
     }
-    /**
-     * Gets a Room
-     * @param roomnum number of the room
-     * @return number room
-     */
-    public Room getRoom(int roomnum){
-        return rooms[roomnum];
+    public void rePopulate(int area){
+        re.clear();
+        if(lvl<=area/4) Spawner.spawner(rand.nextInt(lvl+1),lvl,this);
+        if(lvl>area/4) Spawner.spawner(rand.nextInt(area/4),lvl,this);
+        //Bosses
+        MortuusTrabajos mt = new MortuusTrabajos(lvl,this);
+        this.addEntity(mt);
+        
+        Quatopularslith qt = new Quatopularslith(lvl,this);
+        this.addEntity(qt);
+        //NPCs
+        Trader t = new Trader(this);
+        this.addEntity(t);
+        
+        Warrior w = new Warrior(this);
+        this.addEntity(w);
+    }
+    public void rePopulate(){
+        int area=0;
+        for(boolean[] ba:board){
+            for(boolean b:ba){
+                if(b) area++;
+            }
+        }
+        re.clear();
+        if(lvl<=area/4) Spawner.spawner(rand.nextInt(lvl+1),lvl,this);
+        if(lvl>area/4) Spawner.spawner(rand.nextInt(area/4),lvl,this);
+        //Bosses
+        MortuusTrabajos mt = new MortuusTrabajos(lvl,this);
+        this.addEntity(mt);
+        
+        Quatopularslith qt = new Quatopularslith(lvl,this);
+        this.addEntity(qt);
+        //NPCs
+        Trader t = new Trader(this);
+        this.addEntity(t);
+        
+        Warrior w = new Warrior(this);
+        this.addEntity(w);
     }
     /**
      * Gets all Entities

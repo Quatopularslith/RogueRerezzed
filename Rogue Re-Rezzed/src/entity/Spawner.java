@@ -1,7 +1,7 @@
 
 package entity;
 
-import dungeon.Room;
+import dungeon.Level;
 import java.util.Random;
 
 /**
@@ -13,13 +13,12 @@ public class Spawner {
     /**
      * spawns stuff
      * @param am
-     * @param lvl
-     * @param r 
+     * @param lvl 
+     * @param l 
      */
 
-    public static void spawner(int am,int lvl,Room r){
-
-        RogueEntity e = new RogueEntity(r.l);
+    public static void spawner(int am,int lvl,Level l){
+        RogueEntity e = new RogueEntity(l);
         Random rand = new Random();
         int type;
         int elvl;
@@ -27,15 +26,15 @@ public class Spawner {
             elvl = rand.nextInt(lvl+1)+1;
             type = rand.nextInt(4);
             if(type==0){
-                e = new entity.mob.Snake(elvl,r,r.l);
+                e = new entity.mob.Snake(elvl,l);
             }else if(type==1){
-                e = new entity.mob.Bandit(elvl,r,r.l);
+                e = new entity.mob.Bandit(elvl,l);
             }else if(type==2){
-                e = new entity.mob.Fish(elvl,r,r.l);
+                e = new entity.mob.Fish(elvl,l);
             }else if(type==3){
-                e = new entity.mob.Goblin(elvl, r, r.l);
+                e = new entity.mob.Goblin(elvl,l);
             }
-            r.l.addEntity(e);
+            l.addEntity(e);
         }
     }
 }

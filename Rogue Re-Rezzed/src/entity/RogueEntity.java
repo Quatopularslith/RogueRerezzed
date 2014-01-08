@@ -2,11 +2,10 @@ package entity;
 
 import art.LoadArt;
 import dungeon.Level;
-import dungeon.Room;
 import entity.item.Item;
+import entity.player.Player;
 import java.util.Random;
 import render.Sprite;
-import render.SpriteSheet;
 import util.AI;
 import util.Direction;
 
@@ -108,24 +107,25 @@ public class RogueEntity {
     /**
      * What to do when this entity dies
      */
-    public void death(){
-    }
+    public void death(){}
     /**
      * What to do when this entity is initialized
      * @param r
      */
-    public void spawn(Room r){
-        if(r==null) l.removeEntity(this);
-        if(r==null) return;
-        x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][0];
-        y=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1];
-        for(RogueEntity e:l.getEntities()){
-            if(e==null || e==this){
-                continue;
-            }
-            if(x==e.x && y==e.y){
-                x=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][0];
-                y=r.area[rand.nextInt(r.area.length)][rand.nextInt(r.area[0].length)][1];
+    public void spawn(Level l){
+        x=rand.nextInt(l.board.length);
+        y=rand.nextInt(l.board[0].length);
+        while(!l.board[x][y] && (this instanceof Player || this instanceof Stairway ? true : distTo(l.getPlayer())>10)){
+            x=rand.nextInt(l.board.length);
+            y=rand.nextInt(l.board[0].length);
+            for(RogueEntity e : l.getEntities()){
+                if(e==null || e==this){
+                    continue;
+                }
+                if(x==e.x && y==e.y){
+                    x=rand.nextInt(l.board.length);
+                    y=rand.nextInt(l.board[0].length);
+                }
             }
         }
     }

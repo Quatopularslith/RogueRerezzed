@@ -51,7 +51,7 @@ public class GamePlay extends JPanel{
         l=Rogue.getCurrentLevel();
         if(l!=null){
             current = l.getEntities();
-            currTrade = new Trader(l.getRoom(0),l);
+            currTrade = new Trader(l);
         }
         amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
         dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);

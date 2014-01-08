@@ -2,7 +2,6 @@
 package entity.mob;
 
 import dungeon.Level;
-import dungeon.Room;
 import util.Operation;
 
 /**
@@ -10,7 +9,7 @@ import util.Operation;
  * @author Mnenmenth
  */
 public class Quatopularslith extends RogueHostileEntity{
-    public Quatopularslith(int lvl,Room r,Level l1){
-        super(lvl,r,l1,"Quatopularslith",Operation.MULT,100,Operation.DIV,lvl,10000);
+    public Quatopularslith(int lvl,Level l1){
+        super(lvl,l1,"Quatopularslith",Operation.MULT,100,Operation.DIV,lvl,10000);
     }
 }

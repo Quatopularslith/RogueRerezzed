@@ -82,42 +82,42 @@ public class ButtonInput implements ActionListener{
             RogueEntity e1 = new RogueEntity(Rogue.getCurrentLevel());
             switch(item){
                 case 0:
-                    e1 = new entity.mob.Snake(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1 = new entity.mob.Snake(1, Rogue.getCurrentLevel());
                     e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
                     e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 1:
-                    e1 = new entity.mob.Bandit(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1 = new entity.mob.Bandit(1, Rogue.getCurrentLevel());
                     e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
                     e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 2:
-                    e1 = new entity.mob.Fish(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1 = new entity.mob.Fish(1, Rogue.getCurrentLevel());
                     e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
                     e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 3:
-                    e1 = new entity.mob.MortuusTrabajos(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1 = new entity.mob.MortuusTrabajos(1, Rogue.getCurrentLevel());
                     e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
                     e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 4:                    
-                    e1 = new entity.mob.Quatopularslith(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1 = new entity.mob.Quatopularslith(1, Rogue.getCurrentLevel());
                     e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
                     e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 5:
-                    e1 = new entity.mob.Goblin(1, Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1 = new entity.mob.Goblin(1, Rogue.getCurrentLevel());
                     e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
                     e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 6:
-                    e1 = new entity.npc.Trader(Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1 = new entity.npc.Trader(Rogue.getCurrentLevel());
                     e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
                     e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
                 case 7:
-                    e1 = new entity.npc.Warrior(Rogue.getCurrentLevel().getRoom(0), Rogue.getCurrentLevel());
+                    e1 = new entity.npc.Warrior(Rogue.getCurrentLevel());
                     e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
                     e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
