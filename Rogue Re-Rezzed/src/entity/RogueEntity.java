@@ -110,7 +110,7 @@ public class RogueEntity {
     public void death(){}
     /**
      * What to do when this entity is initialized
-     * @param r
+     * @param l
      */
     public void spawn(Level l){
         x=rand.nextInt(l.board.length);

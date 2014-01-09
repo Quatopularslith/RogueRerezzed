@@ -145,19 +145,19 @@ public class Level {
         //Safety Rooms
         for(int i=0;i<board.length;i++){
             board[p.x][i]=true;
-            if(p.x<board.length) board[p.x+1][i]=true;
-            if(p.x<board.length) board[p.x+2][i]=true;
+            if(p.x<board.length-1) board[p.x+1][i]=true;
+            if(p.x<board.length-1) board[p.x+2][i]=true;
             board[i][p.y]=true;
-            if(p.y<board[0].length) board[i][p.y+1]=true;
-            if(p.y<board[0].length) board[i][p.y+2]=true;
+            if(p.y<board[0].length-1) board[i][p.y+1]=true;
+            if(p.y<board[0].length-1) board[i][p.y+2]=true;
         }
         for(int i=0;i<board.length;i++){
             board[st.x][i]=true;
-            if(st.x<board.length) board[st.x+1][i]=true;
-            if(st.x<board.length) board[st.x+2][i]=true;
+            if(st.x<board.length-1) board[st.x+1][i]=true;
+            if(st.x<board.length-1) board[st.x+2][i]=true;
             board[i][st.y]=true;
-            if(st.y<board[0].length) board[i][st.y+1]=true;
-            if(st.y<board[0].length) board[i][st.y+2]=true;
+            if(st.y<board[0].length-1) board[i][st.y+1]=true;
+            if(st.y<board[0].length-1) board[i][st.y+2]=true;
         }
         //population
         rePopulate(area);

@@ -133,6 +133,10 @@ public class RogueSave {
         play.kills=Integer.parseInt(s[5]);
         play.health=Float.parseFloat(s[6]);
         play.gold=Integer.parseInt(s[7]);
+        int num=0;
+        for(int i=9;i<s.length;i+=3){
+            play.inv[num].makeItem(Integer.parseInt(s[i]), Integer.parseInt(s[i+1]), Integer.parseInt(s[i+2]), play);
+        }
         play.updateStats();
         out.setPlayer(play);
         out.board=b;
