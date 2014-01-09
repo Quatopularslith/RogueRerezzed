@@ -29,7 +29,7 @@ public class RogueSave {
     private Properties p;
     private final String sep = File.separator;
     private final String paths;
-    private final String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold","numd"};
+    private final String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold","numd","lvl0","id0","modid0","lvl1","id1","modid1","lvl2","id2","modid2","lvl3","id3","modid3","lvl4","id4","modid4","lvl5","id5","modid5","lvl6","id6","modid6","lvl7","id7","modid7","lvl8","id8","modid8","lvl9","id9","modid9"};
     public RogueSave(int savenum){
         paths="RogueRerezzed"+sep+"Saves"+sep+"save"+savenum;
     }
@@ -46,7 +46,14 @@ public class RogueSave {
                 for(int i=0;i<s.length;i++){
                     s[i]="inv"+i+"x";
                 }
-                String[] playersets = {l.getPlayer().x+"",l.getPlayer().y+"",l.getPlayer().xp+"",l.getPlayer().lvl+"",l.getPlayer().mana+"",l.getPlayer().kills+"",l.getPlayer().health+"",l.getPlayer().gold+"",l.lvl+""};
+                String[] playersets = {l.getPlayer().x+"",l.getPlayer().y+"",l.getPlayer().xp+"",l.getPlayer().lvl+"",l.getPlayer().mana+"",l.getPlayer().kills+"",l.getPlayer().health+"",l.getPlayer().gold+"",l.lvl+"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""};
+                int num=0;
+                for(int i=9;i<playersets.length;i+=3){
+                    playersets[i]=l.getPlayer().inv[num].lvl+"";
+                    playersets[i+1]=l.getPlayer().inv[num].id+"";
+                    playersets[i+2]=l.getPlayer().inv[num].modifierid+"";
+                    num++;
+                }
                 try {
                     rs.createNewFile();
                     p = new Properties();

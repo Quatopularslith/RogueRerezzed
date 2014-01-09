@@ -38,6 +38,75 @@ public class Item extends RogueEntity{
         id=id1;
         sp=new Sprite(SpriteSheet.BAG,16);
         modifierid=rand.nextInt(modifiers.length);
+        this.lvl=lvl;
+        int matid = (int) id/materials.length;
+        int tyid = (id%3)+1;
+        if(tyid>type.length || matid>materials.length) return;
+        if(id!=0){
+            name = "Lvl "+lvl+" "+modifiers[modifierid]+materials[matid]+type[tyid];
+            cursed = rand.nextBoolean();
+            switch(tyid){
+                case 1:
+                    tyname=ItemType.SWORD;
+                    stats[0]=1;
+                    mod=0;
+                    break;
+                case 2:
+                    tyname=ItemType.AXE;
+                    stats[0]=0.5;
+                    stats[1]=0.5;
+                    mod=0;
+                    break;
+                case 3:
+                    tyname=ItemType.SHEILD;
+                    stats[1]=1;
+                    mod=1;
+                    break;
+                default:
+                    tyname=ItemType.EMPTY;
+                    mod=3;
+                    break;
+            }
+            stats[0]*=matid+1;
+            stats[1]*=matid+1;
+            stats[2]*=matid+1;
+            stats[3]*=matid+1;
+            switch(modifierid){
+                case 1:
+                    stats[mod]-=(0.4*lvl);
+                    break;
+                case 3:
+                    stats[1]-=(0.4*lvl);
+                    break;
+                case 5:
+                    stats[3]+=(0.4*lvl);
+                    break;
+                case 6:
+                    stats[2]+=(0.4*lvl);
+                    break;
+                case 7:
+                    stats[0]+=(0.4*lvl);
+                    stats[1]+=(0.4*lvl);
+                    break;
+            }
+        }else{
+            name = type[0];
+            tyname=ItemType.EMPTY;
+            for(double ind:stats){
+                ind=0;
+            }
+        }
+        if(parent==null) parent=new RogueEntity(Rogue.getCurrentLevel());
+        this.x=parent.x;
+        this.y=parent.y;
+    }
+    public void makeItem(int lvl,int id1,int modID,RogueEntity parent1){
+        health=1;
+        maxhealth=1;
+        parent=parent1;
+        id=id1;
+        sp=new Sprite(SpriteSheet.BAG,16);
+        modifierid=modID;
         int matid = (int) id/materials.length;
         int tyid = (id%3)+1;
         if(tyid>type.length || matid>materials.length) return;
