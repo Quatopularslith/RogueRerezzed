@@ -161,11 +161,12 @@ public class Player extends RogueEntity{
                 }
             }
         }
-        if(dx+x>=0 && dy+y>=0){
+        if(dx+x>=0 && dy+y>=0 && dx+x<l.board.length-1 && dy+y<l.board[0].length-1){
             if(l.board[dx+x][dy+y]==true){
                 x+=dx;
                 y+=dy;
             }
         }
+        return;
     }
 }

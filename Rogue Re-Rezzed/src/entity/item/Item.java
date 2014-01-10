@@ -101,12 +101,14 @@ public class Item extends RogueEntity{
         this.y=parent.y;
     }
     public void makeItem(String name1,RogueEntity parent1){
+        if(name1==null) return;
         health=1;
         maxhealth=1;
         parent=parent1;
         sp=new Sprite(SpriteSheet.BAG,16);
         name=name1;
-        String[] props = name.split(" ");
+        System.out.println(name1);
+        String[] props = name1.split(" ");
         lvl = Integer.parseInt(props[1]);
         int matid = (int) id/materials.length;
         int tyid = (id%3)+1;

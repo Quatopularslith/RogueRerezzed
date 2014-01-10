@@ -42,7 +42,7 @@ public class Loading extends JPanel{
     }
     @Override
     public void paint(Graphics g) {
-        setSize(Rogue.mm.getSize());
+        if(Rogue.mm!=null) setSize(Rogue.mm.getSize());
         r=getWidth()/4;
         cX=(getWidth()/2)-(r/1.63);
         cY=(getHeight()/2)-(r/1.63);
