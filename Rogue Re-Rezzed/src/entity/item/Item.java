@@ -100,18 +100,29 @@ public class Item extends RogueEntity{
         this.x=parent.x;
         this.y=parent.y;
     }
-    public void makeItem(int lvl,int id1,int modID,RogueEntity parent1){
+    public void makeItem(String name1,RogueEntity parent1){
         health=1;
         maxhealth=1;
         parent=parent1;
-        id=id1;
         sp=new Sprite(SpriteSheet.BAG,16);
-        modifierid=modID;
+        name=name1;
+        String[] props = name.split(" ");
+        lvl = Integer.parseInt(props[1]);
         int matid = (int) id/materials.length;
         int tyid = (id%3)+1;
+        for(int i=0;i<materials.length;i++){
+            if(props[2].equals(materials[i])){
+                matid = i;
+                break;
+            }
+        }
+        for(int i=0;i<materials.length;i++){
+            if(props[3].equals(materials[i])){
+                matid = i;
+            }
+        }
         if(tyid>type.length || matid>materials.length) return;
         if(id!=0){
-            name = "Lvl "+lvl+" "+modifiers[modifierid]+materials[matid]+type[tyid];
             cursed = rand.nextBoolean();
             switch(tyid){
                 case 1:

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package util;
 import dungeon.Level;
@@ -29,7 +24,7 @@ public class RogueSave {
     private Properties p;
     private final String sep = File.separator;
     private final String paths;
-    private final String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold","numd","lvl0","id0","modid0","lvl1","id1","modid1","lvl2","id2","modid2","lvl3","id3","modid3","lvl4","id4","modid4","lvl5","id5","modid5","lvl6","id6","modid6","lvl7","id7","modid7","lvl8","id8","modid8","lvl9","id9","modid9"};
+    private final String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold","numd","name0","name1","name2","name3","name4","name5","name6","name7","name8","name9"};
     public RogueSave(int savenum){
         paths="RogueRerezzed"+sep+"Saves"+sep+"save"+savenum;
     }
@@ -46,13 +41,9 @@ public class RogueSave {
                 for(int i=0;i<s.length;i++){
                     s[i]="inv"+i+"x";
                 }
-                String[] playersets = {l.getPlayer().x+"",l.getPlayer().y+"",l.getPlayer().xp+"",l.getPlayer().lvl+"",l.getPlayer().mana+"",l.getPlayer().kills+"",l.getPlayer().health+"",l.getPlayer().gold+"",l.lvl+"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""};
-                int num=0;
-                for(int i=9;i<playersets.length;i+=3){
-                    playersets[i]=l.getPlayer().inv[num].lvl+"";
-                    playersets[i+1]=l.getPlayer().inv[num].id+"";
-                    playersets[i+2]=l.getPlayer().inv[num].modifierid+"";
-                    num++;
+                String[] playersets = {l.getPlayer().x+"",l.getPlayer().y+"",l.getPlayer().xp+"",l.getPlayer().lvl+"",l.getPlayer().mana+"",l.getPlayer().kills+"",l.getPlayer().health+"",l.getPlayer().gold+"",l.lvl+"","0","1","2","3","4","5","6","7","8","9"};
+                for(int i=9;i<playersets.length;i++){
+                    playersets[i]=l.getPlayer().inv[i].name;
                 }
                 try {
                     rs.createNewFile();
@@ -133,9 +124,8 @@ public class RogueSave {
         play.kills=Integer.parseInt(s[5]);
         play.health=Float.parseFloat(s[6]);
         play.gold=Integer.parseInt(s[7]);
-        int num=0;
-        for(int i=9;i<s.length;i+=3){
-            play.inv[num].makeItem(Integer.parseInt(s[i]), Integer.parseInt(s[i+1]), Integer.parseInt(s[i+2]), play);
+        for(int i=9;i<s.length;i++){
+            play.inv[i].makeItem(s[i], play);
         }
         play.updateStats();
         out.setPlayer(play);
