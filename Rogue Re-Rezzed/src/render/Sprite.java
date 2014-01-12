@@ -166,9 +166,7 @@ public class Sprite {
         for (int xx = 0; xx < width; xx++) {
             for (int yy = 0; yy < height; yy++) {
                 int[] pixels = raster.getPixel(xx, yy, (int[]) null);
-                pixels[0] = 0;
-                pixels[1] = 0;
-                pixels[2] = 255;
+                if(pixels[2]+100<=255) pixels[2] += 100;
                 raster.setPixel(xx, yy, pixels);
             }
         }

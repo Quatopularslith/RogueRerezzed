@@ -44,7 +44,7 @@ public class Rogue {
         return l1;
     }
     public static void setLevel(Level l1){
-        numLevels++;
+        numLevels=l1.lvl;
         l=l1;
         levels.add(l);
     }

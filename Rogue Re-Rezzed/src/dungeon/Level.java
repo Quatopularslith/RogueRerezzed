@@ -4,7 +4,6 @@ import art.LoadArt;
 import core.GameLoop;
 import core.Rogue;
 import entity.RogueEntity;
-import entity.Spawner;
 import entity.Stairway;
 import entity.item.Item;
 import entity.mob.MortuusTrabajos;
@@ -115,6 +114,7 @@ public class Level {
             renderlevel=render1;
         }
         Rogue.renderlevel=renderlevel;
+        Rogue.numLevels=lvl;
         this.lvl=lvl;
         if(Rogue.mm != null) Rogue.mm.ki.turn = type1 != LevelType.EVOLVED;
         //Sprite Change
@@ -124,7 +124,7 @@ public class Level {
         GamePlay.pimg=new Sprite(SpriteSheet.PLAYER,8);
         GamePlay.stimg=new Sprite(SpriteSheet.STAIRWAY,8);
         //Roomgen
-        int area = generateRooms(sx,sy);
+        generateRooms(sx,sy);
         //Player
         Player p=new Player(this);
         if(Rogue.getLastLevel()!=null){
@@ -144,23 +144,23 @@ public class Level {
         st = new Stairway(this);
         //Safety Rooms
         for(int i=0;i<board.length;i++){
+            if(p.x-1<board.length-1) board[p.x-1][i]=true;
             board[p.x][i]=true;
             if(p.x+1<board.length-1) board[p.x+1][i]=true;
-            if(p.x+2<board.length-1) board[p.x+2][i]=true;
+            if(p.y-1<board[0].length-1) board[i][p.y-1]=true;
             board[i][p.y]=true;
             if(p.y+1<board[0].length-1) board[i][p.y+1]=true;
-            if(p.y+1<board[0].length-1) board[i][p.y+2]=true;
         }
         for(int i=0;i<board.length;i++){
+            if(st.x-1<board.length-1) board[st.x-1][i]=true;
             board[st.x][i]=true;
-            if(st.x<board.length-1) board[st.x+1][i]=true;
-            if(st.x<board.length-1) board[st.x+2][i]=true;
+            if(st.x+1<board.length-1) board[st.x+1][i]=true;
+            if(st.y-1<board[0].length-1) board[i][st.y-1]=true;
             board[i][st.y]=true;
-            if(st.y<board[0].length-1) board[i][st.y+1]=true;
-            if(st.y<board[0].length-1) board[i][st.y+2]=true;
+            if(st.y+1<board[0].length-1) board[i][st.y+1]=true;
         }
         //population
-        rePopulate(area);
+        rePopulate();
         //Non-turn-based
         if(type1==LevelType.EVOLVED){
             GameLoop.start();
@@ -171,8 +171,7 @@ public class Level {
         Image s = (new Sprite(SpriteSheet.QUATOPULARSLITH)).i;
         if(Rogue.mm!=null) Rogue.mm.setIconImage(s);
     }
-    public int generateRooms(int sx,int sy){
-        int out=0;
+    public void generateRooms(int sx,int sy){
         for(boolean[] b1:board){
             for(boolean b:b1){
                 b=false;
@@ -187,30 +186,10 @@ public class Level {
                     for(int yy=0;yy<maxRoomSY;yy++){
                         if(xx+rx>=board.length || yy+ry>=board[0].length) continue;
                         board[xx+rx][yy+ry]=true;
-                        out++;
                     }
                 }
             }
         }
-        return out;
-    }
-    public void rePopulate(int area){
-        re.clear();
-        int mult = rows*cols;
-        if(lvl*mult<=area/4) Spawner.spawner(rand.nextInt(lvl*mult-1)+1,lvl,this);
-        if(lvl*mult>area/4) Spawner.spawner(rand.nextInt(area/4),lvl,this);
-        //Bosses
-        MortuusTrabajos mt = new MortuusTrabajos(lvl,this);
-        this.addEntity(mt);
-        
-        Quatopularslith qt = new Quatopularslith(lvl,this);
-        this.addEntity(qt);
-        //NPCs
-        Trader t = new Trader(this);
-        this.addEntity(t);
-        
-        Warrior w = new Warrior(this);
-        this.addEntity(w);
     }
     public void rePopulate(){
         int area=0;
@@ -220,8 +199,11 @@ public class Level {
             }
         }
         re.clear();
-        if(lvl<=area/4) Spawner.spawner(rand.nextInt(lvl+1),lvl,this);
-        if(lvl>area/4) Spawner.spawner(rand.nextInt(area/4),lvl,this);
+        if(lvl*10<=area/3){
+            RogueEntity.spawner(rand.nextInt(lvl*10+1),lvl,this);
+        }else{
+            RogueEntity.spawner(rand.nextInt(area/3),lvl,this);
+        }
         //Bosses
         MortuusTrabajos mt = new MortuusTrabajos(lvl,this);
         this.addEntity(mt);
@@ -264,7 +246,7 @@ public class Level {
      * @param e the entity to be removed 
      */
     public void removeEntity(RogueEntity e){
-        re.set(e.uuid, null);
+        re.remove(e);
     }
     /**
      * @return player
@@ -278,6 +260,9 @@ public class Level {
      */
     public Stairway getStairWay(){
         return st;
+    }
+    public void setStairWay(Stairway s){
+        st=s;
     }
     /**
      * gets all items

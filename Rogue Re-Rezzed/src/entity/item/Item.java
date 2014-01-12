@@ -107,22 +107,45 @@ public class Item extends RogueEntity{
         parent=parent1;
         sp=new Sprite(SpriteSheet.BAG,16);
         name=name1;
-        System.out.println(name1);
+        if(name.equals("Empty")){
+            id=0;
+            return;
+        }
         String[] props = name1.split(" ");
         lvl = Integer.parseInt(props[1]);
-        int matid = (int) id/materials.length;
-        int tyid = (id%3)+1;
-        for(int i=0;i<materials.length;i++){
-            if(props[2].equals(materials[i])){
-                matid = i;
+        mod=0;
+        int matid = 0;
+        int tyid = 0;
+        for(int i=0;i<modifiers.length;i++){
+            if(props[2].equals(modifiers[i])){
+                mod = i;
                 break;
             }
         }
-        for(int i=0;i<materials.length;i++){
-            if(props[3].equals(materials[i])){
-                matid = i;
+        if(mod!=0){
+            for(int i=0;i<materials.length;i++){
+                if(props[3].equals(materials[i])){
+                    matid = i;
+                }
+            }
+            for(int i=0;i<type.length;i++){
+                if(props[4].equals(type[i])){
+                    matid = i;
+                }
+            }
+        }else{
+            for(int i=0;i<materials.length;i++){
+                if(props[2].equals(materials[i])){
+                    matid = i;
+                }
+            }
+            for(int i=0;i<type.length;i++){
+                if(props[3].equals(type[i])){
+                    matid = i;
+                }
             }
         }
+        id=matid*materials.length;
         if(tyid>type.length || matid>materials.length) return;
         if(id!=0){
             cursed = rand.nextBoolean();

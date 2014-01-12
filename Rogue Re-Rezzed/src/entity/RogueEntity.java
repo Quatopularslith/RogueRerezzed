@@ -115,18 +115,9 @@ public class RogueEntity {
     public void spawn(Level l){
         x=rand.nextInt(l.board.length);
         y=rand.nextInt(l.board[0].length);
-        while(!l.board[x][y] && (this instanceof Player || this instanceof Stairway ? true : distTo(l.getPlayer())>10)){
+        while(!l.board[x][y] && ((this instanceof Player || this instanceof Stairway) ? true : distTo(l.getPlayer())>40)){
             x=rand.nextInt(l.board.length);
             y=rand.nextInt(l.board[0].length);
-            for(RogueEntity e : l.getEntities()){
-                if(e==null || e==this){
-                    continue;
-                }
-                if(x==e.x && y==e.y){
-                    x=rand.nextInt(l.board.length);
-                    y=rand.nextInt(l.board[0].length);
-                }
-            }
         }
     }
     /**
@@ -136,5 +127,25 @@ public class RogueEntity {
      */
     public double distTo(RogueEntity e){
         return Math.sqrt(((x-e.x)*(x-e.x))+((y-e.y)*(y-e.y)));
+    }
+    public static void spawner(int am,int lvl,Level l){
+        RogueEntity e = new RogueEntity(l);
+        Random rand = new Random();
+        int type;
+        int elvl;
+        for(int i=0;i<am;i++){
+            elvl = rand.nextInt(lvl+1)+1;
+            type = rand.nextInt(4);
+            if(type==0){
+                e = new entity.mob.Snake(elvl,l);
+            }else if(type==1){
+                e = new entity.mob.Bandit(elvl,l);
+            }else if(type==2){
+                e = new entity.mob.Fish(elvl,l);
+            }else if(type==3){
+                e = new entity.mob.Goblin(elvl,l);
+            }
+            l.addEntity(e);
+        }
     }
 }

@@ -57,18 +57,18 @@ public class Player extends RogueEntity{
         if(health<=0){
             dead=true;
         }else if(health<maxhealth){
-            health+=0.1*lvl;
+            health+=0.5*lvl;
         }
         if(mana<maxMana){
             mana+=0.1*lvl;
         }
         if(lvl==0) lvl = 1;
-        if(xp/(10*lvl)==1 && xp>1){
-            updateStats();
-            xp=0;
+        if(xp/(10*lvl)>=1 && xp>1){
+            xp-=10*lvl;
             lvl++;
             health=maxhealth;
             mana=maxMana;
+            updateStats();
         }
         for(int i=0;i<inv.length;i++){
             if(inv[i].name.equalsIgnoreCase("Empty")){
