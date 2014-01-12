@@ -12,13 +12,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 /**
  *
- * @author Mnenmenth
+ * @author Mnenmenth & Torri
  */
 public class RogueSave {
     private File rs;
