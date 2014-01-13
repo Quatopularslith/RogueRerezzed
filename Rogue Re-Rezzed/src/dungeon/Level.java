@@ -160,7 +160,7 @@ public class Level {
             if(st.y+1<board[0].length-1) board[i][st.y+1]=true;
         }
         //population
-        rePopulate();
+        rePopulate(sx,sy);
         //Non-turn-based
         if(type1==LevelType.EVOLVED){
             GameLoop.start();
@@ -191,7 +191,7 @@ public class Level {
             }
         }
     }
-    public void rePopulate(){
+    public void rePopulate(int sx,int sy){
         int area=0;
         for(boolean[] ba:board){
             for(boolean b:ba){
@@ -199,8 +199,9 @@ public class Level {
             }
         }
         re.clear();
-        if(lvl*10<=area/3){
-            RogueEntity.spawner(rand.nextInt(lvl*10+1),lvl,this);
+        int rooms = (sx/maxRoomSX)*(sy/maxRoomSY);
+        if(lvl*rooms<=area/3){
+            RogueEntity.spawner(rand.nextInt(lvl*rooms+1),lvl,this);
         }else{
             RogueEntity.spawner(rand.nextInt(area/3),lvl,this);
         }

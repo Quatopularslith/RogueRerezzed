@@ -131,7 +131,7 @@ public class RogueSave {
         st.y=Integer.parseInt(s[10]);
         out.setStairWay(st);
         out.board=b;
-        out.rePopulate();
+        out.rePopulate(out.board.length,out.board[0].length);
         Rogue.numLevels=out.lvl;
         System.out.println("Done");
         return out;

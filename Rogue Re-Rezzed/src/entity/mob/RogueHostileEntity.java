@@ -27,7 +27,7 @@ public class RogueHostileEntity extends RogueEntity{
      * @param hmod health modifier
      * @param followdist1 follow distance
      */
-    public RogueHostileEntity(int lvl1,Level l1,String name1,Operation op0,int hmod,Operation op1,int attmod,int followdist1) {
+    public RogueHostileEntity(int lvl1,Level l1,String name1,Operation op0,float hmod,Operation op1,float attmod,int followdist1) {
         super(l1);
         followdist=followdist1;
         l=l1;

@@ -10,6 +10,6 @@ import util.Operation;
  */
 public class Bandit extends RogueHostileEntity{
     public Bandit(int lvl,Level l1){
-        super(lvl,l1,"Bandit",Operation.MULT,18,Operation.MULT,2,20);
+        super(lvl,l1,"Bandit",Operation.MULT,10f,Operation.MULT,1.5f,20);
     }
 }
