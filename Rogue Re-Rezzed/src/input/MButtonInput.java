@@ -53,17 +53,17 @@ public class MButtonInput {
         }
         //New Game Panel
         if(parent==Rogue.mm.ngp){
-            if(command.equalsIgnoreCase("Turn-Based Story mode")){
+            if(command.equalsIgnoreCase("Improved Story mode")){
                 Rogue.resetLevels();
-                Rogue.setLevel(LevelMode.STORY, LevelType.TURN, 0);
+                Rogue.setLevel(LevelMode.IMPROVED_STORY, LevelType.TURN, 0);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
                 Rogue.mm.gp.update();
                 return;
             }
-            if(command.equalsIgnoreCase("Evolved Story mode")){
+            if(command.equalsIgnoreCase("Classic Story mode")){
                 Rogue.resetLevels();
-                Rogue.setLevel(LevelMode.STORY, LevelType.EVOLVED, 0);
+                Rogue.setLevel(LevelMode.CLASSIC_STORY, LevelType.TURN, 0);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
                 Rogue.mm.gp.update();

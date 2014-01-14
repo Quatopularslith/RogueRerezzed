@@ -56,7 +56,7 @@ public class Level {
      * Creates a level
      */
     public Level(){
-        generateLevel(100,100,Rogue.numLevels,LevelMode.STORY,LevelType.TURN,0);
+        generateLevel(100,100,Rogue.numLevels,LevelMode.CLASSIC_STORY,LevelType.TURN,0);
     }
     /**
      * Creates a level
@@ -103,13 +103,14 @@ public class Level {
         maxRoomSY=(sy/cols);
         numRooms=(rows)*(cols);
         //Mode Selection
-        if(mode1==LevelMode.STORY){
+        if(mode1==LevelMode.CLASSIC_STORY){
             renderlevel=Math.round(lvl/5)*16;
             if(renderlevel>48){
                 renderlevel=48;
             }else if(renderlevel<16 && lvl>3){
                 renderlevel=16;
             }
+        }else if(mode1==LevelMode.IMPROVED_STORY){
         }else{
             renderlevel=render1;
         }

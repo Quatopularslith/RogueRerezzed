@@ -10,6 +10,6 @@ import util.Operation;
  */
 public class Fish extends RogueHostileEntity{
     public Fish(int lvl,Level l1){
-        super(lvl,l1,"Fish",Operation.MULT,5,Operation.MULT,0,-1);
+        super(lvl,l1,"Fish",Operation.MULT,5f,Operation.MULT,0f,-1);
     }
 }

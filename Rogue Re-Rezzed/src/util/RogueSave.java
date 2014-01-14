@@ -25,7 +25,7 @@ public class RogueSave {
     private Properties p;
     private final String sep = File.separator;
     private final String paths;
-    private final String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold","numd","stx","sty","name0","name1","name2","name3","name4","name5","name6","name7","name8","name9"};
+    private final String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold","numd","stx","sty","name0","name1","name2","name3","name4","name5","name6","name7","name8","name9","levelMode"};
     public RogueSave(int savenum){
         paths="RogueRerezzed"+sep+"Saves"+sep+"save"+savenum;
     }
@@ -38,7 +38,7 @@ public class RogueSave {
                 path.mkdirs();
                 rs=new File(paths+sep+"Level.txt");
                 r=new File(paths+sep+"World.txt");
-                String[] playersets = {l.getPlayer().x+"",l.getPlayer().y+"",l.getPlayer().xp+"",l.getPlayer().lvl+"",l.getPlayer().mana+"",l.getPlayer().kills+"",l.getPlayer().health+"",l.getPlayer().gold+"",l.lvl+"",l.getStairWay().x+"",l.getStairWay().y+"","0","1","2","3","4","5","6","7","8","9"};
+                String[] playersets = {l.getPlayer().x+"",l.getPlayer().y+"",l.getPlayer().xp+"",l.getPlayer().lvl+"",l.getPlayer().mana+"",l.getPlayer().kills+"",l.getPlayer().health+"",l.getPlayer().gold+"",l.lvl+"",l.getStairWay().x+"",l.getStairWay().y+"","0","1","2","3","4","5","6","7","8","9",l.getMode().toString()};
                 for(int i=11;i<playersets.length;i++){
                     playersets[i]=l.getPlayer().inv[i-11].name;
                 }
@@ -111,7 +111,7 @@ public class RogueSave {
             ex.printStackTrace(System.err);
         }
         out.lvl=Integer.parseInt(s[8]);
-        out.generateLevel(100, 100, out.lvl, LevelMode.STORY, LevelType.TURN, 0);
+        out.generateLevel(100, 100, out.lvl, LevelMode.CLASSIC_STORY, LevelType.TURN, 0);
         Player play = new Player(out);
         play.x=Integer.parseInt(s[0]);
         play.y=Integer.parseInt(s[1]);

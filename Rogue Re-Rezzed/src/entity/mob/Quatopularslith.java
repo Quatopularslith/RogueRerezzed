@@ -10,6 +10,6 @@ import util.Operation;
  */
 public class Quatopularslith extends RogueHostileEntity{
     public Quatopularslith(int lvl,Level l1){
-        super(lvl,l1,"Quatopularslith",Operation.MULT,100,Operation.DIV,lvl,10000);
+        super(lvl,l1,"Quatopularslith",Operation.MULT,100f,Operation.DIV,(float) lvl,10000);
     }
 }
