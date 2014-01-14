@@ -116,13 +116,14 @@ public class Item extends RogueEntity{
         mod=0;
         int matid = 0;
         int tyid = 0;
-        for(int i=0;i<modifiers.length;i++){
-            if(props[2].equals(modifiers[i])){
-                mod = i;
-                break;
+        System.out.println(props.length);
+        if(props.length==5){
+            for(int i=0;i<modifiers.length;i++){
+                if(props[2].equals(modifiers[i])){
+                    mod = i;
+                    break;
+                }
             }
-        }
-        if(mod!=0){
             for(int i=0;i<materials.length;i++){
                 if(props[3].equals(materials[i])){
                     matid = i;
@@ -130,7 +131,7 @@ public class Item extends RogueEntity{
             }
             for(int i=0;i<type.length;i++){
                 if(props[4].equals(type[i])){
-                    matid = i;
+                    tyid = i;
                 }
             }
         }else{
@@ -141,10 +142,11 @@ public class Item extends RogueEntity{
             }
             for(int i=0;i<type.length;i++){
                 if(props[3].equals(type[i])){
-                    matid = i;
+                    tyid = i;
                 }
             }
         }
+        System.out.println(name+" "+tyid+" "+matid+" "+mod);
         id=matid*materials.length;
         if(tyid>type.length || matid>materials.length) return;
         if(id!=0){

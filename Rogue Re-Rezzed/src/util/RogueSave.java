@@ -111,7 +111,7 @@ public class RogueSave {
             ex.printStackTrace(System.err);
         }
         out.lvl=Integer.parseInt(s[8]);
-        out.generateLevel(100, 100, out.lvl, LevelMode.CLASSIC_STORY, LevelType.TURN, 0);
+        out.generateLevel(100, 100, out.lvl, LevelMode.valueOf(s[21]), LevelType.TURN, 0);
         Player play = new Player(out);
         play.x=Integer.parseInt(s[0]);
         play.y=Integer.parseInt(s[1]);
@@ -121,7 +121,7 @@ public class RogueSave {
         play.kills=Integer.parseInt(s[5]);
         play.health=Float.parseFloat(s[6]);
         play.gold=Integer.parseInt(s[7]);
-        for(int i=11;i<s.length;i++){
+        for(int i=11;i<s.length-1;i++){
             play.inv[i-11].makeItem(s[i], play);
         }
         play.updateStats();
