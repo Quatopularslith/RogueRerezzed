@@ -39,7 +39,7 @@ public class RogueSave {
                 rs=new File(paths+sep+"Level.txt");
                 r=new File(paths+sep+"World.txt");
                 String[] playersets = {l.getPlayer().x+"",l.getPlayer().y+"",l.getPlayer().xp+"",l.getPlayer().lvl+"",l.getPlayer().mana+"",l.getPlayer().kills+"",l.getPlayer().health+"",l.getPlayer().gold+"",l.lvl+"",l.getStairWay().x+"",l.getStairWay().y+"","0","1","2","3","4","5","6","7","8","9",l.getMode().toString()};
-                for(int i=11;i<playersets.length;i++){
+                for(int i=11;i<playersets.length-1;i++){
                     playersets[i]=l.getPlayer().inv[i-11].name;
                 }
                 try {
