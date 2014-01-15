@@ -29,32 +29,32 @@ public class ButtonInput implements ActionListener{
             }
         }
         if(command.equalsIgnoreCase("Apply")){
-            char[] inc = {Rogue.mm.omp.fwdKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.backKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.rightKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.leftKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.spellKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.eatKB.getText().toUpperCase().toCharArray()[0]
-            };
-            int[] in = new int[inc.length];
-            for(int i=0;i<in.length;i++){
-                in[i]=(int) inc[i];
-            }
-            String[] s = new String[in.length];
-            for(int i=0;i<in.length;i++){
-                s[i]=Integer.toString(in[i]);
-            }
-            Menu.rp.setData(s);
-            Rogue.mm.ki.checkSettings(Menu.rp.getSettings());
+//            char[] inc = {Rogue.mm.omp.fwdKB.getText().toUpperCase().toCharArray()[0],
+//                Rogue.mm.omp.backKB.getText().toUpperCase().toCharArray()[0],
+//                Rogue.mm.omp.rightKB.getText().toUpperCase().toCharArray()[0],
+//                Rogue.mm.omp.leftKB.getText().toUpperCase().toCharArray()[0],
+//                Rogue.mm.omp.spellKB.getText().toUpperCase().toCharArray()[0],
+//                Rogue.mm.omp.eatKB.getText().toUpperCase().toCharArray()[0]
+//            };
+//            int[] in = new int[inc.length];
+//            for(int i=0;i<in.length;i++){
+//                in[i]=(int) inc[i];
+//            }
+//            String[] s = new String[in.length];
+//            for(int i=0;i<in.length;i++){
+//                s[i]=Integer.toString(in[i]);
+//            }
+//            Menu.rp.setData(s);
+//            Rogue.mm.ki.checkSettings(Menu.rp.getSettings());
         }
         if(command.equalsIgnoreCase("Default Keybinds")){
             Menu.rp.setData(defkeys);
-            Rogue.mm.omp.fwdKB.setText("W");
-            Rogue.mm.omp.backKB.setText("S");
-            Rogue.mm.omp.rightKB.setText("D");
-            Rogue.mm.omp.leftKB.setText("A");
-            Rogue.mm.omp.spellKB.setText("e");
-            Rogue.mm.omp.eatKB.setText(" ");
+//            Rogue.mm.omp.fwdKB.setText("W");
+//            Rogue.mm.omp.backKB.setText("S");
+//            Rogue.mm.omp.rightKB.setText("D");
+//            Rogue.mm.omp.leftKB.setText("A");
+//            Rogue.mm.omp.spellKB.setText("e");
+//            Rogue.mm.omp.eatKB.setText(" ");
             Rogue.mm.ki.checkSettings(defkeys);
         }
         if(command.equalsIgnoreCase("Debug Menu")){

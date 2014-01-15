@@ -14,11 +14,9 @@ import javax.swing.JPanel;
  * @author Torri
  */
 public class OptionMenuPanel1 extends JPanel{
-    double[] bypos = {0.3,0.42,0.54};
+    double[] bypos = {0.2,0.32,0.44, 0.56, 0.68, 0.8};
     double[] size = {0.26666666666666667,0.1};
     LoadArt la = new LoadArt();
-    public int numlevels=1;
-    int offx,offy,moffx,moffy;
     int sx=0,sy=0;
     Image img = la.createBufferedImage("MainMenu.png", 750, 500);
     MButton fmb = new MButton(getWidth()/2-100,150,200,50,"Forward keybind",this);
@@ -45,9 +43,9 @@ public class OptionMenuPanel1 extends JPanel{
             fmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             bmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             lmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            rmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            smb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            pmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
+            rmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[3]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
+            smb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[4]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
+            pmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[5]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             fmb.addListener(Rogue.mm.mbi,this);
             bmb.addListener(Rogue.mm.mbi,this);
             lmb.addListener(Rogue.mm.mbi,this);
@@ -56,6 +54,12 @@ public class OptionMenuPanel1 extends JPanel{
             pmb.addListener(Rogue.mm.mbi,this);
         }
         g2.drawImage(img, 0,0, this);
+        g2.drawImage(fmb.img, fmb.x, fmb.y, this);
+        g2.drawImage(bmb.img, bmb.x, bmb.y, this);
+        g2.drawImage(lmb.img, lmb.x, lmb.y, this);
+        g2.drawImage(rmb.img, rmb.x, rmb.y, this);
+        g2.drawImage(smb.img, smb.x, smb.y, this);
+        g2.drawImage(pmb.img, pmb.x, pmb.y, this);
         g2.dispose();
     }
 }
