@@ -200,7 +200,7 @@ public class Level {
             }
         }
         re.clear();
-        int rooms = (sx/maxRoomSX)*(sy/maxRoomSY);
+        int rooms = (sx/(5*maxRoomSX))*(sy/(5*maxRoomSY));
         if(lvl*rooms<=area/3){
             RogueEntity.spawner(rand.nextInt(lvl*rooms+1),lvl,this);
         }else{
