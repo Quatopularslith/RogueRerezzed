@@ -11,7 +11,7 @@ public class GameThread implements Runnable{
     public void run(){
         while(running){
             now = System.currentTimeMillis();
-            if((now-start)%100==0){
+            if((now-start)%50==0){
                 tick();
             }
         }

@@ -60,7 +60,7 @@ public class Warrior extends RogueNPC{
         }
         if(hire) follow=l.getPlayer();
         if(numturns%4==0){
-            ai=new AI(this,200);
+            ai=new AI(this,50);
             move(ai.pathFind(follow));
         }
         if (!(follow instanceof Player) && distTo(follow)<=1) {
