@@ -107,7 +107,7 @@ public class Item extends RogueEntity{
         parent=parent1;
         sp=new Sprite(SpriteSheet.BAG,16);
         name=name1;
-        if(name.equals("Empty")){
+        if(name.equalsIgnoreCase("Empty")){
             id=0;
             return;
         }
@@ -116,8 +116,8 @@ public class Item extends RogueEntity{
         mod=0;
         int matid = 0;
         int tyid = 0;
-        System.out.println(props.length);
-        if(props.length==5){
+        
+        if(props.length>4){
             for(int i=0;i<modifiers.length;i++){
                 if(props[2].equals(modifiers[i])){
                     mod = i;
@@ -146,7 +146,7 @@ public class Item extends RogueEntity{
                 }
             }
         }
-        System.out.println(name+" "+tyid+" "+matid+" "+mod);
+        System.out.println(props.length+" "+name+" "+modifiers[mod]+" "+materials[matid]+" "+type[tyid]);
         id=matid*materials.length;
         if(tyid>type.length || matid>materials.length) return;
         if(id!=0){
