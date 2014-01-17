@@ -75,7 +75,7 @@ public class Rogue {
             public void run(){
                 try {
                     DatagramSocket socket = new DatagramSocket(3000);
-                    InetAddress ip = InetAddress.getByName("eyeris.zapto.org");
+                    InetAddress ip = InetAddress.getByName("10.1.122.233");
                     String send = n+" "+d+" "+hs;
                     byte[] data = send.getBytes();
                     DatagramPacket packet = new DatagramPacket(data,data.length,ip,3000);
