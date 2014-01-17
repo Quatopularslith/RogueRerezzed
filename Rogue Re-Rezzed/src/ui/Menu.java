@@ -23,7 +23,7 @@ public class Menu extends JFrame{
     public LoadAudio a = new LoadAudio();
     
     public MainMenuPanel mmp;
-    public OptionMenuPanel1 omp;
+    public OptionMenuPanel omp;
     public DebugMPassword dmp;
     public StatMenu sm;
     public DebugMenu dm;
@@ -69,7 +69,7 @@ public class Menu extends JFrame{
         mbi=new MButtonInput();
         
         load = new Loading();
-        omp = new OptionMenuPanel1();
+        omp = new OptionMenuPanel();
         mmp = new MainMenuPanel();
         dmp = new DebugMPassword();
         sm = new StatMenu();
@@ -78,12 +78,12 @@ public class Menu extends JFrame{
         rp = new RogueProperties("RogueConfig.properties",props);
         if(rp.getSettings()[0].equals("0")){
             rp.setData(defkeys);
-//            omp.fwdKB.setText("W");
-//            omp.backKB.setText("S");
-//            omp.rightKB.setText("D");
-//            omp.leftKB.setText("A");
-//            omp.spellKB.setText("Q");
-//            omp.eatKB.setText("E");
+            omp.fwdKB.setText("W");
+            omp.backKB.setText("S");
+            omp.rightKB.setText("D");
+            omp.leftKB.setText("A");
+            omp.spellKB.setText("Q");
+            omp.eatKB.setText("E");
             ki.checkSettings(bi.defkeys);
         }
         propn = new int[rp.getSettings().length];
@@ -122,11 +122,11 @@ public class Menu extends JFrame{
         
         this.addMouseListener(mi);
         this.addKeyListener(ki);
-//        
-//        omp.apply.addActionListener(bi);
-//        omp.back.addActionListener(bi);
-//        omp.defaultKB.addActionListener(bi);
-//        omp.debug.addActionListener(bi);
+        
+        omp.apply.addActionListener(bi);
+        omp.back.addActionListener(bi);
+        omp.defaultKB.addActionListener(bi);
+        omp.debug.addActionListener(bi);
         
         dmp.debugPass.addActionListener(bi);
         
@@ -139,12 +139,12 @@ public class Menu extends JFrame{
         
 //        a.playSound("Rogue.flac");
         
-//        omp.fwdKB.setText(String.valueOf(c[0]));
-//        omp.backKB.setText(String.valueOf(c[1]));
-//        omp.rightKB.setText(String.valueOf(c[2]));
-//        omp.leftKB.setText(String.valueOf(c[3]));
-//        omp.spellKB.setText(String.valueOf(c[4]));
-//        omp.eatKB.setText(String.valueOf(c[5]));
+        omp.fwdKB.setText(String.valueOf(c[0]));
+        omp.backKB.setText(String.valueOf(c[1]));
+        omp.rightKB.setText(String.valueOf(c[2]));
+        omp.leftKB.setText(String.valueOf(c[3]));
+        omp.spellKB.setText(String.valueOf(c[4]));
+        omp.eatKB.setText(String.valueOf(c[5]));
         
         refresh();
     }

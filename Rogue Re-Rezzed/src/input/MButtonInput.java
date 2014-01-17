@@ -39,7 +39,7 @@ public class MButtonInput {
             }
             if(command.equalsIgnoreCase("Options")){
                 Rogue.mm.mmp.setVisible(false);
-                Rogue.mm.omp.setVisible(true);
+                if(Rogue.mm.omp!=null) Rogue.mm.omp.setVisible(true);
                 backtogame=false;
                 return;
             }
