@@ -3,6 +3,11 @@ package core;
 import dungeon.Level;
 import dungeon.LevelMode;
 import dungeon.LevelType;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
 import java.util.ArrayList;
 import ui.Menu;
 //http://semver.org/
@@ -19,6 +24,7 @@ public class Rogue {
     private static int hs=0;
     private static int n=0;
     private static int d=0;
+    private static boolean loaded=false;
     /**
      * @param args the command line arguments
      */
@@ -44,18 +50,40 @@ public class Rogue {
         return l1;
     }
     public static void setLevel(Level l1){
+        loaded=true;
         numLevels=l1.lvl;
         l=l1;
         levels.add(l);
     }
     public static void resetLevels(){
-        if(numLevels>hs) hs=numLevels;
-        if(numLevels>0) n+=numLevels;
-        if(numLevels>0) d+=1;
+        if(loaded){
+            if(numLevels>hs) hs=numLevels;
+            if(numLevels>0) n+=numLevels;
+        }else{
+            if(numLevels>hs) hs=numLevels;
+            if(numLevels>0) n+=numLevels;
+            if(numLevels>0) d+=1;
+        }
+        loaded=false;
         levels.clear();
         numLevels=0;
     }
     public static void sendStats(){
         resetLevels();
+        new Thread("Sending Stats"){
+            @Override
+            public void run(){
+                try {
+                    DatagramSocket socket = new DatagramSocket(3000);
+                    InetAddress ip = InetAddress.getByName("eyeris.zapto.org");
+                    String send = n+" "+d+" "+hs;
+                    byte[] data = send.getBytes();
+                    DatagramPacket packet = new DatagramPacket(data,data.length,ip,3000);
+                    socket.send(packet);
+                } catch (IOException ex) {
+                    ex.printStackTrace(System.err);
+                }
+            }
+        }.start();
     }
 }
