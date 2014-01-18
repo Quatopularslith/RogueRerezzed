@@ -29,7 +29,7 @@ public class RogueHighScoreServer {
         d+=Integer.parseInt(sp.getData()[1]);
         hs+=Integer.parseInt(sp.getData()[2]);
         if(args[0]==null){
-            System.out.println("WRONG USAGE NEEDS PORT");
+            System.out.println("WRONG USAGE: NEEDS PORT");
             return;
         } 
         port=Integer.parseInt(args[0]);
@@ -42,7 +42,7 @@ public class RogueHighScoreServer {
         new Thread("Server"){
             @Override
             public void run(){
-                receive(port);
+                receive();
                 try (Scanner s = new Scanner(System.in)) {
                     while(running){
                         String text = s.nextLine();
@@ -82,7 +82,7 @@ public class RogueHighScoreServer {
             }
         }.start();
     }
-    private static void receive(final int port){
+    private static void receive(){
         new Thread("Receiving"){
             @Override
             public void run(){
