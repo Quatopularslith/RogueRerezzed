@@ -61,13 +61,12 @@ public class RogueHighScoreServer {
                                     String[] setting = {n+"",d+"",hs+""};
                                     sp.setData(setting);
                                     System.out.println("Sever Info Saved.");
-                                    return;
+                                    break;
                                 case "/stats":
                                     if(d!=0) avg=(n/d);
                                     System.out.println("Stats \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs);
                                     break;
                                 case "/save":
-                                    running=false;
                                     String[] setting1 = {n+"",d+"",hs+""};
                                     sp.setData(setting1);
                                     System.out.println("Sever Info Saved.");
@@ -78,6 +77,7 @@ public class RogueHighScoreServer {
                             }
                         }
                     }
+                    System.out.println("Server Closed");
                 }
             }
         }.start();
