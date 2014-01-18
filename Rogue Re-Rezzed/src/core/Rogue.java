@@ -75,15 +75,21 @@ public class Rogue {
             public void run(){
                 try {
                     DatagramSocket socket = new DatagramSocket(3000);
-                    InetAddress ip = InetAddress.getByName("localhost");
+                    InetAddress ip = InetAddress.getByName("eyeris.zapto.org");
+                    InetAddress ip1 = InetAddress.getByName("192.168.1.35");//10.1.122.233 if on school computers
+                    InetAddress ip2 = InetAddress.getByName("localhost");
                     String send = n+" "+d+" "+hs;
                     byte[] data = send.getBytes();
                     DatagramPacket packet = new DatagramPacket(data,data.length,ip,3000);
+                    DatagramPacket packet1 = new DatagramPacket(data,data.length,ip1,3000);
+                    DatagramPacket packet2 = new DatagramPacket(data,data.length,ip2,3000);
                     socket.send(packet);
+                    socket.send(packet1);
+                    socket.send(packet2);
                 } catch (IOException ex) {
                     ex.printStackTrace(System.err);
                 }
             }
         }.start();
-    }//10.1.122.233
+    }
 }

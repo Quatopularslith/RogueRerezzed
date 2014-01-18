@@ -116,7 +116,6 @@ public class Item extends RogueEntity{
         mod=0;
         int matid = 0;
         int tyid = 0;
-        
         if(props.length>4){
             for(int i=0;i<modifiers.length;i++){
                 if(props[2].equals(modifiers[i])){
