@@ -4,6 +4,7 @@ package hs;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.SocketException;
 import java.util.Scanner;
 
 /**
@@ -16,6 +17,7 @@ public class RogueHighScoreServer {
     static int d;
     static int hs;
     static double avg;
+    static DatagramSocket socket;
     /**
      * @param args the command line arguments
      */
@@ -26,12 +28,17 @@ public class RogueHighScoreServer {
         n+=Integer.parseInt(sp.getData()[0]);
         d+=Integer.parseInt(sp.getData()[1]);
         hs+=Integer.parseInt(sp.getData()[2]);
-        if(Integer.parseInt(args[0])==0){
+        if(args[0]==null){
             System.out.println("WRONG USAGE NEEDS PORT");
             return;
-        }else{
-            port=Integer.parseInt(args[0]);
+        } 
+        port=Integer.parseInt(args[0]);
+        try {
+            socket=new DatagramSocket(port);
+        } catch (SocketException ex) {
+            System.out.println("You got errors! "+ex.toString());
         }
+        System.out.println("SERVER STARTED");
         new Thread("Server"){
             @Override
             public void run(){
@@ -47,7 +54,7 @@ public class RogueHighScoreServer {
                                 case "/help":
                                     System.out.println("/stop \n -Saves and stops server");
                                     System.out.println("/stats \n -Shows stats");
-                                    System.out.println("/stats \n -Saves server info");
+                                    System.out.println("/save \n -Saves server info");
                                     break;
                                 case "/stop":
                                     running=false;
@@ -56,7 +63,7 @@ public class RogueHighScoreServer {
                                     System.out.println("Sever Info Saved.");
                                     return;
                                 case "/stats":
-                                    avg=(n/d);
+                                    if(d!=0) avg=(n/d);
                                     System.out.println("Stats \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs);
                                     break;
                                 case "/save":
@@ -81,23 +88,22 @@ public class RogueHighScoreServer {
             public void run(){
                 String out = "";
                 while(running){
+                    byte[] data = new byte[1024];
+                    DatagramPacket packet = new DatagramPacket(data, data.length);
                     try {
-                        byte[] data = new byte[1024];
-                        DatagramPacket packet = new DatagramPacket(data, data.length);
-                        DatagramSocket socket = new DatagramSocket(port);
                         socket.receive(packet);
-                        out=new String(packet.getData());
-                        System.out.println("Received Packet");
-                    } catch (IOException | NumberFormatException ex) {
-                        System.out.println(ex.toString());
+                    } catch (IOException ex) {
+                        System.out.println("You got errors! "+ex.toString());
                     }
+                    out=new String(packet.getData());
+                    System.out.println("Received Packet");
                     if("".equals(out)) continue;
                     String[] props = out.split(" ");
                     if(Integer.parseInt(props[0])==0) continue;
                     n+=Integer.parseInt(props[0]);
                     d+=Integer.parseInt(props[1]);
                     if(hs<Integer.parseInt(props[2])) hs=Integer.parseInt(props[2]);
-                    avg=(n/d);
+                    if(d!=0) avg=(n/d);
                 }
             }
         }.start();
