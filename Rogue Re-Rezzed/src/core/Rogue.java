@@ -80,9 +80,9 @@ public class Rogue {
                     InetAddress ip2 = InetAddress.getByName("localhost");
                     String send = n+" "+d+" "+hs+" ";
                     byte[] data = send.getBytes();
-                    DatagramPacket packet = new DatagramPacket(data,data.length,ip,3000);
-                    DatagramPacket packet1 = new DatagramPacket(data,data.length,ip1,3000);
-                    DatagramPacket packet2 = new DatagramPacket(data,data.length,ip2,3000);
+                    DatagramPacket packet = new DatagramPacket(data,data.length,ip,6552);
+                    DatagramPacket packet1 = new DatagramPacket(data,data.length,ip1,6552);
+                    DatagramPacket packet2 = new DatagramPacket(data,data.length,ip2,6552);
                     socket.send(packet);
                     socket.send(packet1);
                     socket.send(packet2);
