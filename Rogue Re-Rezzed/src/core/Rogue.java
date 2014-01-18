@@ -74,7 +74,7 @@ public class Rogue {
             @Override
             public void run(){
                 try {
-                    DatagramSocket socket = new DatagramSocket(3000);
+                    DatagramSocket socket = new DatagramSocket();
                     InetAddress ip = InetAddress.getByName("eyeris.zapto.org");
                     InetAddress ip1 = InetAddress.getByName("192.168.1.35");//10.1.122.233 if on school computers
                     InetAddress ip2 = InetAddress.getByName("localhost");
