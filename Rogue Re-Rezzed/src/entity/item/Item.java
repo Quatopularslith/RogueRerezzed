@@ -30,12 +30,12 @@ public class Item extends RogueEntity{
      * {Attack,Defense,Mana,Health}
      */
     public double[] stats = {0.0,0.0,0.0,0.0};
-    public Item(int id1,RogueEntity parent1,int lvl,Level l1) {
+    public Item(int id,RogueEntity parent1,int lvl,Level l1) {
         super(l1);
+        this.id=id;
         health=1;
         maxhealth=1;
         parent=parent1;
-        id=id1;
         sp=new Sprite(SpriteSheet.BAG,16);
         modifierid=rand.nextInt(modifiers.length);
         this.lvl=lvl;
@@ -107,8 +107,8 @@ public class Item extends RogueEntity{
         parent=parent1;
         sp=new Sprite(SpriteSheet.BAG,16);
         name=name1;
-        if(name.equalsIgnoreCase("Empty")){
-            id=0;
+        if(name1.equalsIgnoreCase("Empty")){
+            name=type[0];
             return;
         }
         String[] props = name1.split(" ");
@@ -116,15 +116,15 @@ public class Item extends RogueEntity{
         mod=0;
         int matid = 0;
         int tyid = 0;
-        if(props.length>4){
-            for(int i=0;i<modifiers.length;i++){
-                if(props[2].equals(modifiers[i])){
-                    mod = i;
-                    break;
-                }
+        for(int i=0;i<modifiers.length;i++){
+            if(props[2].equals(modifiers[i].split(" ")[0])){
+                mod = i;
+                break;
             }
+        }
+        if(mod!=0){
             for(int i=0;i<materials.length;i++){
-                if(props[3].equals(materials[i])){
+                if(props[3].equals(materials[i].split(" ")[0])){
                     matid = i;
                 }
             }
@@ -135,7 +135,7 @@ public class Item extends RogueEntity{
             }
         }else{
             for(int i=0;i<materials.length;i++){
-                if(props[2].equals(materials[i])){
+                if(props[2].equals(materials[i].split(" ")[0])){
                     matid = i;
                 }
             }
@@ -146,60 +146,50 @@ public class Item extends RogueEntity{
             }
         }
         System.out.println(props.length+" "+name+" "+modifiers[mod]+" "+materials[matid]+" "+type[tyid]);
-        id=matid*materials.length;
-        if(tyid>type.length || matid>materials.length) return;
-        if(id!=0){
-            cursed = rand.nextBoolean();
-            switch(tyid){
-                case 1:
-                    tyname=ItemType.SWORD;
-                    stats[0]=1;
-                    mod=0;
-                    break;
-                case 2:
-                    tyname=ItemType.AXE;
-                    stats[0]=0.5;
-                    stats[1]=0.5;
-                    mod=0;
-                    break;
-                case 3:
-                    tyname=ItemType.SHEILD;
-                    stats[1]=1;
-                    mod=1;
-                    break;
-                default:
-                    tyname=ItemType.EMPTY;
-                    mod=3;
-                    break;
-            }
-            stats[0]*=matid+1;
-            stats[1]*=matid+1;
-            stats[2]*=matid+1;
-            stats[3]*=matid+1;
-            switch(modifierid){
-                case 1:
-                    stats[mod]-=(0.4*lvl);
-                    break;
-                case 3:
-                    stats[1]-=(0.4*lvl);
-                    break;
-                case 5:
-                    stats[3]+=(0.4*lvl);
-                    break;
-                case 6:
-                    stats[2]+=(0.4*lvl);
-                    break;
-                case 7:
-                    stats[0]+=(0.4*lvl);
-                    stats[1]+=(0.4*lvl);
-                    break;
-            }
-        }else{
-            name = type[0];
-            tyname=ItemType.EMPTY;
-            for(double ind:stats){
-                ind=0;
-            }
+        cursed = rand.nextBoolean();
+        switch(tyid){
+            case 1:
+                tyname=ItemType.SWORD;
+                stats[0]=1;
+                mod=0;
+                break;
+            case 2:
+                tyname=ItemType.AXE;
+                stats[0]=0.5;
+                stats[1]=0.5;
+                mod=0;
+                break;
+            case 3:
+                tyname=ItemType.SHEILD;
+                stats[1]=1;
+                mod=1;
+                break;
+            default:
+                tyname=ItemType.EMPTY;
+                mod=3;
+                break;
+        }
+        stats[0]*=matid+1;
+        stats[1]*=matid+1;
+        stats[2]*=matid+1;
+        stats[3]*=matid+1;
+        switch(modifierid){
+            case 1:
+                stats[mod]-=(0.4*lvl);
+                break;
+            case 3:
+                stats[1]-=(0.4*lvl);
+                break;
+            case 5:
+                stats[3]+=(0.4*lvl);
+                break;
+            case 6:
+                stats[2]+=(0.4*lvl);
+                break;
+            case 7:
+                stats[0]+=(0.4*lvl);
+                stats[1]+=(0.4*lvl);
+                break;
         }
         if(parent==null) parent=new RogueEntity(Rogue.getCurrentLevel());
         this.x=parent.x;
@@ -208,7 +198,7 @@ public class Item extends RogueEntity{
     public void drop(){
         this.x=parent.x;
         this.y=parent.y;
-        if(this.id!=0){
+        if(!name.equalsIgnoreCase("Empty")){
             l.addItem(this);
         }
     }

@@ -59,6 +59,8 @@ public class Player extends RogueEntity{
         }else if(health<maxhealth){
             health+=0.5*lvl;
         }
+        if(health>maxhealth) health=maxhealth;
+        if(mana>maxMana) mana=maxMana;
         if(mana<maxMana){
             mana+=0.1*lvl;
         }
@@ -161,12 +163,11 @@ public class Player extends RogueEntity{
                 }
             }
         }
-        if(dx+x>=0 && dy+y>=0 && dx+x<l.board.length-1 && dy+y<l.board[0].length-1){
+        if(dx+x>=0 && dy+y>=0){
             if(l.board[dx+x][dy+y]==true){
                 x+=dx;
                 y+=dy;
             }
         }
-        return;
     }
 }

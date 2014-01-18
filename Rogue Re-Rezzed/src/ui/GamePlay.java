@@ -231,7 +231,7 @@ public class GamePlay extends JPanel{
         for(int i=0;i<l.getPlayer().inv.length;i++){
             g2.drawString(l.getPlayer().inv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
             int width = fm.stringWidth(l.getPlayer().inv[i].name);
-            if(l.getPlayer().inv[i].id>0){
+            if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
                 equip[i].addListener(Rogue.mm.mbi,this);
                 drop[i].addListener(Rogue.mm.mbi,this);
                 equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
