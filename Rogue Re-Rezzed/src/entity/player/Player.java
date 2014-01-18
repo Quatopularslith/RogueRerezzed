@@ -152,6 +152,10 @@ public class Player extends RogueEntity{
             for (int j=0;j<l.getItems().size();j++) {
                 Item i = l.getItems().get(j);
                 if(i.x==this.x+dx && i.y==this.y+dy && !inv[currinv].equals(i) && inv[currinv]!=null){
+                    if(i instanceof Gold){
+                        gold+=i.id;
+                        i.death();
+                    }
                     GamePlay.pickup = i;
                 }
             }
@@ -164,9 +168,13 @@ public class Player extends RogueEntity{
             }
         }
         if(dx+x>=0 && dy+y>=0){
-            if(l.board[dx+x][dy+y]==true){
-                x+=dx;
-                y+=dy;
+            try{
+                if(l.board[dx+x][dy+y]==true){
+                    x+=dx;
+                    y+=dy;
+                }
+            }catch(Exception e){
+                System.out.println(e.toString());
             }
         }
     }
