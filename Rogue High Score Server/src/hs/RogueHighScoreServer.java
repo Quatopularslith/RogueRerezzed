@@ -57,7 +57,7 @@ public class RogueHighScoreServer {
                                     return;
                                 case "/stats":
                                     avg=(n/d);
-                                    System.out.println("Stats \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs+" \n n="+n+" \n avg="+(n/d));
+                                    System.out.println("Stats \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs);
                                     break;
                                 case "/save":
                                     running=false;
