@@ -27,7 +27,7 @@ public class RogueHighScoreServer {
         d+=Integer.parseInt(sp.getData()[1]);
         hs+=Integer.parseInt(sp.getData()[2]);
         if(Integer.parseInt(args[0])==0){
-            System.out.println("WRONG USAGE needs port");
+            System.out.println("WRONG USAGE NEEDS PORT");
             return;
         }else{
             port=Integer.parseInt(args[0]);
@@ -36,34 +36,42 @@ public class RogueHighScoreServer {
             @Override
             public void run(){
                 receive(port);
-                Scanner s = new Scanner(System.in);
-                while(running){
-                    String text = s.nextLine();
-                    if(!text.startsWith("/")){
-                        System.out.println("That is not a command. Type /help to list commands");
-                    }else{
-                        System.out.println("================================");
-                        switch(text){
-                            case "/help":
-                                System.out.println("/stop \n -Stops server");
-                                System.out.println("/stats \n -Shows stats");
-                                break;
-                            case "/stop":
-                                running=false;
-                                String[] setting = {n+"",d+"",hs+""};
-                                sp.setData(setting);
-                                return;
-                            case "/stats":
-                                avg=(n/d);
-                                System.out.println("Stats \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs+" \n n="+n+" \n avg="+(n/d));
-                                break;
-                            default:
-                                System.out.println("That is not a command. Type /help to list commands");
-                                break;
+                try (Scanner s = new Scanner(System.in)) {
+                    while(running){
+                        String text = s.nextLine();
+                        if(!text.startsWith("/")){
+                            System.out.println("That is not a command. Type /help to list commands");
+                        }else{
+                            System.out.println("================================");
+                            switch(text){
+                                case "/help":
+                                    System.out.println("/stop \n -Saves and stops server");
+                                    System.out.println("/stats \n -Shows stats");
+                                    System.out.println("/stats \n -Saves server info");
+                                    break;
+                                case "/stop":
+                                    running=false;
+                                    String[] setting = {n+"",d+"",hs+""};
+                                    sp.setData(setting);
+                                    System.out.println("Sever Info Saved.");
+                                    return;
+                                case "/stats":
+                                    avg=(n/d);
+                                    System.out.println("Stats \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs+" \n n="+n+" \n avg="+(n/d));
+                                    break;
+                                case "/save":
+                                    running=false;
+                                    String[] setting1 = {n+"",d+"",hs+""};
+                                    sp.setData(setting1);
+                                    System.out.println("Sever Info Saved.");
+                                    break;
+                                default:
+                                    System.out.println("That is not a command. Type /help to list commands");
+                                    break;
+                            }
                         }
                     }
                 }
-                s.close();
             }
         }.start();
     }
@@ -81,10 +89,11 @@ public class RogueHighScoreServer {
                         out=new String(packet.getData());
                         System.out.println("Received Packet");
                     } catch (IOException | NumberFormatException ex) {
-                        ex.printStackTrace(System.err);
+                        System.out.println(ex.toString());
                     }
-                    if("".equals(out) || " ".equals(out)) continue;
+                    if("".equals(out)) continue;
                     String[] props = out.split(" ");
+                    if(Integer.parseInt(props[0])==0) continue;
                     n+=Integer.parseInt(props[0]);
                     d+=Integer.parseInt(props[1]);
                     if(hs<Integer.parseInt(props[2])) hs=Integer.parseInt(props[2]);
