@@ -69,23 +69,23 @@ public class Rogue {
     }
     public static void sendStats(){
         resetLevels();
-        new Thread("Sending Stats"){
-            @Override
-            public void run(){
-                try {
-                    DatagramSocket socket = new DatagramSocket();
-                    InetAddress ip = InetAddress.getByName("roguererezzed.zapto.org");
-                    InetAddress ip1 = InetAddress.getByName("192.168.1.35");//10.1.122.233 if on school computers
-                    String send = n+" "+d+" "+hs+" ";
-                    byte[] data = send.getBytes();
-                    DatagramPacket packet = new DatagramPacket(data,data.length,ip,6552);
-                    DatagramPacket packet1 = new DatagramPacket(data,data.length,ip1,6552);
-                    socket.send(packet);
-                    socket.send(packet1);
-                } catch (IOException ex) {
-                    ex.printStackTrace(System.err);
-                }
-            }
-        }.start();
+//        new Thread("Sending Stats"){
+//            @Override
+//            public void run(){
+//                try {
+//                    DatagramSocket socket = new DatagramSocket();
+//                    InetAddress ip = InetAddress.getByName("roguererezzed.zapto.org");
+//                    InetAddress ip1 = InetAddress.getByName("192.168.1.35");//10.1.122.233 if on school computers
+//                    String send = n+" "+d+" "+hs+" ";
+//                    byte[] data = send.getBytes();
+//                    DatagramPacket packet = new DatagramPacket(data,data.length,ip,6552);
+//                    DatagramPacket packet1 = new DatagramPacket(data,data.length,ip1,6552);
+//                    socket.send(packet);
+//                    socket.send(packet1);
+//                } catch (IOException ex) {
+//                    ex.printStackTrace(System.err);
+//                }
+//            }
+//        }.start();
     }
 }

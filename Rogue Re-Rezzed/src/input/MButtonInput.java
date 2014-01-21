@@ -61,6 +61,14 @@ public class MButtonInput {
                 Rogue.mm.gp.update();
                 return;
             }
+            if(command.equalsIgnoreCase("48 Endless")){
+                Rogue.resetLevels();
+                Rogue.setLevel(LevelMode.ENDLESS, LevelType.TURN, 48);
+                Rogue.mm.ngp.setVisible(false);
+                Rogue.mm.gp.setVisible(true);
+                Rogue.mm.gp.update();
+                return;
+            }
             if(command.equalsIgnoreCase("Classic Story mode")){
                 Rogue.resetLevels();
                 Rogue.setLevel(LevelMode.CLASSIC_STORY, LevelType.TURN, 0);

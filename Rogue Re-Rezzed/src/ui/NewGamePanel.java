@@ -18,7 +18,7 @@ public class NewGamePanel extends JPanel{
     double[] size = {0.4375,0.1};
     LoadArt la = new LoadArt();
     Image img = la.createBufferedImage("MainMenu.png", 750, 500);
-    MButton improvedStory = new MButton(getWidth()/2-100,150,200,50,"Improved Story mode",this);
+    MButton improvedStory = new MButton(getWidth()/2-100,150,200,50,"48 Endless",this);
     MButton classicStory = new MButton(getWidth()/2-100,210,200,50,"Classic Story mode",this);
     MButton back = new MButton(getWidth()/2-100,270,200,50,"Back",this);
     public NewGamePanel(){
