@@ -115,7 +115,7 @@ public class RogueEntity {
     public void spawn(Level l){
         x=rand.nextInt(l.board.length);
         y=rand.nextInt(l.board[0].length);
-        while(!l.board[x][y] && !((this instanceof Player || this instanceof Stairway) ? true : distTo(l.getPlayer())>40)){
+        while(!l.board[x][y] || !((this instanceof Player || this instanceof Stairway) ? true : distTo(l.getPlayer())>40)){
             if(l.board[x][y] && ((this instanceof Player || this instanceof Stairway) ? true : distTo(l.getPlayer())>40)) break;
             x=rand.nextInt(l.board.length);
             y=rand.nextInt(l.board[0].length);
