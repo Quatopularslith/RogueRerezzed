@@ -59,9 +59,15 @@ public class Warrior extends RogueNPC{
             hireD=false;
         }
         if(hire) follow=l.getPlayer();
-        if(numturns%4==0){
-            ai=new AI(this,50);
-            move(ai.pathFind(follow));
+        if(numturns%2==0){
+            final RogueEntity ah = this;
+            new Thread("PATH FINDING"){
+                @Override
+                public void run(){
+                    ai=new AI(ah,100);
+                    move(ai.pathFind(follow));
+                }
+            }.start();
         }
         if (!(follow instanceof Player) && distTo(follow)<=1) {
             follow.damage(this);
