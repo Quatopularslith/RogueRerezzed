@@ -33,6 +33,7 @@ public class GamePlay extends JPanel{
     public static Sprite fsp = new Sprite(SpriteSheet.FLOOR);
     public static Sprite dialogue = new Sprite(SpriteSheet.DIALOGUE,144);
     private List<RogueEntity> current;
+    private FontMetrics fm;
     MButton amb = new MButton(getWidth()/2-16,getHeight()/2,100,20,"Pick Up",this);
     MButton dmb = new MButton(getWidth()/2-16,getHeight()/2+32,100,20,"Leave It",this);
     int moffx=0,moffy=0;
@@ -85,15 +86,20 @@ public class GamePlay extends JPanel{
             pickup.death();
             pickup=null;
         }
-        for(int i=0;i<l.getEntities().size();i++){
-            if(l.getEntities().get(i) != null){
-                if(l.getEntities().get(i).health<=0){
-                    l.getEntities().get(i).death();
-                }else{
-                    l.getEntities().get(i).turn();
+        new Thread("Entities Updating"){
+            @Override
+            public void run(){
+                for(int i=0;i<l.getEntities().size();i++){
+                    if(l.getEntities().get(i) != null){
+                        if(l.getEntities().get(i).health<=0){
+                            l.getEntities().get(i).death();
+                        }else{
+                            l.getEntities().get(i).turn();
+                        }
+                    }
                 }
             }
-        }
+        }.start();
         repaint();
         if(l.getPlayer().dead){
             setVisible(false);
@@ -115,7 +121,7 @@ public class GamePlay extends JPanel{
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
         setSize(Rogue.mm.getWidth(),Rogue.mm.getHeight());
-        FontMetrics fm = g2.getFontMetrics();
+        fm = g2.getFontMetrics();
         //Main Graphic
         if(l==null) return;
         setReletiveTo(l.getPlayer());
@@ -228,19 +234,30 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.BLACK);
         g2.fillRect(getWidth()-(int) (0.25*getWidth())-10, (int) (0.3515625*getHeight())+64, (int) (0.25*getWidth()), (int) (0.3515625*getHeight()));
         g2.setColor(Color.WHITE);
+        final GamePlay gp = this;
+        new Thread("Inventory Updating"){
+            @Override
+            public void run(){
+                if(fm==null) return;
+                for(int i=0;i<l.getPlayer().inv.length;i++){
+                    int width = fm.stringWidth(l.getPlayer().inv[i].name);
+                    if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
+                        equip[i].addListener(Rogue.mm.mbi,gp);
+                        drop[i].addListener(Rogue.mm.mbi,gp);
+                        equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
+                        drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
+                    }else{
+                        equip[i].hide();
+                        drop[i].hide();
+                    }
+                }
+            }
+        }.start();
         for(int i=0;i<l.getPlayer().inv.length;i++){
             g2.drawString(l.getPlayer().inv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
-            int width = fm.stringWidth(l.getPlayer().inv[i].name);
             if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
-                equip[i].addListener(Rogue.mm.mbi,this);
-                drop[i].addListener(Rogue.mm.mbi,this);
-                equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
-                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
                 g2.drawImage(drop[i].img, drop[i].x,drop[i].y, this);
                 g2.drawImage(equip[i].img, equip[i].x,equip[i].y, this);
-            }else{
-                equip[i].hide();
-                drop[i].hide();
             }
         }
         //Stats

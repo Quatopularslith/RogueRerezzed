@@ -42,6 +42,7 @@ public class Item extends RogueEntity{
         int matid = (int) id/materials.length;
         int tyid = (id%3)+1;
         if(tyid>type.length || matid>materials.length) return;
+        if(this instanceof Gold) return;
         if(id!=0){
             name = "Lvl "+lvl+" "+modifiers[modifierid]+materials[matid]+type[tyid];
             cursed = rand.nextBoolean();
