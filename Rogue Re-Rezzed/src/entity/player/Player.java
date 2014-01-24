@@ -94,7 +94,7 @@ public class Player extends RogueEntity{
     public void updateStats(){
         maxAtt=2*lvl;
         maxMana=lvl;
-        maxhealth=100+2*(lvl-1);
+        maxhealth=100+10*(lvl-1);
         maxDefence=lvl;
         boolean curr=false;
         for (int i=0;i<inv.length;i++) {
