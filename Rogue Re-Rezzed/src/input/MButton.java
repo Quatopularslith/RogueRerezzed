@@ -77,6 +77,7 @@ public class MButton {
         y=y1;
         sx=sx1;
         sy=sy1;
+        addListener(Rogue.mm.mbi,parent);
         img = new BufferedImage(sx,sy, BufferedImage.TYPE_INT_ARGB);
         img = la.createBufferedImage("Button.png", sx, sy);
         Graphics2D g = img.createGraphics();

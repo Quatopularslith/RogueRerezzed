@@ -46,12 +46,6 @@ public class OptionMenuPanel1 extends JPanel{
             rmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[3]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             smb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[4]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
             pmb.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[5]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-            fmb.addListener(Rogue.mm.mbi,this);
-            bmb.addListener(Rogue.mm.mbi,this);
-            lmb.addListener(Rogue.mm.mbi,this);
-            rmb.addListener(Rogue.mm.mbi,this);
-            smb.addListener(Rogue.mm.mbi,this);
-            pmb.addListener(Rogue.mm.mbi,this);
         }
         g2.drawImage(img, 0,0, this);
         g2.drawImage(fmb.img, fmb.x, fmb.y, this);

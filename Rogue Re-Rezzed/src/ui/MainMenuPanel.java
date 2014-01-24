@@ -51,10 +51,6 @@ public class MainMenuPanel extends javax.swing.JPanel{
         loadGame.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
         options.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
         quit.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[3]*getHeight()), (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-        newGame.addListener(Rogue.mm.mbi,this);
-        loadGame.addListener(Rogue.mm.mbi,this);
-        options.addListener(Rogue.mm.mbi,this);
-        quit.addListener(Rogue.mm.mbi,this);
         repaint();
     }
 }

@@ -35,7 +35,6 @@ public class StatMenu extends JPanel{
             g2.drawString(Rogue.getCurrentLevel().getPlayer().inv[i].name, 20, (i*20)+120);
         }
         mb.setPos(getWidth()/2-(int) (0.266666666666666666666667*getWidth())/2,getHeight()/2-(int) (0.1*getHeight())/2,(int) (0.266666666666666666666667*getWidth()),(int) (0.1*getHeight()));
-        mb.addListener(Rogue.mm.mbi,this);
         g2.drawImage(mb.img, mb.x,mb.y, this);
         g2.dispose();
     }

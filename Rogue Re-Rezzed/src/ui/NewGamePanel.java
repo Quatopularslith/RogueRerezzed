@@ -45,9 +45,6 @@ public class NewGamePanel extends JPanel{
         improvedStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[0]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
         classicStory.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[1]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
         back.setPos((int) (getWidth()/2-(size[0]*getWidth())/2), (int) (bypos[2]*getHeight())+20, (int) (size[0]*getWidth()), (int) (size[1]*getHeight()));
-        improvedStory.addListener(Rogue.mm.mbi,this);
-        classicStory.addListener(Rogue.mm.mbi,this);
-        back.addListener(Rogue.mm.mbi,this);
         this.repaint();
     }
 }

@@ -49,6 +49,7 @@ public class GamePlay extends JPanel{
     public Warrior w;
     public MButton hire = new MButton(650,460,100,30,"Hire",this);
     public GamePlay(){
+        repaint();
         l=Rogue.getCurrentLevel();
         if(l!=null){
             current = l.getEntities();
@@ -75,6 +76,7 @@ public class GamePlay extends JPanel{
      * The core updater
      */
     public void update(){
+        repaint();
         l=Rogue.getCurrentLevel();
         if(l==null) return;
         l.getStairWay().turn();
@@ -86,7 +88,7 @@ public class GamePlay extends JPanel{
             pickup.death();
             pickup=null;
         }
-        new Thread("Entities Updating"){
+        Thread t1 = new Thread("Entities Updating"){
             @Override
             public void run(){
                 for(int i=0;i<l.getEntities().size();i++){
@@ -99,8 +101,27 @@ public class GamePlay extends JPanel{
                     }
                 }
             }
-        }.start();
-        repaint();
+        };
+        t1.start();
+        final GamePlay gp = this;
+        Thread t2 =new Thread("Inventory Updating"){
+            @Override
+            public void run(){
+                if(fm==null) return;
+                for(int i=0;i<l.getPlayer().inv.length;i++){
+                    int width = fm.stringWidth(l.getPlayer().inv[i].name);
+                    if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
+                        equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
+                        drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
+                    }else{
+                        equip[i].hide();
+                        drop[i].hide();
+                    }
+                }
+                repaint();
+            }
+        };
+        t2.start();
         if(l.getPlayer().dead){
             setVisible(false);
             Rogue.mm.sm.setVisible(true);
@@ -188,8 +209,6 @@ public class GamePlay extends JPanel{
             dmb.setPos(getWidth()/2-24,getHeight()/2+30,100,20);
             g2.drawImage(amb.img, amb.x,amb.y, this);
             g2.drawImage(dmb.img, dmb.x,dmb.y, this);
-            amb.addListener(Rogue.mm.mbi,this);
-            dmb.addListener(Rogue.mm.mbi,this);
         }else{
             amb.hide();
             dmb.hide();
@@ -200,7 +219,6 @@ public class GamePlay extends JPanel{
                 g2.drawImage(currTrade.img, getWidth()/2-96, getHeight()/2-96, this);
                 for(int i=0;i<tradeMB.length;i++){
                     tradeMB[i].setPos(currTrade.buttons[i][0]+getWidth()/2-96, currTrade.buttons[i][1]+getHeight()/2-96, 50, 20);
-                    tradeMB[i].addListener(Rogue.mm.mbi,this);
                     g2.drawImage(tradeMB[i].img, tradeMB[i].x,tradeMB[i].y, this);
                 }
             }
@@ -210,7 +228,6 @@ public class GamePlay extends JPanel{
             if(w.hireD){
                 g2.drawImage(w.img, getWidth()/2-96, getHeight()/2-96, this);
                 hire.setPos(w.buttons[0]+getWidth()/2-96, w.buttons[1]+getHeight()/2-96, 50, 20);
-                hire.addListener(Rogue.mm.mbi, this);
                 g2.drawImage(hire.img, hire.x, hire.y, this);
             }
         }
@@ -234,28 +251,7 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.BLACK);
         g2.fillRect(getWidth()-(int) (0.25*getWidth())-10, (int) (0.3515625*getHeight())+64, (int) (0.25*getWidth()), (int) (0.3515625*getHeight()));
         g2.setColor(Color.WHITE);
-        final GamePlay gp = this;
-        new Thread("Inventory Updating"){
-            @Override
-            public void run(){
-                if(fm==null) return;
-                for(int i=0;i<l.getPlayer().inv.length;i++){
-                    int width = fm.stringWidth(l.getPlayer().inv[i].name);
-                    if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
-                        equip[i].addListener(Rogue.mm.mbi,gp);
-                        drop[i].addListener(Rogue.mm.mbi,gp);
-                        equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
-                        drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
-                    }else{
-                        equip[i].hide();
-                        drop[i].hide();
-                    }
-                }
-            }
-        }.start();
-        System.out.println("============");
         for(int i=0;i<l.getPlayer().inv.length;i++){
-            System.out.println(equip[i].visible+" "+drop[i].visible);
             g2.drawString(l.getPlayer().inv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
             if(equip[i].visible){
                 g2.drawImage(equip[i].img, equip[i].x,equip[i].y, this);
@@ -285,8 +281,6 @@ public class GamePlay extends JPanel{
         //Buttons
         quit.setPos(getWidth()-(int) (0.1875*getWidth()), getHeight()-(int) (0.05859375*getHeight())-50, (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
         settings.setPos(getWidth()-(int) (0.09375*getWidth()), getHeight()-(int) (0.05859375*getHeight())-50, (int) (0.078125*getWidth()), (int) (0.048828125*getHeight()));
-        quit.addListener(Rogue.mm.mbi,this);
-        settings.addListener(Rogue.mm.mbi,this);
         g2.drawImage(quit.img, quit.x, quit.y, this);
         g2.drawImage(settings.img, settings.x, settings.y, this);
         //Pause Screen
