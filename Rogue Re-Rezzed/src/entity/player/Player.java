@@ -173,9 +173,7 @@ public class Player extends RogueEntity{
                     x+=dx;
                     y+=dy;
                 }
-            }catch(Exception e){
-                System.out.println(e.toString());
-            }
+            }catch(Exception e){}
         }
     }
 }

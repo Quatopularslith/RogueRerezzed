@@ -253,11 +253,15 @@ public class GamePlay extends JPanel{
                 }
             }
         }.start();
+        System.out.println("============");
         for(int i=0;i<l.getPlayer().inv.length;i++){
+            System.out.println(equip[i].visible+" "+drop[i].visible);
             g2.drawString(l.getPlayer().inv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
-            if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
-                g2.drawImage(drop[i].img, drop[i].x,drop[i].y, this);
+            if(equip[i].visible){
                 g2.drawImage(equip[i].img, equip[i].x,equip[i].y, this);
+            }
+            if(drop[i].visible){
+                g2.drawImage(drop[i].img, drop[i].x,drop[i].y, this);
             }
         }
         //Stats
