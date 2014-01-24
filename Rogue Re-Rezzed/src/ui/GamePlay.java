@@ -48,6 +48,7 @@ public class GamePlay extends JPanel{
     public Trader currTrade;
     public Warrior w;
     public MButton hire = new MButton(650,460,100,30,"Hire",this);
+    private Dimension d = getSize();
     public GamePlay(){
         repaint();
         l=Rogue.getCurrentLevel();
@@ -76,7 +77,10 @@ public class GamePlay extends JPanel{
      * The core updater
      */
     public void update(){
-        repaint();
+        if(fm==null || getSize()!=d){
+            d=this.getSize();
+            repaint();
+        }
         l=Rogue.getCurrentLevel();
         if(l==null) return;
         l.getStairWay().turn();
