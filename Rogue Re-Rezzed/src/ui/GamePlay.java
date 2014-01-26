@@ -12,6 +12,7 @@ import entity.npc.Warrior;
 import input.MButton;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -49,6 +50,7 @@ public class GamePlay extends JPanel{
     public Warrior w;
     public MButton hire = new MButton(650,460,100,30,"Hire",this);
     private Dimension d = getSize();
+    private boolean check=false;
     public GamePlay(){
         repaint();
         l=Rogue.getCurrentLevel();
@@ -72,13 +74,20 @@ public class GamePlay extends JPanel{
             tradeMB[i].hide();
         }
         this.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+        repaint();
+        update();
+        checkButtons();
+        repaint();
+        d=getSize();
     }
     /**
      * The core updater
      */
     public void update(){
-        if(fm==null || getSize()!=d){
-            d=this.getSize();
+        if(!d.equals(getSize())){
+            d=getSize();
+            repaint();
+            checkButtons();
             repaint();
         }
         l=Rogue.getCurrentLevel();
@@ -91,6 +100,12 @@ public class GamePlay extends JPanel{
             l.getPlayer().gold+=pickup.id;
             pickup.death();
             pickup=null;
+        }
+        if(pickup!=null){
+            check=true;
+        }else if(check){
+            checkButtons();
+            check=false;
         }
         Thread t1 = new Thread("Entities Updating"){
             @Override
@@ -107,7 +122,20 @@ public class GamePlay extends JPanel{
             }
         };
         t1.start();
-        final GamePlay gp = this;
+        if(l.getPlayer().dead){
+            setVisible(false);
+            Rogue.mm.sm.setVisible(true);
+        }
+        repaint();
+    }
+    void setReletiveTo(RogueEntity e){
+        offx=(getWidth()/2)-e.x*64;
+        offy=(getHeight()/2)-e.y*64;
+        moffx=getWidth()/8+getWidth()-getWidth()/4-10-e.x*8;
+        moffy=(int) (10+(0.3515625*getHeight())/2-e.y*8);
+    }
+    void checkButtons(){
+        System.out.println("INVENTORY");
         Thread t2 =new Thread("Inventory Updating"){
             @Override
             public void run(){
@@ -126,16 +154,6 @@ public class GamePlay extends JPanel{
             }
         };
         t2.start();
-        if(l.getPlayer().dead){
-            setVisible(false);
-            Rogue.mm.sm.setVisible(true);
-        }
-    }
-    void setReletiveTo(RogueEntity e){
-        offx=(getWidth()/2)-e.x*64;
-        offy=(getHeight()/2)-e.y*64;
-        moffx=getWidth()/8+getWidth()-getWidth()/4-10-e.x*8;
-        moffy=(int) (10+(0.3515625*getHeight())/2-e.y*8);
     }
     /**
      * Paints the world
@@ -255,7 +273,7 @@ public class GamePlay extends JPanel{
         g2.setColor(Color.BLACK);
         g2.fillRect(getWidth()-(int) (0.25*getWidth())-10, (int) (0.3515625*getHeight())+64, (int) (0.25*getWidth()), (int) (0.3515625*getHeight()));
         g2.setColor(Color.WHITE);
-        for(int i=0;i<l.getPlayer().inv.length;i++){
+        for(int i=0;i<equip.length;i++){
             g2.drawString(l.getPlayer().inv[i].name, getWidth()-(int) (0.25*getWidth()), (int) (((i+1)*(0.032*getHeight()))+(int) (0.3515625*getHeight())+74));
             if(equip[i].visible){
                 g2.drawImage(equip[i].img, equip[i].x,equip[i].y, this);

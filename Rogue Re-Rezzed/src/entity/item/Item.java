@@ -146,7 +146,7 @@ public class Item extends RogueEntity{
                 }
             }
         }
-        System.out.println(props.length+" "+name+" "+modifiers[mod]+" "+materials[matid]+" "+type[tyid]);
+        id=1;
         cursed = rand.nextBoolean();
         switch(tyid){
             case 1:

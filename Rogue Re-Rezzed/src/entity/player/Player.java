@@ -80,7 +80,7 @@ public class Player extends RogueEntity{
         }
         for (int j=0;j<l.getItems().size();j++) {
             Item i = l.getItems().get(j);
-            if(i.x==this.x && i.y==this.y && i.id!=0 && inv[currinv]!=null){
+            if(i.x==this.x && i.y==this.y && !i.name.equalsIgnoreCase("Empty") && inv[currinv]!=null){
                 if(i instanceof Gold){
                     gold+=i.id;
                     i.death();
