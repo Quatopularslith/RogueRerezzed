@@ -50,7 +50,6 @@ public class GamePlay extends JPanel{
     public Warrior w;
     public MButton hire = new MButton(650,460,100,30,"Hire",this);
     private Dimension d = getSize();
-    private boolean check=false;
     public GamePlay(){
         repaint();
         l=Rogue.getCurrentLevel();
@@ -101,12 +100,6 @@ public class GamePlay extends JPanel{
             pickup.death();
             pickup=null;
         }
-        if(pickup!=null){
-            check=true;
-        }else if(check){
-            checkButtons();
-            check=false;
-        }
         Thread t1 = new Thread("Entities Updating"){
             @Override
             public void run(){
@@ -134,26 +127,19 @@ public class GamePlay extends JPanel{
         moffx=getWidth()/8+getWidth()-getWidth()/4-10-e.x*8;
         moffy=(int) (10+(0.3515625*getHeight())/2-e.y*8);
     }
-    void checkButtons(){
-        System.out.println("INVENTORY");
-        Thread t2 =new Thread("Inventory Updating"){
-            @Override
-            public void run(){
-                if(fm==null) return;
-                for(int i=0;i<l.getPlayer().inv.length;i++){
-                    int width = fm.stringWidth(l.getPlayer().inv[i].name);
-                    if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
-                        equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
-                        drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
-                    }else{
-                        equip[i].hide();
-                        drop[i].hide();
-                    }
-                }
-                repaint();
+    public void checkButtons(){
+        if(fm==null) return;
+        for(int i=0;i<l.getPlayer().inv.length;i++){
+            int width = fm.stringWidth(l.getPlayer().inv[i].name);
+            if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
+                equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
+                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
+            }else{
+                equip[i].hide();
+                drop[i].hide();
             }
-        };
-        t2.start();
+        }
+        repaint();
     }
     /**
      * Paints the world

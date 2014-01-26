@@ -108,6 +108,7 @@ public class MButtonInput {
                     Rogue.getCurrentLevel().getPlayer().inv[Rogue.getCurrentLevel().getPlayer().currinv]=GamePlay.pickup;
                     Rogue.getCurrentLevel().getPlayer().updateStats();
                     GamePlay.pickup.death();
+                    Rogue.mm.gp.checkButtons();
                     Rogue.mm.gp.update();
                 }
                 refresh(Rogue.mm.gp);
