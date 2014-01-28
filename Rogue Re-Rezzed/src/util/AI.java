@@ -31,12 +31,7 @@ public class AI {
      */
     public Direction pointTowards(RogueEntity e){
         Direction pdir=Direction.STOP;
-        if(parent.distTo(e)<followdist){
-            if(x<e.x)pdir = Direction.RIGHT;
-            if(x>e.x)pdir = Direction.LEFT;
-            if(y<e.y)pdir = Direction.DOWN;
-            if(y>e.y)pdir =Direction.UP;
-        }else{
+        if(e==null || parent.distTo(e)>followdist){
             boolean b = rand.nextBoolean();
             int d = rand.nextInt(3);
             if(b){
@@ -60,6 +55,11 @@ public class AI {
             }else{
                 pdir=Direction.STOP;
             }
+        }else{
+            if(x<e.x)pdir = Direction.RIGHT;
+            if(x>e.x)pdir = Direction.LEFT;
+            if(y<e.y)pdir = Direction.DOWN;
+            if(y>e.y)pdir =Direction.UP;
         }
         return pdir;
     }

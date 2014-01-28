@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import render.Sprite;
 import render.SpriteSheet;
+import util.AI;
 import util.Direction;
 
 /**
@@ -53,34 +54,8 @@ public class Trader extends RogueNPC{
     }
     @Override
     public void turn(){
-        Direction pdir;
-        boolean b = rand.nextBoolean();
-        int d = rand.nextInt(3);
-        if(b){
-            switch (d){
-                case 0:
-                    pdir=Direction.UP;
-                    break;
-                case 1:
-                    pdir=Direction.DOWN;
-                    break;
-                case 2:
-                    pdir=Direction.LEFT;
-                    break;
-                case 3:
-                    pdir=Direction.RIGHT;
-                    break;
-                default:
-                    pdir=Direction.STOP;
-                    break;
-            }
-        }else{
-            pdir=Direction.STOP;
-        }
-        if(distTo(l.getPlayer())>1){
-            trade=false;
-        }
-        move(pdir);
+        ai=new AI(this,-1);
+        move(ai.pointTowards(null));
     }
     public void refreshTrade(){
         int say = rand.nextInt(dialogue.length);
