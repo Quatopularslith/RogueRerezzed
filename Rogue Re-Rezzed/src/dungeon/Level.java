@@ -145,21 +145,21 @@ public class Level {
         //Stariway
         st = new Stairway(this);
         //Safety Rooms
-        for(int i=0;i<board.length;i++){
-            if(p.x-1<board.length-1) board[p.x-1][i]=true;
+        for(int i=1;i<board.length-1;i++){
+            if(p.x-1<board.length) board[p.x-1][i]=true;
             board[p.x][i]=true;
-            if(p.x+1<board.length-1) board[p.x+1][i]=true;
-            if(p.y-1<board[0].length-1) board[i][p.y-1]=true;
+            if(p.x+1<board.length) board[p.x+1][i]=true;
+            if(p.y-1<board[0].length) board[i][p.y-1]=true;
             board[i][p.y]=true;
-            if(p.y+1<board[0].length-1) board[i][p.y+1]=true;
+            if(p.y+1<board[0].length) board[i][p.y+1]=true;
         }
-        for(int i=0;i<board.length;i++){
-            if(st.x-1<board.length-1) board[st.x-1][i]=true;
+        for(int i=1;i<board.length-1;i++){
+            if(st.x-1<board.length) board[st.x-1][i]=true;
             board[st.x][i]=true;
-            if(st.x+1<board.length-1) board[st.x+1][i]=true;
-            if(st.y-1<board[0].length-1) board[i][st.y-1]=true;
+            if(st.x+1<board.length) board[st.x+1][i]=true;
+            if(st.y-1<board[0].length) board[i][st.y-1]=true;
             board[i][st.y]=true;
-            if(st.y+1<board[0].length-1) board[i][st.y+1]=true;
+            if(st.y+1<board[0].length) board[i][st.y+1]=true;
         }
         //population
         rePopulate(sx,sy);
@@ -180,8 +180,8 @@ public class Level {
             }
         }
         int rx,ry;
-        for(int x=0;x<sx;x+=maxRoomSX){
-            for(int y=0;y<sy;y+=maxRoomSY){
+        for(int x=1;x<sx-1;x+=maxRoomSX){
+            for(int y=1;y<sy-1;y+=maxRoomSY){
                 rx=rand.nextInt(maxRoomSX)+1+x;
                 ry=rand.nextInt(maxRoomSY)+1+y;
                 for(int xx=0;xx<maxRoomSX;xx++){

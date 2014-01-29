@@ -58,7 +58,9 @@ public class MButtonInput {
                 Rogue.setLevel(LevelMode.IMPROVED_STORY, LevelType.TURN, 0);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
+                Rogue.mm.gp.checkButtons(true);
                 Rogue.mm.gp.update();
+                Rogue.mm.gp.checkButtons(true);
                 return;
             }
             if(command.equalsIgnoreCase("48 Endless")){
@@ -66,7 +68,9 @@ public class MButtonInput {
                 Rogue.setLevel(LevelMode.ENDLESS, LevelType.TURN, 48);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
+                Rogue.mm.gp.checkButtons(true);
                 Rogue.mm.gp.update();
+                Rogue.mm.gp.checkButtons(true);
                 return;
             }
             if(command.equalsIgnoreCase("Classic Story mode")){
@@ -74,7 +78,9 @@ public class MButtonInput {
                 Rogue.setLevel(LevelMode.CLASSIC_STORY, LevelType.TURN, 0);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
+                Rogue.mm.gp.checkButtons(true);
                 Rogue.mm.gp.update();
+                Rogue.mm.gp.checkButtons(true);
                 return;
             }
             if(command.equalsIgnoreCase("Back")){
@@ -108,7 +114,6 @@ public class MButtonInput {
                     Rogue.getCurrentLevel().getPlayer().inv[Rogue.getCurrentLevel().getPlayer().currinv]=GamePlay.pickup;
                     Rogue.getCurrentLevel().getPlayer().updateStats();
                     GamePlay.pickup.death();
-                    Rogue.mm.gp.checkButtons();
                     Rogue.mm.gp.update();
                 }
                 refresh(Rogue.mm.gp);

@@ -1,5 +1,6 @@
 package entity.player;
 
+import core.Rogue;
 import dungeon.Level;
 import entity.RogueEntity;
 import entity.item.Gold;
@@ -116,6 +117,7 @@ public class Player extends RogueEntity{
                 }
             }
         }
+        Rogue.mm.gp.checkButtons(true);
     }
     @Override
     public void move(Direction d){

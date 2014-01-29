@@ -68,10 +68,10 @@ public class Item extends RogueEntity{
                     mod=3;
                     break;
             }
-            stats[0]*=matid+1;
-            stats[1]*=matid+1;
-            stats[2]*=matid+1;
-            stats[3]*=matid+1;
+            stats[0]*=(matid+1);
+            stats[1]*=(matid+1);
+            stats[2]*=(matid+1);
+            stats[3]*=(matid+1);
             switch(modifierid){
                 case 1:
                     stats[mod]-=(0.4*lvl);
@@ -114,16 +114,16 @@ public class Item extends RogueEntity{
         }
         String[] props = name1.split(" ");
         lvl = Integer.parseInt(props[1]);
-        mod=0;
+        modifierid=0;
         int matid = 0;
         int tyid = 0;
         for(int i=0;i<modifiers.length;i++){
             if(props[2].equals(modifiers[i].split(" ")[0])){
-                mod = i;
+                modifierid = i;
                 break;
             }
         }
-        if(mod!=0){
+        if(modifierid!=0){
             for(int i=0;i<materials.length;i++){
                 if(props[3].equals(materials[i].split(" ")[0])){
                     matid = i;
@@ -170,10 +170,10 @@ public class Item extends RogueEntity{
                 mod=3;
                 break;
         }
-        stats[0]*=matid+1;
-        stats[1]*=matid+1;
-        stats[2]*=matid+1;
-        stats[3]*=matid+1;
+        stats[0]*=(matid+1);
+        stats[1]*=(matid+1);
+        stats[2]*=(matid+1);
+        stats[3]*=(matid+1);
         switch(modifierid){
             case 1:
                 stats[mod]-=(0.4*lvl);

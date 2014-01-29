@@ -55,6 +55,9 @@ public class Trader extends RogueNPC{
     public void turn(){
         ai=new AI(this,-1);
         move(ai.pointTowards(null));
+        if(distTo(l.getPlayer())>2){
+            trade=false;
+        }
     }
     public void refreshTrade(){
         int say = rand.nextInt(dialogue.length);

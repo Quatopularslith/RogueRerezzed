@@ -75,7 +75,7 @@ public class GamePlay extends JPanel{
         this.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
         repaint();
         update();
-        checkButtons();
+        checkButtons(true);
         repaint();
         d=getSize();
     }
@@ -86,8 +86,7 @@ public class GamePlay extends JPanel{
         if(!d.equals(getSize())){
             d=getSize();
             repaint();
-            checkButtons();
-            repaint();
+            checkButtons(true);
         }
         l=Rogue.getCurrentLevel();
         if(l==null) return;
@@ -127,19 +126,26 @@ public class GamePlay extends JPanel{
         moffx=getWidth()/8+getWidth()-getWidth()/4-10-e.x*8;
         moffy=(int) (10+(0.3515625*getHeight())/2-e.y*8);
     }
-    public void checkButtons(){
-        if(fm==null) return;
-        for(int i=0;i<l.getPlayer().inv.length;i++){
-            int width = fm.stringWidth(l.getPlayer().inv[i].name);
-            if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
-                equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
-                drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
-            }else{
-                equip[i].hide();
-                drop[i].hide();
+    public void checkButtons(final boolean repaint){
+        new Thread("BUTTONS"){
+            @Override
+            public void run(){
+                if(fm==null) return;
+                for(int i=0;i<l.getPlayer().inv.length;i++){
+                    int width = fm.stringWidth(l.getPlayer().inv[i].name);
+                    if(!l.getPlayer().inv[i].name.equalsIgnoreCase("Empty")){
+                        equip[i].setPos(width+getWidth()-(int) (0.25*getWidth())+5,(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
+                        drop[i].setPos(width+getWidth()-(int) (0.25*getWidth())+(int) (0.05859375*getWidth()*1.2),(int) (((i+1)*(0.032*getHeight())-11)+(int) (0.3515625*getHeight())+74),(int) (0.05859375*getWidth()),12);
+                    }else{
+                        equip[i].hide();
+                        drop[i].hide();
+                    }
+                }
+                if(repaint){
+                    repaint();
+                }
             }
-        }
-        repaint();
+        }.start();
     }
     /**
      * Paints the world
@@ -148,6 +154,10 @@ public class GamePlay extends JPanel{
     @Override
     public void paint(Graphics g){
         super.paint(g);
+        if(!d.equals(getSize())){
+            d=getSize();
+            checkButtons(false);
+        }
         Graphics2D g2 = (Graphics2D) g;
         setSize(Rogue.mm.getWidth(),Rogue.mm.getHeight());
         fm = g2.getFontMetrics();
