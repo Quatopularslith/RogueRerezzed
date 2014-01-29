@@ -41,7 +41,7 @@ public class DebugMenu extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Hobo Std", 0, 48)); // NOI18N
         jLabel2.setText("Debug Menu");
 
-        chooseEntitySpawn.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Snake", "Bandit", "Fish", "Mortuus Trabajos", "Quatopularslith", "Goblin", "Trader", "Warrior" }));
+        chooseEntitySpawn.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Snake", "Bandit", "Fish", "Mortuus Trabajos", "Quatopularslith", "Goblin", "Trader", "Warrior", "Questman" }));
 
         chooseLvlBtn.setText("Generate");
 

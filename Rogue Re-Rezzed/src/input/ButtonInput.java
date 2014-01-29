@@ -1,7 +1,6 @@
 package input;
 
 import core.Rogue;
-import dungeon.Level;
 import entity.RogueEntity;
 import entity.item.Item;
 import java.awt.event.ActionEvent;
@@ -121,6 +120,10 @@ public class ButtonInput implements ActionListener{
                     e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
                     e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
                     break;
+                case 8:
+                    e1 = new entity.npc.QuestMan(Rogue.getCurrentLevel());
+                    e1.x=Rogue.getCurrentLevel().getPlayer().x+1;
+                    e1.y=Rogue.getCurrentLevel().getPlayer().y+1;
             }
             Rogue.getCurrentLevel().addEntity(e1);
             Rogue.mm.gp.update();

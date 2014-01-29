@@ -27,6 +27,7 @@ public class RogueEntity {
     public AI ai;
     public RogueEntity(Level l1){
         l=l1;
+        name=this.getClass().getSimpleName();
     }
     /**
      * Moves Entity

@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import render.Sprite;
 import render.SpriteSheet;
 import util.AI;
-import util.Direction;
 
 /**
  *

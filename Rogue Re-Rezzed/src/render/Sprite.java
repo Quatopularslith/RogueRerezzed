@@ -79,13 +79,18 @@ public class Sprite {
                 x=0;
                 y=2;
                 break;
+            case QUESTMAN:
+                x=0;
+                y=2;
+                break;
             default:
                 x=2;
                 y=0;
                 break;
         }
         BufferedImage temp = spritesheet.getSubimage(x*sx, y*sy, sx, sy);
-        if(s==SpriteSheet.NPC) temp = colorImage(temp);
+        if(s==SpriteSheet.NPC) temp = colorImage(temp,0,100,0);
+        if(s==SpriteSheet.QUESTMAN) temp = colorImage(temp,0,0,100);
         i.createGraphics().drawImage(temp.getScaledInstance(64, 64, Image.SCALE_SMOOTH), 0,0, null);
         i.createGraphics().dispose();
     }
@@ -155,18 +160,21 @@ public class Sprite {
                 break;
         }
         BufferedImage temp = spritesheet.getSubimage(x*sx, y*sy, sx, sy);
-        if(s==SpriteSheet.NPC) temp = colorImage(temp);
+        if(s==SpriteSheet.NPC) temp = colorImage(temp,0,100,0);
+        if(s==SpriteSheet.QUESTMAN) temp = colorImage(temp,0,0,100);
         i.createGraphics().drawImage(temp.getScaledInstance(size, size, Image.SCALE_SMOOTH), 0,0, null);
         i.createGraphics().dispose();
     }
-    private BufferedImage colorImage(BufferedImage image){
+    private BufferedImage colorImage(BufferedImage image,int r,int b,int g){
         int width = image.getWidth();
         int height = image.getHeight();
         WritableRaster raster = image.getRaster();
         for (int xx = 0; xx < width; xx++) {
             for (int yy = 0; yy < height; yy++) {
                 int[] pixels = raster.getPixel(xx, yy, (int[]) null);
-                if(pixels[2]+100<=255) pixels[2] += 100;
+                if(pixels[1]+r<=255) pixels[0] += r;
+                if(pixels[1]+r<=255) pixels[1] += g;
+                if(pixels[2]+b<=255) pixels[2] += b;
                 raster.setPixel(xx, yy, pixels);
             }
         }

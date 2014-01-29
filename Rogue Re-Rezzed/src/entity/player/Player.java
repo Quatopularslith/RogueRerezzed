@@ -5,7 +5,10 @@ import entity.RogueEntity;
 import entity.item.Gold;
 import entity.item.Item;
 import entity.mob.RogueHostileEntity;
+import entity.npc.QuestMan;
 import entity.npc.RogueNPC;
+import entity.npc.Trader;
+import entity.npc.Warrior;
 import render.Sprite;
 import render.SpriteSheet;
 import ui.GamePlay;
@@ -25,6 +28,7 @@ public class Player extends RogueEntity{
     public double xp=0;
     public int rep=0;
     public int gold=0;
+    public boolean[] npcsFound;
     public Player(Level l1){
         super(l1);
         lvl=1;
@@ -47,6 +51,7 @@ public class Player extends RogueEntity{
         health=maxhealth;
         sp = new Sprite(SpriteSheet.PLAYER);
         spawn(l);
+        npcsFound=new boolean[3];
     }
     @Override
     public void death(){
@@ -137,6 +142,13 @@ public class Player extends RogueEntity{
             if(re instanceof RogueNPC  && re.x==this.x+dx && re.y==this.y+dy){
                 RogueNPC t = (RogueNPC) re;
                 t.action();
+                if(t instanceof Trader){
+                    npcsFound[0]=true;
+                }else if(t instanceof Warrior){
+                    npcsFound[1]=true;
+                }else if(t instanceof QuestMan){
+                    npcsFound[2]=true;
+                }
             }
             if(re instanceof RogueHostileEntity && re.x==this.x+dx && re.y==this.y+dy){
                 re.damage(this);

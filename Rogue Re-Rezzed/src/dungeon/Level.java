@@ -8,6 +8,7 @@ import entity.Stairway;
 import entity.item.Item;
 import entity.mob.MortuusTrabajos;
 import entity.mob.Quatopularslith;
+import entity.npc.QuestMan;
 import entity.npc.Trader;
 import entity.npc.Warrior;
 import entity.player.Player;
@@ -218,6 +219,9 @@ public class Level {
         
         Warrior w = new Warrior(this);
         this.addEntity(w);
+        
+        QuestMan qm = new QuestMan(this);
+        this.addEntity(qm);
     }
     /**
      * Gets all Entities
