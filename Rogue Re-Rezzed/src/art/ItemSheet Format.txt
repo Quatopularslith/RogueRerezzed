@@ -1,0 +1,8 @@
+Broken	Shattered	Magic
+Shield_Outline	Sword_Outline	Sword_Template
+Axe_Template	Shield_Template	Inventory_Slot
+Template Colors (R,B,G):
+Hilt (0,255,0)
+Grip (255,255,0)
+Taper (0,0,255)
+Material (255,0,0)
