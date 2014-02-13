@@ -47,7 +47,7 @@ public class Menu extends JFrame{
      * Creates and handles the menus of the game
      */
     public Menu(){
-        super("Rogue Re-Rezzed (ALPHA R v1.8)");
+        super("Rogue Re-Rezzed (ALPHA R v1.11)");
         this.setSize(750, 750);
         this.setFocusable(true);
         this.setResizable(true);

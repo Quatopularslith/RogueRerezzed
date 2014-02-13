@@ -1,6 +1,7 @@
 
 package entity.npc;
 
+import core.Rogue;
 import dungeon.Level;
 import entity.item.Item;
 import java.awt.Color;
@@ -49,6 +50,7 @@ public class Trader extends RogueNPC{
     }
     @Override
     public void action(){
+        Rogue.mm.gp.checkButtons(true);
         trade=true;
     }
     @Override
