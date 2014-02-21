@@ -9,10 +9,10 @@ Rogue Style game with progressive graphics based on level of gameplay
 
 Controls:
 ---------
-W is up
-S is down
-A is left
-D is right
+* W is up
+* S is down
+* A is left
+* D is right
 
 Requirements:
 --------------
