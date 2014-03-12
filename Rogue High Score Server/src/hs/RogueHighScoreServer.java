@@ -64,7 +64,7 @@ public class RogueHighScoreServer {
                                     break;
                                 case "/stats":
                                     if(d!=0) avg=(n/d);
-                                    System.out.println("Stats \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs);
+                                    System.out.println("Stats: \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs);
                                     break;
                                 case "/save":
                                     String[] setting1 = {n+"",d+"",hs+""};
@@ -93,7 +93,7 @@ public class RogueHighScoreServer {
                     try {
                         socket.receive(packet);
                     } catch (IOException ex) {
-                        System.out.println("You got errors! "+ex.toString());
+                        System.err.println("You got errors! "+ex.toString());
                     }
                     out=new String(packet.getData());
                     System.out.println("Received Packet");
@@ -104,6 +104,7 @@ public class RogueHighScoreServer {
                     d+=Integer.parseInt(props[1]);
                     if(hs<Integer.parseInt(props[2])) hs=Integer.parseInt(props[2]);
                     if(d!=0) avg=(n/d);
+                    System.out.println("Stats: \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs);
                 }
             }
         }.start();
