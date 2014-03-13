@@ -54,7 +54,7 @@ public class MButtonInput {
         //New Game Panel
         if(parent==Rogue.mm.ngp){
             if(command.equalsIgnoreCase("Improved Story mode")){
-                Rogue.resetLevels();
+                Rogue.sendStats();
                 Rogue.setLevel(LevelMode.IMPROVED_STORY, LevelType.TURN, 0);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
@@ -64,7 +64,7 @@ public class MButtonInput {
                 return;
             }
             if(command.equalsIgnoreCase("48 Endless")){
-                Rogue.resetLevels();
+                Rogue.sendStats();
                 Rogue.setLevel(LevelMode.ENDLESS, LevelType.TURN, 48);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
@@ -74,7 +74,7 @@ public class MButtonInput {
                 return;
             }
             if(command.equalsIgnoreCase("Classic Story mode")){
-                Rogue.resetLevels();
+                Rogue.sendStats();
                 Rogue.setLevel(LevelMode.CLASSIC_STORY, LevelType.TURN, 0);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
@@ -95,7 +95,7 @@ public class MButtonInput {
                 //TODO some save code
                 RogueSave rs = new RogueSave(0);
                 rs.saveLevel(Rogue.getCurrentLevel());
-                Rogue.resetLevels();
+                Rogue.sendStats();
                 Rogue.mm.gp.setVisible(false);
                 Rogue.mm.mmp.setVisible(true);
                 return;
