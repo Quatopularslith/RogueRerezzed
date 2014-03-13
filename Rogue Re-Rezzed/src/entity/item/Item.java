@@ -40,6 +40,7 @@ public class Item extends RogueEntity{
         modifierid=rand.nextInt(modifiers.length);
         this.lvl=lvl;
         int matid = (int) id/materials.length;
+        if(matid>materials.length) matid = id%(materials.length-1);
         int tyid = (id%3)+1;
         if(tyid>type.length || matid>materials.length) return;
         if(this instanceof Gold) return;

@@ -33,7 +33,7 @@ public class AI {
         Direction pdir=Direction.STOP;
         if(e==null || parent.distTo(e)>followdist){
             boolean b = rand.nextBoolean();
-            int d = rand.nextInt(3);
+            int d = rand.nextInt(100)%4;
             if(b){
                 switch (d){
                     case 0:
@@ -75,7 +75,7 @@ public class AI {
             List<Node> path = a.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y),parent.l,followdist);
             if(path==null){
                 boolean b = rand.nextBoolean();
-                int d = rand.nextInt(3);
+                int d = rand.nextInt(100)%4;
                 if(b){
                     switch (d){
                         case 0:
@@ -102,7 +102,7 @@ public class AI {
             }
         }else{
             boolean b = rand.nextBoolean();
-            int d = rand.nextInt(3);
+            int d = rand.nextInt(100)%4;
             if(b){
                 switch (d){
                     case 0:
