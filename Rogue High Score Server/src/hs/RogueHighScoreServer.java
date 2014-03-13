@@ -44,6 +44,7 @@ public class RogueHighScoreServer {
             }
         }
     };
+    static Thread server;
     /**
      * @param args the command line arguments
      */
@@ -65,7 +66,7 @@ public class RogueHighScoreServer {
             System.out.println("You got errors! "+ex.toString());
         }
         System.out.println("SERVER STARTED");
-        Thread server = new Thread("Server"){
+        server = new Thread("Server"){
             @Override
             public void run(){
                 receive();
@@ -87,7 +88,7 @@ public class RogueHighScoreServer {
                                     String[] setting = {n+"",d+"",hs+""};
                                     sp.setData(setting);
                                     System.out.println("Sever Info Saved.");
-                                    receive.interrupt();
+                                    serverstop();
                                     System.out.println("Server Closed");
                                     break;
                                 case "/stats":
@@ -113,5 +114,13 @@ public class RogueHighScoreServer {
     }
     private static void receive(){
         receive.start();
+    }
+    private static void serverstop(){
+        try {
+            server.interrupt();
+            receive.interrupt();
+            server.join();
+            receive.join();
+        } catch (InterruptedException ex) {}
     }
 }
