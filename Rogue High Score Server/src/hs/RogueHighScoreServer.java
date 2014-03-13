@@ -40,6 +40,7 @@ public class RogueHighScoreServer {
                 if(hs<Integer.parseInt(props[2])) hs=Integer.parseInt(props[2]);
                 if(d!=0) avg=(n/d);
                 System.out.println("Stats: \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs);
+                System.out.println("================================");
             }
         }
     };
@@ -59,12 +60,12 @@ public class RogueHighScoreServer {
         } 
         port=Integer.parseInt(args[0]);
         try {
-            socket=new DatagramSocket(port);
+            socket = new DatagramSocket(port);
         } catch (SocketException ex) {
             System.out.println("You got errors! "+ex.toString());
         }
         System.out.println("SERVER STARTED");
-        new Thread("Server"){
+        Thread server = new Thread("Server"){
             @Override
             public void run(){
                 receive();
@@ -73,8 +74,8 @@ public class RogueHighScoreServer {
                         String text = s.nextLine();
                         if(!text.startsWith("/")){
                             System.out.println("That is not a command. Type /help to list commands");
-                        }else{
                             System.out.println("================================");
+                        }else{
                             switch(text){
                                 case "/help":
                                     System.out.println("/stop \n -Saves and stops server");
@@ -86,8 +87,8 @@ public class RogueHighScoreServer {
                                     String[] setting = {n+"",d+"",hs+""};
                                     sp.setData(setting);
                                     System.out.println("Sever Info Saved.");
-                                    receive.join();
-                                    join();
+                                    receive.interrupt();
+                                    System.out.println("Server Closed");
                                     break;
                                 case "/stats":
                                     if(d!=0) avg=(n/d);
@@ -103,13 +104,12 @@ public class RogueHighScoreServer {
                                     break;
                             }
                         }
+                        System.out.println("================================");
                     }
-                    System.out.println("Server Closed");
-                } catch (InterruptedException ex) {
-                    System.out.println("You got errors! "+ex.toString());
                 }
             }
-        }.start();
+        };
+        server.start();
     }
     private static void receive(){
         receive.start();
