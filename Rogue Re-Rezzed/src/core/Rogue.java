@@ -69,7 +69,7 @@ public class Rogue {
     }
     public static void sendStats(){
         resetLevels();
-        if(d<1) return;
+        if(d<1 || n<1 || hs<1) return;
         new Thread("Sending Stats"){
             @Override
             public void run(){

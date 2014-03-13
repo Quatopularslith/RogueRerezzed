@@ -45,7 +45,7 @@ public class MButtonInput {
             }
             if(command.equalsIgnoreCase("Quit")){
                 GameLoop.pause();
-                Rogue.sendStats();
+                Rogue.resetLevels();
                 if(Rogue.mm.dm!=null) Rogue.mm.dm.dispose();
                 Rogue.mm.dispose();
                 return;
@@ -54,7 +54,7 @@ public class MButtonInput {
         //New Game Panel
         if(parent==Rogue.mm.ngp){
             if(command.equalsIgnoreCase("Improved Story mode")){
-                Rogue.sendStats();
+                Rogue.resetLevels();
                 Rogue.setLevel(LevelMode.IMPROVED_STORY, LevelType.TURN, 0);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
@@ -64,7 +64,7 @@ public class MButtonInput {
                 return;
             }
             if(command.equalsIgnoreCase("48 Endless")){
-                Rogue.sendStats();
+                Rogue.resetLevels();
                 Rogue.setLevel(LevelMode.ENDLESS, LevelType.TURN, 48);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
@@ -74,7 +74,7 @@ public class MButtonInput {
                 return;
             }
             if(command.equalsIgnoreCase("Classic Story mode")){
-                Rogue.sendStats();
+                Rogue.resetLevels();
                 Rogue.setLevel(LevelMode.CLASSIC_STORY, LevelType.TURN, 0);
                 Rogue.mm.ngp.setVisible(false);
                 Rogue.mm.gp.setVisible(true);
@@ -95,7 +95,7 @@ public class MButtonInput {
                 //TODO some save code
                 RogueSave rs = new RogueSave(0);
                 rs.saveLevel(Rogue.getCurrentLevel());
-                Rogue.sendStats();
+                Rogue.resetLevels();
                 Rogue.mm.gp.setVisible(false);
                 Rogue.mm.mmp.setVisible(true);
                 return;
@@ -172,6 +172,7 @@ public class MButtonInput {
             if(!Rogue.mm.sm.isVisible()) return;
             Rogue.mm.sm.setVisible(false);
             Rogue.mm.mmp.setVisible(true);
+            Rogue.sendStats();
             return;
         }
     }
