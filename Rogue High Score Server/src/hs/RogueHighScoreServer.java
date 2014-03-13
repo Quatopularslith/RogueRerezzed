@@ -18,6 +18,31 @@ public class RogueHighScoreServer {
     static int hs;
     static double avg;
     static DatagramSocket socket;
+    static Thread receive = new Thread("Receiving"){
+        @Override
+        public void run(){
+            String out;
+            while(running){
+                byte[] data = new byte[1024];
+                DatagramPacket packet = new DatagramPacket(data, data.length);
+                try {
+                    socket.receive(packet);
+                } catch (IOException ex) {
+                    System.err.println("You got errors! "+ex.toString());
+                }
+                out = new String(packet.getData());
+                System.out.println("Received Packet");
+                if("".equals(out)) continue;
+                String[] props = out.split(" ");
+                if(Integer.parseInt(props[0])==0) continue;
+                n+=Integer.parseInt(props[0]);
+                d+=Integer.parseInt(props[1]);
+                if(hs<Integer.parseInt(props[2])) hs=Integer.parseInt(props[2]);
+                if(d!=0) avg=(n/d);
+                System.out.println("Stats: \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs);
+            }
+        }
+    };
     /**
      * @param args the command line arguments
      */
@@ -61,6 +86,8 @@ public class RogueHighScoreServer {
                                     String[] setting = {n+"",d+"",hs+""};
                                     sp.setData(setting);
                                     System.out.println("Sever Info Saved.");
+                                    receive.join();
+                                    join();
                                     break;
                                 case "/stats":
                                     if(d!=0) avg=(n/d);
@@ -78,35 +105,13 @@ public class RogueHighScoreServer {
                         }
                     }
                     System.out.println("Server Closed");
+                } catch (InterruptedException ex) {
+                    System.out.println("You got errors! "+ex.toString());
                 }
             }
         }.start();
     }
     private static void receive(){
-        new Thread("Receiving"){
-            @Override
-            public void run(){
-                String out = "";
-                while(running){
-                    byte[] data = new byte[1024];
-                    DatagramPacket packet = new DatagramPacket(data, data.length);
-                    try {
-                        socket.receive(packet);
-                    } catch (IOException ex) {
-                        System.err.println("You got errors! "+ex.toString());
-                    }
-                    out=new String(packet.getData());
-                    System.out.println("Received Packet");
-                    if("".equals(out)) continue;
-                    String[] props = out.split(" ");
-                    if(Integer.parseInt(props[0])==0) continue;
-                    n+=Integer.parseInt(props[0]);
-                    d+=Integer.parseInt(props[1]);
-                    if(hs<Integer.parseInt(props[2])) hs=Integer.parseInt(props[2]);
-                    if(d!=0) avg=(n/d);
-                    System.out.println("Stats: \n "+d+" rounds played \n The average level is "+avg+" \n The highscore is "+hs);
-                }
-            }
-        }.start();
+        receive.start();
     }
 }
