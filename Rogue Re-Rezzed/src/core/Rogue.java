@@ -78,7 +78,7 @@ public class Rogue {
                     InetAddress ip = InetAddress.getByName("eyeris.zapto.org");
                     String send = n+" "+d+" "+hs+" ";
                     byte[] data = send.getBytes();
-                    DatagramPacket packet = new DatagramPacket(data,data.length,ip,6552);
+                    DatagramPacket packet = new DatagramPacket(data,data.length,ip,25565);
                     socket.send(packet);
                 } catch (IOException ex) {
                     ex.printStackTrace(System.err);
