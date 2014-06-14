@@ -1,4 +1,3 @@
-
 package entity;
 
 import core.Rogue;
@@ -10,23 +9,28 @@ import render.SpriteSheet;
  *
  * @author Torri
  */
-public class Stairway extends RogueEntity{
-    public int room  = rand.nextInt(l.numRooms);
+public class Stairway extends RogueEntity {
+
+    public int room = rand.nextInt(l.numRooms);
     private int numlevel = 0;
+
     public Stairway(Level l1) {
         super(l1);
-        numlevel=Rogue.numLevels;
-        room = rand.nextInt(l1.numRooms-2);
+        numlevel = Rogue.numLevels;
+        room = rand.nextInt(l1.numRooms - 2);
         this.spawn(l);
         this.sp = new Sprite(SpriteSheet.STAIRWAY);
     }
+
     @Override
-    public void turn(){
-        if(l.getPlayer().x==x && l.getPlayer().y==y && Rogue.numLevels==numlevel){
-            Rogue.setLevel(l.getMode(),l.getType(),Rogue.renderlevel);
+    public void turn() {
+        if (l.getPlayer().x == x && l.getPlayer().y == y && Rogue.numLevels == numlevel) {
+            Rogue.setLevel(l.getMode(), l.getType(), Rogue.renderlevel);
             Rogue.mm.gp.update();
         }
     }
+
     @Override
-    public void death(){}
+    public void death() {
+    }
 }

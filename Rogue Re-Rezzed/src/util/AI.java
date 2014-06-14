@@ -1,4 +1,3 @@
-
 package util;
 
 import entity.RogueEntity;
@@ -10,139 +9,157 @@ import java.util.Random;
  * @author Torri
  */
 public class AI {
+
     private final RogueEntity parent;
     private final int followdist;
-    private final int x,y;
+    private final int x, y;
     private final Random rand = new Random();
-    public AI(RogueEntity body,int follow){
-        parent=body;
-        x=body.x;
-        y=body.y;
-        if(follow>150){
-            followdist=150;
-        }else{
-            followdist=follow;
+
+    public AI(RogueEntity body, int follow) {
+        parent = body;
+        x = body.x;
+        y = body.y;
+        if (follow > 150) {
+            followdist = 150;
+        } else {
+            followdist = follow;
         }
     }
+
     /**
      * basic tracer AI
+     *
      * @param e
-     * @return 
+     * @return
      */
-    public Direction pointTowards(RogueEntity e){
-        Direction pdir=Direction.STOP;
-        if(e==null || parent.distTo(e)>followdist){
+    public Direction pointTowards(RogueEntity e) {
+        Direction pdir = Direction.STOP;
+        if (e == null || parent.distTo(e) > followdist) {
             boolean b = rand.nextBoolean();
-            int d = rand.nextInt(100)%4;
-            if(b){
-                switch (d){
+            int d = rand.nextInt(100) % 4;
+            if (b) {
+                switch (d) {
                     case 0:
-                        pdir=Direction.UP;
+                        pdir = Direction.UP;
                         break;
                     case 1:
-                        pdir=Direction.RIGHT;
+                        pdir = Direction.RIGHT;
                         break;
                     case 2:
-                        pdir=Direction.LEFT;
+                        pdir = Direction.LEFT;
                         break;
                     case 3:
-                        pdir=Direction.DOWN;
+                        pdir = Direction.DOWN;
                         break;
                     default:
-                        pdir=Direction.STOP;
+                        pdir = Direction.STOP;
                         break;
                 }
-            }else{
-                pdir=Direction.STOP;
+            } else {
+                pdir = Direction.STOP;
             }
-        }else{
-            if(x<e.x)pdir = Direction.RIGHT;
-            if(x>e.x)pdir = Direction.LEFT;
-            if(y<e.y)pdir = Direction.DOWN;
-            if(y>e.y)pdir =Direction.UP;
+        } else {
+            if (x < e.x) {
+                pdir = Direction.RIGHT;
+            }
+            if (x > e.x) {
+                pdir = Direction.LEFT;
+            }
+            if (y < e.y) {
+                pdir = Direction.DOWN;
+            }
+            if (y > e.y) {
+                pdir = Direction.UP;
+            }
         }
         return pdir;
     }
+
     /**
-     * FINALY A*
-     * @param e 
-     * @return  
+     * FINALY A
+     *
+     *
+     * @param e
+     * @return
      */
-    public Direction pathFind(RogueEntity e){
+    public Direction pathFind(RogueEntity e) {
         Direction out;
-        if(parent.distTo(e)<=followdist){
+        if (parent.distTo(e) <= followdist) {
             Astar a = new Astar();
-            List<Node> path = a.findPath(new Vector2i(x,y), new Vector2i(e.x,e.y),parent.l,followdist);
-            if(path==null){
+            List<Node> path = a.findPath(new Vector2i(x, y), new Vector2i(e.x, e.y), parent.l, followdist);
+            if (path == null) {
                 boolean b = rand.nextBoolean();
-                int d = rand.nextInt(100)%4;
-                if(b){
-                    switch (d){
+                int d = rand.nextInt(100) % 4;
+                if (b) {
+                    switch (d) {
                         case 0:
-                            out=Direction.UP;
+                            out = Direction.UP;
                             break;
                         case 1:
-                            out=Direction.DOWN;
+                            out = Direction.DOWN;
                             break;
                         case 2:
-                            out=Direction.LEFT;
+                            out = Direction.LEFT;
                             break;
                         case 3:
-                            out=Direction.RIGHT;
+                            out = Direction.RIGHT;
                             break;
                         default:
-                            out=Direction.STOP;
+                            out = Direction.STOP;
                             break;
                     }
-                }else{
-                    out=Direction.STOP;
+                } else {
+                    out = Direction.STOP;
                 }
-            }else{
-                out = pointTowards(path.get(path.size()-2));
+            } else {
+                out = pointTowards(path.get(path.size() - 2));
             }
-        }else{
+        } else {
             boolean b = rand.nextBoolean();
-            int d = rand.nextInt(100)%4;
-            if(b){
-                switch (d){
+            int d = rand.nextInt(100) % 4;
+            if (b) {
+                switch (d) {
                     case 0:
-                        out=Direction.UP;
+                        out = Direction.UP;
                         break;
                     case 1:
-                        out=Direction.DOWN;
+                        out = Direction.DOWN;
                         break;
                     case 2:
-                        out=Direction.LEFT;
+                        out = Direction.LEFT;
                         break;
                     case 3:
-                        out=Direction.RIGHT;
+                        out = Direction.RIGHT;
                         break;
                     default:
-                        out=Direction.STOP;
+                        out = Direction.STOP;
                         break;
                 }
-            }else{
-                out=Direction.STOP;
+            } else {
+                out = Direction.STOP;
             }
         }
         return out;
     }
+
     /**
-     * Helps with A*
+     * Helps with A
+     *
+     *
      * @param e
-     * @return 
+     * @return
      */
-    private Direction pointTowards(Node e){
+    private Direction pointTowards(Node e) {
         Direction pdir = Direction.STOP;
-        if(x<e.tile.getX()){
+        if (x < e.tile.getX()) {
             pdir = Direction.RIGHT;
-        }else if(x>e.tile.getX()){
+        } else if (x > e.tile.getX()) {
             pdir = Direction.LEFT;
         }
-        if(y<e.tile.getY()){
+        if (y < e.tile.getY()) {
             pdir = Direction.DOWN;
-        }else if(y>e.tile.getY()){
-            pdir =Direction.UP;
+        } else if (y > e.tile.getY()) {
+            pdir = Direction.UP;
         }
         return pdir;
     }

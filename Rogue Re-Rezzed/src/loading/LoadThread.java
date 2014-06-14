@@ -1,17 +1,20 @@
 package loading;
+
 /**
  * @author Torri
  */
-public class LoadThread extends Thread implements Runnable{
+public class LoadThread extends Thread implements Runnable {
+
     boolean running = true;
     Load g = new Load();
+
     @Override
-    public void run(){
-        while(running){
+    public void run() {
+        while (running) {
             g.tick();
-            try{
+            try {
                 Thread.sleep(20);
-            }catch(InterruptedException e){
+            } catch (InterruptedException e) {
                 System.err.println(e.toString());
             }
         }

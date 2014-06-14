@@ -1,4 +1,3 @@
-
 package util;
 
 /**
@@ -6,5 +5,6 @@ package util;
  * @author Creatorri
  */
 public enum Direction {
-    UP,DOWN,LEFT,RIGHT,STOP
+
+    UP, DOWN, LEFT, RIGHT, STOP
 }

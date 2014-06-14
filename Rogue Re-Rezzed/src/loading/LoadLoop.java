@@ -3,12 +3,15 @@ package loading;
 /**
  * @author Torri
  */
-public class LoadLoop{
+public class LoadLoop {
+
     static LoadThread gt = new LoadThread();
-    public static void start(){
+
+    public static void start() {
         gt.start();
     }
-    public static void pause(){
-        gt.running=false;
+
+    public static void pause() {
+        gt.running = false;
     }
 }

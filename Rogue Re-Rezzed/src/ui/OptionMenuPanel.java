@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ui;
 
 /**
@@ -194,7 +193,6 @@ public class OptionMenuPanel extends javax.swing.JPanel {
     private void debugActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_debugActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_debugActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton apply;
