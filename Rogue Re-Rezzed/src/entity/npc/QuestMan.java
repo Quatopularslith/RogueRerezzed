@@ -6,13 +6,13 @@
 package entity.npc;
 
 import dungeon.Level;
-import java.awt.Image;
 import render.Sprite;
 import render.SpriteSheet;
 import util.AI;
 
+import java.awt.*;
+
 /**
- *
  * @author Torri
  */
 public class QuestMan extends RogueNPC {

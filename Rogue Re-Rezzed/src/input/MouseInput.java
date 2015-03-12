@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Torri
  */
 public class MouseInput implements MouseListener {

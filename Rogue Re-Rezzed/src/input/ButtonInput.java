@@ -3,10 +3,11 @@ package input;
 import core.Rogue;
 import entity.RogueEntity;
 import entity.item.Item;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import ui.DebugMenu;
 import ui.Menu;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Handles the buttons of the UIs
@@ -32,11 +33,11 @@ public class ButtonInput implements ActionListener {
         }
         if (command.equalsIgnoreCase("Apply")) {
             char[] inc = {Rogue.mm.omp.fwdKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.backKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.rightKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.leftKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.spellKB.getText().toUpperCase().toCharArray()[0],
-                Rogue.mm.omp.eatKB.getText().toUpperCase().toCharArray()[0]
+                    Rogue.mm.omp.backKB.getText().toUpperCase().toCharArray()[0],
+                    Rogue.mm.omp.rightKB.getText().toUpperCase().toCharArray()[0],
+                    Rogue.mm.omp.leftKB.getText().toUpperCase().toCharArray()[0],
+                    Rogue.mm.omp.spellKB.getText().toUpperCase().toCharArray()[0],
+                    Rogue.mm.omp.eatKB.getText().toUpperCase().toCharArray()[0]
             };
             int[] in = new int[inc.length];
             for (int i = 0; i < in.length; i++) {

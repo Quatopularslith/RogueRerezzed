@@ -3,21 +3,20 @@ package entity.npc;
 import core.Rogue;
 import dungeon.Level;
 import entity.item.Item;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import render.Sprite;
 import render.SpriteSheet;
 import util.AI;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 /**
- *
  * @author Creatorri
  */
 public class Trader extends RogueNPC {
 
-    private final String[] dialogue = {"Hello Adventurer!", "Looking for something?", "Need a hand?", "Hey dawg whaddup?", "Hello Stranger!", "Mortuus Trabajos owning you?", "You saw the crystal? LOL its NYI"};
     public final int[] prices;
+    private final String[] dialogue = {"Hello Adventurer!", "Looking for something?", "Need a hand?", "Hey dawg whaddup?", "Hello Stranger!", "Mortuus Trabajos owning you?", "You saw the crystal? LOL its NYI"};
     public int[][] buttons = new int[3][2];
     public BufferedImage img = new BufferedImage(256, 256, BufferedImage.TYPE_4BYTE_ABGR);
     public boolean trade = false;

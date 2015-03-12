@@ -3,7 +3,6 @@ package util;
 /**
  * Part of A
  *
- *
  * @author Torri
  */
 public class Vector2i {

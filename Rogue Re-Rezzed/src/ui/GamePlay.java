@@ -9,35 +9,21 @@ import entity.item.Item;
 import entity.npc.Trader;
 import entity.npc.Warrior;
 import input.MButton;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.List;
-import javax.swing.JPanel;
 import render.Sprite;
 import render.SpriteSheet;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+
 /**
- *
  * @author Torri
  */
 public class GamePlay extends JPanel {
 
-    private Level l = Rogue.getCurrentLevel();
-    private int offx = 0, offy = 0;
-    LoadArt la = new LoadArt();
     public static Item pickup;
     public static Sprite fsp = new Sprite(SpriteSheet.FLOOR);
     public static Sprite dialogue = new Sprite(SpriteSheet.DIALOGUE, 144);
-    private List<RogueEntity> current;
-    private FontMetrics fm;
-    MButton amb = new MButton(getWidth() / 2 - 16, getHeight() / 2, 100, 20, "Pick Up", this);
-    MButton dmb = new MButton(getWidth() / 2 - 16, getHeight() / 2 + 32, 100, 20, "Leave It", this);
-    int moffx = 0, moffy = 0;
     public static Sprite floorimg = new Sprite(SpriteSheet.FLOOR, 8);
     public static Sprite pimg = new Sprite(SpriteSheet.PLAYER, 8);
     public static Sprite stimg = new Sprite(SpriteSheet.STAIRWAY, 8);
@@ -49,6 +35,14 @@ public class GamePlay extends JPanel {
     public Trader currTrade;
     public Warrior w;
     public MButton hire = new MButton(650, 460, 100, 30, "Hire", this);
+    LoadArt la = new LoadArt();
+    MButton amb = new MButton(getWidth() / 2 - 16, getHeight() / 2, 100, 20, "Pick Up", this);
+    MButton dmb = new MButton(getWidth() / 2 - 16, getHeight() / 2 + 32, 100, 20, "Leave It", this);
+    int moffx = 0, moffy = 0;
+    private Level l = Rogue.getCurrentLevel();
+    private int offx = 0, offy = 0;
+    private List<RogueEntity> current;
+    private FontMetrics fm;
     private Dimension d = getSize();
 
     public GamePlay() {

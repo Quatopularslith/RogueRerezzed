@@ -2,9 +2,10 @@ package input;
 
 import core.GameLoop;
 import core.Rogue;
+import util.Direction;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import util.Direction;
 
 /**
  * This gets and keeps information from the keyboard
@@ -14,12 +15,12 @@ import util.Direction;
 public class KeyboardInput implements KeyListener {
 
     private final boolean[] keys = new boolean[1000];
-    private int[] keyn = new int[6];
     private final Direction[] dirs = {Direction.UP, Direction.DOWN, Direction.RIGHT, Direction.LEFT, Direction.STOP, Direction.STOP};
     public boolean[] keyBind = new boolean[6];
     public boolean turn = true;
     public boolean pause = false;
     public boolean connected = false;
+    private int[] keyn = new int[6];
 
     /**
      * Sets up a keyboard input listener

@@ -12,14 +12,15 @@ import entity.npc.QuestMan;
 import entity.npc.Trader;
 import entity.npc.Warrior;
 import entity.player.Player;
-import java.awt.Image;
+import render.Sprite;
+import render.SpriteSheet;
+import ui.GamePlay;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import render.Sprite;
-import render.SpriteSheet;
-import ui.GamePlay;
 
 /**
  * Handles everything having to do with spawning the world
@@ -28,16 +29,11 @@ import ui.GamePlay;
  */
 public class Level {
 
+    protected static int rows = 10, cols = 20;
     protected final Random rand = new Random();
     protected final ArrayList<RogueEntity> re = new ArrayList<>();
     protected final ArrayList<Item> items = new ArrayList<>();
-    protected ArrayList<Player> pl = new ArrayList<>();
-    protected static int rows = 10, cols = 20;
-    protected Stairway st;
-    protected int nument = 0;
     protected final LoadArt la = new LoadArt();
-    protected LevelMode mode;
-    protected LevelType type;
     public int lvl;
     /**
      * multiple of 16
@@ -55,6 +51,11 @@ public class Level {
      * Maximum Rooms
      */
     public int numRooms;
+    protected ArrayList<Player> pl = new ArrayList<>();
+    protected Stairway st;
+    protected int nument = 0;
+    protected LevelMode mode;
+    protected LevelType type;
 
     /**
      * Creates a level
@@ -67,7 +68,7 @@ public class Level {
      * Creates a level
      *
      * @param lvl
-     * @param mode * @param lvl level of difficulty
+     * @param mode   * @param lvl level of difficulty
      * @param type
      * @param render
      */
@@ -78,8 +79,8 @@ public class Level {
     /**
      * Creates a level
      *
-     * @param sx the X size of the new Level
-     * @param sy the Y
+     * @param sx     the X size of the new Level
+     * @param sy     the Y
      * @param mode
      * @param type
      * @param render
@@ -91,9 +92,9 @@ public class Level {
     /**
      * Creates a level
      *
-     * @param sx the X size of the new Level
-     * @param sy the Y size of the new Level
-     * @param lvl the level of difficulty
+     * @param sx      the X size of the new Level
+     * @param sy      the Y size of the new Level
+     * @param lvl     the level of difficulty
      * @param mode1
      * @param type1
      * @param render1
@@ -305,6 +306,11 @@ public class Level {
         return pl.get(0);
     }
 
+    public void setPlayer(Player p) {
+        p.l = this;
+        pl.set(0, p);
+    }
+
     /**
      * gets current set of stairs
      *
@@ -373,10 +379,5 @@ public class Level {
 
     public Player[] getPlayers() {
         return (Player[]) pl.toArray();
-    }
-
-    public void setPlayer(Player p) {
-        p.l = this;
-        pl.set(0, p);
     }
 }

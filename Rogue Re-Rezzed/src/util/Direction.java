@@ -1,7 +1,6 @@
 package util;
 
 /**
- *
  * @author Creatorri
  */
 public enum Direction {

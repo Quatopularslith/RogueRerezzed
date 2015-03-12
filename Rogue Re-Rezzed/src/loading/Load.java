@@ -9,6 +9,10 @@ public class Load {
 
     private static long ticknum = 0;
 
+    public static long getTickNum() {
+        return ticknum;
+    }
+
     public void tick() {
         ticknum++;
         if (Rogue.mm != null) {
@@ -20,9 +24,5 @@ public class Load {
         } else {
             ticknum = 0;
         }
-    }
-
-    public static long getTickNum() {
-        return ticknum;
     }
 }

@@ -2,11 +2,8 @@ package input;
 
 import art.LoadArt;
 import core.Rogue;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -16,27 +13,27 @@ import java.awt.image.BufferedImage;
  */
 public class MButton {
 
+    public final String name;
+    private final LoadArt la = new LoadArt();
     public BufferedImage img;
     public int x;
     public int y;
     public boolean visible = true;
+    public Component parent;
     private boolean isListened = false;
-    private final LoadArt la = new LoadArt();
     private MButtonInput mbi;
     private int sx;
     private int sy;
-    public final String name;
     private String data;
-    public Component parent;
 
     /**
      * Makes a MButton
      *
-     * @param x1 top left corner
-     * @param y1 top left corner
-     * @param sx1 width
-     * @param sy1 height
-     * @param name1 name
+     * @param x1      top left corner
+     * @param y1      top left corner
+     * @param sx1     width
+     * @param sy1     height
+     * @param name1   name
      * @param parent1
      */
     public MButton(int x1, int y1, int sx1, int sy1, String name1, Component parent1) {

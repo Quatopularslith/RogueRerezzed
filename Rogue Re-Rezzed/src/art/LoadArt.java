@@ -1,13 +1,12 @@
 package art;
 
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
-import javax.imageio.ImageIO;
 
 /**
- *
  * @author Torri
  */
 public class LoadArt {

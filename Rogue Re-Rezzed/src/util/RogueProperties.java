@@ -14,9 +14,9 @@ import java.util.Properties;
 public class RogueProperties {
 
     private final File rp;
-    private Properties p;
     private final String[] props;
     private final String[] out;
+    private Properties p;
 
     /**
      * Creates properties file

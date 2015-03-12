@@ -6,10 +6,11 @@ import dungeon.Level;
 import dungeon.LevelMode;
 import dungeon.LevelType;
 import entity.item.Item;
-import java.awt.Component;
-import javax.swing.JPanel;
 import ui.GamePlay;
 import util.RogueSave;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * listener for MButtons

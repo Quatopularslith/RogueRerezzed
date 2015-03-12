@@ -1,25 +1,17 @@
 package util;
 
 import dungeon.Level;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 /**
- *
  * @author Torri
  */
 public class Astar {
 
-    private int x;
-    private int y;
-    private int xi;
-    private int yi;
-    private Vector2i a;
-    private double gCost;
-    private double hCost;
-    private Node node;
     private final Comparator<Node> nodeSort = new Comparator<Node>() {
         @Override
         public int compare(Node n0, Node n1) {
@@ -32,6 +24,14 @@ public class Astar {
             return 0;
         }
     };
+    private int x;
+    private int y;
+    private int xi;
+    private int yi;
+    private Vector2i a;
+    private double gCost;
+    private double hCost;
+    private Node node;
 
     public List<Node> findPath(Vector2i start, Vector2i goal, Level l, int followrange) {
         List<Node> openList = new ArrayList<>();

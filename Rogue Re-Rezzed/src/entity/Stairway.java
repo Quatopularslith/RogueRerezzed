@@ -6,7 +6,6 @@ import render.Sprite;
 import render.SpriteSheet;
 
 /**
- *
  * @author Torri
  */
 public class Stairway extends RogueEntity {

@@ -3,13 +3,11 @@ package ui;
 import art.LoadArt;
 import core.Rogue;
 import input.MButton;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
- *
  * @author Torri
  */
 public class OptionMenuPanel1 extends JPanel {

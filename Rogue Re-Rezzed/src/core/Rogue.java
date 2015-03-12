@@ -3,12 +3,9 @@ package core;
 import dungeon.Level;
 import dungeon.LevelMode;
 import dungeon.LevelType;
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.util.ArrayList;
 import ui.Menu;
+
+import java.util.ArrayList;
 //http://semver.org/
 
 /**
@@ -18,11 +15,11 @@ import ui.Menu;
  */
 public class Rogue {
 
-    public static Menu mm;
     private static final ArrayList<Level> levels = new ArrayList<>();
-    private static Level l;
+    public static Menu mm;
     public static int numLevels = 1;
     public static int renderlevel = 0;
+    private static Level l;
     private static int hs = 0;
     private static int n = 0;
     private static int d = 0;
@@ -89,7 +86,7 @@ public class Rogue {
 
     public static void sendStats() {
         resetLevels();
-        if (d < 1 || n < 1 || hs < 1) {
+        /*if (d < 1 || n < 1 || hs < 1) {
             return;
         }
         new Thread("Sending Stats") {
@@ -109,6 +106,6 @@ public class Rogue {
                 d = 0;
                 hs = 0;
             }
-        }.start();
+        }.start();*/
     }
 }

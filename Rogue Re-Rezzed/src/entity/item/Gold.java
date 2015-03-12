@@ -6,7 +6,6 @@ import render.Sprite;
 import render.SpriteSheet;
 
 /**
- *
  * @author Creatorri
  */
 public class Gold extends Item {

@@ -26,12 +26,12 @@ public class Player extends RogueEntity {
     public int maxMana = 100;//mana=magic points
     public double mana = 50;
     public int kills = 0;
-    boolean attack = false;
     public int currinv = 0;
     public double xp = 0;
     public int rep = 0;
     public int gold = 0;
     public boolean[] npcsFound;
+    boolean attack = false;
 
     public Player(Level l1) {
         super(l1);

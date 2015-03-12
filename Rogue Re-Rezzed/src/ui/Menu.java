@@ -6,22 +6,25 @@ import input.ButtonInput;
 import input.KeyboardInput;
 import input.MButtonInput;
 import input.MouseInput;
-import java.awt.Image;
-import javax.swing.JFrame;
 import loading.Loading;
 import render.Sprite;
 import render.SpriteSheet;
 import util.RogueProperties;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
- *
  * @author Torri
  */
 public class Menu extends JFrame {
 
+    public static RogueProperties rp;
+    public static int x, y, sx, sy;
+    private final String[] props = {"fwdKB", "backKB", "rightKB", "leftKB", "skipKB", "pKB"};
+    private final String[] defkeys = {"87", "83", "68", "65", "69", "32"};
     public LoadArt la = new LoadArt();
     public LoadAudio a = new LoadAudio();
-
     public MainMenuPanel mmp;
     public OptionMenuPanel omp;
     public DebugMPassword dmp;
@@ -29,19 +32,11 @@ public class Menu extends JFrame {
     public DebugMenu dm;
     public Loading load;
     public NewGamePanel ngp;
-
     public KeyboardInput ki;
     public ButtonInput bi;
     public MouseInput mi;
     public MButtonInput mbi;
-
     public GamePlay gp;
-
-    public static RogueProperties rp;
-    public static int x, y, sx, sy;
-
-    private final String[] props = {"fwdKB", "backKB", "rightKB", "leftKB", "skipKB", "pKB"};
-    private final String[] defkeys = {"87", "83", "68", "65", "69", "32"};
     private int[] propn = {87, 83, 68, 65, 81, 69};
 
     /**

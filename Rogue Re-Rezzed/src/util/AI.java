@@ -1,11 +1,11 @@
 package util;
 
 import entity.RogueEntity;
+
 import java.util.List;
 import java.util.Random;
 
 /**
- *
  * @author Torri
  */
 public class AI {
@@ -78,7 +78,6 @@ public class AI {
     /**
      * FINALY A
      *
-     *
      * @param e
      * @return
      */
@@ -144,7 +143,6 @@ public class AI {
 
     /**
      * Helps with A
-     *
      *
      * @param e
      * @return

@@ -13,22 +13,22 @@ import render.SpriteSheet;
  */
 public class Item extends RogueEntity {
 
-    public ItemType tyname;
-    public int ofx = rand.nextInt(42), ofy = rand.nextInt(42);
-    private RogueEntity parent;
-    public int modifierid;
-    public boolean cursed;
-    public int id;
     public static final String[] modifiers = {"", "Broken ", "Ordinary ", "Shattered ", "Old ", "Healthy ", "Magical ", "Strong "};
     public static final String[] type = {"Empty", "Sword", "Axe", "Shield"};
     public static final String[] materials = {"Wood ", "Stone ", "Copper ", "Bronze ", "Iron ", "Steel ", "Unknown "};
-    public boolean equip = false;
     public static int numid = type.length * materials.length;
-    private int mod;
+    public ItemType tyname;
+    public int ofx = rand.nextInt(42), ofy = rand.nextInt(42);
+    public int modifierid;
+    public boolean cursed;
+    public int id;
+    public boolean equip = false;
     /**
      * In form of {Attack,Defense,Mana,Health}
      */
     public double[] stats = {0.0, 0.0, 0.0, 0.0};
+    private RogueEntity parent;
+    private int mod;
 
     public Item(int id, RogueEntity parent1, int lvl, Level l1) {
         super(l1);
@@ -39,7 +39,7 @@ public class Item extends RogueEntity {
         sp = new Sprite(SpriteSheet.BAG, 16);
         modifierid = rand.nextInt(modifiers.length);
         this.lvl = lvl;
-        int matid = (int) id / materials.length;
+        int matid = id / materials.length;
         if (matid > materials.length) {
             matid = id % (materials.length - 1);
         }

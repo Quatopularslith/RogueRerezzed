@@ -1,18 +1,16 @@
 package loading;
 
 import core.Rogue;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import javax.swing.JPanel;
 
 public class Loading extends JPanel {
 
     double n = .875;
     int r, arrs = 201;
-    double newTheta, theta = 2 * Math.asin(1 / (2 * n));
+    double newTheta, theta = 2 * Math.asin(1 / (n));
     double cX, cY;
 
     public Loading() {

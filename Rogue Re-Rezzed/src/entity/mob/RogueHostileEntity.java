@@ -24,10 +24,10 @@ public class RogueHostileEntity extends RogueEntity {
      * @param lvl1
      * @param l1
      * @param name1
-     * @param op0 operation for health
-     * @param attmod attack modifier
-     * @param op1 operation for attack
-     * @param hmod health modifier
+     * @param op0         operation for health
+     * @param attmod      attack modifier
+     * @param op1         operation for attack
+     * @param hmod        health modifier
      * @param followdist1 follow distance
      */
     public RogueHostileEntity(int lvl1, Level l1, String name1, Operation op0, float hmod, Operation op1, float attmod, int followdist1) {

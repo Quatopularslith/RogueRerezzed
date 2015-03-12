@@ -4,28 +4,27 @@ import dungeon.Level;
 import entity.RogueEntity;
 import entity.mob.RogueHostileEntity;
 import entity.player.Player;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.util.List;
 import render.Sprite;
 import render.SpriteSheet;
 import util.AI;
 import util.Node;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.List;
+
 /**
- *
  * @author Torri
  */
 public class Warrior extends RogueNPC {
 
-    RogueEntity follow;
     private final String[] dialogue = {"Need a hand?", "I'll help you. For a price.", "DEATH, DEATH EVERYWHERE"};
     public BufferedImage img = new BufferedImage(256, 256, BufferedImage.TYPE_4BYTE_ABGR);
     public int cost;
     public int buttons[] = new int[2];
     public boolean hireD = false;
     public boolean hire = false;
+    RogueEntity follow;
     int numturns = 0;
     List<Node> path;
 

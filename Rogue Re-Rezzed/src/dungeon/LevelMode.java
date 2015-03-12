@@ -1,7 +1,6 @@
 package dungeon;
 
 /**
- *
  * @author Torri
  */
 public enum LevelMode {

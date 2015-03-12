@@ -1,7 +1,6 @@
 package render;
 
 /**
- *
  * @author Torri
  */
 public enum ItemSheet {

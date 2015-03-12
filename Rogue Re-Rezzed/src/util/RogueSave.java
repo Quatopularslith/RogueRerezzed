@@ -6,6 +6,7 @@ import dungeon.LevelMode;
 import dungeon.LevelType;
 import entity.Stairway;
 import entity.player.Player;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -16,17 +17,16 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- *
  * @author Mnenmenth & Torri
  */
 public class RogueSave {
 
-    private File rs;
-    private File r;
-    private Properties p;
     private final String sep = File.separator;
     private final String paths;
     private final String[] playerprops = {"x", "y", "xp", "lvl", "mana", "kills", "health", "gold", "numd", "stx", "sty", "name0", "name1", "name2", "name3", "name4", "name5", "name6", "name7", "name8", "name9", "levelMode"};
+    private File rs;
+    private File r;
+    private Properties p;
 
     public RogueSave(int savenum) {
         paths = "RogueRerezzed" + sep + "Saves" + sep + "save" + savenum;

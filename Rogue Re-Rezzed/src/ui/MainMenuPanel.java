@@ -3,20 +3,19 @@ package ui;
 import art.LoadArt;
 import core.Rogue;
 import input.MButton;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- *
  * @author Mnenmenth
  */
 public class MainMenuPanel extends javax.swing.JPanel {
 
+    public int numlevels = 1;
     double[] bypos = {0.3, 0.42, 0.54, 0.66};
     double[] size = {0.26666666666666667, 0.1};
     LoadArt la = new LoadArt();
-    public int numlevels = 1;
     int offx, offy, moffx, moffy;
     int sx = 750, sy = 500;
     BufferedImage img = la.createBufferedImage("MainMenu.png", 750, 500);

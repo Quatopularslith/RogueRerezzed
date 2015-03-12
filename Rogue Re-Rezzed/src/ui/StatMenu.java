@@ -2,13 +2,11 @@ package ui;
 
 import core.Rogue;
 import input.MButton;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
- *
  * @author Quatopularslith
  */
 public class StatMenu extends JPanel {
